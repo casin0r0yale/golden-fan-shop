@@ -1,5 +1,6 @@
 // EXPRESS SERVER Index
 
+require("dotenv").config();
 const express = require ("express");
 const axios = require ("axios")
 const app = express();
@@ -18,8 +19,12 @@ app.get('/getProducts', (req, res) => {
     headers: { Authorization: process.env.AUTH_SECRET },
   };
   axios(options)
-  .then((data) => {
-    console.log(data);
-    res.send(data)
+  .then((result) => {
+    console.log(result);
+    res.status(200).send(result.data)
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).send(err)
   })
 })
