@@ -17,6 +17,9 @@ app.get('/getProducts', (req, res) => {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
-  return axios(options);
-  res.send('hello world')
+  axios(options)
+  .then((data) => {
+    console.log(data);
+    res.send(data)
+  })
 })
