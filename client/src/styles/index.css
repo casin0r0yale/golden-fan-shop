@@ -3,4 +3,18 @@ h1 {
   color: rgb(153, 130, 0);
   margin-left: 20px;
   }
+
    
+ .overviewContainer {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    }
+    
+    .productInfo { grid-area: 1 / 5 / 3 / 8; }
+    .styleSelector { grid-area: 3 / 5 / 5 / 8; }
+    .addToCart { grid-area: 5 / 5 / 7 / 8; }
+    .imageGallery { grid-area: 1 / 2 / 7 / 5; }
+
