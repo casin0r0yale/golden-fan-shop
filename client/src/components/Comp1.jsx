@@ -8,7 +8,6 @@ const Component = (props) => {
     <div>
       <div>Component Test</div>
       <Overview/>
-      <Reviews/>
     </div>
   )
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from 'react-dom';
 import Component from './components/Comp1.jsx';
 import axios from 'axios';
+import Reviews from './components/Reviews.jsx';
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
       <div>
         <h2>Main App Component</h2>
         <Component/>
+        <Reviews/>
       </div>
   );
 }
