@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Overview from './overview.jsx';
+import Reviews from './Reviews.jsx';
 
 const Component = (props) => {
 
@@ -7,6 +8,7 @@ const Component = (props) => {
     <div>
       <div>Component Test</div>
       <Overview/>
+      <Reviews/>
     </div>
   )
 }
