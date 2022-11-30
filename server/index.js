@@ -20,7 +20,7 @@ app.get('/getProducts', (req, res) => {
   };
   axios(options)
   .then((result) => {
-    console.log(result);
+    // console.log('index/server result, ', result);
     res.status(200).send(result.data)
   })
   .catch((err) => {
