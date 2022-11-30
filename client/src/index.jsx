@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from 'react-dom';
-import Component from './components/Comp1.jsx';
+import Overview from './components/overview.jsx';
+import Reviews from './components/Reviews.jsx';
+import RelatedCard from './components/RelatedCard.jsx';
 import axios from 'axios';
 
 const App = () => {
@@ -26,8 +28,11 @@ const App = () => {
   return (
 
       <div>
-        <h2>Main App Component</h2>
-        <Component/>
+        <h2>Golden Fan Shop: Main App/Index Component</h2>
+        <Overview/>
+        <RelatedCard/>
+        <div>Questions and Answers Module goes here</div>
+        <Reviews/>
       </div>
   );
 }
