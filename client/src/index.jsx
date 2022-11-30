@@ -28,7 +28,6 @@ const App = () => {
       <div>
         <h2>Main App Component</h2>
         <Component/>
-        <Component/>
       </div>
   );
 }
