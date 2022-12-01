@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from 'react-dom';
-<<<<<<< HEAD
-import Component from './components/Comp1.jsx';
-import Questions from './components/Questions.jsx';
-=======
 import Overview from './components/overview.jsx';
 import Reviews from './components/Reviews.jsx';
 import RelatedCard from './components/RelatedCard.jsx';
->>>>>>> 39d8d5e9f73f66116cc6cec5e50be2b69e67749c
+import Questions from './components/Questions.jsx';
 import axios from 'axios';
 
 const App = () => {
@@ -20,9 +16,9 @@ const App = () => {
 
   var getData = () => {
 
-    axios.get('/getProducts')
+    axios.get('/getQuestions')
     .then(function (response) {
-      console.log('SUCCESS GET: ', response);
+      console.log('SUCCESS GET: ', response.data);
     })
     .catch(function (error) {
       console.log('error GET: ', error);
@@ -32,11 +28,13 @@ const App = () => {
 
   return (
 
-      <div>
-        <h2>Main App Component</h2>
-        <Component/>
-        <Questions/>
-      </div>
+    <div>
+    <h2>Golden Fan Shop: Main App/Index Component</h2>
+    <Overview/>
+    <RelatedCard/>
+    <Questions />
+    <Reviews/>
+    </div>
   );
 }
 

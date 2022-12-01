@@ -1,5 +1,6 @@
 // EXPRESS SERVER Index
 
+require('dotenv').config();
 const express = require ("express");
 const axios = require ('axios')
 const app = express();
@@ -11,12 +12,13 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 app.listen(3000, () => console.log('Our Server is listening on port 3000...'));
 
-app.get('/getProducts', (req, res) => {
+app.get('/getQuestions', (req, res) => {
   const options = {
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=71697`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
+
   axios(options)
   .then((result) => {
     // console.log('index/server result, ', result);
