@@ -1,8 +1,7 @@
 // EXPRESS SERVER Index
 
-require("dotenv").config();
 const express = require ("express");
-const axios = require ("axios")
+const axios = require ('axios')
 const app = express();
 
 app.use(express.json());
@@ -18,13 +17,6 @@ app.get('/getProducts', (req, res) => {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
-  axios(options)
-  .then((result) => {
-    console.log(result);
-    res.status(200).send(result.data)
-  })
-  .catch((err) => {
-    console.log(err);
-    res.status(500).send(err)
-  })
+  return axios(options);
+  res.send('hello world')
 })
