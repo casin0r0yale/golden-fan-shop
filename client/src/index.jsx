@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from 'react-dom';
 import Component from './components/Comp1.jsx';
+import Questions from './components/Questions.jsx';
 import axios from 'axios';
 
 const App = () => {
@@ -28,7 +29,7 @@ const App = () => {
       <div>
         <h2>Main App Component</h2>
         <Component/>
-        <Component/>
+        <Questions/>
       </div>
   );
 }
