@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Overview from './components/overview.jsx';
 import Reviews from './components/Reviews.jsx';
 import RelatedCard from './components/RelatedCard.jsx';
+import Questions from './components/Questions.jsx';
 import axios from 'axios';
 
 const App = () => {
@@ -210,7 +211,7 @@ const App = () => {
           related_category={itemObj.related_category} related_price={itemObj.related_price}
           related_thumbnail={itemObj.related_thumbnail}/>
           })}
-        <div>Questions and Answers Module goes here</div>
+        <Questions/>
         <Reviews/>
       </div>
   );
