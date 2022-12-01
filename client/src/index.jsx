@@ -9,7 +9,8 @@ const App = () => {
 
   // PRIMARY STATE: Setting product ID 71697 as the default detail page to start us off.
   // As the user clicks into a new detail page, this state will change and set off chained GET request for all necessary data
-  const [focusProductId, changeFocusProductId] = useState(71697);
+  const [focusProductId, setFocusProductId] = useState(71697);
+  const [relatedProductsData, setRelatedProductsData] = useState([]);
 
   useEffect(() => {
     getData();
@@ -40,52 +41,122 @@ const App = () => {
         // CHAIN 3: GET Related Products (Richard's section to manipulate)
         axios.get('/getProductRelated', { params: { id: focusProductId } })
         .then(function (response) {
+
           console.log('CHAIN 3: Richard Module - SUCCESS GET RELATED PRODUCTS: ', response.data);
           var relatedProductData = response.data;
+          var relatedAllData = [];
 
-          // Loop through the array of related ids
-          relatedProductData.forEach((relatedId) => {
+          // Old Code: Looping through the array of related ids, building out object for each ID to push into above
+          // relatedProductData.forEach((relatedId) => {
 
-            // TODO: Chain Reviews API Call
+          //   var relatedObj = {};
+          //   relatedObj.related_id = relatedId;
 
-            // Related Chain 3.1
-            axios.get('/getProductGeneralInfo', { params: { id: relatedId } })
-            .then(function (response) {
+          //   // Related Chain 3.1
+          //   axios.get('/getProductGeneralInfo', { params: { id: relatedId } })
+          //   .then(function (response) {
 
-              var relatedName = response.data.name;
-              var relatedCategory = response.data.category;
-              var relatedPrice = response.data.default_price;
+          //     relatedObj.related_name = response.data.name;
+          //     relatedObj.related_category = response.data.category;
+          //     relatedObj.related_price = response.data.default_price;
 
-              // console.log('SUCCESS inner GET RELATED PRODUCTS (name, category and price): ', relatedName, relatedCategory, relatedPrice);
+          //     // Related Chain 3.2
+          //     axios.get('/getProductStyles', { params: { id: relatedId } })
+          //       .then(function (response) {
+          //         // console.log('SUCCESS inner GET STYLES PRODUCTS (looking for thumbnail): ', response.data);
+          //         var allStylesArray = response.data.results;
+          //         // console.log("🚀 ~ file: index.jsx:67 ~ allStylesArray", allStylesArray)
+          //         for (var i = 0 ; i < allStylesArray.length; i++) {
+          //           var currentStyleObj = allStylesArray[i];
+          //           if (currentStyleObj['default?'] === true) {
+          //             var photoUrl = currentStyleObj.photos[0].thumbnail_url;
+          //             relatedObj.related_thumbnail = photoUrl;
+          //             relatedAllData.push(relatedObj)
+          //             break;
+          //           }
+          //           if (i === allStylesArray.length - 1) {
+          //             var photoUrl = allStylesArray[0].photos[0].thumbnail_url;
+          //             relatedObj.related_thumbnail = photoUrl;
+          //             relatedAllData.push(relatedObj);
+          //           }
+          //         }
 
-              // Related Chain 3.2
-              axios.get('/getProductStyles', { params: { id: relatedId } })
-                .then(function (response) {
-                  // console.log('SUCCESS inner GET STYLES PRODUCTS (looking for thumbnail): ', response.data);
 
-                  var allStylesArray = response.data.results;
+          //         // console.log("🚀🚀 ~ file: index.jsx:84 ~ relatedAllData", relatedAllData);
+          //         // setRelatedProductsData(relatedAllData);
+          //         // Related Chain 3.3 TODO
+          //         // TARGET! Got all data besides for star data TODO
 
-                  allStylesArray.forEach((styleObj) => {
-                    // console.log("🚀 ~ file: index.jsx:74 ~ allStylesArray.forEach ~ styleObj", styleObj['default?'])
-                    if (styleObj['default?'] === true) {
-                      // console.log('styleObj.photos[0]:', styleObj.photos[0])
-                    } else {
-                      // console.log('ELSE styleObj.photos[0]:', styleObj.photos[0])
-                      // TODO interated through array of style objects.....
+          //       })
+          //       .catch(function (error) {
+          //         console.log('error GET inner RelatedProducts: ', error);
+          //       })
+          //   })
+          //   .catch(function (error) {
+          //     console.log('error GET inner RelatedProducts: ', error);
+          //   })
+          //   //End of for each loop
+          // })
+
+          (async () => {
+            // Sample async function which implicitly returns a Promise since it's marked
+            // as async. Could also be a regular function explicitly returning a Promise.
+            const myAsyncGetRelatedData = async (relatedId) => {
+              console.log(" inside async... relatedId: ", relatedId)
+              var relatedObj = {};
+              relatedObj.related_id = relatedId;
+
+              // Related Chain 3.1
+              return axios.get('/getProductGeneralInfo', { params: { id: relatedId } })
+              .then(function (response) {
+
+                relatedObj.related_name = response.data.name;
+                relatedObj.related_category = response.data.category;
+                relatedObj.related_price = response.data.default_price;
+
+                // Related Chain 3.2
+                return axios.get('/getProductStyles', { params: { id: relatedId } })
+                  .then(function (response) {
+                    var allStylesArray = response.data.results;
+                    for (var i = 0 ; i < allStylesArray.length; i++) {
+                      var currentStyleObj = allStylesArray[i];
+                      if (currentStyleObj['default?'] === true) {
+                        var photoUrl = currentStyleObj.photos[0].thumbnail_url;
+                        relatedObj.related_thumbnail = photoUrl;
+                        console.log("🚀 ~ file: index.jsx:129 ~ relatedObj", relatedObj)
+                        return relatedObj;
+                      }
+                      if (i === allStylesArray.length - 1) {
+                        var photoUrl = allStylesArray[0].photos[0].thumbnail_url;
+                        relatedObj.related_thumbnail = photoUrl;
+                        console.log("🚀 ~ file: index.jsx:136 ~ relatedObj", relatedObj)
+                        return relatedObj;
+                      }
                     }
+
+                    // Related Chain 3.3 TODO
+                    // Got all data besides for star data TODO
+
                   })
-                })
-                .catch(function (error) {
-                  console.log('error GET inner RelatedProducts: ', error);
-                })
+                  .catch(function (error) {
+                    console.log('error GET inner RelatedProducts: ', error);
+                  })
+              })
+              .catch(function (error) {
+                console.log('error GET inner RelatedProducts: ', error);
+              })
+            }
+            // Create an array of Promises from relatedProductData.
+            const tasks = relatedProductData.map(id => myAsyncGetRelatedData(id))
 
+            try {
+              const results = await Promise.all(tasks);
+              setRelatedProductsData(results);
 
-            })
-            .catch(function (error) {
-              console.log('error GET inner RelatedProducts: ', error);
-            })
-          })
-
+            } catch (err) {
+              console.error(err)
+            }
+          })()
 
           // CHAIN 4: GET Product REVIEWS data (Tony's section to manipulate)
           axios.get('/getProductReviews', { params: { id: focusProductId } })
@@ -111,7 +182,12 @@ const App = () => {
               console.log('error GET Reviews Data: ', error);
             })
 
+          // return relatedAllData;
         })
+        // .then((relatedAllData) => {
+        //   console.log("🚀🚀🚀 ~ file: index.jsx:130 ~ relatedAllData", relatedAllData);
+        //   setRelatedProductsData(relatedAllData);
+        // })
         .catch(function (error) {
           console.log('error GET RelatedProducts: ', error);
         })
@@ -132,7 +208,11 @@ const App = () => {
       <div>
         <h2>Golden Fan Shop: Main App/Index Component</h2>
         <Overview/>
-        <RelatedCard/>
+        {relatedProductsData.map((itemObj, index) => {
+          return <RelatedCard key={index} related_id={itemObj.related_id} related_name={itemObj.related_name}
+          related_category={itemObj.related_category} related_price={itemObj.related_price}
+          related_thumbnail={itemObj.related_thumbnail}/>
+          })}
         <div>Questions and Answers Module goes here</div>
         <Reviews/>
       </div>
