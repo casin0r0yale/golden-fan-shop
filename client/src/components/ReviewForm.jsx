@@ -54,6 +54,7 @@ const ReviewForm = (props) => {
           <input type="email" name="email" placeholder="Example: jackson11@email.com" maxLength="60" required/>
           <h5>For authentication reasons, you will not be emailed</h5>
         </label>
+        <button>Submit</button>
       </form>
     </div>
   )
