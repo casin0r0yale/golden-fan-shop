@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from 'react-dom';
+<<<<<<< HEAD
 import Component from './components/Comp1.jsx';
 import Questions from './components/Questions.jsx';
+=======
+import Overview from './components/overview.jsx';
+import Reviews from './components/Reviews.jsx';
+import RelatedCard from './components/RelatedCard.jsx';
+>>>>>>> 39d8d5e9f73f66116cc6cec5e50be2b69e67749c
 import axios from 'axios';
 
 const App = () => {
