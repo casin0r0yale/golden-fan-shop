@@ -102,7 +102,6 @@ const App = () => {
             // Sample async function which implicitly returns a Promise since it's marked
             // as async. Could also be a regular function explicitly returning a Promise.
             const myAsyncGetRelatedData = async (relatedId) => {
-              console.log(" inside async... relatedId: ", relatedId)
               var relatedObj = {};
               relatedObj.related_id = relatedId;
 
@@ -123,13 +122,11 @@ const App = () => {
                       if (currentStyleObj['default?'] === true) {
                         var photoUrl = currentStyleObj.photos[0].thumbnail_url;
                         relatedObj.related_thumbnail = photoUrl;
-                        console.log("🚀 ~ file: index.jsx:129 ~ relatedObj", relatedObj)
                         return relatedObj;
                       }
                       if (i === allStylesArray.length - 1) {
                         var photoUrl = allStylesArray[0].photos[0].thumbnail_url;
                         relatedObj.related_thumbnail = photoUrl;
-                        console.log("🚀 ~ file: index.jsx:136 ~ relatedObj", relatedObj)
                         return relatedObj;
                       }
                     }
