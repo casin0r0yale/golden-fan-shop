@@ -1,5 +1,8 @@
 var request = require('request');
 var expect = require('chai').expect;
+var shallow = require('enzyme');
+var sinon = require('sinon');
+var mount = require('enzyme');
 
 describe('SERVER TESTS:', function() {
 
@@ -11,3 +14,12 @@ describe('SERVER TESTS:', function() {
   });
 
 });
+
+describe('Ratings & Reviews Test', function() {
+
+  it('Review component should exist', () => {
+    const wrapper = shallow(<Reviews/>);
+    expect(wrapper.find(Reviews)).to.exist;
+  })
+
+})
