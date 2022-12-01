@@ -3,6 +3,8 @@ var expect = require('chai').expect;
 var shallow = require('enzyme');
 var sinon = require('sinon');
 var mount = require('enzyme');
+import Questions from '../client/src/components/Questions.jsx';
+import Reviews from '../client/src/components/Reviews.jsx';
 
 describe('SERVER TESTS:', function() {
 
@@ -23,3 +25,4 @@ describe('Ratings & Reviews Test', function() {
   })
 
 })
+

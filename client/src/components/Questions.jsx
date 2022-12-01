@@ -8,6 +8,7 @@ var Questions = (props) => {
       <div>
         Question List
         <div>Answer List</div>
+
       </div>
     </div>
   );
