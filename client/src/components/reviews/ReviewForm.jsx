@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import StarRating from './StarRating.jsx';
 
 const ReviewForm = (props) => {
 
@@ -10,11 +11,17 @@ const ReviewForm = (props) => {
     setMinCharsLeft(curMinCharsLeft);
   }
 
+
+
   return (
     <div>
       <h2>Write Your Review</h2>
       <h3>About the *Product Name Here*</h3>
       <form>
+        <label>
+          Overall Rating*
+          <StarRating />
+        </label>
         <label>
           Do you recommend this product?*
           <input type="radio" id="yes" name="recommend" value="yes" required/>
