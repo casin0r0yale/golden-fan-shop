@@ -180,12 +180,7 @@ const App = () => {
               console.log('error GET Reviews Data: ', error);
             })
 
-          // return relatedAllData;
         })
-        // .then((relatedAllData) => {
-        //   console.log("🚀🚀🚀 ~ file: index.jsx:130 ~ relatedAllData", relatedAllData);
-        //   setRelatedProductsData(relatedAllData);
-        // })
         .catch(function (error) {
           console.log('error GET RelatedProducts: ', error);
         })
@@ -206,11 +201,13 @@ const App = () => {
       <div>
         <h2>Golden Fan Shop: Main App/Index Component</h2>
         <Overview/>
-        {relatedProductsData.map((itemObj, index) => {
+        <div class="sidescroller">
+          {relatedProductsData.map((itemObj, index) => {
           return <RelatedCard key={index} related_id={itemObj.related_id} related_name={itemObj.related_name}
           related_category={itemObj.related_category} related_price={itemObj.related_price}
           related_thumbnail={itemObj.related_thumbnail}/>
           })}
+        </div>
         <Questions/>
         <Reviews/>
       </div>
