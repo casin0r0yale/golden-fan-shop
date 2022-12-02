@@ -25,6 +25,100 @@ const ReviewForm = (props) => {
           <br></br>
           <br></br>
         <label>
+          Characteristics*
+          <fieldset>
+            <label>
+              <h4>Size</h4>
+                <input type="radio" id="1" name="size" value="1"/>
+                <label>1. A size too small</label>
+                <input type="radio" id="2" name="size" value="2"/>
+                <label>2</label>
+                <input type="radio" id="3" name="size" value="3"/>
+                <label>3</label>
+                <input type="radio" id="4" name="size" value="4"/>
+                <label>4</label>
+                <input type="radio" id="5" name="size" value="5"/>
+                <label>5. A size too wide</label>
+            </label>
+          </fieldset>
+          <fieldset>
+            <label>
+              <h4>Width</h4>
+              <input type="radio" id="1" name="width" value="1"/>
+              <label>1. Too narrow</label>
+              <input type="radio" id="2" name="width" value="2"/>
+              <label>2</label>
+              <input type="radio" id="3" name="width" value="3"/>
+              <label>3</label>
+              <input type="radio" id="4" name="width" value="4"/>
+              <label>4</label>
+              <input type="radio" id="5" name="width" value="5"/>
+              <label>5. Too wide</label>
+            </label>
+          </fieldset>
+          <fieldset>
+            <label>
+              <h4>Comfort</h4>
+              <input type="radio" id="1" name="comfort" value="1"/>
+              <label>1. Uncomfortable</label>
+              <input type="radio" id="2" name="comfort" value="2"/>
+              <label>2</label>
+              <input type="radio" id="3" name="comfort" value="3"/>
+              <label>3</label>
+              <input type="radio" id="4" name="comfort" value="4"/>
+              <label>4</label>
+              <input type="radio" id="5" name="comfort" value="5"/>
+              <label>5. Perfect</label>
+            </label>
+          </fieldset>
+          <fieldset>
+            <label>
+              <h4>Quality</h4>
+              <input type="radio" id="1" name="quality" value="1"/>
+              <label>1. Poor</label>
+              <input type="radio" id="2" name="quality" value="2"/>
+              <label>2</label>
+              <input type="radio" id="3" name="quality" value="3"/>
+              <label>3</label>
+              <input type="radio" id="4" name="quality" value="4"/>
+              <label>4</label>
+              <input type="radio" id="5" name="quality" value="5"/>
+              <label>5. Perfect</label>
+            </label>
+          </fieldset>
+          <fieldset>
+            <label>
+              <h4>Length</h4>
+              <input type="radio" id="1" name="length" value="1"/>
+              <label>1. Runs short</label>
+              <input type="radio" id="2" name="length" value="2"/>
+              <label>2</label>
+              <input type="radio" id="3" name="length" value="3"/>
+              <label>3</label>
+              <input type="radio" id="4" name="length" value="4"/>
+              <label>4</label>
+              <input type="radio" id="5" name="length" value="5"/>
+              <label>5. Runs long</label>
+            </label>
+          </fieldset>
+          <fieldset>
+            <label>
+              <h4>Fit</h4>
+              <input type="radio" id="1" name="fit" value="1"/>
+              <label>1. runs tight</label>
+              <input type="radio" id="2" name="fit" value="2"/>
+              <label>2</label>
+              <input type="radio" id="3" name="fit" value="3"/>
+              <label>3</label>
+              <input type="radio" id="4" name="fit" value="4"/>
+              <label>4</label>
+              <input type="radio" id="5" name="fit" value="5"/>
+              <label>5. Runs long</label>
+            </label>
+          </fieldset>
+        </label>
+        <br></br>
+        <label>
           Review Summary
             <br></br>
           <textarea type="text" name="summary" maxLength="60">
