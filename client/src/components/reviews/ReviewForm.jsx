@@ -11,6 +11,9 @@ const ReviewForm = (props) => {
     setMinCharsLeft(curMinCharsLeft);
   }
 
+  const currRating = (rating) => {
+    console.log('this is the current rating: ', rating);
+  }
 
 
   return (
@@ -20,7 +23,7 @@ const ReviewForm = (props) => {
       <form>
         <label>
           Overall Rating*
-          <StarRating />
+          <StarRating currRating={currRating}/>
         </label>
         <label>
           Do you recommend this product?*
