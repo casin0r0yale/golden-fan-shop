@@ -148,6 +148,7 @@ const App = () => {
       <div>
         <h2>Golden Fan Shop: Main App/Index Component</h2>
         <Overview/>
+        <h4>RELATED PRODUCTS</h4>
         <div class="sidescroller">
           {relatedProductsData.map((itemObj, index) => {
           return <RelatedCard key={index} related_id={itemObj.related_id} related_name={itemObj.related_name}
@@ -155,6 +156,9 @@ const App = () => {
           related_thumbnail={itemObj.related_thumbnail}/>
           })}
         </div>
+        <h4>YOUR OUTFIT</h4>
+        <div> your outfit slider...</div>
+
         <Questions/>
         <Reviews/>
       </div>
