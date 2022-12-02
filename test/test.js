@@ -3,8 +3,7 @@ var expect = require('chai').expect;
 var shallow = require('enzyme');
 var sinon = require('sinon');
 var mount = require('enzyme');
-import Questions from '../client/src/components/Questions.jsx';
-import Reviews from '../client/src/components/Reviews.jsx';
+// var Reviews = require('../client/src/components/Reviews.jsx');
 
 describe('SERVER TESTS:', function() {
 
@@ -17,12 +16,11 @@ describe('SERVER TESTS:', function() {
 
 });
 
-describe('Ratings & Reviews Test', function() {
+// describe('Ratings & Reviews Test', function() {
 
-  it('Review component should exist', () => {
-    const wrapper = shallow(<Reviews/>);
-    expect(wrapper.find(Reviews)).to.exist;
-  })
+//   it('Review component should exist', () => {
+//     const wrapper = shallow(<Reviews/>);
+//     expect(wrapper.find(Reviews)).to.exist;
+//   })
 
-})
-
+// })

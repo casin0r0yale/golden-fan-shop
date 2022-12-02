@@ -32,6 +32,22 @@ h1 {
   overflow: auto;
 }
 
+<<<<<<< HEAD
+=======
+.sidescroller {
+  --_spacer: var(--size-3);
+  display: grid;
+  gap: var(--_spacer);
+  grid-auto-flow: column;
+  grid-auto-columns: 21%;
+
+  padding: 0 var(--_spacer) var(--_spacer);
+
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+>>>>>>> f66163097356f58b8702fde89d665c685ca8f9f6
 /* Popup style */
 .popup-box {
   position: fixed;
@@ -70,4 +86,9 @@ h1 {
   text-align: center;
   border: 1px solid #999;
   font-size: 20px;
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> f66163097356f58b8702fde89d665c685ca8f9f6
