@@ -6,7 +6,7 @@ const AddToCart = (props) => {
 
   return (
     <div>
-      <h1>Add to Card</h1>
+      <h1>Add to Cart</h1>
     </div>
   )
 }

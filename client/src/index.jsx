@@ -13,6 +13,8 @@ const App = () => {
   const [focusProductId, setFocusProductId] = useState(71697);
   const [relatedProductsData, setRelatedProductsData] = useState([]);
   const [productStyles, setProductStyles] = useState([]);
+  const [productInfo, setProductInfo] = useState([]);
+
 
 
   useEffect(() => {
@@ -27,11 +29,10 @@ const App = () => {
     // CHAIN 1: GET Genral Data of target product
     axios.get('/getProductGeneralInfo', { params: { id: focusProductId } })
     .then(function (response) {
-      console.log('CHAIN 1: SUCCESS INIT GET PRODUCT ID DATA: ', response.data);
+      setProductInfo(response.data);
 
       // Saving this for later use to render on page.
       // Probably need to pass as props into components.
-      var generalProductInfo = response.data;
 
       // CHAIN 2: GET Product Styles
       axios.get('/getProductStyles', { params: { id: focusProductId } })
@@ -205,7 +206,7 @@ const App = () => {
 
       <div>
         <h2>Golden Fan Shop: Main App/Index Component</h2>
-        <Overview styles={productStyles}/>
+        <Overview info={productInfo} styles={productStyles}/>
         {relatedProductsData.map((itemObj, index) => {
           return <RelatedCard key={index} related_id={itemObj.related_id} related_name={itemObj.related_name}
           related_category={itemObj.related_category} related_price={itemObj.related_price}

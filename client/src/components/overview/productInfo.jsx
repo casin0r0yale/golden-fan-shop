@@ -3,10 +3,11 @@ import "../../styles/index.css";
 
 
 const ProductInfo = (props) => {
+  console.log('general info', props.info);
 
   return (
     <div>
-      <h1>Product Info</h1>
+      <h1>{props.info.name}</h1>
     </div>
   )
 }

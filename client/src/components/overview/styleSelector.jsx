@@ -3,9 +3,10 @@ import "../../styles/index.css";
 
 
 const StyleSelector = (props) => {
-  console.log(props.styles)
+  console.log(props.styles[0]?.original_price)
   return (
     <div>
+      <p>${props.styles[0]?.original_price}</p>
       <h3>STYLE &gt; <span style={{ fontWeight: "normal" }}>SELECTED STYLE</span></h3>
       <div class="styleContainer">
         {props.styles?.map(product => {
