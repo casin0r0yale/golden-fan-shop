@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "shop for golden fans",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "mocha --require global-jsdom/register",
     "review-test": "mocha test/ReviewTest.js --require global-jsdom/register --require babel-core/register",
