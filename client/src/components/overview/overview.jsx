@@ -10,7 +10,6 @@ const Overview = (props) => {
 
   return (
     <div>
-      <h1>CSS Test</h1>
       <div class="overviewContainer">
       <div class="productInfo"><ProductInfo info={props.info}/></div>
       <div class="styleSelector"><StyleSelector styles={props.styles}/></div>

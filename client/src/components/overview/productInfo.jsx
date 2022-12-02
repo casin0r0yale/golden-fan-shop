@@ -7,6 +7,8 @@ const ProductInfo = (props) => {
 
   return (
     <div>
+      <p>Insert rating here...</p>
+      <p>CATEGORY</p>
       <h1>{props.info.name}</h1>
     </div>
   )
