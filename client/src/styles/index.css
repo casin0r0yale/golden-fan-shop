@@ -19,7 +19,7 @@ h1 {
 .imageGallery { grid-area: 1 / 2 / 7 / 5; }
 
 
-.box {
+.productCard {
   position: relative;
   width: 150px;
   height: auto;
