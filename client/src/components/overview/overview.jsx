@@ -14,7 +14,7 @@ const Overview = (props) => {
       <div class="productInfo"><ProductInfo info={props.info}/></div>
       <div class="styleSelector"><StyleSelector styles={props.styles}/></div>
       <div class="addToCart"><AddToCart/></div>
-      <div class="imageGallery"><ImageGallery/></div>
+      <div class="imageGallery"><ImageGallery styles={props.styles}/></div>
       </div>
     </div>
   )

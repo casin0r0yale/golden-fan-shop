@@ -3,7 +3,7 @@ import "../../styles/index.css";
 
 
 const StyleSelector = (props) => {
-  console.log(props.styles[0]?.original_price)
+  // console.log(props.styles[0]?.original_price)
   return (
     <div>
       <p>${props.styles[0]?.original_price}</p>
