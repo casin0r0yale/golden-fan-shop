@@ -36,7 +36,7 @@ const App = () => {
       // CHAIN 2: GET Product Styles
       axios.get('/getProductStyles', { params: { id: focusProductId } })
       .then(function (response) {
-          setProductStyles(response);
+          setProductStyles(response.data.results);
         // Again, just saving for passing into components
         // var productStyleData = response.data;
         // CHAIN 3: GET Related Products (Richard's section to manipulate)
