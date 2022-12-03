@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReviewForm from './ReviewForm.jsx';
-import Popup from './Popup.jsx';
+import Popup from '../Popup.jsx';
+
 const Reviews = (props) => {
 
   const [formView, setFormView] = useState(false);
@@ -17,7 +18,7 @@ const Reviews = (props) => {
     </div>
     {isOpen && <Popup
       content={<>
-        <ReviewForm/>
+        <ReviewForm />
       </>}
       handleClose={togglePopup}
     />}
