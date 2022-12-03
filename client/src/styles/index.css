@@ -48,7 +48,7 @@ h1 {
   height: auto;
   margin: 0 auto;
   max-height: 70vh;
-  margin-top: calc(100vh - 85vh - 20px);
+  margin-top: 1em;
   background: #fff;
   padding: 20px;
   border: 1px solid #999;
@@ -110,34 +110,21 @@ h1 {
   border: 1px solid #999;
   font-size: 20px;
 }
-/*
-.productCard {
-  position: relative;
-  width: 150px;
-  height: auto;
-  margin: 0 auto;
-  max-height: 70vh;
-  margin-top: 1em;
-  background: #fff;
-  background: none;
 
-  padding: 20px;
+.close-icon-yourOutfit {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ededed;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
   border: 1px solid #999;
-  overflow: auto;
+  font-size: 20px;
 }
-/*
-.sidescroller {
-  --_spacer: var(--size-3);
-  display: grid;
-  gap: var(--_spacer);
-  grid-auto-flow: column;
-  grid-auto-columns: 21%;
-
-  padding: 0 var(--_spacer) var(--_spacer);
-
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-} */
 
 .starbutton{
   position: absolute;

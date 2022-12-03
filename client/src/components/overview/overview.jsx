@@ -6,7 +6,7 @@ import ProductInfo from './productInfo.jsx';
 import StyleSelector from './styleSelector.jsx';
 
 const Overview = (props) => {
-  console.log('overview', props.info);
+  // console.log('overview', props.info);
 
   return (
     <div>

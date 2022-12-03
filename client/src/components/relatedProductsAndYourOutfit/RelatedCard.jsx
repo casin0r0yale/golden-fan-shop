@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Popup from './Popup.jsx';
+import Popup from '../Popup.jsx';
 import ComparisonTable from './ComparisonTable.jsx';
 
 const RelatedCard = (props) => {
