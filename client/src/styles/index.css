@@ -1,5 +1,5 @@
 body {
-  font-family: 'Helvetica', 'Arial', sans-serif; 
+  font-family: 'Helvetica', 'Arial', sans-serif;
   float: left;
 }
 
@@ -18,8 +18,8 @@ h1 {
   grid-row-gap: 1.4em;
   }
 
-.productInfo { 
-  grid-area: 1 / 6 / 3 / 8; 
+.productInfo {
+  grid-area: 1 / 6 / 3 / 8;
 }
 .styleSelector { grid-area: 3 / 6 / 5 / 8; }
 .addToCart { grid-area: 5 / 6 / 7 / 8; }
@@ -108,3 +108,37 @@ h1 {
   font-size: 20px;
 }
 
+/* REVIEW MODULE */
+#star-rating {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.star-rating, .rating-text {
+  display: inline-block;
+  margin-bottom: 1.5em;
+}
+
+.rating-text {
+  margin-left: .5em;
+}
+
+/* .size-radio-buttons {
+  display: inline-flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.size-text {
+
+} */
+
+.on {
+  color: #000;
+}
+
+.off {
+  color: #ccc;
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from 'react-dom';
 import Overview from './components/overview/overview.jsx';
-import Reviews from './components/Reviews.jsx';
+import Reviews from './components/reviews/Reviews.jsx';
 import RelatedCard from './components/RelatedCard.jsx';
 import Questions from './components/Questions.jsx';
 import axios from 'axios';
