@@ -12,6 +12,7 @@ const App = () => {
   // As the user clicks into a new detail page, this state will change and set off chained GET request for all necessary data
   const [focusProductId, setFocusProductId] = useState(71697);
   const [relatedProductsData, setRelatedProductsData] = useState([]);
+  const [productQnAData, setProductQnAData] = useState([])
 
   useEffect(() => {
     getData();
@@ -136,6 +137,8 @@ const App = () => {
       .then(function (response) {
         console.log('CHAIN 5: Stefan Module - SUCCESS GET PRODUCT Q&A DATA: ', response.data);
         // TODO: Manipulate and pass down response.data into module...
+        setProductQnAData(response.data.results);
+        console.log('QnA state set: ', productQnAData);
 
       })
       .catch(function (error) {
@@ -155,7 +158,7 @@ const App = () => {
           related_thumbnail={itemObj.related_thumbnail}/>
           })}
         </div>
-        <Questions/>
+        <Questions data={productQnAData}/>
         <Reviews/>
       </div>
   );

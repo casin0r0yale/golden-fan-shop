@@ -32,8 +32,6 @@ h1 {
   overflow: auto;
 }
 
-<<<<<<< HEAD
-=======
 .sidescroller {
   --_spacer: var(--size-3);
   display: grid;
@@ -47,7 +45,6 @@ h1 {
   overscroll-behavior-inline: contain;
 }
 
->>>>>>> f66163097356f58b8702fde89d665c685ca8f9f6
 /* Popup style */
 .popup-box {
   position: fixed;
@@ -86,9 +83,5 @@ h1 {
   text-align: center;
   border: 1px solid #999;
   font-size: 20px;
-<<<<<<< HEAD
-}
-=======
 }
 
->>>>>>> f66163097356f58b8702fde89d665c685ca8f9f6
