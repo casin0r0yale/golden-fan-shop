@@ -13,6 +13,7 @@ const ReviewForm = (props) => {
 
   const currRating = (rating) => {
     console.log('this is the current rating: ', rating);
+    //pass this rating into the form upon submission
   }
 
 
@@ -20,11 +21,12 @@ const ReviewForm = (props) => {
     <div>
       <h2>Write Your Review</h2>
       <h3>About the *Product Name Here*</h3>
-      <form>
+      <form className="review-form">
         <label>
           Overall Rating*
           <StarRating currRating={currRating}/>
         </label>
+        <br></br>
         <label>
           Do you recommend this product?*
           <input type="radio" id="yes" name="recommend" value="yes" required/>

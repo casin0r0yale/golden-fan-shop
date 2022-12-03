@@ -116,6 +116,15 @@ h1 {
   cursor: pointer;
 }
 
+.star-rating, .rating-text {
+  display: inline-block;
+  margin-bottom: 1.5em;
+}
+
+.rating-text {
+  margin-left: .5em;
+}
+
 .on {
   color: #000;
 }

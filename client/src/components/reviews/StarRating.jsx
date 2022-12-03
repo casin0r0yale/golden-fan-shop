@@ -11,6 +11,12 @@ const StarRating = (props) => {
     props.currRating(rating);
   }
 
+  // const ratingLabel = (rating) => {
+  //   label = {
+  //     one
+  //   }
+  // }
+
   return (
     <div className="star-rating">
       {[...Array(5)].map((star, index) => {
@@ -29,6 +35,13 @@ const StarRating = (props) => {
           </button>
         );
       })}
+      <div className="rating-text">
+        {(rating === 1) ? <p>Poor</p> : null}
+        {(rating === 2) ? <p>Fair</p> : null}
+        {(rating === 3) ? <p>Average</p> : null}
+        {(rating === 4) ? <p>Good</p> : null}
+        {(rating === 5) ? <p>Great</p> : null}
+      </div>
     </div>
   )
 }
