@@ -31,6 +31,7 @@ h1 {
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: .3em;
   grid-row-gap:.3em;
+  
 }
 .stylePreview {
   border-radius: 2.3em;
@@ -39,10 +40,30 @@ h1 {
   border-color: black;
   border-width: .1em;
   border-style: solid;
+
 }
 
 .selected {
-  
+  position: absolute;
+  top: -0.2em;
+  right: 0.0em;
+  background: white;
+  /* height: 48px;
+  width: 45px; */
+  border-color: black;
+  border-width: .1em;
+  border-style: solid;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 1.3em;
+  height: 1.3em;
+  float: center;
+
+}
+
+.strikeThrough {
+  color: red;
+  text-decoration: line-through;
 }
 .productCard {
   position: relative;
