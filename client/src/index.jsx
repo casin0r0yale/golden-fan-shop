@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from 'react-dom';
-import Overview from './components/overview.jsx';
-import Reviews from './components/Reviews.jsx';
+import Overview from './components/overview/overview.jsx';
+import Reviews from './components/reviews/Reviews.jsx';
 import RelatedCard from './components/RelatedCard.jsx';
 import Questions from './components/Questions.jsx';
 import axios from 'axios';
@@ -12,7 +12,10 @@ const App = () => {
   // As the user clicks into a new detail page, this state will change and set off chained GET request for all necessary data
   const [focusProductId, setFocusProductId] = useState(71697);
   const [relatedProductsData, setRelatedProductsData] = useState([]);
-  const [productQnAData, setProductQnAData] = useState([])
+  const [productStyles, setProductStyles] = useState([]);
+  const [productInfo, setProductInfo] = useState([]);
+
+
 
   useEffect(() => {
     getData();
@@ -26,11 +29,10 @@ const App = () => {
     // INIT GET 1: GET Genral Data of target product
     axios.get('/getProductGeneralInfo', { params: { id: focusProductId } })
     .then(function (response) {
-      console.log('CHAIN 1: SUCCESS INIT GET PRODUCT ID DATA: ', response.data);
+      setProductInfo(response.data);
 
       // Saving this for later use to render on page.
       // Probably need to pass as props into components.
-      var generalProductInfo = response.data;
 
     })
     .catch(function (error) {
@@ -41,10 +43,9 @@ const App = () => {
     // INIT GET 2: GET Product Styles
     axios.get('/getProductStyles', { params: { id: focusProductId } })
     .then(function (response) {
-      console.log('CHAIN 2: SUCCESS GET PRODUCT STYLE DATA: ', response.data);
+      setProductStyles(response.data.results);
 
       // Again, just saving for passing into components
-      var productStyleData = response.data;
 
     })
     .catch(function (error) {
@@ -150,7 +151,7 @@ const App = () => {
 
       <div>
         <h2>Golden Fan Shop: Main App/Index Component</h2>
-        <Overview/>
+        <Overview info={productInfo} styles={productStyles}/>
         <div class="sidescroller">
           {relatedProductsData.map((itemObj, index) => {
           return <RelatedCard key={index} related_id={itemObj.related_id} related_name={itemObj.related_name}
