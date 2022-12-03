@@ -10,8 +10,9 @@ const App = () => {
 
   // PRIMARY STATE: Setting product ID 71697 as the default detail page to start us off.
   // As the user clicks into a new detail page, this state will change and set off chained GET request for all necessary data
-  const [focusProductId, setFocusProductId] = useState(71697);
+  const [focusProductId, setFocusProductId] = useState(71699);
   const [relatedProductsData, setRelatedProductsData] = useState([]);
+  const [featuresPrimaryProduct, setFeaturesPrimaryProduct] = useState('');
   const [productStyles, setProductStyles] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
 
@@ -33,6 +34,30 @@ const App = () => {
 
       // Saving this for later use to render on page.
       // Probably need to pass as props into components.
+      var generalProductInfo = response.data;
+      var featuresArrayToChangeKey = generalProductInfo.features;
+      var primaryName = generalProductInfo.name;
+
+      (async () => {
+        const myAsyncChangeKey = async (obj) => {
+          // Richard Edge Case TODO: in case no features or value keys
+            obj['featurePrimary'] = obj['feature'];
+            delete obj['feature'];
+            obj['valuePrimary'] = obj['value'];
+            delete obj['value'];
+            obj['namePrimary'] = primaryName;
+            return obj;
+          };
+
+        const tasks = featuresArrayToChangeKey.map(objOfFeatures => myAsyncChangeKey(objOfFeatures))
+
+        try {
+          const primaryFeatures = await Promise.all(tasks);
+          setFeaturesPrimaryProduct(JSON.stringify(primaryFeatures));
+        } catch (err) {
+          console.error(err)
+        }
+      })()
 
     })
     .catch(function (error) {
@@ -74,6 +99,7 @@ const App = () => {
             relatedObj.related_name = response.data.name;
             relatedObj.related_category = response.data.category;
             relatedObj.related_price = response.data.default_price;
+            relatedObj.related_features = response.data.features;
 
             // Related Chain 3.2
             return axios.get('/getProductStyles', { params: { id: relatedId } })
@@ -111,6 +137,7 @@ const App = () => {
         try {
           const results = await Promise.all(tasks);
           setRelatedProductsData(results);
+          // setFeaturesRelatedProduct(JSON.stringify(response.data.features));
 
         } catch (err) {
           console.error(err)
@@ -150,13 +177,17 @@ const App = () => {
       <div>
         <h2>Golden Fan Shop: Main App/Index Component</h2>
         <Overview info={productInfo} styles={productStyles}/>
+        <h4>RELATED PRODUCTS</h4>
         <div class="sidescroller">
           {relatedProductsData.map((itemObj, index) => {
           return <RelatedCard key={index} related_id={itemObj.related_id} related_name={itemObj.related_name}
           related_category={itemObj.related_category} related_price={itemObj.related_price}
-          related_thumbnail={itemObj.related_thumbnail}/>
+          related_thumbnail={itemObj.related_thumbnail} {...itemObj.related_features} featuresPrimaryProductString={featuresPrimaryProduct}/>
           })}
         </div>
+        <h4>YOUR OUTFIT</h4>
+        <div> your outfit slider...</div>
+
         <Questions/>
         <Reviews/>
       </div>
