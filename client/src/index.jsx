@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from 'react-dom';
 import Overview from './components/overview/overview.jsx';
-import Reviews from './components/Reviews.jsx';
+import Reviews from './components/reviews/Reviews.jsx';
 import RelatedCard from './components/RelatedCard.jsx';
 import Questions from './components/Questions.jsx';
 import axios from 'axios';
@@ -10,7 +10,7 @@ const App = () => {
 
   // PRIMARY STATE: Setting product ID 71697 as the default detail page to start us off.
   // As the user clicks into a new detail page, this state will change and set off chained GET request for all necessary data
-  const [focusProductId, setFocusProductId] = useState(71697);
+  const [focusProductId, setFocusProductId] = useState(71699);
   const [relatedProductsData, setRelatedProductsData] = useState([]);
   const [productStyles, setProductStyles] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
