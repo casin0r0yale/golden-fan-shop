@@ -16,6 +16,21 @@ const ReviewForm = (props) => {
     //pass this rating into the form upon submission
   }
 
+  const [sizeText, setSizeText] = useState('');
+
+  const size = {
+    one: null,
+    two: "1/2 a size too small",
+    three: "pefect",
+    four: "1/2 a size too big",
+    five: null
+  }
+
+  const sizeSelection = (string) => {
+    var text = size[string];
+    console.log('this is the size text: ', text);
+    setSizeText(text);
+  }
 
   return (
     <div>
@@ -39,17 +54,18 @@ const ReviewForm = (props) => {
         <label>
           Characteristics*
           <fieldset>
-            <label>
+            <label className="size-radio-buttons">
               <h4>Size</h4>
-                <input type="radio" id="1" name="size" value="1"/>
+                <p>{sizeText}</p>
+                <input type="radio" id="one" name="size" value="1" onClick={() => sizeSelection("one")}/>
                 <label>1. A size too small</label>
-                <input type="radio" id="2" name="size" value="2"/>
+                <input type="radio" id="two" name="size" value="2" onClick={() => sizeSelection("two")}/>
                 <label>2</label>
-                <input type="radio" id="3" name="size" value="3"/>
+                <input type="radio" id="three" name="size" value="3" onClick={() => sizeSelection("three")}/>
                 <label>3</label>
-                <input type="radio" id="4" name="size" value="4"/>
+                <input type="radio" id="four" name="size" value="4" onClick={() => sizeSelection("four")}/>
                 <label>4</label>
-                <input type="radio" id="5" name="size" value="5"/>
+                <input type="radio" id="five" name="size" value="5" onClick={() => sizeSelection("five")}/>
                 <label>5. A size too wide</label>
             </label>
           </fieldset>

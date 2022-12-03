@@ -125,6 +125,16 @@ h1 {
   margin-left: .5em;
 }
 
+/* .size-radio-buttons {
+  display: inline-flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.size-text {
+
+} */
+
 .on {
   color: #000;
 }
