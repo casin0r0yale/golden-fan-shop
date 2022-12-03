@@ -10,8 +10,7 @@ const App = () => {
 
   // PRIMARY STATE: Setting product ID 71697 as the default detail page to start us off.
   // As the user clicks into a new detail page, this state will change and set off chained GET request for all necessary data
-  // const [focusProductId, setFocusProductId] = useState(71934);
-  const [focusProductId, setFocusProductId] = useState(71697);
+  const [focusProductId, setFocusProductId] = useState(71699);
   const [relatedProductsData, setRelatedProductsData] = useState([]);
   const [featuresPrimaryProduct, setFeaturesPrimaryProduct] = useState('');
   const [productStyles, setProductStyles] = useState([]);
