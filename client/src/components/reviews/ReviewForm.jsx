@@ -98,7 +98,7 @@ const ReviewForm = (props) => {
 
   const imageUploadHandler = (images) => {
     console.log('these are the uploaded images: ', images)
-    //find a way to pass images into your inputs upon submission
+    //find a way to pass images into your inputs upon form submission
   }
 
   return (
