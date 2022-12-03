@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import StarRating from './StarRating.jsx';
-import SingleImageUpload from './SingleImageUpload.jsx';
+import ImageUpload from './ImageUpload.jsx';
 
 const ReviewForm = (props) => {
 
@@ -93,6 +93,12 @@ const ReviewForm = (props) => {
   const fitSelection = (string) => {
     var text = fit[string];
     SetFitText(text);
+  }
+
+
+  const imageUploadHandler = (images) => {
+    console.log('these are the uploaded images: ', images)
+    //find a way to pass images into your inputs upon submission
   }
 
   return (
@@ -235,8 +241,7 @@ const ReviewForm = (props) => {
         </label>
         <label>
           Upload Your Photos
-          <SingleImageUpload />
-          {/* <input type="file" id="photos" name="photos" accept="image/png, image/jpeg" multiple/> */}
+          <ImageUpload handleImages={imageUploadHandler}/>
         </label>
           <br></br>
           <br></br>
