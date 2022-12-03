@@ -78,7 +78,9 @@ h1 {
   height: 100vh;
   top: 0;
   left: 0;
+  z-index: 1;
 }
+
 
 .form-box {
   position: relative;
@@ -92,6 +94,7 @@ h1 {
   padding: 20px;
   border: 1px solid #999;
   overflow: auto;
+  z-index: 1;
 }
 
 .close-icon {
@@ -108,6 +111,84 @@ h1 {
   text-align: center;
   border: 1px solid #999;
   font-size: 20px;
+}
+/*
+.productCard {
+  position: relative;
+  width: 150px;
+  height: auto;
+  margin: 0 auto;
+  max-height: 70vh;
+  margin-top: 1em;
+  background: #fff;
+  background: none;
+
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+/*
+.sidescroller {
+  --_spacer: var(--size-3);
+  display: grid;
+  gap: var(--_spacer);
+  grid-auto-flow: column;
+  grid-auto-columns: 21%;
+
+  padding: 0 var(--_spacer) var(--_spacer);
+
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+} */
+
+.starbutton{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  /* background: none; */
+  color: #fff;
+  background: url('http://imgur.com/I0EwG.png') transparent;
+  height: 48px;
+  width: 45px;
+  border: none;
+  cursor: pointer;
+}
+
+.compareLeftName {
+  width: 50%;
+  float: left;
+  text-align: left;
+  font-weight: bold;
+
+}
+.compareRightName {
+  width: 50%;
+  float: left;
+  text-align: right;
+  font-weight: bold;
+
+}
+
+.compareLeft {
+  width: 25%;
+  float: left;
+  text-align: left;
+}
+
+.compareMiddleColumn {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+
+.boldFont {
+  font-weight: bold;
+}
+
+.compareRight {
+  width: 25%;
+  float: left;
+  text-align: right;
 }
 
 /* REVIEW MODULE */
