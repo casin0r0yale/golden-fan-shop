@@ -229,15 +229,13 @@ h1 {
   margin-left: .5em;
 }
 
-/* .size-radio-buttons {
-  display: inline-flex;
-  flex-direction: column-reverse;
-  align-items: center;
+.review-image-thumbnails {
+  width: 3em;
+  margin-top: .5em;
+  margin-bottom: 1em;
+  margin-left: .25em;
+  margin-right: .25em;
 }
-
-.size-text {
-
-} */
 
 .on {
   color: #000;
