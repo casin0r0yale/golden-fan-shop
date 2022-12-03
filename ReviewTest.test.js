@@ -12,7 +12,7 @@ describe('Ratings & Reviews Test', function() {
 
     render(<Reviews />);
     // The next line is searching for an element with the text: "Review List Module"
-    const linkElement = screen.getByText(/Review List Module/i);
+    const linkElement = screen.getByText(/Review List Module/);
     expect(linkElement).to.exist;
   })
 

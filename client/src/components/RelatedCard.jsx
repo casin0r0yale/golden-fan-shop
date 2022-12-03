@@ -14,12 +14,21 @@ const RelatedCard = (props) => {
     setIsOpen(!isOpen);
   }
 
+  var combineRelatedFeatures = [];
+
+  for( var key in props) {
+    if (key.length === 1) {
+      combineRelatedFeatures.push(props[key]);
+    }
+  }
+
+
   return (
     <div className='productCard'>
       <div>
         <img src={props.related_thumbnail}/>
       </div>
-      <div>TODO: Action Button</div>
+      <div></div>
       <div>{props.related_category}</div>
       <div>{props.related_name}</div>
       <div>{props.related_price}</div>
@@ -27,7 +36,7 @@ const RelatedCard = (props) => {
       <button onClick={togglePopup} src="..../images/Star Transparent.png" class="starbutton"></button>
       {isOpen && <Popup
       content={<>
-        <ComparisonTable/>
+        <ComparisonTable related_name={props.related_name} featuresPrimaryProductString={props.featuresPrimaryProductString} featuresRelatedProductString={JSON.stringify(combineRelatedFeatures)}/>
         </>}
       handleClose={togglePopup}
       />}
