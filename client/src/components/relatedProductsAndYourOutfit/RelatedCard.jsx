@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Popup from './Popup.jsx';
+import Popup from '../Popup.jsx';
 import ComparisonTable from './ComparisonTable.jsx';
 
 const RelatedCard = (props) => {
@@ -10,7 +10,8 @@ const RelatedCard = (props) => {
   const [formView, setFormView] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const togglePopup = () => {
+  const togglePopup = (event) => {
+    event.stopPropagation();
     setIsOpen(!isOpen);
   }
 
@@ -22,9 +23,13 @@ const RelatedCard = (props) => {
     }
   }
 
+  var onClickNavigate = () => {
+    props.onClickNavigateToNewProductPage(props.related_id);
+  }
+
 
   return (
-    <div className='productCard'>
+    <div className='productCard' onClick={onClickNavigate}>
       <div>
         <img src={props.related_thumbnail}/>
       </div>

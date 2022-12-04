@@ -3,7 +3,7 @@ import "../../styles/index.css";
 
 
 const ProductInfo = (props) => {
-  console.log('general info', props.info);
+  // console.log('general info', props.info);
 
   return (
     <div>
