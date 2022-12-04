@@ -3,13 +3,15 @@ import React, {useState, useEffect} from 'react';
 const YourOutfitCard = (props) => {
 
   var onClickDeleteProduct = () => {
-
     props.onClickDeleteProductYourOutfit(props.current_id);
+  }
 
+  var onClickNavigate = () => {
+    props.onClickNavigateToNewProductPage(props.current_id);
   }
 
   return (
-    <div className='productCard'>
+    <div className='productCard' onClick={onClickNavigate}>
       <div>
         <img src={props.current_thumbnail}/>
       </div>

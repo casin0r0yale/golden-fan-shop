@@ -23,7 +23,7 @@ const App = () => {
 
   useEffect(() => {
     getData();
-  }, [])
+  }, [focusProductId])
 
   var currentProductCardData = {};
 
@@ -209,10 +209,8 @@ const App = () => {
   }
 
   var onClickDeleteProductYourOutfit = (idToDelete) => {
-  console.log("🚀 ~ file: index.jsx:208 ~ onClickDeleteProductYourOutfit ~ idToDelete", idToDelete)
 
     yourOutfitList.forEach ((obj, index) => {
-      console.log("🚀 ~ file: index.jsx:211 ~ yourOutfitList.forEach ~ objcurrent_id", obj.current_id)
       if (obj.current_id === idToDelete) {
         setYourOutfitList([
           ...yourOutfitList.slice(0, index),
@@ -222,6 +220,11 @@ const App = () => {
       })
     }
 
+  var onClickNavigateToNewProductPage = (id) => {
+    console.log("NavigateToNewProductPage with id: ", id)
+    setFocusProductId(id);
+  }
+
   return (
 
       <div>
@@ -230,7 +233,7 @@ const App = () => {
         <h4>RELATED PRODUCTS</h4>
         <div class="sidescroller">
           {relatedProductsData.map((itemObj, index) => {
-          return <RelatedCard key={index} related_id={itemObj.related_id} related_name={itemObj.related_name}
+          return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} key={index} related_id={itemObj.related_id} related_name={itemObj.related_name}
           related_category={itemObj.related_category} related_price={itemObj.related_price}
           related_thumbnail={itemObj.related_thumbnail} {...itemObj.related_features} featuresPrimaryProductString={featuresPrimaryProduct}/>
           })}
@@ -238,7 +241,7 @@ const App = () => {
         <h4>YOUR OUTFIT</h4>
         <div class="sidescroller">
           {yourOutfitList.map((itemObj, index) => {
-            return <YourOutfitCard key={index} current_name={itemObj.current_name} current_id={itemObj.current_id}
+            return <YourOutfitCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} key={index} current_name={itemObj.current_name} current_id={itemObj.current_id}
             current_category={itemObj.current_category} current_price={itemObj.current_price}
             current_thumbnail={itemObj.current_thumbnail} onClickDeleteProductYourOutfit={onClickDeleteProductYourOutfit}/>
           })}

@@ -53,6 +53,8 @@ h1 {
   padding: 20px;
   border: 1px solid #999;
   overflow: auto;
+  cursor: auto;
+
 }
 
 .sidescroller {
@@ -136,7 +138,8 @@ h1 {
   height: 48px;
   width: 45px;
   border: none;
-  cursor: pointer;
+  cursor: zoom-in;
+
 }
 
 .compareLeftName {
