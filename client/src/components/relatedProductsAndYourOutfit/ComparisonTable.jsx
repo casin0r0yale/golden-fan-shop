@@ -111,7 +111,7 @@ const ComparisonTable = (props) => {
 
     {fullListFeatures.map((item, index) => { return (
       <div key={index}>
-        <div class="compareLeft" style={{opacity: item[0]}}>&#x2713;</div>
+        <div class="compareLeft" style={{opacity: item[0]}}>#x2713&;</div>
         <div class="compareMiddleColumn"> <a class="boldFont">{item[1]}</a> <a>{ ' ' + item[2]}</a> </div>
         <div class="compareRight" style={{opacity: item[3]}}>&#x2713;</div>
       </div>

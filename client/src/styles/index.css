@@ -1,6 +1,6 @@
 body {
   font-family: 'Helvetica', 'Arial', sans-serif;
-  float: left;
+  /* float: left; */
 }
 
 h1 {
@@ -31,6 +31,7 @@ h1 {
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: .3em;
   grid-row-gap:.3em;
+  
 }
 .stylePreview {
   border-radius: 2.3em;
@@ -42,6 +43,28 @@ h1 {
 
 }
 
+.selected {
+  position: absolute;
+  top: -0.2em;
+  right: 0.0em;
+  background: white;
+  /* height: 48px;
+  width: 45px; */
+  border-color: black;
+  border-width: .1em;
+  border-style: solid;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 1.3em;
+  height: 1.3em;
+  float: center;
+
+}
+
+.strikeThrough {
+  color: red;
+  text-decoration: line-through;
+}
 .productCard {
   position: relative;
   width: 150px;
@@ -196,15 +219,13 @@ h1 {
   margin-left: .5em;
 }
 
-/* .size-radio-buttons {
-  display: inline-flex;
-  flex-direction: column-reverse;
-  align-items: center;
+.review-image-thumbnails {
+  width: 3em;
+  margin-top: .5em;
+  margin-bottom: 1em;
+  margin-left: .25em;
+  margin-right: .25em;
 }
-
-.size-text {
-
-} */
 
 .on {
   color: #000;

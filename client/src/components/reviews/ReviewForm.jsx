@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import StarRating from './StarRating.jsx';
+import ImageUpload from './ImageUpload.jsx';
 
 const ReviewForm = (props) => {
 
@@ -94,6 +95,12 @@ const ReviewForm = (props) => {
     SetFitText(text);
   }
 
+
+  const imageUploadHandler = (images) => {
+    console.log('these are the uploaded images: ', images)
+    //find a way to pass images into your inputs upon form submission
+  }
+
   return (
     <div>
       <h2>Write Your Review</h2>
@@ -102,6 +109,7 @@ const ReviewForm = (props) => {
         <label>
           Overall Rating*
           <StarRating currRating={currRating}/>
+          {/**have an invisible input here that takes in rating and SHOULD be required */}
         </label>
         <br></br>
         <label>
@@ -231,10 +239,15 @@ const ReviewForm = (props) => {
           {(charsLeft > 0) ? <p> Minimum required characters left: {charsLeft}</p> : null}
           {(charsLeft <= 0) ? <p>Minimum reached</p> : null}
         </label>
+        <label>
+          Upload Your Photos
+          <ImageUpload handleImages={imageUploadHandler}/>
+        </label>
           <br></br>
           <br></br>
         <label>
           What is your nickname?*
+          <br></br>
           <input type="text" name="nickname" placeholder="Example: jackson11!" maxLength="60" required/>
           <h5>For privacy reasons, do not use your full name or email address</h5>
         </label>
