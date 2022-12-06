@@ -1,6 +1,6 @@
 body {
   font-family: 'Helvetica', 'Arial', sans-serif;
-  float: left;
+  /* float: left; */
 }
 
 h1 {
@@ -31,6 +31,7 @@ h1 {
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: .3em;
   grid-row-gap:.3em;
+
 }
 .stylePreview {
   border-radius: 2.3em;
@@ -42,17 +43,41 @@ h1 {
 
 }
 
+.selected {
+  position: absolute;
+  top: -0.2em;
+  right: 0.0em;
+  background: white;
+  /* height: 48px;
+  width: 45px; */
+  border-color: black;
+  border-width: .1em;
+  border-style: solid;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 1.3em;
+  height: 1.3em;
+  float: center;
+
+}
+
+.strikeThrough {
+  color: red;
+  text-decoration: line-through;
+}
 .productCard {
   position: relative;
   width: 150px;
   height: auto;
   margin: 0 auto;
   max-height: 70vh;
-  margin-top: calc(100vh - 85vh - 20px);
+  margin-top: 1em;
   background: #fff;
   padding: 20px;
   border: 1px solid #999;
   overflow: auto;
+  cursor: auto;
+
 }
 
 .sidescroller {
@@ -76,7 +101,9 @@ h1 {
   height: 100vh;
   top: 0;
   left: 0;
+  z-index: 1;
 }
+
 
 .form-box {
   position: relative;
@@ -90,6 +117,7 @@ h1 {
   padding: 20px;
   border: 1px solid #999;
   overflow: auto;
+  z-index: 1;
 }
 
 .close-icon {
@@ -106,6 +134,72 @@ h1 {
   text-align: center;
   border: 1px solid #999;
   font-size: 20px;
+}
+
+.close-icon-yourOutfit {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ededed;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
+}
+
+.starbutton{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  /* background: none; */
+  color: #fff;
+  background: url('http://imgur.com/I0EwG.png') transparent;
+  height: 48px;
+  width: 45px;
+  border: none;
+  cursor: zoom-in;
+
+}
+
+.compareLeftName {
+  width: 50%;
+  float: left;
+  text-align: left;
+  font-weight: bold;
+
+}
+.compareRightName {
+  width: 50%;
+  float: left;
+  text-align: right;
+  font-weight: bold;
+
+}
+
+.compareLeft {
+  width: 25%;
+  float: left;
+  text-align: left;
+}
+
+.compareMiddleColumn {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+
+.boldFont {
+  font-weight: bold;
+}
+
+.compareRight {
+  width: 25%;
+  float: left;
+  text-align: right;
 }
 
 /* REVIEW MODULE */
@@ -153,11 +247,13 @@ h1 {
   display: inline-flex;
   flex-direction: column-reverse;
   align-items: center;
+.review-image-thumbnails {
+  width: 3em;
+  margin-top: .5em;
+  margin-bottom: 1em;
+  margin-left: .25em;
+  margin-right: .25em;
 }
-
-.size-text {
-
-} */
 
 .on {
   color: #000;
@@ -165,4 +261,4 @@ h1 {
 
 .off {
   color: #ccc;
-}
+}*/

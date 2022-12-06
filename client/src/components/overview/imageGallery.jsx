@@ -6,7 +6,7 @@ const ImageGallery = (props) => {
 
   return (
     <div>
-      <img src={props.styles[0]?.photos[0].thumbnail_url}/>
+      <img src={props.styles[props.styleIndex]?.photos[0].thumbnail_url}/>
     </div>
   )
 }

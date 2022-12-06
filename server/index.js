@@ -4,15 +4,17 @@ require('dotenv').config();
 const express = require ("express");
 const axios = require ('axios')
 const app = express();
+const cors = require("cors");
+
 
 app.use(express.json());
+app.use(cors()); // Not sure if needed
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static(__dirname + '/../client/dist'));
-
 app.listen(3000, () => console.log('Our Server is listening on port 3000...'));
 
-// CHAINED GET ROUTES
+// INIT GET ROUTES
 
 app.get('/getProductGeneralInfo', (req, res) => {
 
