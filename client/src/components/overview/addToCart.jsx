@@ -3,24 +3,29 @@ import "../../styles/index.css";
 
 
 const AddToCart = (props) => {
-  console.log('skus', Object.keys(props.styles[props.styleIndex]?.skus || {}));
   const [sizeSelected, setSizeSelected] = useState({});
+  const [quantitySelected, setQuantitySelected] = useState(1);
+
   const [dropdownExpanded, setDropdownExpanded] = useState(false);
+  const [quantityDropdownExpanded, setQuantityDropdownExpanded] = useState(false);
+
   const onOptionSelect = option => {
-    console.log('hi');
     setSizeSelected(option);
     setDropdownExpanded(false);
   };
-  const onExpandDropdown = bool => {
-    setDropdownExpanded(true);
+
+  const onQuantitySelect = option => {
+    setQuantitySelected(option);
+    setQuantityDropdownExpanded(false);
   };
+
 
 
 
   return (
     <div>
       <div class="dropdown">
-        <button onClick={() => { setDropdownExpanded(true) }} class="dropdown-button">{sizeSelected.size || "SELECT SIZE"}</button>
+        <button onClick={() => { setDropdownExpanded(!dropdownExpanded) }} class="dropdown-button">{sizeSelected.size || "SELECT SIZE"}</button>
         <div class={dropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
           {Object.keys((props.styles[props.styleIndex]?.skus) || {}).map(size => {
             return (<p onClick={() => { onOptionSelect(props.styles[props.styleIndex]?.skus[size]) }}>{props.styles[props.styleIndex]?.skus[size].size}</p>)
@@ -28,8 +33,16 @@ const AddToCart = (props) => {
         </div>
       </div>
       <div class="dropdown">
-        <button class="dropdown-button">1</button>
-        <div class="dropdown-content">
+        <button class="dropdown-button" id="quantity" onClick={() => { setQuantityDropdownExpanded(!quantityDropdownExpanded) }}>{quantitySelected}</button>
+        <div class={quantityDropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
+          {sizeSelected.quantity > 15?
+           Array.from(Array(15).keys()).map(quantity => {
+            return (<p onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
+          })
+           :  Array.from(Array(sizeSelected.quantity).keys()).map(quantity => {
+            return (<p onClick={() => { onQuantitySelect(quantity) }}>{quantity}</p>)
+          })}
+
         </div>
       </div>
     </div>
