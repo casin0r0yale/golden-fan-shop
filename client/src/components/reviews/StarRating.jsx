@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BsStar } from 'react-icons/bs';
+// import { BsStar } from 'react-icons/bs';
 
 const StarRating = (props) => {
 
