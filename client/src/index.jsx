@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Overview from './components/overview/overview.jsx';
 import Reviews from './components/reviews/Reviews.jsx';
 import RelatedCard from './components/RelatedCard.jsx';
-import Questions from './components/Questions.jsx';
+import Questions from './components/Q&A/Questions.jsx';
 import axios from 'axios';
 
 const App = () => {
@@ -14,6 +14,7 @@ const App = () => {
   const [relatedProductsData, setRelatedProductsData] = useState([]);
   const [productStyles, setProductStyles] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
+  const [productQnAData, setProductQnAData] = useState([]);
 
 
 
@@ -138,8 +139,10 @@ const App = () => {
       .then(function (response) {
         console.log('CHAIN 5: Stefan Module - SUCCESS GET PRODUCT Q&A DATA: ', response.data);
         // TODO: Manipulate and pass down response.data into module...
-        setProductQnAData(response.data.results);
-        console.log('QnA state set: ', productQnAData);
+        //setProductQnAData(response.data);
+        var questionData = response.data.results;
+        setProductQnAData(questionData);
+        console.log('Qna Data: ',questionData);
 
       })
       .catch(function (error) {

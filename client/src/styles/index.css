@@ -125,6 +125,30 @@ h1 {
   margin-left: .5em;
 }
 
+/*  Question Search Bar*/
+
+.search-bar {
+  border-radius: 1px;
+  background:rgb(255, 255, 255);
+}
+
+.search-bar .form-control {
+  border-radius: 2px;
+  width: 80%;
+}
+
+.search-bar .btn {
+  border-radius: 2px;
+  width: 20%;
+  margin-left: -1px;
+}
+
+/* Answer Button */
+
+.answer-btn {
+  margin-right: 1%;
+}
+
 /* .size-radio-buttons {
   display: inline-flex;
   flex-direction: column-reverse;
