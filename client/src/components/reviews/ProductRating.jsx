@@ -28,7 +28,6 @@ const ProductRating = (props) => {
 
   return (
     <div>
-      <h1>{rating}</h1>
       <span>{stars}</span>
     </div>
   )
