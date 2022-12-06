@@ -315,3 +315,9 @@ h1 {
 .off {
   color: #ccc;
 }*/
+
+.review-tile {
+  border: solid;
+  border-width: 1em;
+  border-radius: 1em;
+}

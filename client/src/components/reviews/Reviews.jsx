@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReviewList from './ReviewList.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import Popup from '../Popup.jsx';
@@ -26,7 +27,7 @@ const Reviews = (props) => {
   return (
     <div>
     <div id="review-list">
-      <h3>Review List Module goes here</h3>
+      <ReviewList reviewList={incomingList}/>
     </div>
     <RatingBreakdown rating={rating}/>
     {isOpen && <Popup
