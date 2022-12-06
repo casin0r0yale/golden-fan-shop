@@ -4,20 +4,29 @@ import RatingBreakdown from './RatingBreakdown.jsx';
 import Popup from '../Popup.jsx';
 
 const Reviews = (props) => {
-
+  var incomingList = props.reviewList;
   const [formView, setFormView] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   }
+  const getAverageRating = (reviewList) => {
+    var total = 0;
+    reviewList.forEach((review) => {
+      total += review.rating;
+    });
+    return total / reviewList.length;
+  }
+  var rating = getAverageRating(incomingList);
+  // console.log('this is the rating: ', rating);
 
   return (
     <div>
     <div id="review-list">
       <h3>Review List Module goes here</h3>
     </div>
-    <RatingBreakdown />
+    <RatingBreakdown rating={rating}/>
     {isOpen && <Popup
       content={<>
         <ReviewForm />
