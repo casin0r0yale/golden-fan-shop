@@ -16,10 +16,12 @@ const Reviews = (props) => {
     reviewList.forEach((review) => {
       total += review.rating;
     });
-    return total / reviewList.length;
+    var average = total / reviewList.length;
+    var rounded = Math.round(average * 10) / 10;
+    return rounded;
   }
   var rating = getAverageRating(incomingList);
-  // console.log('this is the rating: ', rating);
+
 
   return (
     <div>
