@@ -17,18 +17,26 @@ const StyleSelector = (props) => {
         {props.styles?.map((product, index) => {
 
           return (index === props.styleIndex ?
-            <div style={{position: "relative"}}>
-              <div class="selected">&#8202; &#x2713;</div>
-              <img class="stylePreview" src={product.photos[0].thumbnail_url} onClick={() => props.onClick(index)} />
+            <div>
+              <div class="styleGroup">
+                <div class="selected">&#8202; &#x2713;</div>
+                <img class="stylePreview" src={product.photos[0].thumbnail_url} onClick={() => props.onClick(index)} />
+              </div>
             </div>
             :
-            <img class="stylePreview" src={product.photos[0].thumbnail_url} onClick={() => props.onClick(index)} />
+            <div>
+
+              <div class="styleGroup">
+                <img class="stylePreview" src={product.photos[0].thumbnail_url} onClick={() => props.onClick(index)} />
+              </div>
+            </div>
+
           )
         }
         )}
 
       </div>
-    </div> 
+    </div >
   )
 }
 

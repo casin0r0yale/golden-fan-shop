@@ -6,6 +6,8 @@ body {
 h1 {
   color: rgb(31, 31, 31);
   float: left;
+  padding-bottom: -3em;
+  font-size:xxx-large;
 
   }
 
@@ -26,14 +28,22 @@ h1 {
 .imageGallery { grid-area: 1 / 2 / 7 / 6; }
 
 
+.styleGroup {
+  position: relative;
+  margin: 0em 5em 5em 0em;
+  
+}
+
 .styleContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: .3em;
   grid-row-gap:.3em;
+  margin-bottom: 5em;
   
 }
 .stylePreview {
+  position: absolute;
   border-radius: 2.3em;
   width: 4em;
   height: 4em;
@@ -46,7 +56,7 @@ h1 {
 .selected {
   position: absolute;
   top: -0.2em;
-  right: 0.0em;
+  right: -4em;
   background: white;
   /* height: 48px;
   width: 45px; */
@@ -81,6 +91,7 @@ h1 {
   height: 4em;
   width: 18em;
   font-weight: bold;
+  margin-top: 1.5em;
 }
 
 
@@ -115,6 +126,13 @@ h1 {
   display: block;
 }
 
+#primary-img {
+	max-width: 53em;
+	height: 37.5em;
+	position: relative;
+  border: 1px solid rgb(5, 5, 5);
+  float: center;
+}
 
 /* PRODUCT CARD */
 

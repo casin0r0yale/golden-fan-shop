@@ -42,9 +42,10 @@ const AddToCart = (props) => {
            :  Array.from(Array(sizeSelected.quantity).keys()).map(quantity => {
             return (<p onClick={() => { onQuantitySelect(quantity) }}>{quantity}</p>)
           })}
-
         </div>
       </div>
+      <button class="dropdown-button">ADD TO BAG</button> 
+          <button class="dropdown-button" id="quantity" >Star</button>
     </div>
   )
 }

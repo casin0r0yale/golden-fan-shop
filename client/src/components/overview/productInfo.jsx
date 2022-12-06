@@ -6,7 +6,7 @@ const ProductInfo = (props) => {
   // console.log('general info', props.info);
 
   return (
-    <div>
+    <div style={{paddingBottom: "-10em"}}>
       <p>Insert rating here...</p>
       <p>CATEGORY</p>
       <h1>{props.info.name}</h1>
