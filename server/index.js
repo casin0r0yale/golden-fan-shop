@@ -1,8 +1,8 @@
 // EXPRESS SERVER Index
 
-require("dotenv").config();
+require('dotenv').config();
 const express = require ("express");
-const axios = require ("axios")
+const axios = require ('axios')
 const app = express();
 const cors = require("cors");
 
@@ -26,6 +26,7 @@ app.get('/getProductGeneralInfo', (req, res) => {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${incomingParamProductId}`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
+
   axios(options)
   .then((result) => {
     // Controller code

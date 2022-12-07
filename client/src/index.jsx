@@ -7,7 +7,7 @@ import AddToOutfitCard from './components/relatedProductsAndYourOutfit/AddToOutf
 import YourOutfitCard from './components/relatedProductsAndYourOutfit/YourOutfitCard.jsx';
 import LeftScrollButtonCarousel from './components/relatedProductsAndYourOutfit/LeftScrollButtonCarousel.jsx';
 import RightScrollButtonCarousel from './components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx';
-import Questions from './components/Questions.jsx';
+import Questions from './components/Q&A/Questions.jsx';
 import axios from 'axios';
 
 const App = () => {
@@ -19,8 +19,11 @@ const App = () => {
   const [featuresPrimaryProduct, setFeaturesPrimaryProduct] = useState('');
   const [productStyles, setProductStyles] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
+  const [productQnAData, setProductQnAData] = useState([]);
   const [yourOutfitList, setYourOutfitList] = useState([]);
   const [currentProductOutfitCard, setCurrentProductOutfitCard] = useState({});
+  const [reviewList, setReviewList] = useState([]);
+  const [rating, setRating] = useState(0);
 
   const [scrollRelatedProgress, setScrollRelatedProgress] = useState(0);
   const [scrollYourOutfitProgress, setScrollYourOutfitRelatedProgress] = useState(0);
@@ -82,6 +85,7 @@ const App = () => {
     }
   }, [activeSlide]);
 
+  // Init GET Request
   useEffect(() => {
     getData();
   }, [focusProductId])
@@ -97,6 +101,16 @@ const App = () => {
     noScrollCheck2();
     return () => yourOutfitCarourselRef.current && yourOutfitCarourselRef.current.removeEventListener('scroll', yourOutfitScrollListener);
   });
+
+  const getAverageRating = (reviewList) => {
+    var total = 0;
+    reviewList.forEach((review) => {
+      total += review.rating;
+    });
+    var average = total / reviewList.length;
+    var rounded = Math.round(average * 10) / 10;
+    return rounded;
+  }
 
   var currentProductCardData = {};
 
@@ -253,6 +267,10 @@ const App = () => {
       .then(function (response) {
         console.log('CHAIN 4: Tony Module - SUCCESS GET PRODUCT REVIEWS DATA: ', response.data);
         // TODO: Manipulate and pass down response.data into module...
+        var reviews = response.data.results;
+        setReviewList(reviews);
+        var average = getAverageRating(reviews);
+        setRating(average);
       })
       .catch(function (error) {
         console.log('error GET Reviews Data: ', error);
@@ -263,6 +281,10 @@ const App = () => {
       .then(function (response) {
         console.log('CHAIN 5: Stefan Module - SUCCESS GET PRODUCT Q&A DATA: ', response.data);
         // TODO: Manipulate and pass down response.data into module...
+        //setProductQnAData(response.data);
+        var questionData = response.data.results;
+        setProductQnAData(questionData);
+        console.log('Qna Data: ',questionData);
 
       })
       .catch(function (error) {
@@ -443,9 +465,8 @@ const App = () => {
           <AddToOutfitCard onClickYourOutfit={onClickYourOutfit}/>
           { scrollToggleYourOutfitProgress && scrollYourOutfitProgress<100 && <RightScrollButtonCarousel/>}
         </div>
-
-        <Questions/>
-        <Reviews/>
+        <Questions data={productQnAData}/>
+        <Reviews className="review-module" rating={rating} reviewList={reviewList} product={productInfo}/>
       </div>
   );
 };

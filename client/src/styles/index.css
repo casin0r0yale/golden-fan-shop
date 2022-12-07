@@ -15,7 +15,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-column-gap: 1.4em;
-  grid-row-gap: 1.4em;
+  grid-row-gap: 0.4em;
   }
 
 .productInfo {
@@ -65,6 +65,54 @@ h1 {
   text-decoration: line-through;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+}
+
+.dropdown-button {
+  background-color: white;
+  box-shadow: none;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000;
+  height: 4em;
+  width: 18em;
+  font-weight: bold;
+}
+
+
+#quantity {
+  width: 5em;
+  margin-left: 1.5em;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 15em;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content p {
+  color: black;
+  padding: .3em 1em;
+  text-decoration: none;
+  margin-block-start: .3em;
+  margin-block-end: .3em;
+  /* display: block; */
+}
+
+.dropdown-content p:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdownExpanded {
+  display: block;
+}
 
 /* Popup style */
 
@@ -431,6 +479,11 @@ h1 {
 }
 
 /* REVIEW MODULE */
+.review-module {
+  display: flex;
+  flex-direction: row;
+}
+
 #star-rating {
   background-color: transparent;
   border: none;
@@ -447,6 +500,34 @@ h1 {
   margin-left: .5em;
 }
 
+/*  Question Search Bar*/
+
+.search-bar {
+  border-radius: 1px;
+  background:rgb(255, 255, 255);
+}
+
+.search-bar .form-control {
+  border-radius: 2px;
+  width: 80%;
+}
+
+.search-bar .btn {
+  border-radius: 2px;
+  width: 20%;
+  margin-left: -1px;
+}
+
+/* Answer Button */
+
+.answer-btn {
+  margin-right: 1%;
+}
+
+/* .size-radio-buttons {
+  display: inline-flex;
+  flex-direction: column-reverse;
+  align-items: center;
 .review-image-thumbnails {
   width: 3em;
   margin-top: .5em;
@@ -461,4 +542,10 @@ h1 {
 
 .off {
   color: #ccc;
+}*/
+
+.review-tile {
+  border: solid;
+  border-width: 1em;
+  border-radius: 1em;
 }
