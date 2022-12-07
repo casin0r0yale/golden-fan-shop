@@ -6,6 +6,7 @@ import Popup from '../Popup.jsx';
 
 const Reviews = (props) => {
   var incomingList = props.reviewList;
+  var productInfo = props.product;
   const [formView, setFormView] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -26,19 +27,20 @@ const Reviews = (props) => {
 
   return (
     <div>
+      <p>RATINGS & REVIEWS</p>
+      <RatingBreakdown rating={rating}/>
     <div id="review-list">
       <ReviewList reviewList={incomingList}/>
     </div>
-    <RatingBreakdown rating={rating}/>
     {isOpen && <Popup
       content={<>
-        <ReviewForm />
+        <ReviewForm productName={productInfo.name}/>
       </>}
       handleClose={togglePopup}
     />}
     <input
       type="button"
-      value="Click to Open Popup"
+      value="Add a review"
       onClick={togglePopup}
     />
   </div>

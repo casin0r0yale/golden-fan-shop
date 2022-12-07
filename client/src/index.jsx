@@ -254,8 +254,14 @@ const App = () => {
           })}
           <AddToOutfitCard onClickYourOutfit={onClickYourOutfit}/>
         </div>
+<<<<<<< HEAD
         <Questions data={productQnAData}/>
         <Reviews reviewList={reviewList}/>
+=======
+
+        <Questions/>
+        <Reviews className="review-module" reviewList={reviewList} product={productInfo}/>
+>>>>>>> 1933891 (rearranged Review Components)
       </div>
   );
 }

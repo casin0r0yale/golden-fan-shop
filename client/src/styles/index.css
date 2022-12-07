@@ -256,6 +256,11 @@ h1 {
 }
 
 /* REVIEW MODULE */
+.review-module {
+  display: flex;
+  flex-direction: row;
+}
+
 #star-rating {
   background-color: transparent;
   border: none;

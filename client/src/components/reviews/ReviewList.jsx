@@ -14,6 +14,7 @@ const ReviewList = (props) => {
           </div>
         )
       })}
+      <button>More Reviews</button>
     </div>
   )
 }
