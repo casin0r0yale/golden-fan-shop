@@ -21,10 +21,21 @@ const App = () => {
   const [yourOutfitList, setYourOutfitList] = useState([]);
   const [currentProductOutfitCard, setCurrentProductOutfitCard] = useState({});
   const [reviewList, setReviewList] = useState([]);
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     getData();
   }, [focusProductId])
+
+  const getAverageRating = (reviewList) => {
+    var total = 0;
+    reviewList.forEach((review) => {
+      total += review.rating;
+    });
+    var average = total / reviewList.length;
+    var rounded = Math.round(average * 10) / 10;
+    return rounded;
+  }
 
   var currentProductCardData = {};
 
@@ -183,6 +194,8 @@ const App = () => {
         // TODO: Manipulate and pass down response.data into module...
         var reviews = response.data.results;
         setReviewList(reviews);
+        var average = getAverageRating(reviews);
+        setRating(average);
       })
       .catch(function (error) {
         console.log('error GET Reviews Data: ', error);
@@ -254,14 +267,8 @@ const App = () => {
           })}
           <AddToOutfitCard onClickYourOutfit={onClickYourOutfit}/>
         </div>
-<<<<<<< HEAD
         <Questions data={productQnAData}/>
-        <Reviews reviewList={reviewList}/>
-=======
-
-        <Questions/>
-        <Reviews className="review-module" reviewList={reviewList} product={productInfo}/>
->>>>>>> 1933891 (rearranged Review Components)
+        <Reviews className="review-module" rating={rating} reviewList={reviewList} product={productInfo}/>
       </div>
   );
 }

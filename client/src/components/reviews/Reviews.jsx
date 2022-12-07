@@ -13,22 +13,14 @@ const Reviews = (props) => {
   const togglePopup = () => {
     setIsOpen(!isOpen);
   }
-  const getAverageRating = (reviewList) => {
-    var total = 0;
-    reviewList.forEach((review) => {
-      total += review.rating;
-    });
-    var average = total / reviewList.length;
-    var rounded = Math.round(average * 10) / 10;
-    return rounded;
-  }
-  var rating = getAverageRating(incomingList);
+
+  // var rating = getAverageRating(incomingList);
 
 
   return (
     <div>
       <p>RATINGS & REVIEWS</p>
-      <RatingBreakdown rating={rating}/>
+      <RatingBreakdown rating={props.rating}/>
     <div id="review-list">
       <ReviewList reviewList={incomingList}/>
     </div>
