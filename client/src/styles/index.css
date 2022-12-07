@@ -256,6 +256,11 @@ h1 {
 }
 
 /* REVIEW MODULE */
+.review-module {
+  display: flex;
+  flex-direction: row;
+}
+
 #star-rating {
   background-color: transparent;
   border: none;
@@ -315,3 +320,9 @@ h1 {
 .off {
   color: #ccc;
 }*/
+
+.review-tile {
+  border: solid;
+  border-width: 1em;
+  border-radius: 1em;
+}
