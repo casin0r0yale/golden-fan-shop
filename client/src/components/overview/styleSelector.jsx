@@ -18,8 +18,8 @@ const StyleSelector = (props) => {
 
           return (index === props.styleIndex ?
             <div style={{position: "relative"}}>
-              <div class="selected">&#8202; &#x2713;</div>
-              <img class="stylePreview" src={product.photos[0].thumbnail_url} onClick={() => props.onClick(index)} />
+              <div className="selected">&#8202; &#x2713;</div>
+              <img className="stylePreview" src={product.photos[0].thumbnail_url} onClick={() => props.onClick(index)} />
             </div>
             :
             <img class="stylePreview" src={product.photos[0].thumbnail_url} onClick={() => props.onClick(index)} />

@@ -40,7 +40,6 @@ h1 {
   border-color: black;
   border-width: .1em;
   border-style: solid;
-
 }
 
 .selected {
@@ -53,7 +52,7 @@ h1 {
   border-color: black;
   border-width: .1em;
   border-style: solid;
-  z-index: 1000;
+  z-index: 50;
   border-radius: 50%;
   width: 1.3em;
   height: 1.3em;
@@ -115,46 +114,22 @@ h1 {
   display: block;
 }
 
-
-/* PRODUCT CARD */
-
-.productCard {
-  position: relative;
-  width: 150px;
-  height: auto;
-  margin: 0 auto;
-  max-height: 70vh;
-  margin-top: 1em;
-  background: #fff;
-  padding: 20px;
-  border: 1px solid #999;
-  overflow: auto;
-  cursor: auto;
-
-}
-
-.sidescroller {
-  --_spacer: var(--size-3);
-  display: grid;
-  gap: var(--_spacer);
-  grid-auto-flow: column;
-  grid-auto-columns: 21%;
-
-  padding: 0 var(--_spacer) var(--_spacer);
-
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-}
-
 /* Popup style */
+
 .popup-box {
   position: fixed;
   background: #00000050;
-  width: 100%;
+  /* width: 100%;
   height: 100vh;
   top: 0;
-  left: 0;
-  z-index: 1;
+  left: 0; */
+  padding:0;
+  margin:0;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  z-index: 90;
 }
 
 
@@ -170,7 +145,7 @@ h1 {
   padding: 20px;
   border: 1px solid #999;
   overflow: auto;
-  z-index: 1;
+  z-index: 91;
 }
 
 .close-icon {
@@ -187,35 +162,57 @@ h1 {
   text-align: center;
   border: 1px solid #999;
   font-size: 20px;
+  z-index: 100;
+
 }
 
-.close-icon-yourOutfit {
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: #ededed;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  line-height: 20px;
-  text-align: center;
+/* RELATED PRODUCTS AND YOUR OUTFIT MODULE */
+
+.productCard {
+  position: relative;
+  width: 15em;
+  height: 23em;
+  margin: 0;
+  max-height: 70vh;
+  margin-top: 1em;
+  margin-bottom: 0.2em;
+  background: rgb(255, 255, 255);
   border: 1px solid #999;
-  font-size: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 50ms;
 }
 
-.starbutton{
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  /* background: none; */
-  color: #fff;
-  background: url('http://imgur.com/I0EwG.png') transparent;
-  height: 48px;
-  width: 45px;
-  border: none;
-  cursor: zoom-in;
+/* .productCard:active {
+  border-color: #677071;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  outline: 0;
+  opacity: 0.8;
+} */
 
+.productImageInCard {
+  inline-size: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.sidescroller {
+  position: relative;
+  display: grid;
+  gap: 1em;
+  grid-auto-flow: column;
+  grid-auto-columns: min-content;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  /* scroll-snap-type: inline mandatory; */
+}
+/*
+.sidescroller > * {
+  scroll-snap-align: start;
+} */
+
+.sidescroller::-webkit-scrollbar {
+  display: none;
 }
 
 .compareLeftName {
@@ -223,7 +220,6 @@ h1 {
   float: left;
   text-align: left;
   font-weight: bold;
-
 }
 .compareRightName {
   width: 50%;
@@ -253,6 +249,233 @@ h1 {
   width: 25%;
   float: left;
   text-align: right;
+}
+
+.lineSpaceCard {
+  margin-bottom: 3px;
+  margin-top: 5px;
+  margin-left: 8px;
+  color: rgb(44, 44, 44);
+}
+
+.addToOutfitButton {
+  text-align: center;
+  vertical-align: middle;
+}
+.addToOutfitText{
+  font-style: italic;
+  margin-top: 140px;
+}
+
+.button-add-to-outfit {
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  border-radius: 8px;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #4a4e4e;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Amazon Ember",sans-serif;
+  font-size: 13px;
+  line-height: 29px;
+  padding: 0 10px 0 11px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  width: 100px;
+}
+
+.button-add-to-outfit:hover {
+  background-color: #f7fafa;
+}
+
+.button-add-to-outfit:active {
+  border-color: #677071;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  outline: 0;
+}
+
+.close-icon-yourOutfit {
+  cursor: pointer;
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #717171;
+  opacity: 0.75;
+  transition: all 150ms;
+}
+
+.x-icon:before {
+  position: absolute;
+  top: 15%; left: calc(50% - .0625em);
+  width: .125em; height: 70%;
+  border-radius: .125em;
+  transform: rotate(45deg);
+  background: currentcolor;
+  content: ''
+}
+.x-icon:after {
+  position: absolute;
+  top: 15%; left: calc(50% - .0625em);
+  width: .125em; height: 70%;
+  border-radius: .125em;
+  transform: rotate(-45deg);
+  background: currentcolor;
+  content: ''
+}
+
+.close-icon-yourOutfit:hover {
+  transform: rotate(90deg) scale(1.2);
+  background-color: rgb(241, 241, 241);
+  opacity: 0.9;
+}
+
+#star-button-compare {
+  color: #fff;
+  position: absolute;
+  font-size: 20px;
+  top: 6px;
+  right: 6px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: zoom-in;
+  transition: all 190ms;
+  -webkit-text-stroke: 1.5px rgb(92, 92, 92);
+	-webkit-text-fill-color: white;
+  opacity: 0.65;
+  text-shadow: rgb(243, 243, 243) 0px 0px 5px;
+}
+
+#star-button-compare:hover   {
+  transform: rotate(216deg) scale(1.2);
+  opacity: 0.9;
+}
+
+/* Caroursel Side Scroll Buttons */
+
+.leftScrollButtonPosition{
+  position:-webkit-sticky;
+  position:sticky;
+  top: 240px;
+  left: 15px;
+  z-index: 99;
+}
+.leftScrollButton {
+  cursor: pointer;
+  position: absolute;
+  top: 140px;
+  left: 9px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #717171;
+  opacity: 0.75;
+  z-index: 99;
+  transition: all 150ms;
+}
+
+.left-icon:before {
+  position: absolute;
+  top: 11%;
+  left: 40%;
+  width: .125em;
+  height: 50%;
+  border-radius: .125em;
+  transform: rotate(45deg);
+  background: currentcolor;
+  content: ''
+}
+.left-icon:after {
+  position: absolute;
+  bottom: 11%;
+  left: 40%;
+  width: .125em;
+  height: 50%;
+  border-radius: .125em;
+  transform: rotate(-45deg);
+  background: currentcolor;
+  content: ''
+}
+
+.rightScrollButtonPosition{
+  position:-webkit-sticky;
+  position:sticky;
+  top: 240px;
+  right: 15px;
+  z-index: 99;
+}
+.rightScrollButton {
+  cursor: pointer;
+  position: absolute;
+  top: 140px;
+  right: 9px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #717171;
+  opacity: 0.75;
+  z-index: 99;
+  /* transition: all 150ms; */
+}
+
+.right-icon:before {
+  position: absolute;
+  bottom: 11%;
+  right: 40%;
+  width: .125em;
+  height: 50%;
+  border-radius: .125em;
+  transform: rotate(45deg);
+  background: currentcolor;
+  content: ''
+}
+.right-icon:after {
+  position: absolute;
+  top: 11%;
+  right: 40%;
+  width: .125em;
+  height: 50%;
+  border-radius: .125em;
+  transform: rotate(-45deg);
+  background: currentcolor;
+  content: ''
+}
+
+.leftScrollButton:hover, .rightScrollButton:hover {
+  transform: scale(1.1);
+  background-color: rgb(241, 241, 241);
+  opacity: 0.9;
 }
 
 /* REVIEW MODULE */

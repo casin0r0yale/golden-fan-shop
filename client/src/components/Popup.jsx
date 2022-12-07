@@ -1,6 +1,12 @@
 import React from "react";
 
-const Popup = props => {
+
+const Popup = (props) => {
+
+  // const onClickClose = (event) => {
+  //   props.handleClose();
+  // }
+
   return (
     <div className="popup-box">
       <div className="form-box">
