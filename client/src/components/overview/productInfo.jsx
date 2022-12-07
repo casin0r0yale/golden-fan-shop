@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import ProductRating from '../reviews/ProductRating.jsx';
 import "../../styles/index.css";
+
 
 
 const ProductInfo = (props) => {
@@ -7,7 +9,7 @@ const ProductInfo = (props) => {
 
   return (
     <div style={{paddingBottom: "-10em"}}>
-      <p>Insert rating here...</p>
+      <ProductRating/>
       <p>CATEGORY</p>
       <h1>{props.info.name}</h1>
     </div>

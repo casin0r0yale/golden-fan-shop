@@ -23,7 +23,7 @@ const AddToCart = (props) => {
 
 
   return (
-    <div>
+    <div class="addToCart">
       <div class="dropdown">
         <button onClick={() => { setDropdownExpanded(!dropdownExpanded) }} class="dropdown-button">{sizeSelected.size || "SELECT SIZE"}</button>
         <div class={dropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
