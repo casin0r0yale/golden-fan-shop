@@ -28,7 +28,7 @@ const StyleSelector = (props) => {
         )}
 
       </div>
-    </div>
+    </div> 
   )
 }
 

@@ -20,6 +20,7 @@ const App = () => {
   const [productQnAData, setProductQnAData] = useState([]);
   const [yourOutfitList, setYourOutfitList] = useState([]);
   const [currentProductOutfitCard, setCurrentProductOutfitCard] = useState({});
+  const [reviewList, setReviewList] = useState([]);
 
   useEffect(() => {
     getData();
@@ -180,6 +181,8 @@ const App = () => {
       .then(function (response) {
         console.log('CHAIN 4: Tony Module - SUCCESS GET PRODUCT REVIEWS DATA: ', response.data);
         // TODO: Manipulate and pass down response.data into module...
+        var reviews = response.data.results;
+        setReviewList(reviews);
       })
       .catch(function (error) {
         console.log('error GET Reviews Data: ', error);
@@ -252,7 +255,7 @@ const App = () => {
           <AddToOutfitCard onClickYourOutfit={onClickYourOutfit}/>
         </div>
         <Questions data={productQnAData}/>
-        <Reviews/>
+        <Reviews reviewList={reviewList}/>
       </div>
   );
 }
