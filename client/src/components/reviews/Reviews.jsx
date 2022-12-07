@@ -1,43 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import ReviewList from './ReviewList.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import Popup from '../Popup.jsx';
 
 const Reviews = (props) => {
   var incomingList = props.reviewList;
+  var productInfo = props.product;
   const [formView, setFormView] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   }
-  const getAverageRating = (reviewList) => {
-    var total = 0;
-    reviewList.forEach((review) => {
-      total += review.rating;
-    });
-    var average = total / reviewList.length;
-    var rounded = Math.round(average * 10) / 10;
-    return rounded;
-  }
-  var rating = getAverageRating(incomingList);
+
+  // var rating = getAverageRating(incomingList);
 
 
   return (
     <div>
+      <p>RATINGS & REVIEWS</p>
+      <RatingBreakdown rating={props.rating}/>
     <div id="review-list">
-      <h3>Review List Module goes here</h3>
+      <ReviewList reviewList={incomingList}/>
     </div>
-    <RatingBreakdown rating={rating}/>
     {isOpen && <Popup
       content={<>
-        <ReviewForm />
+        <ReviewForm productName={productInfo.name}/>
       </>}
       handleClose={togglePopup}
     />}
     <input
       type="button"
-      value="Click to Open Popup"
+      value="Add a review"
       onClick={togglePopup}
     />
   </div>

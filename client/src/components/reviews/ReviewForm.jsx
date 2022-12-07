@@ -104,7 +104,7 @@ const ReviewForm = (props) => {
   return (
     <div>
       <h2>Write Your Review</h2>
-      <h3>About the *Product Name Here*</h3>
+      <h3>About the {props.productName}</h3>
       <form className="review-form">
         <label>
           Overall Rating*

@@ -5,7 +5,7 @@ import Reviews from './components/reviews/Reviews.jsx';
 import RelatedCard from './components/relatedProductsAndYourOutfit/RelatedCard.jsx';
 import AddToOutfitCard from './components/relatedProductsAndYourOutfit/AddToOutfitCard.jsx';
 import YourOutfitCard from './components/relatedProductsAndYourOutfit/YourOutfitCard.jsx';
-import Questions from './components/Questions.jsx';
+import Questions from './components/Q&A/Questions.jsx';
 import axios from 'axios';
 
 const App = () => {
@@ -17,13 +17,25 @@ const App = () => {
   const [featuresPrimaryProduct, setFeaturesPrimaryProduct] = useState('');
   const [productStyles, setProductStyles] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
+  const [productQnAData, setProductQnAData] = useState([]);
   const [yourOutfitList, setYourOutfitList] = useState([]);
   const [currentProductOutfitCard, setCurrentProductOutfitCard] = useState({});
   const [reviewList, setReviewList] = useState([]);
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     getData();
   }, [focusProductId])
+
+  const getAverageRating = (reviewList) => {
+    var total = 0;
+    reviewList.forEach((review) => {
+      total += review.rating;
+    });
+    var average = total / reviewList.length;
+    var rounded = Math.round(average * 10) / 10;
+    return rounded;
+  }
 
   var currentProductCardData = {};
 
@@ -182,6 +194,8 @@ const App = () => {
         // TODO: Manipulate and pass down response.data into module...
         var reviews = response.data.results;
         setReviewList(reviews);
+        var average = getAverageRating(reviews);
+        setRating(average);
       })
       .catch(function (error) {
         console.log('error GET Reviews Data: ', error);
@@ -192,6 +206,10 @@ const App = () => {
       .then(function (response) {
         console.log('CHAIN 5: Stefan Module - SUCCESS GET PRODUCT Q&A DATA: ', response.data);
         // TODO: Manipulate and pass down response.data into module...
+        //setProductQnAData(response.data);
+        var questionData = response.data.results;
+        setProductQnAData(questionData);
+        console.log('Qna Data: ',questionData);
 
       })
       .catch(function (error) {
@@ -249,9 +267,8 @@ const App = () => {
           })}
           <AddToOutfitCard onClickYourOutfit={onClickYourOutfit}/>
         </div>
-
-        <Questions/>
-        <Reviews reviewList={reviewList}/>
+        <Questions data={productQnAData}/>
+        <Reviews className="review-module" rating={rating} reviewList={reviewList} product={productInfo}/>
       </div>
   );
 }
