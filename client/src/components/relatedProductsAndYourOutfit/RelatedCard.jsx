@@ -5,8 +5,6 @@ import ComparisonTable from './ComparisonTable.jsx';
 const RelatedCard = React.forwardRef((props, ref) => {
 
   // {props.related_id} also is passed in
-
-  // Will need to pass in feature and value into the comparison model component
   const [formView, setFormView] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -15,13 +13,11 @@ const RelatedCard = React.forwardRef((props, ref) => {
     setIsOpen(!isOpen);
   }
 
-  // var relatedCardRef = React.createRef();
+  // useEffect(() => {
+  //   // console.log("🚀 ~ file: RelatedCard.jsx:19 ~ RelatedCard ~ relatedCardRef", relatedCardRef)
 
-  useEffect(() => {
-    // console.log("🚀 ~ file: RelatedCard.jsx:19 ~ RelatedCard ~ relatedCardRef", relatedCardRef)
-
-    // props.gatherRefsRelated(relatedCardRef.current)
-  }, [])
+  //   // props.gatherRefsRelated(relatedCardRef.current)
+  // }, [])
 
   var combineRelatedFeatures = [];
 
@@ -35,7 +31,6 @@ const RelatedCard = React.forwardRef((props, ref) => {
   var onClickNavigate = () => {
     props.onClickNavigateToNewProductPage(props.related_id);
   }
-
 
   return (
     <div className='productCard' onClick={onClickNavigate} ref={ref}>
