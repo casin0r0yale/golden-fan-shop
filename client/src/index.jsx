@@ -5,7 +5,7 @@ import Reviews from './components/reviews/Reviews.jsx';
 import RelatedCard from './components/relatedProductsAndYourOutfit/RelatedCard.jsx';
 import AddToOutfitCard from './components/relatedProductsAndYourOutfit/AddToOutfitCard.jsx';
 import YourOutfitCard from './components/relatedProductsAndYourOutfit/YourOutfitCard.jsx';
-import Questions from './components/Questions.jsx';
+import Questions from './components/Q&A/Questions.jsx';
 import axios from 'axios';
 
 const App = () => {
@@ -17,6 +17,7 @@ const App = () => {
   const [featuresPrimaryProduct, setFeaturesPrimaryProduct] = useState('');
   const [productStyles, setProductStyles] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
+  const [productQnAData, setProductQnAData] = useState([]);
   const [yourOutfitList, setYourOutfitList] = useState([]);
   const [currentProductOutfitCard, setCurrentProductOutfitCard] = useState({});
   const [reviewList, setReviewList] = useState([]);
@@ -192,6 +193,10 @@ const App = () => {
       .then(function (response) {
         console.log('CHAIN 5: Stefan Module - SUCCESS GET PRODUCT Q&A DATA: ', response.data);
         // TODO: Manipulate and pass down response.data into module...
+        //setProductQnAData(response.data);
+        var questionData = response.data.results;
+        setProductQnAData(questionData);
+        console.log('Qna Data: ',questionData);
 
       })
       .catch(function (error) {
@@ -249,8 +254,7 @@ const App = () => {
           })}
           <AddToOutfitCard onClickYourOutfit={onClickYourOutfit}/>
         </div>
-
-        <Questions/>
+        <Questions data={productQnAData}/>
         <Reviews reviewList={reviewList}/>
       </div>
   );
