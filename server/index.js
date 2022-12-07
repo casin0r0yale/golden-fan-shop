@@ -16,6 +16,7 @@ app.listen(3000, () => console.log('Our Server is listening on port 3000...'));
 
 // INIT GET ROUTES
 
+  // VIEW of the server
 app.get('/getProductGeneralInfo', (req, res) => {
 
   var incomingParamProductId = req.query.id;
@@ -27,7 +28,9 @@ app.get('/getProductGeneralInfo', (req, res) => {
   };
   axios(options)
   .then((result) => {
+    // Controller code
     // console.log('index/server result, ', result);
+
     res.status(200).send(result.data)
   })
   .catch((err) => {
@@ -66,6 +69,7 @@ app.get('/getProductRelated', (req, res) => {
   };
   axios(options)
   .then((result) => {
+    // Logic code controller need to import function
     res.status(200).send(result.data)
   })
   .catch((err) => {

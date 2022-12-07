@@ -13,14 +13,16 @@ const YourOutfitCard = (props) => {
   return (
     <div className='productCard' onClick={onClickNavigate}>
       <div>
-        <img src={props.current_thumbnail}/>
+        <img className='productImageInCard' src={props.current_thumbnail}/>
       </div>
       <div></div>
-      <div>{props.current_category}</div>
-      <div>{props.current_name}</div>
-      <div>{props.current_price}</div>
-      <div>TODO: Stars/Reviews</div>
-      <button onClick={onClickDeleteProduct} class="close-icon-yourOutfit">x</button>
+      <div>
+        <div style={{fontSize: 12}} className='lineSpaceCard'>{props.current_category.toUpperCase()}</div>
+        <div className='boldFont lineSpaceCard'>{props.current_name}</div>
+        <div style={{fontSize: 12}} className='lineSpaceCard'>${props.current_price}</div>
+        <div className='lineSpaceCard'>TODO: Stars/Reviews</div>
+      </div>
+      <button onClick={onClickDeleteProduct} class="close-icon-yourOutfit"><div className='x-icon'></div></button>
     </div>
   )
 }
