@@ -1,5 +1,6 @@
 import React from 'react';
 import ReviewTile from './ReviewTile.jsx'
+import { IoMdAdd } from 'react-icons/io';
 
 const ReviewList = (props) => {
   var numReviews = props.reviewList.length;
@@ -14,7 +15,15 @@ const ReviewList = (props) => {
           </div>
         )
       })}
-      <button>More Reviews</button>
+      <button className="more-reviews-button">More Reviews</button>
+      <button
+        type="button"
+        className="add-review-button"
+        // value="Add a review  + "
+        onClick={props.togglePopup}
+      >
+      Add a review &nbsp; {<IoMdAdd />}
+      </button>
     </div>
   )
 }

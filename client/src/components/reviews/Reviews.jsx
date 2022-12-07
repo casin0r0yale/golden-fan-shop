@@ -18,23 +18,19 @@ const Reviews = (props) => {
 
 
   return (
-    <div>
-      <p>RATINGS & REVIEWS</p>
-      <RatingBreakdown rating={props.rating}/>
-    <div id="review-list">
-      <ReviewList reviewList={incomingList}/>
-    </div>
-    {isOpen && <Popup
-      content={<>
-        <ReviewForm productName={productInfo.name}/>
-      </>}
-      handleClose={togglePopup}
-    />}
-    <input
-      type="button"
-      value="Add a review"
-      onClick={togglePopup}
-    />
+    <div className="review-module">
+      <div className="rating-breakdown">
+        <RatingBreakdown rating={props.rating}/>
+      </div>
+      <div id="review-list">
+        <ReviewList reviewList={incomingList} togglePopup={togglePopup}/>
+      </div>
+      {isOpen && <Popup
+        content={<>
+          <ReviewForm productName={productInfo.name}/>
+        </>}
+        handleClose={togglePopup}
+      />}
   </div>
   )
 }
