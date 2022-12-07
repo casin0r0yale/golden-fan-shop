@@ -277,6 +277,21 @@ h1 {
   margin-left: .5em;
 }
 
+.on {
+  color: #000;
+}
+
+.off {
+  color: #ccc;
+}
+
+/* .review-tile {
+  border: solid;
+  border-width: 1em;
+  border-radius: 1em;
+} */
+
+
 /*  Question Search Bar*/
 
 .search-bar {
@@ -313,16 +328,5 @@ h1 {
   margin-right: .25em;
 }
 
-.on {
-  color: #000;
-}
+*/
 
-.off {
-  color: #ccc;
-}*/
-
-.review-tile {
-  border: solid;
-  border-width: 1em;
-  border-radius: 1em;
-}
