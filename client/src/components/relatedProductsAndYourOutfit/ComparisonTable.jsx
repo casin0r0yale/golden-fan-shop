@@ -14,10 +14,12 @@ const ComparisonTable = (props) => {
 
     (async (p1, r2) => {
       const myAsyncParseInfo = async (str) => {
-        return JSON.parse(str)
+        return JSON.parse(str);
+        // need a catch
         };
 
       try {
+        // test await
         var parsePrimaryInfo = await myAsyncParseInfo(p1);
         var parseRelatedInfo = await myAsyncParseInfo(r2);
         setPrimaryName(parsePrimaryInfo[0].namePrimary);
@@ -111,7 +113,7 @@ const ComparisonTable = (props) => {
 
     {fullListFeatures.map((item, index) => { return (
       <div key={index}>
-        <div class="compareLeft" style={{opacity: item[0]}}>#x2713&;</div>
+        <div class="compareLeft" style={{opacity: item[0]}}>&#x2713;</div>
         <div class="compareMiddleColumn"> <a class="boldFont">{item[1]}</a> <a>{ ' ' + item[2]}</a> </div>
         <div class="compareRight" style={{opacity: item[3]}}>&#x2713;</div>
       </div>
