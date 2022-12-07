@@ -12,7 +12,9 @@ const Overview = (props) => {
     console.log(index);
     setStyleIndex(index);
   }
-
+  useEffect(() => {
+    setStyleIndex(0);
+  }, [props.info]); //
 
   return (
     <div>

@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import "../../styles/index.css";
+import { AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
 
 
 const AddToCart = (props) => {
   const [sizeSelected, setSizeSelected] = useState({});
-  const [quantitySelected, setQuantitySelected] = useState(1);
+  const [quantitySelected, setQuantitySelected] = useState('-');
 
   const [dropdownExpanded, setDropdownExpanded] = useState(false);
   const [quantityDropdownExpanded, setQuantityDropdownExpanded] = useState(false);
+  const [favorited, setFavorited] = useState(false);
+
 
   const onOptionSelect = option => {
     setSizeSelected(option);
     setDropdownExpanded(false);
+    setQuantitySelected(1);
+    console.log(Object.keys(sizeSelected).length > 0)
   };
 
   const onQuantitySelect = option => {
@@ -33,19 +39,22 @@ const AddToCart = (props) => {
         </div>
       </div>
       <div class="dropdown">
-        <button class="dropdown-button" id="quantity" onClick={() => { setQuantityDropdownExpanded(!quantityDropdownExpanded) }}>{quantitySelected}</button>
+      {!isNaN(quantitySelected) ?  
+      <button class="dropdown-button" id="quantity" onClick={() => { setQuantityDropdownExpanded(!quantityDropdownExpanded) }}>{quantitySelected}</button> 
+      : <button class="dropdown-button" id="quantity">{quantitySelected}</button> }
         <div class={quantityDropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
           {sizeSelected.quantity > 15?
            Array.from(Array(15).keys()).map(quantity => {
             return (<p onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
           })
            :  Array.from(Array(sizeSelected.quantity).keys()).map(quantity => {
-            return (<p onClick={() => { onQuantitySelect(quantity) }}>{quantity}</p>)
+            return (<p onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
           })}
+  
         </div>
       </div>
-      <button class="dropdown-button">ADD TO BAG</button> 
-          <button class="dropdown-button" id="quantity" >Star</button>
+      {Object.keys(sizeSelected).length > 0 ? <button class="dropdown-button">ADD TO BAG</button> : ''}
+          <button onClick={() => { setFavorited(!favorited)} } class="dropdown-button" id="quantity" >{favorited?  <AiFillHeart size='25' /> : <AiOutlineHeart size='25'/> } </button>
     </div>
   )
 }
