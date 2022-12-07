@@ -10,11 +10,11 @@ const AddToOutfitCard = (props) => {
   }
 
   return (
-    <div className='productCard compareMiddleColumn'>
-      <div>
+    <div className='productCard addToOutfitButton'>
+      <div className='addToOutfitText'>
         Add To Outfit
-      </div>
-      <button onClick={onClickYourOutfit}>
+      </div><br/>
+      <button className='button-add-to-outfit' onClick={onClickYourOutfit}>
         +
       </button>
     </div>

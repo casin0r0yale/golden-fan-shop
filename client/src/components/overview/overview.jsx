@@ -6,7 +6,7 @@ import ProductInfo from './productInfo.jsx';
 import StyleSelector from './styleSelector.jsx';
 
 const Overview = (props) => {
-  console.log('overview', props.info);
+  // console.log('overview', props.info);
   const [styleIndex, setStyleIndex] = useState(0);
   const setIndex = (index) => {
     console.log(index);
