@@ -25,6 +25,11 @@ const AddToCart = (props) => {
     setQuantityDropdownExpanded(false);
   };
 
+  var onClickYourOutfit = () => {
+    props.onClickYourOutfit();
+    setFavorited(!favorited);
+  }
+
   useEffect(() => {
     console.log('logg', props.styles[props.styleIndex]?.skus)
     // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
@@ -74,7 +79,7 @@ const AddToCart = (props) => {
         </div>
       </div>
       {sizeSelected.quantity > 0 ? <button className="dropdown-button">ADD TO BAG</button> : ''}
-      <button onClick={() => { setFavorited(!favorited) }} className="dropdown-button" id="quantity" >{favorited ? <AiFillHeart size='25' /> : <AiOutlineHeart size='25' />} </button>
+      <button onMouseDown={onClickYourOutfit} onMouseUp={() => {setFavorited(!favorited);}} className="dropdown-button" id="quantity" >{favorited ? <AiFillHeart size='25' /> : <AiOutlineHeart size='25' />} </button>
     </div>
   )
 }

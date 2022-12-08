@@ -41,7 +41,7 @@ const YourOutfitCard = React.forwardRef((props, ref) => {
           <ProductRating rating={ratingYourOutfitCard}/>
         </div>
       </div>
-      <button onClick={onClickDeleteProduct} class="close-icon-yourOutfit"><div className='x-icon'></div></button>
+      <button onClick={onClickDeleteProduct} className="close-icon-yourOutfit"><div className='x-icon'></div></button>
     </div>
   )
 });

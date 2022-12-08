@@ -18,11 +18,11 @@ const Overview = (props) => {
 
   return (
     <div>
-     {props.styles?
+      {props.styles?
       <div className="overviewContainer">
       <div className="productInfo"><ProductInfo rating={props.rating} info={props.info}/></div>
       <div className="styleSelector"><StyleSelector onClick = {setIndex} styleIndex={styleIndex} styles={props.styles}/></div>
-      <div className="addToCart"><AddToCart styleIndex={styleIndex} styles={props.styles}/></div>
+      <div className="addToCart"><AddToCart styleIndex={styleIndex} styles={props.styles} onClickYourOutfit={props.onClickYourOutfit}/></div>
       <div className="imageGallery"><ImageGallery  styleIndex={styleIndex} styles={props.styles}/></div>
       </div>
       : ''

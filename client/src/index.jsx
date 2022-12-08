@@ -172,7 +172,7 @@ const App = () => {
       <div>
         <Header/>
         <h2>Golden Fan Shop: Main App/Index Component</h2>
-        <Overview rating={rating} info={productInfo} styles={productStyles}/>
+        <Overview rating={rating} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit}/>
         <div>RELATED PRODUCTS</div>
 
         <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef}>
