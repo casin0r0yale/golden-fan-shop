@@ -25,7 +25,25 @@ const AddToCart = (props) => {
     setQuantityDropdownExpanded(false);
   };
 
+  useEffect(() => {
+    console.log('logg', props.styles[props.styleIndex]?.skus)
+    // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
+    //   console.log(props.styles[props.styleIndex]?.skus[size].quantity)
+    //   props.styles[props.styleIndex]?.skus[size].quantity > 0
+    // }))
 
+    setQuantitySelected('-');
+    if (!props.styles[props.styleIndex]?.skus[null])
+      // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
+      //   props.styles[props.styleIndex]?.skus[size].quantity > 0
+      // })) 
+      {
+        setSizeSelected({});      }
+        else {
+          setSizeSelected({ size: "OUT OF STOCK" });
+        }
+
+  }, [props.styles]); //
 
 
   return (
@@ -34,27 +52,29 @@ const AddToCart = (props) => {
         <button onClick={() => { setDropdownExpanded(!dropdownExpanded) }} class="dropdown-button">{sizeSelected.size || "SELECT SIZE"}</button>
         <div class={dropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
           {Object.keys((props.styles[props.styleIndex]?.skus) || {}).map(size => {
-            return (<p onClick={() => { onOptionSelect(props.styles[props.styleIndex]?.skus[size]) }}>{props.styles[props.styleIndex]?.skus[size].size}</p>)
+            if (props.styles[props.styleIndex]?.skus[size].quantity > 0) {
+              return (<p onClick={() => { onOptionSelect(props.styles[props.styleIndex]?.skus[size]) }}>{props.styles[props.styleIndex]?.skus[size].size}</p>)
+            }
           })}
         </div>
       </div>
       <div class="dropdown">
-      {!isNaN(quantitySelected) ?  
-      <button class="dropdown-button" id="quantity" onClick={() => { setQuantityDropdownExpanded(!quantityDropdownExpanded) }}>{quantitySelected}</button> 
-      : <button class="dropdown-button" id="quantity">{quantitySelected}</button> }
+        {!isNaN(quantitySelected) ?
+          <button class="dropdown-button" id="quantity" onClick={() => { setQuantityDropdownExpanded(!quantityDropdownExpanded) }}>{quantitySelected}</button>
+          : <button class="dropdown-button" id="quantity">{quantitySelected}</button>}
         <div class={quantityDropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
-          {sizeSelected.quantity > 15?
-           Array.from(Array(15).keys()).map(quantity => {
-            return (<p onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
-          })
-           :  Array.from(Array(sizeSelected.quantity).keys()).map(quantity => {
-            return (<p onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
-          })}
-  
+          {sizeSelected.quantity > 15 ?
+            Array.from(Array(15).keys()).map(quantity => {
+              return (<p onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
+            })
+            : Array.from(Array(sizeSelected.quantity).keys()).map(quantity => {
+              return (<p onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
+            })}
+
         </div>
       </div>
-      {Object.keys(sizeSelected).length > 0 ? <button class="dropdown-button">ADD TO BAG</button> : ''}
-          <button onClick={() => { setFavorited(!favorited)} } class="dropdown-button" id="quantity" >{favorited?  <AiFillHeart size='25' /> : <AiOutlineHeart size='25'/> } </button>
+      {sizeSelected.quantity > 0 ? <button class="dropdown-button">ADD TO BAG</button> : ''}
+      <button onClick={() => { setFavorited(!favorited) }} class="dropdown-button" id="quantity" >{favorited ? <AiFillHeart size='25' /> : <AiOutlineHeart size='25' />} </button>
     </div>
   )
 }
