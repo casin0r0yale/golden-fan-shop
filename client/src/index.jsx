@@ -7,6 +7,7 @@ import AddToOutfitCard from './components/relatedProductsAndYourOutfit/AddToOutf
 import YourOutfitCard from './components/relatedProductsAndYourOutfit/YourOutfitCard.jsx';
 import LeftScrollButtonCarousel from './components/relatedProductsAndYourOutfit/LeftScrollButtonCarousel.jsx';
 import RightScrollButtonCarousel from './components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx';
+import Header from "./components/Header.jsx";
 import Questions from './components/Q&A/Questions.jsx';
 import axios from 'axios';
 
@@ -93,8 +94,6 @@ const App = () => {
     axios.get('/getProductStyles', { params: { id: focusProductId } })
     .then(function (response) {
       setProductStyles(response.data.results);
-      // console.log("🚀 ~ file: index.jsx:79 ~ response.data.results", response.data.results)
-
       // Getting Photo URL of current Product and saving it
       var allStylesArray = response.data.results;
       for (var i = 0 ; i < allStylesArray.length; i++) {
@@ -181,8 +180,9 @@ const App = () => {
   return (
 
       <div>
+        <Header/>
         <h2>Golden Fan Shop: Main App/Index Component</h2>
-        <Overview info={productInfo} styles={productStyles}/>
+        <Overview rating={rating} info={productInfo} styles={productStyles}/>
         <div>RELATED PRODUCTS</div>
 
         <div class="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef}>
@@ -212,7 +212,7 @@ const App = () => {
           { scrollToggleYourOutfitProgress && scrollYourOutfitProgress<100 && <RightScrollButtonCarousel moveRight={moveRight2}l/>}
         </div>
         <Questions data={productQnAData}/>
-        <Reviews className="review-module" rating={rating} reviewList={reviewList} product={productInfo}/>
+        <Reviews rating={rating} reviewList={reviewList} product={productInfo}/>
       </div>
   );
 };

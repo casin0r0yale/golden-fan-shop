@@ -17,7 +17,6 @@ app.listen(3000, () => console.log('Our Server is listening on port 3000...'));
 
 // INIT GET ROUTES
 
-  // VIEW of the server
 app.get('/getProductGeneralInfo', initGetData.getCurrentProductCardControl);
 
 app.get('/getProductStyles', initGetData.getProductStylesControl);
