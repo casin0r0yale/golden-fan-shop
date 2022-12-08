@@ -6,6 +6,7 @@ import Popup from '../Popup.jsx';
 
 const Reviews = (props) => {
   var incomingList = props.reviewList;
+  var numReviews = incomingList.length;
   var productInfo = props.product;
   const [formView, setFormView] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +24,7 @@ const Reviews = (props) => {
         <RatingBreakdown rating={props.rating}/>
       </div>
       <div>
+        <h3 className="reviewList-title">{numReviews} reviews, sorted by *sort options*</h3>
         <ReviewList reviewList={incomingList} togglePopup={togglePopup}/>
       </div>
       {isOpen && <Popup

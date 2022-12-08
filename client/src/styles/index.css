@@ -583,9 +583,16 @@ h1 {
   flex-direction: row;
 }
 
-.review-list {
+.reviewList-title, .review-list {
   margin-left: 2em;
-  height: 30em;
+}
+
+.review-button-group {
+  margin-left: 2em;
+}
+
+.review-list {
+  height: 22em;
   overflow-y: auto;
 }
 
