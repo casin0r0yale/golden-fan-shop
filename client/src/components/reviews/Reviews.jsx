@@ -22,7 +22,7 @@ const Reviews = (props) => {
       <div className="rating-breakdown">
         <RatingBreakdown rating={props.rating}/>
       </div>
-      <div id="review-list">
+      <div className="review-list">
         <ReviewList reviewList={incomingList} togglePopup={togglePopup}/>
       </div>
       {isOpen && <Popup

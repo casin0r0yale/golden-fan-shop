@@ -482,15 +482,25 @@ h1 {
 .review-module {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
 }
 .rating-breakdown {
   display: flex;
   flex-direction: row;
+
 }
 
-.average-rating {
+.review-list {
+  margin-left: 2em;
+}
+
+.average-number {
   font-size: 3em;
+  margin-right: .25em;
+}
+
+.number-of-stars {
+  margin-bottom: 1.25em;
 }
 
 .review-tile {
@@ -518,6 +528,12 @@ h1 {
 
 .more-reviews-button {
   margin-right: .5em;
+}
+
+.average-stars {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 #star-rating {
