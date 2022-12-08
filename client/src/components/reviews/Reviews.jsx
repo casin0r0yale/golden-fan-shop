@@ -15,7 +15,13 @@ const Reviews = (props) => {
     setIsOpen(!isOpen);
   }
 
-  // var rating = getAverageRating(incomingList);
+  //relevance - reviews that are most recent AND helpful, then most recent, then most helpful
+  //newest - most recent appears first
+  //helpful - reviews with most helpful scores
+
+  const sortBy = (event) => {
+    console.log('this is the sort selection: ', event.target.value);
+  }
 
 
   return (
@@ -26,8 +32,8 @@ const Reviews = (props) => {
       <div>
         <h3 className="reviewList-title">
           {numReviews} reviews, sorted by &nbsp;
-          <select name="sort-options" className="reviewList-sort-button">
-            <option value="relevance">relevance</option>
+          <select name="sort-options" className="reviewList-sort-button" onChange={sortBy}>
+            <option value="relevance" selected>relevance</option>
             <option value="newest">newest</option>
             <option value="helpfulness">helpfulness</option>
           </select>
