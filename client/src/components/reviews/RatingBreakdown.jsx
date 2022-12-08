@@ -6,7 +6,7 @@ const RatingBreakdown = (props) => {
   return (
     <div>
       <p>RATINGS & REVIEWS</p>
-      <h2>{props.rating}</h2>
+      <h2 className="average-rating">{props.rating}</h2>
       <ProductRating rating={props.rating}/>
       <CharacteristicsBreakdown />
     </div>

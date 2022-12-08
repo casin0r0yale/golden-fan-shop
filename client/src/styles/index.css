@@ -482,10 +482,15 @@ h1 {
 .review-module {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
 }
 .rating-breakdown {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.average-rating {
+  font-size: 3em;
 }
 
 /* .review-tile {
