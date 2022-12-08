@@ -185,13 +185,13 @@ const App = () => {
         <Overview rating={rating} info={productInfo} styles={productStyles}/>
         <div>RELATED PRODUCTS</div>
 
-        <div class="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef}>
+        <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef}>
           { scrollRelatedProgress > 3.3 ? (<LeftScrollButtonCarousel  moveLeft={moveLeft}/>) : null }
           {relatedProductsData.map((itemObj, index) => {
           return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} related_id={itemObj.related_id} related_name={itemObj.related_name}
           related_category={itemObj.related_category} related_price={itemObj.related_price}
           related_thumbnail={itemObj.related_thumbnail} {...itemObj.related_features} featuresPrimaryProductString={featuresPrimaryProduct}
-          key={`slide-${index}`}
+          key={`slide-${itemObj.related_id}`}
           ref={index === activeSlide ? activeSlideRef : index-1===activeSlide ? nextSlideRef : index+1===activeSlide ? prevSlideRef : null}/>
           })}
           { scrollToggleRelatedProgress && scrollRelatedProgress<100 && <RightScrollButtonCarousel moveRight={moveRight}/>}
@@ -199,13 +199,13 @@ const App = () => {
         <br/>
         <br/>
         <div>YOUR OUTFIT</div>
-        <div class="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} >
+        <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} >
           { scrollYourOutfitProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft2}/>) : null }
           {yourOutfitList.map((itemObj, index) => {
             return <YourOutfitCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} current_name={itemObj.current_name} current_id={itemObj.current_id}
             current_category={itemObj.current_category} current_price={itemObj.current_price}
             current_thumbnail={itemObj.current_thumbnail} onClickDeleteProductYourOutfit={onClickDeleteProductYourOutfit}
-            key={`slide-${index}`}
+            key={`slide-${itemObj.current_id}`}
             ref={index === activeSlide2 ? activeSlideRef2 : index-1===activeSlide2 ? nextSlideRef2 : index+1===activeSlide2 ? prevSlideRef2 : null}/>
           })}
           <AddToOutfitCard onClickYourOutfit={onClickYourOutfit} ref={activeSlide2===yourOutfitList.length-1 ? nextSlideRef2 : null}/>

@@ -1,8 +1,34 @@
 import React, {useState, useEffect} from 'react';
+import ProductRating from '../reviews/ProductRating.jsx';
+import axios from 'axios';
 
 const YourOutfitCard = React.forwardRef((props, ref) => {
 
-  var onClickDeleteProduct = () => {
+  const [ratingYourOutfitCard, setRatingYourOutfitCard] = useState(0);
+
+  useEffect(() => {
+    axios.get('/getProductReviews', { params: { id: props.current_id } })
+    .then(function (response) {
+      var reviews = response.data.results;
+      var average = getAverageRating(reviews);
+      setRatingYourOutfitCard(average);
+    })
+    .catch(function (error) {
+    })
+  }, []);
+
+  const getAverageRating = (reviewList) => {
+    var total = 0;
+    reviewList.forEach((review) => {
+      total += review.rating;
+    });
+    var average = total / reviewList.length;
+    var rounded = Math.round(average * 10) / 10;
+    return rounded;
+  }
+
+  var onClickDeleteProduct = (event) => {
+    event.stopPropagation();
     props.onClickDeleteProductYourOutfit(props.current_id);
   }
 
@@ -20,7 +46,9 @@ const YourOutfitCard = React.forwardRef((props, ref) => {
         <div style={{fontSize: 12}} className='lineSpaceCard'>{props.current_category.toUpperCase()}</div>
         <div className='boldFont lineSpaceCard'>{props.current_name}</div>
         <div style={{fontSize: 12}} className='lineSpaceCard'>${props.current_price}</div>
-        <div className='lineSpaceCard'>TODO: Stars/Reviews</div>
+        <div className='lineSpaceCard'>
+          <ProductRating rating={ratingYourOutfitCard}/>
+        </div>
       </div>
       <button onClick={onClickDeleteProduct} class="close-icon-yourOutfit"><div className='x-icon'></div></button>
     </div>
