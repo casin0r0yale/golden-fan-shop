@@ -3,6 +3,7 @@ import Popup from '../Popup.jsx';
 import ComparisonTable from './ComparisonTable.jsx';
 import ProductRating from '../reviews/ProductRating.jsx';
 import axios from 'axios';
+import getAverageRating from '../../index.jsx';
 
 const RelatedCard = React.forwardRef((props, ref) => {
 
@@ -21,16 +22,6 @@ const RelatedCard = React.forwardRef((props, ref) => {
     .catch(function (error) {
     })
   }, []);
-
-  const getAverageRating = (reviewList) => {
-    var total = 0;
-    reviewList.forEach((review) => {
-      total += review.rating;
-    });
-    var average = total / reviewList.length;
-    var rounded = Math.round(average * 10) / 10;
-    return rounded;
-  }
 
   const togglePopup = (event) => {
     event.stopPropagation();

@@ -33,16 +33,6 @@ const App = () => {
     getData();
   }, [focusProductId])
 
-  const getAverageRating = (reviewList) => {
-    var total = 0;
-    reviewList.forEach((review) => {
-      total += review.rating;
-    });
-    var average = total / reviewList.length;
-    var rounded = Math.round(average * 10) / 10;
-    return rounded;
-  }
-
   var currentProductCardData = {};
 
   var getData = () => {
@@ -523,5 +513,17 @@ function useCarouselSliderLogic () {
     yourOutfitList, setYourOutfitList, moveRight2, moveLeft2, handleSideScroll2, yourOutfitCarourselRef, activeSlide2,
     activeSlideRef2, prevSlideRef2, nextSlideRef2, wrapperRef2, onceNext2, onceNext}
 };
+
+const getAverageRating = (reviewList) => {
+  var total = 0;
+  reviewList.forEach((review) => {
+    total += review.rating;
+  });
+  var average = total / reviewList.length;
+  var rounded = Math.round(average * 10) / 10;
+  return rounded;
+}
+
+export default getAverageRating;
 
 ReactDOM.render(<App/>, document.getElementById('root'))
