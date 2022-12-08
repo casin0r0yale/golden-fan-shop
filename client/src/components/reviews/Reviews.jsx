@@ -19,8 +19,18 @@ const Reviews = (props) => {
   //newest - most recent appears first
   //helpful - reviews with most helpful scores
 
+  const relevance = () => {
+    var sorted = incomingList.sort((p1, p2) => {
+      return ((p2.date - p1.date) && (p2.helpfulness - p1.helpfulness));
+    })
+    console.log('this is the relevance list: ', sorted);
+  }
+
   const sortBy = (event) => {
     console.log('this is the sort selection: ', event.target.value);
+    if (event.target.value === "relevance") {
+      relevance();
+    }
   }
 
 
