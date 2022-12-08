@@ -7,6 +7,7 @@ import AddToOutfitCard from './components/relatedProductsAndYourOutfit/AddToOutf
 import YourOutfitCard from './components/relatedProductsAndYourOutfit/YourOutfitCard.jsx';
 import LeftScrollButtonCarousel from './components/relatedProductsAndYourOutfit/LeftScrollButtonCarousel.jsx';
 import RightScrollButtonCarousel from './components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx';
+import Header from "./components/Header.jsx";
 import Questions from './components/Q&A/Questions.jsx';
 import axios from 'axios';
 
@@ -429,8 +430,9 @@ const App = () => {
   return (
 
       <div>
+        <Header/>
         <h2>Golden Fan Shop: Main App/Index Component</h2>
-        <Overview info={productInfo} styles={productStyles}/>
+        <Overview rating={rating} info={productInfo} styles={productStyles}/>
         <div>RELATED PRODUCTS</div>
 
         <div class="sidescroller"
