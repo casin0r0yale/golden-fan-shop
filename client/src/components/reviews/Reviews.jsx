@@ -24,7 +24,14 @@ const Reviews = (props) => {
         <RatingBreakdown rating={props.rating}/>
       </div>
       <div>
-        <h3 className="reviewList-title">{numReviews} reviews, sorted by *sort options*</h3>
+        <h3 className="reviewList-title">
+          {numReviews} reviews, sorted by &nbsp;
+          <select name="sort-options" className="reviewList-sort-button">
+            <option value="relevance">relevance</option>
+            <option value="newest">newest</option>
+            <option value="helpfulness">helpfulness</option>
+          </select>
+        </h3>
         <ReviewList reviewList={incomingList} togglePopup={togglePopup}/>
       </div>
       {isOpen && <Popup

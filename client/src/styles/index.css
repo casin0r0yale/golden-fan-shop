@@ -611,6 +611,17 @@ h1 {
   margin-bottom: 1em;
 }
 
+.reviewList-sort-button {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: .25em;
+  border-bottom: solid;
+  width: auto;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
 .add-review-button, .more-reviews-button {
   text-transform: uppercase;
   background-color: white;
@@ -622,6 +633,7 @@ h1 {
   width: 12em;
   font-weight: bold;
 }
+
 
 .add-review-button {
   margin-left: .5em;
