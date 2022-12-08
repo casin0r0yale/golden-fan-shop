@@ -493,11 +493,12 @@ h1 {
   font-size: 3em;
 }
 
-/* .review-tile {
-  border: solid;
-  border-width: 1em;
-  border-radius: 1em;
-} */
+.review-tile {
+  /* border: solid; */
+  border-bottom: solid;
+  border-width: .05em;
+  margin-bottom: 1em;
+}
 
 .add-review-button, .more-reviews-button {
   text-transform: uppercase;
@@ -509,6 +510,14 @@ h1 {
   height: 4em;
   width: 12em;
   font-weight: bold;
+}
+
+.add-review-button {
+  margin-left: .5em;
+}
+
+.more-reviews-button {
+  margin-right: .5em;
 }
 
 #star-rating {

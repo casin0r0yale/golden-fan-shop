@@ -17,8 +17,8 @@ const ReviewList = (props) => {
       <h3>{numReviews} reviews, sorted by *sort options*</h3>
       {reviewList?.slice(0, next)?.map((review, index) => {
         return (
-          <div key={index}>
-            <ReviewTile key={review.review_id} className="review-tile" review={review}/>
+          <div key={index} className="review-tile">
+            <ReviewTile key={review.review_id} review={review}/>
           </div>
         )
       })}
