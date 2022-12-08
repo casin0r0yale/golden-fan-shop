@@ -49,9 +49,6 @@ describe('Ratings & Reviews Test', function() {
   it('Review component should exist', () => {
 
     render(<Reviews reviewList={reviewList} rating={4} product={productInfo} />);
-    // The next line is searching for an element with the text: "Review List Module"
-    // const linkElement = screen.getByText(/RATINGS & REVIEWS/);
-    // expect(linkElement).to.exist;
     expect(screen.getByText(/RATINGS & REVIEWS/)).to.exist;
   });
 });

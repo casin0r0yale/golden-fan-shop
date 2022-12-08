@@ -581,11 +581,12 @@ h1 {
 .rating-breakdown {
   display: flex;
   flex-direction: row;
-
 }
 
 .review-list {
   margin-left: 2em;
+  height: 30em;
+  overflow-y: auto;
 }
 
 .average-number {
@@ -598,7 +599,6 @@ h1 {
 }
 
 .review-tile {
-  /* border: solid; */
   border-bottom: solid;
   border-width: .05em;
   margin-bottom: 1em;
