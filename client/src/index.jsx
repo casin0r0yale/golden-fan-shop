@@ -13,95 +13,25 @@ import axios from 'axios';
 
 const App = () => {
 
-  // PRIMARY STATE: Setting product ID 71697 as the default detail page to start us off.
-  // As the user clicks into a new detail page, this state will change and set off chained GET request for all necessary data
   const [focusProductId, setFocusProductId] = useState(71704);
-  const [relatedProductsData, setRelatedProductsData] = useState([]);
   const [featuresPrimaryProduct, setFeaturesPrimaryProduct] = useState('');
   const [productStyles, setProductStyles] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
   const [productQnAData, setProductQnAData] = useState([]);
-  const [yourOutfitList, setYourOutfitList] = useState([]);
   const [currentProductOutfitCard, setCurrentProductOutfitCard] = useState({});
   const [reviewList, setReviewList] = useState([]);
   const [rating, setRating] = useState(0);
 
-  const [scrollRelatedProgress, setScrollRelatedProgress] = useState(0);
-  const [scrollYourOutfitProgress, setScrollYourOutfitRelatedProgress] = useState(0);
-  const [scrollToggleRelatedProgress, setScrollToggleRelatedProgress] = useState(false);
-  const [scrollToggleYourOutfitProgress, setScrollToggleYourOutfitRelatedProgress] = useState(false);
-
-  const [refsRelated, setRefsRelated] = useState([]);
-  const [refsRelatedCount, setRefsRelatedCount] = useState(0);
-
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [arrowClicked, setArrowClicked] = useState(false);
-  const [onceNext, setOnceNext] = useState(false);
-  const [oncePrev, setOncePrev] = useState(false);
-
-
-  // REFS
-
-  var relatedCarourselRef = React.createRef();
-  var yourOutfitCarourselRef = React.createRef();
-  var relatedRefs = React.createRef();
-
-  const activeSlideRef = useRef(null);
-  const prevSlideRef = useRef(null);
-  const nextSlideRef = useRef(null);
-  const wrapperRef = useRef(null);
-  const firstRenderRef = useRef(true);
-
-  // Scrolling Action
-  useEffect(() => {
-    if (firstRenderRef.current) {
-      firstRenderRef.current = false;
-    } else if (activeSlideRef.current && arrowClicked && oncePrev) {
-      relatedCarourselRef.current.removeEventListener('scroll', handleSideScroll);
-      activeSlideRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'start',
-      });
-      setOnceNext(false);
-      setOncePrev(false);
-      return;
-    } else if (activeSlideRef.current && nextSlideRef.current && arrowClicked && onceNext) {
-      relatedCarourselRef.current.removeEventListener('scroll', handleSideScroll);
-      activeSlideRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'start',
-      });
-      setOnceNext(false);
-      setOncePrev(false);
-      return;
-    } else if (activeSlideRef.current && !arrowClicked) {
-      relatedCarourselRef.current.removeEventListener('scroll', handleSideScroll);
-      activeSlideRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'start',
-      });
-    }
-  }, [activeSlide]);
+  const {moveRight, moveLeft, handleSideScroll, relatedCarourselRef, activeSlide,
+    activeSlideRef, prevSlideRef, nextSlideRef, wrapperRef, scrollRelatedProgress, scrollToggleRelatedProgress,
+    scrollYourOutfitProgress, scrollToggleYourOutfitProgress, relatedProductsData, setRelatedProductsData,
+    yourOutfitList, setYourOutfitList, moveRight2, moveLeft2, handleSideScroll2, yourOutfitCarourselRef, activeSlide2,
+    activeSlideRef2, prevSlideRef2, nextSlideRef2, wrapperRef2, onceNext2, onceNext} = useCarouselSliderLogic();
 
   // Init GET Request
   useEffect(() => {
     getData();
   }, [focusProductId])
-
-  useEffect(() => {
-    relatedCarourselRef.current.addEventListener('scroll', relatedProductsScrollListener);
-    noScrollCheck();
-    return () => relatedCarourselRef.current && relatedCarourselRef.current.removeEventListener('scroll', relatedProductsScrollListener);
-  });
-
-  useEffect(() => {
-    yourOutfitCarourselRef.current.addEventListener('scroll', yourOutfitScrollListener);
-    noScrollCheck2();
-    return () => yourOutfitCarourselRef.current && yourOutfitCarourselRef.current.removeEventListener('scroll', yourOutfitScrollListener);
-  });
 
   const getAverageRating = (reviewList) => {
     var total = 0;
@@ -121,16 +51,16 @@ const App = () => {
     axios.get('/getProductGeneralInfo', { params: { id: focusProductId } })
     .then(function (response) {
       setProductInfo(response.data);
-        // need to refactor into controller
       var generalProductInfo = response.data;
       var featuresArrayToChangeKey = generalProductInfo.features;
       var primaryName = generalProductInfo.name;
 
-      currentProductCardData['current_name'] = response.data.name;
-      currentProductCardData.current_category = response.data.category;
-      currentProductCardData.current_price = response.data.default_price;
-      currentProductCardData.current_id = response.data.id;
-      currentProductCardData.current_features = response.data.features; //may not need
+      currentProductCardData['current_name'] = generalProductInfo.name;
+      currentProductCardData.current_category = generalProductInfo.category;
+      currentProductCardData.current_price = generalProductInfo.default_price;
+      currentProductCardData.current_id = generalProductInfo.id;
+      currentProductCardData.current_features = generalProductInfo.features;
+
       setCurrentProductOutfitCard(currentProductOutfitCard => ({
         ...currentProductCardData
       }));
@@ -145,9 +75,7 @@ const App = () => {
             obj['namePrimary'] = primaryName;
             return obj;
           };
-
         const tasks = featuresArrayToChangeKey.map(objOfFeatures => myAsyncChangeKey(objOfFeatures))
-
         try {
           const primaryFeatures = await Promise.all(tasks);
           setFeaturesPrimaryProduct(JSON.stringify(primaryFeatures));
@@ -166,8 +94,6 @@ const App = () => {
     axios.get('/getProductStyles', { params: { id: focusProductId } })
     .then(function (response) {
       setProductStyles(response.data.results);
-      // console.log("🚀 ~ file: index.jsx:79 ~ response.data.results", response.data.results)
-
       // Getting Photo URL of current Product and saving it
       var allStylesArray = response.data.results;
       for (var i = 0 ; i < allStylesArray.length; i++) {
@@ -191,77 +117,7 @@ const App = () => {
     })
 
     // INIT GET 3: GET Related Products (Richard's section to manipulate)
-    axios.get('/getProductRelated', { params: { id: focusProductId } })
-    .then(function (response) {
-
-      console.log('CHAIN 3: Richard Module - SUCCESS GET RELATED PRODUCTS: ', response.data);
-      var relatedProductData = response.data;
-      var relatedAllData = [];
-
-      (async () => {
-        // Sample async function which implicitly returns a Promise since it's marked
-        // as async. Could also be a regular function explicitly returning a Promise.
-        const myAsyncGetRelatedData = async (relatedId) => {
-          var relatedObj = {};
-          relatedObj.related_id = relatedId;
-
-          // Related Chain 3.1
-          return axios.get('/getProductGeneralInfo', { params: { id: relatedId } })
-          .then(function (response) {
-
-            relatedObj.related_name = response.data.name;
-            relatedObj.related_category = response.data.category;
-            relatedObj.related_price = response.data.default_price;
-            relatedObj.related_features = response.data.features;
-
-            // Related Chain 3.2
-            return axios.get('/getProductStyles', { params: { id: relatedId } })
-              .then(function (response) {
-                var allStylesArray = response.data.results;
-                for (var i = 0 ; i < allStylesArray.length; i++) {
-                  var currentStyleObj = allStylesArray[i];
-                  if (currentStyleObj['default?'] === true) {
-                    var photoUrl = currentStyleObj.photos[0].thumbnail_url;
-                    relatedObj.related_thumbnail = photoUrl;
-                    return relatedObj;
-                  }
-                  if (i === allStylesArray.length - 1) {
-                    var photoUrl = allStylesArray[0].photos[0].thumbnail_url;
-                    relatedObj.related_thumbnail = photoUrl;
-                    return relatedObj;
-                  }
-                }
-
-                // Related Chain 3.3 TODO
-                // Got all data besides for star data TODO
-
-              })
-              .catch(function (error) {
-                console.log('error GET inner RelatedProducts: ', error);
-              })
-          })
-          .catch(function (error) {
-            console.log('error GET inner RelatedProducts: ', error);
-          })
-        }
-        // Create an array of Promises from relatedProductData.
-        const tasks = relatedProductData.map(id => myAsyncGetRelatedData(id))
-
-        try {
-          const results = await Promise.all(tasks);
-          setRelatedProductsData(results);
-          // setFeaturesRelatedProduct(JSON.stringify(response.data.features));
-
-        } catch (err) {
-          console.error(err)
-        }
-      })()
-
-
-    })
-    .catch(function (error) {
-      console.log('error GET RelatedProducts: ', error);
-    })
+    useRelatedProductLogic (focusProductId, setRelatedProductsData);
 
     // INIT GET 4: GET Product REVIEWS data (Tony's section to manipulate)
     axios.get('/getProductReviews', { params: { id: focusProductId } })
@@ -321,6 +177,231 @@ const App = () => {
     setFocusProductId(id);
   }
 
+  return (
+
+      <div>
+        <Header/>
+        <h2>Golden Fan Shop: Main App/Index Component</h2>
+        <Overview rating={rating} info={productInfo} styles={productStyles}/>
+        <div>RELATED PRODUCTS</div>
+
+        <div class="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef}>
+          { scrollRelatedProgress > 3.3 ? (<LeftScrollButtonCarousel  moveLeft={moveLeft}/>) : null }
+          {relatedProductsData.map((itemObj, index) => {
+          return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} related_id={itemObj.related_id} related_name={itemObj.related_name}
+          related_category={itemObj.related_category} related_price={itemObj.related_price}
+          related_thumbnail={itemObj.related_thumbnail} {...itemObj.related_features} featuresPrimaryProductString={featuresPrimaryProduct}
+          key={`slide-${index}`}
+          ref={index === activeSlide ? activeSlideRef : index-1===activeSlide ? nextSlideRef : index+1===activeSlide ? prevSlideRef : null}/>
+          })}
+          { scrollToggleRelatedProgress && scrollRelatedProgress<100 && <RightScrollButtonCarousel moveRight={moveRight}/>}
+        </div>
+        <br/>
+        <br/>
+        <div>YOUR OUTFIT</div>
+        <div class="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} >
+          { scrollYourOutfitProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft2}/>) : null }
+          {yourOutfitList.map((itemObj, index) => {
+            return <YourOutfitCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} current_name={itemObj.current_name} current_id={itemObj.current_id}
+            current_category={itemObj.current_category} current_price={itemObj.current_price}
+            current_thumbnail={itemObj.current_thumbnail} onClickDeleteProductYourOutfit={onClickDeleteProductYourOutfit}
+            key={`slide-${index}`}
+            ref={index === activeSlide2 ? activeSlideRef2 : index-1===activeSlide2 ? nextSlideRef2 : index+1===activeSlide2 ? prevSlideRef2 : null}/>
+          })}
+          <AddToOutfitCard onClickYourOutfit={onClickYourOutfit} ref={activeSlide2===yourOutfitList.length-1 ? nextSlideRef2 : null}/>
+          { scrollToggleYourOutfitProgress && scrollYourOutfitProgress<100 && <RightScrollButtonCarousel moveRight={moveRight2}l/>}
+        </div>
+        <Questions data={productQnAData}/>
+        <Reviews rating={rating} reviewList={reviewList} product={productInfo}/>
+      </div>
+  );
+};
+
+function useRelatedProductLogic (focusID, setRelated) {
+  // INIT GET 3: GET Related Products (Richard's section to manipulate)
+  axios.get('/getProductRelated', { params: { id: focusID } })
+  .then(function (response) {
+
+    console.log('CHAIN 3: Richard Module - SUCCESS GET RELATED PRODUCTS: ', response.data);
+    var relatedProductData = response.data;
+    var relatedAllData = [];
+
+    (async () => {
+      const myAsyncGetRelatedData = async (relatedId) => {
+        var relatedObj = {};
+        relatedObj.related_id = relatedId;
+
+        // Related Chain 3.1
+        return axios.get('/getProductGeneralInfo', { params: { id: relatedId } })
+        .then(function (response) {
+
+          relatedObj.related_name = response.data.name;
+          relatedObj.related_category = response.data.category;
+          relatedObj.related_price = response.data.default_price;
+          relatedObj.related_features = response.data.features;
+
+          // Related Chain 3.2
+          return axios.get('/getProductStyles', { params: { id: relatedId } })
+            .then(function (response) {
+              var allStylesArray = response.data.results;
+              for (var i = 0 ; i < allStylesArray.length; i++) {
+                var currentStyleObj = allStylesArray[i];
+                if (currentStyleObj['default?'] === true) {
+                  var photoUrl = currentStyleObj.photos[0].thumbnail_url;
+                  relatedObj.related_thumbnail = photoUrl;
+                  return relatedObj;
+                }
+                if (i === allStylesArray.length - 1) {
+                  var photoUrl = allStylesArray[0].photos[0].thumbnail_url;
+                  relatedObj.related_thumbnail = photoUrl;
+                  return relatedObj;
+                }
+              }
+
+              // Related Chain 3.3 TODO
+              // Got all data besides for star data TODO
+
+            })
+            .catch(function (error) {
+              console.log('error GET inner RelatedProducts: ', error);
+            })
+        })
+        .catch(function (error) {
+          console.log('error GET inner RelatedProducts: ', error);
+        })
+      }
+      const tasks = relatedProductData.map(id => myAsyncGetRelatedData(id))
+      try {
+        const results = await Promise.all(tasks);
+        setRelated(results);
+      } catch (err) {
+        console.error(err)
+      }
+    })()
+  })
+  .catch(function (error) {
+    console.log('error GET RelatedProducts: ', error);
+  })
+};
+
+function useCarouselSliderLogic () {
+  // Main data
+  const [relatedProductsData, setRelatedProductsData] = useState([]);
+  const [yourOutfitList, setYourOutfitList] = useState([]);
+  // First Caroursel
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [arrowClicked, setArrowClicked] = useState(false);
+  const [onceNext, setOnceNext] = useState(false);
+  const [oncePrev, setOncePrev] = useState(false);
+  const [scrollRelatedProgress, setScrollRelatedProgress] = useState(0);
+  const [scrollToggleRelatedProgress, setScrollToggleRelatedProgress] = useState(false);
+  var relatedCarourselRef = React.createRef();
+  const activeSlideRef = useRef(null);
+  const prevSlideRef = useRef(null);
+  const nextSlideRef = useRef(null);
+  const wrapperRef = useRef(null);
+  const firstRenderRef = useRef(true);
+  // Second Carousel
+  const [activeSlide2, setActiveSlide2] = useState(0);
+  const [arrowClicked2, setArrowClicked2] = useState(false);
+  const [onceNext2, setOnceNext2] = useState(false);
+  const [oncePrev2, setOncePrev2] = useState(false);
+  const [scrollYourOutfitProgress, setScrollYourOutfitRelatedProgress] = useState(0);
+  const [scrollToggleYourOutfitProgress, setScrollToggleYourOutfitRelatedProgress] = useState(false);
+  var yourOutfitCarourselRef = React.createRef();
+  const activeSlideRef2 = useRef(null);
+  const prevSlideRef2 = useRef(null);
+  const nextSlideRef2 = useRef(null);
+  const wrapperRef2 = useRef(null);
+  const firstRenderRef2 = useRef(true);
+
+  // Related 1
+  useEffect(() => {
+    if (firstRenderRef.current) {
+      firstRenderRef.current = false;
+    } else if (activeSlideRef.current && arrowClicked && oncePrev) {
+      relatedCarourselRef.current.removeEventListener('scroll', handleSideScroll);
+      activeSlideRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'start',
+      });
+      setOnceNext(false);
+      setOncePrev(false);
+      return;
+    } else if (activeSlideRef.current && nextSlideRef.current && arrowClicked && onceNext) {
+      relatedCarourselRef.current.removeEventListener('scroll', handleSideScroll);
+      activeSlideRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'start',
+      });
+      setOnceNext(false);
+      setOncePrev(false);
+      return;
+    } else if (activeSlideRef.current && !arrowClicked) {
+      relatedCarourselRef.current.removeEventListener('scroll', handleSideScroll);
+      activeSlideRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'start',
+      });
+    }
+  }, [activeSlide]);
+
+  // yourOutfit 2
+  useEffect(() => {
+    if (firstRenderRef2.current) {
+      firstRenderRef2.current = false;
+    } else if (activeSlideRef2.current && arrowClicked2 && oncePrev2) {
+      yourOutfitCarourselRef.current.removeEventListener('scroll', handleSideScroll);
+      activeSlideRef2.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'start',
+      });
+      setOnceNext2(false);
+      setOncePrev2(false);
+      return;
+    } else if (activeSlideRef2.current && nextSlideRef2.current && arrowClicked2 && onceNext2) {
+      yourOutfitCarourselRef.current.removeEventListener('scroll', handleSideScroll);
+      activeSlideRef2.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'start',
+      });
+      setOnceNext2(false);
+      setOncePrev2(false);
+      return;
+    } else if (activeSlideRef2.current && !arrowClicked2) {
+      yourOutfitCarourselRef.current.removeEventListener('scroll', handleSideScroll);
+      activeSlideRef2.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'start',
+      });
+    }
+  }, [activeSlide2]);
+
+  // Related 1
+
+  useEffect(() => {
+    if (relatedCarourselRef.current) {
+      relatedCarourselRef.current.addEventListener('scroll', relatedProductsScrollListener);
+      noScrollCheck();
+      return () => relatedCarourselRef.current && relatedCarourselRef.current.removeEventListener('scroll', relatedProductsScrollListener);
+    }
+  });
+
+  // yourOutfit 2
+  useEffect(() => {
+    if (yourOutfitCarourselRef.current) {
+      yourOutfitCarourselRef.current.addEventListener('scroll', yourOutfitScrollListener);
+      noScrollCheck2();
+      return () => yourOutfitCarourselRef.current && yourOutfitCarourselRef.current.removeEventListener('scroll', yourOutfitScrollListener);
+    }
+  });
+
   var relatedProductsScrollListener = () => {
     if (!relatedCarourselRef.current) {
       return;
@@ -345,7 +426,6 @@ const App = () => {
     const windowScroll = element.scrollLeft;
     const totalWidth = element.scrollWidth - element.clientWidth;
     if (windowScroll === 0) {
-      // maybe reset state or active card to 0
       return setScrollYourOutfitRelatedProgress(0);
     }
     if (windowScroll > totalWidth) {
@@ -377,32 +457,14 @@ const App = () => {
     const totalWidth = element.scrollWidth - element.clientWidth;
 
     if (windowScroll < totalWidth) {
-      console.log("🚀 ~ file: index.jsx:289 ~ noScrollCheck ~ totalWidth", totalWidth, 'widnerscroll: ', windowScroll)
       setScrollToggleYourOutfitRelatedProgress(true);
     } else {
       setScrollToggleYourOutfitRelatedProgress(false);
     }
   }
 
-  var onClickScrollRelated = () => {
-    console.log('inside onClickScrollRelated')
-    relatedRefs.current.scrollIntoView({inline: "nearest", behavior: "smooth" })
-  }
-
-  var refsOfRelated = [];
-
-  var gatherRefsRelated = async (ref) => {
-
-    refsOfRelated.push(ref);
-
-    setRefsRelated(refsOfRelated);
-
-  }
-
-
-  // slide move
+  // Related Carousel
   const moveRight = () => {
-
     setArrowClicked(true);
     setOnceNext(true);
 
@@ -421,56 +483,45 @@ const App = () => {
     return setActiveSlide(activeSlide - 1);
   };
 
+  // Your Outfit Carousel
+  const moveRight2 = () => {
+    setArrowClicked2(true);
+    setOnceNext2(true);
+
+    if (activeSlide2 + 1 >= yourOutfitList.length) {
+      return setActiveSlide2(yourOutfitList.length - 1);
+    }
+    return setActiveSlide2(activeSlide2 + 1);
+  };
+
+  const moveLeft2 = () => {
+    setArrowClicked2(true);
+    setOncePrev2(true);
+    if (activeSlide2 - 1 <= 0) {
+      return setActiveSlide2(0);
+    }
+    return setActiveSlide2(activeSlide2 - 1);
+  };
+
+  // Related Carousel
   const handleSideScroll = (e) => {
     let { width } = relatedCarourselRef.current.getBoundingClientRect();
     let { scrollLeft } = relatedCarourselRef.current;
     setActiveSlide(Math.round(scrollLeft / 274));
   };
 
-  return (
+  // Your Outfit Carousel
+  const handleSideScroll2 = (e) => {
+    let { width } = yourOutfitCarourselRef.current.getBoundingClientRect();
+    let { scrollLeft } = yourOutfitCarourselRef.current;
+    setActiveSlide2(Math.round(scrollLeft / 274));
+  };
 
-      <div>
-        <Header/>
-        <h2>Golden Fan Shop: Main App/Index Component</h2>
-        <Overview rating={rating} info={productInfo} styles={productStyles}/>
-        <div>RELATED PRODUCTS</div>
-
-        <div class="sidescroller"
-          onScroll={handleSideScroll}
-          //
-          ref={relatedCarourselRef}>
-          { scrollRelatedProgress > 0 ? (<LeftScrollButtonCarousel  moveLeft={moveLeft}/>) : null }
-
-          {relatedProductsData.map((itemObj, index) => {
-          return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} related_id={itemObj.related_id} related_name={itemObj.related_name}
-          related_category={itemObj.related_category} related_price={itemObj.related_price}
-          related_thumbnail={itemObj.related_thumbnail} {...itemObj.related_features} featuresPrimaryProductString={featuresPrimaryProduct} gatherRefsRelated={gatherRefsRelated}
-          // ref={activeSlideRef}
-          key={`slide-${index}`}
-
-          ref={index === activeSlide ? activeSlideRef : index-1===activeSlide ? nextSlideRef : index+1===activeSlide ? prevSlideRef : null}/>
-          })}
-
-          { scrollToggleRelatedProgress && scrollRelatedProgress<100 && <RightScrollButtonCarousel moveRight={moveRight}/>}
-
-        </div>
-        <br/>
-        <br/>
-        <div>YOUR OUTFIT</div>
-        <div class="sidescroller" ref={yourOutfitCarourselRef}>
-          { scrollYourOutfitProgress > 0 ? (<LeftScrollButtonCarousel/>) : null }
-          {yourOutfitList.map((itemObj, index) => {
-            return <YourOutfitCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} key={index} current_name={itemObj.current_name} current_id={itemObj.current_id}
-            current_category={itemObj.current_category} current_price={itemObj.current_price}
-            current_thumbnail={itemObj.current_thumbnail} onClickDeleteProductYourOutfit={onClickDeleteProductYourOutfit}/>
-          })}
-          <AddToOutfitCard onClickYourOutfit={onClickYourOutfit}/>
-          { scrollToggleYourOutfitProgress && scrollYourOutfitProgress<100 && <RightScrollButtonCarousel/>}
-        </div>
-        <Questions data={productQnAData}/>
-        <Reviews rating={rating} reviewList={reviewList} product={productInfo}/>
-      </div>
-  );
+  return {moveRight, moveLeft, handleSideScroll, relatedCarourselRef, activeSlide,
+    activeSlideRef, prevSlideRef, nextSlideRef, wrapperRef, scrollRelatedProgress, scrollToggleRelatedProgress,
+    scrollYourOutfitProgress, scrollToggleYourOutfitProgress, relatedProductsData, setRelatedProductsData,
+    yourOutfitList, setYourOutfitList, moveRight2, moveLeft2, handleSideScroll2, yourOutfitCarourselRef, activeSlide2,
+    activeSlideRef2, prevSlideRef2, nextSlideRef2, wrapperRef2, onceNext2, onceNext}
 };
 
 ReactDOM.render(<App/>, document.getElementById('root'))
