@@ -5,8 +5,11 @@ import CharacteristicsBreakdown from './CharacteristicsBreakdown.jsx';
 const RatingBreakdown = (props) => {
   return (
     <div>
-      <h2>{props.rating}</h2>
-      <ProductRating rating={props.rating}/>
+      <p>RATINGS & REVIEWS</p>
+      <div className="average-stars">
+        <h2 className="average-number">{props.rating}</h2>
+        <ProductRating rating={props.rating}/>
+      </div>
       <CharacteristicsBreakdown />
     </div>
   )

@@ -4,7 +4,7 @@ import chai, { expect, should, exist } from 'chai';
 chai.use(require('chai-dom'));
 import sinon from 'sinon';
 import { spy } from 'sinon';
-import Reviews from './client/src/components/Reviews.jsx';
+import Reviews from './client/src/components/reviews/Reviews.jsx';
 
 describe('Ratings & Reviews Test', function() {
 
@@ -12,8 +12,8 @@ describe('Ratings & Reviews Test', function() {
 
     render(<Reviews />);
     // The next line is searching for an element with the text: "Review List Module"
-    const linkElement = screen.getByText(/Review List Module/);
-    expect(linkElement).to.exist;
-  })
-
+    // const linkElement = screen.getByText(/RATINGS & REVIEWS/);
+    // expect(linkElement).to.exist;
+    expect(screen.getByText(/RATINGS & REVIEWS/)).toBeInTheDocument();
+  });
 });

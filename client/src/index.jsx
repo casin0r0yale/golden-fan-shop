@@ -468,7 +468,7 @@ const App = () => {
           { scrollToggleYourOutfitProgress && scrollYourOutfitProgress<100 && <RightScrollButtonCarousel/>}
         </div>
         <Questions data={productQnAData}/>
-        <Reviews className="review-module" rating={rating} reviewList={reviewList} product={productInfo}/>
+        <Reviews rating={rating} reviewList={reviewList} product={productInfo}/>
       </div>
   );
 };
