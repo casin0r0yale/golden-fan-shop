@@ -13,7 +13,7 @@ const YourOutfitCard = React.forwardRef((props, ref) => {
   return (
     <div className='productCard' onClick={onClickNavigate} ref={ref}>
       <div>
-        <img className='productImageInCard' src={props.current_thumbnail}/>
+        <img className='productImageInCard' src={props.current_thumbnail ? props.current_thumbnail : 'https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/Reality_Stone_VFX.png/revision/latest?cb=20190427012609'}/>
       </div>
       <div></div>
       <div>

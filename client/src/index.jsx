@@ -12,8 +12,6 @@ import axios from 'axios';
 
 const App = () => {
 
-  // PRIMARY STATE: Setting product ID 71697 as the default detail page to start us off.
-  // As the user clicks into a new detail page, this state will change and set off chained GET request for all necessary data
   const [focusProductId, setFocusProductId] = useState(71704);
   const [featuresPrimaryProduct, setFeaturesPrimaryProduct] = useState('');
   const [productStyles, setProductStyles] = useState([]);
@@ -27,7 +25,7 @@ const App = () => {
     activeSlideRef, prevSlideRef, nextSlideRef, wrapperRef, scrollRelatedProgress, scrollToggleRelatedProgress,
     scrollYourOutfitProgress, scrollToggleYourOutfitProgress, relatedProductsData, setRelatedProductsData,
     yourOutfitList, setYourOutfitList, moveRight2, moveLeft2, handleSideScroll2, yourOutfitCarourselRef, activeSlide2,
-    activeSlideRef2, prevSlideRef2, nextSlideRef2, wrapperRef2, onceNext2, onceNext} = useCarouselSliderLogic()
+    activeSlideRef2, prevSlideRef2, nextSlideRef2, wrapperRef2, onceNext2, onceNext} = useCarouselSliderLogic();
 
   // Init GET Request
   useEffect(() => {
@@ -51,18 +49,17 @@ const App = () => {
     // INIT GET 1: GET Genral Data of target product
     axios.get('/getProductGeneralInfo', { params: { id: focusProductId } })
     .then(function (response) {
-      console.log("🚀 ~ file: index.jsx:122 ~ response", response)
       setProductInfo(response.data);
-        // need to refactor into controller
       var generalProductInfo = response.data;
       var featuresArrayToChangeKey = generalProductInfo.features;
       var primaryName = generalProductInfo.name;
 
-      currentProductCardData['current_name'] = response.data.name;
-      currentProductCardData.current_category = response.data.category;
-      currentProductCardData.current_price = response.data.default_price;
-      currentProductCardData.current_id = response.data.id;
-      currentProductCardData.current_features = response.data.features; //may not need
+      currentProductCardData['current_name'] = generalProductInfo.name;
+      currentProductCardData.current_category = generalProductInfo.category;
+      currentProductCardData.current_price = generalProductInfo.default_price;
+      currentProductCardData.current_id = generalProductInfo.id;
+      currentProductCardData.current_features = generalProductInfo.features;
+
       setCurrentProductOutfitCard(currentProductOutfitCard => ({
         ...currentProductCardData
       }));
@@ -77,9 +74,7 @@ const App = () => {
             obj['namePrimary'] = primaryName;
             return obj;
           };
-
         const tasks = featuresArrayToChangeKey.map(objOfFeatures => myAsyncChangeKey(objOfFeatures))
-
         try {
           const primaryFeatures = await Promise.all(tasks);
           setFeaturesPrimaryProduct(JSON.stringify(primaryFeatures));
@@ -123,77 +118,7 @@ const App = () => {
     })
 
     // INIT GET 3: GET Related Products (Richard's section to manipulate)
-    axios.get('/getProductRelated', { params: { id: focusProductId } })
-    .then(function (response) {
-
-      console.log('CHAIN 3: Richard Module - SUCCESS GET RELATED PRODUCTS: ', response.data);
-      var relatedProductData = response.data;
-      var relatedAllData = [];
-
-      (async () => {
-        // Sample async function which implicitly returns a Promise since it's marked
-        // as async. Could also be a regular function explicitly returning a Promise.
-        const myAsyncGetRelatedData = async (relatedId) => {
-          var relatedObj = {};
-          relatedObj.related_id = relatedId;
-
-          // Related Chain 3.1
-          return axios.get('/getProductGeneralInfo', { params: { id: relatedId } })
-          .then(function (response) {
-
-            relatedObj.related_name = response.data.name;
-            relatedObj.related_category = response.data.category;
-            relatedObj.related_price = response.data.default_price;
-            relatedObj.related_features = response.data.features;
-
-            // Related Chain 3.2
-            return axios.get('/getProductStyles', { params: { id: relatedId } })
-              .then(function (response) {
-                var allStylesArray = response.data.results;
-                for (var i = 0 ; i < allStylesArray.length; i++) {
-                  var currentStyleObj = allStylesArray[i];
-                  if (currentStyleObj['default?'] === true) {
-                    var photoUrl = currentStyleObj.photos[0].thumbnail_url;
-                    relatedObj.related_thumbnail = photoUrl;
-                    return relatedObj;
-                  }
-                  if (i === allStylesArray.length - 1) {
-                    var photoUrl = allStylesArray[0].photos[0].thumbnail_url;
-                    relatedObj.related_thumbnail = photoUrl;
-                    return relatedObj;
-                  }
-                }
-
-                // Related Chain 3.3 TODO
-                // Got all data besides for star data TODO
-
-              })
-              .catch(function (error) {
-                console.log('error GET inner RelatedProducts: ', error);
-              })
-          })
-          .catch(function (error) {
-            console.log('error GET inner RelatedProducts: ', error);
-          })
-        }
-        // Create an array of Promises from relatedProductData.
-        const tasks = relatedProductData.map(id => myAsyncGetRelatedData(id))
-
-        try {
-          const results = await Promise.all(tasks);
-          setRelatedProductsData(results);
-          // setFeaturesRelatedProduct(JSON.stringify(response.data.features));
-
-        } catch (err) {
-          console.error(err)
-        }
-      })()
-
-
-    })
-    .catch(function (error) {
-      console.log('error GET RelatedProducts: ', error);
-    })
+    useRelatedProductLogic (focusProductId, setRelatedProductsData);
 
     // INIT GET 4: GET Product REVIEWS data (Tony's section to manipulate)
     axios.get('/getProductReviews', { params: { id: focusProductId } })
@@ -270,7 +195,6 @@ const App = () => {
           ref={index === activeSlide ? activeSlideRef : index-1===activeSlide ? nextSlideRef : index+1===activeSlide ? prevSlideRef : null}/>
           })}
           { scrollToggleRelatedProgress && scrollRelatedProgress<100 && <RightScrollButtonCarousel moveRight={moveRight}/>}
-
         </div>
         <br/>
         <br/>
@@ -293,45 +217,98 @@ const App = () => {
   );
 };
 
-function useCarouselSliderLogic () {
+function useRelatedProductLogic (focusID, setRelated) {
+  // INIT GET 3: GET Related Products (Richard's section to manipulate)
+  axios.get('/getProductRelated', { params: { id: focusID } })
+  .then(function (response) {
 
+    console.log('CHAIN 3: Richard Module - SUCCESS GET RELATED PRODUCTS: ', response.data);
+    var relatedProductData = response.data;
+    var relatedAllData = [];
+
+    (async () => {
+      const myAsyncGetRelatedData = async (relatedId) => {
+        var relatedObj = {};
+        relatedObj.related_id = relatedId;
+
+        // Related Chain 3.1
+        return axios.get('/getProductGeneralInfo', { params: { id: relatedId } })
+        .then(function (response) {
+
+          relatedObj.related_name = response.data.name;
+          relatedObj.related_category = response.data.category;
+          relatedObj.related_price = response.data.default_price;
+          relatedObj.related_features = response.data.features;
+
+          // Related Chain 3.2
+          return axios.get('/getProductStyles', { params: { id: relatedId } })
+            .then(function (response) {
+              var allStylesArray = response.data.results;
+              for (var i = 0 ; i < allStylesArray.length; i++) {
+                var currentStyleObj = allStylesArray[i];
+                if (currentStyleObj['default?'] === true) {
+                  var photoUrl = currentStyleObj.photos[0].thumbnail_url;
+                  relatedObj.related_thumbnail = photoUrl;
+                  return relatedObj;
+                }
+                if (i === allStylesArray.length - 1) {
+                  var photoUrl = allStylesArray[0].photos[0].thumbnail_url;
+                  relatedObj.related_thumbnail = photoUrl;
+                  return relatedObj;
+                }
+              }
+
+              // Related Chain 3.3 TODO
+              // Got all data besides for star data TODO
+
+            })
+            .catch(function (error) {
+              console.log('error GET inner RelatedProducts: ', error);
+            })
+        })
+        .catch(function (error) {
+          console.log('error GET inner RelatedProducts: ', error);
+        })
+      }
+      const tasks = relatedProductData.map(id => myAsyncGetRelatedData(id))
+      try {
+        const results = await Promise.all(tasks);
+        setRelated(results);
+      } catch (err) {
+        console.error(err)
+      }
+    })()
+  })
+  .catch(function (error) {
+    console.log('error GET RelatedProducts: ', error);
+  })
+};
+
+function useCarouselSliderLogic () {
   // Main data
   const [relatedProductsData, setRelatedProductsData] = useState([]);
   const [yourOutfitList, setYourOutfitList] = useState([]);
-
   // First Caroursel
-
   const [activeSlide, setActiveSlide] = useState(0);
   const [arrowClicked, setArrowClicked] = useState(false);
   const [onceNext, setOnceNext] = useState(false);
   const [oncePrev, setOncePrev] = useState(false);
-
   const [scrollRelatedProgress, setScrollRelatedProgress] = useState(0);
   const [scrollToggleRelatedProgress, setScrollToggleRelatedProgress] = useState(false);
-
   var relatedCarourselRef = React.createRef();
-
   const activeSlideRef = useRef(null);
   const prevSlideRef = useRef(null);
   const nextSlideRef = useRef(null);
   const wrapperRef = useRef(null);
   const firstRenderRef = useRef(true);
-
-
-
   // Second Carousel
-
   const [activeSlide2, setActiveSlide2] = useState(0);
   const [arrowClicked2, setArrowClicked2] = useState(false);
   const [onceNext2, setOnceNext2] = useState(false);
   const [oncePrev2, setOncePrev2] = useState(false);
-
-  const [scrollYourOutfitProgress, setScrollYourOutfitRelatedProgress] = useState(0); // no 2
+  const [scrollYourOutfitProgress, setScrollYourOutfitRelatedProgress] = useState(0);
   const [scrollToggleYourOutfitProgress, setScrollToggleYourOutfitRelatedProgress] = useState(false);
-
-  var yourOutfitCarourselRef = React.createRef(); // no 2
-  // var yourOutfitRefs = React.createRef();
-
+  var yourOutfitCarourselRef = React.createRef();
   const activeSlideRef2 = useRef(null);
   const prevSlideRef2 = useRef(null);
   const nextSlideRef2 = useRef(null);
@@ -447,7 +424,6 @@ function useCarouselSliderLogic () {
     }
     const element = yourOutfitCarourselRef.current;
     const windowScroll = element.scrollLeft;
-    console.log("🚀 ~ file: index.jsx:397 ~ yourOutfitScrollListener ~ windowScroll", windowScroll)
     const totalWidth = element.scrollWidth - element.clientWidth;
     if (windowScroll === 0) {
       return setScrollYourOutfitRelatedProgress(0);
@@ -473,7 +449,6 @@ function useCarouselSliderLogic () {
     }
   }
   var noScrollCheck2 = () => {
-    // console.log("🚀 ~ file: index.jsx:424 ~ noScrollCheck2 ~ noScrollCheck2")
     if (!yourOutfitCarourselRef.current) {
       return;
     }
@@ -488,7 +463,7 @@ function useCarouselSliderLogic () {
     }
   }
 
-  // Related 1
+  // Related Carousel
   const moveRight = () => {
     setArrowClicked(true);
     setOnceNext(true);
@@ -508,7 +483,7 @@ function useCarouselSliderLogic () {
     return setActiveSlide(activeSlide - 1);
   };
 
-  // 2
+  // Your Outfit Carousel
   const moveRight2 = () => {
     setArrowClicked2(true);
     setOnceNext2(true);
@@ -528,14 +503,14 @@ function useCarouselSliderLogic () {
     return setActiveSlide2(activeSlide2 - 1);
   };
 
-  // Related 1
+  // Related Carousel
   const handleSideScroll = (e) => {
     let { width } = relatedCarourselRef.current.getBoundingClientRect();
     let { scrollLeft } = relatedCarourselRef.current;
     setActiveSlide(Math.round(scrollLeft / 274));
   };
 
-  // 2
+  // Your Outfit Carousel
   const handleSideScroll2 = (e) => {
     let { width } = yourOutfitCarourselRef.current.getBoundingClientRect();
     let { scrollLeft } = yourOutfitCarourselRef.current;
@@ -547,7 +522,6 @@ function useCarouselSliderLogic () {
     scrollYourOutfitProgress, scrollToggleYourOutfitProgress, relatedProductsData, setRelatedProductsData,
     yourOutfitList, setYourOutfitList, moveRight2, moveLeft2, handleSideScroll2, yourOutfitCarourselRef, activeSlide2,
     activeSlideRef2, prevSlideRef2, nextSlideRef2, wrapperRef2, onceNext2, onceNext}
-
-}
+};
 
 ReactDOM.render(<App/>, document.getElementById('root'))
