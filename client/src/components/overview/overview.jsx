@@ -20,7 +20,7 @@ const Overview = (props) => {
     <div>
      {props.styles? 
       <div class="overviewContainer">
-      <div class="productInfo"><ProductInfo info={props.info}/></div>      
+      <div class="productInfo"><ProductInfo rating={props.rating} info={props.info}/></div>      
       <div class="styleSelector"><StyleSelector onClick = {setIndex} styleIndex={styleIndex} styles={props.styles}/></div>
       <div class="addToCart"><AddToCart styleIndex={styleIndex} styles={props.styles}/></div>
       <div class="imageGallery"><ImageGallery  styleIndex={styleIndex} styles={props.styles}/></div> 

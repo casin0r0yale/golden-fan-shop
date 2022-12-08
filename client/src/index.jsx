@@ -432,7 +432,7 @@ const App = () => {
       <div>
         <Header/>
         <h2>Golden Fan Shop: Main App/Index Component</h2>
-        <Overview info={productInfo} styles={productStyles}/>
+        <Overview rating={rating} info={productInfo} styles={productStyles}/>
         <div>RELATED PRODUCTS</div>
 
         <div class="sidescroller"

@@ -8,8 +8,8 @@ const ProductInfo = (props) => {
   // console.log('general info', props.info);
 
   return (
-    <div style={{paddingBottom: "-10em"}}>
-      <ProductRating/>
+    <div className="productInfo">
+      <ProductRating rating={props.rating}/>
       <p>CATEGORY</p>
       <h1>{props.info.name}</h1>
     </div>

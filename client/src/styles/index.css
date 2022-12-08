@@ -7,58 +7,70 @@ h1 {
   color: rgb(31, 31, 31);
   float: left;
   padding-bottom: -3em;
-  font-size:xxx-large;
+  margin-top: 0em;
+  font-size: xxx-large;
 
-  }
+}
 
-  .header {
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 1000;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #1C1C1C;
-    color: #fff;
-  }
-  
-  .header-left img {
-    height: 3em;
-  }
-  
-  .header-right {
-    display: flex;
-    align-items: center;
-    height: 4em;
-  }
-  
-  .header-right .fa-shopping-cart {
-    font-size: 18px;
-    margin-left: 10px;
-  }
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #1C1C1C;
+  color: #fff;
+}
 
-  /* OVERVIEW MODULE */
+.header-left img {
+  height: 3em;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  height: 4em;
+}
+
+.header-right .fa-shopping-cart {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+/* OVERVIEW MODULE */
 
 .overviewContainer {
   margin-top: 5em;
+  margin-bottom: 2em;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-column-gap: 1.4em;
   grid-row-gap: 0.4em;
-  }
+}
 
 .productInfo {
   grid-area: 1 / 6 / 3 / 8;
+  margin-top: .6em
 }
-.styleSelector { grid-area: 3 / 6 / 5 / 8; }
-.addToCart { grid-area: 5 / 6 / 7 / 8; }
-.imageGallery { grid-area: 1 / 2 / 7 / 6; }
 
 .styleSelector {
-  margin-top: -2em;
+  grid-area: 3 / 6 / 5 / 8;
+}
+
+.addToCart {
+  grid-area: 5 / 6 / 7 / 8;
+}
+
+.imageGallery {
+  grid-area: 1 / 2 / 7 / 6;
+}
+
+.styleSelector {
+  margin-top: -1.5em;
   /* margin-bottom: 2em; */
 
 }
@@ -66,17 +78,18 @@ h1 {
 .styleGroup {
   position: relative;
   margin: 0em 5em 5em 0em;
-  
+
 }
 
 .styleContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: .3em;
-  grid-row-gap:.3em;
+  grid-row-gap: .3em;
   margin-bottom: 5em;
-  
+
 }
+
 .stylePreview {
   position: absolute;
   border-radius: 2.3em;
@@ -143,7 +156,7 @@ h1 {
   position: absolute;
   background-color: #f9f9f9;
   min-width: 15em;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -168,17 +181,19 @@ h1 {
   object-fit: cover;
   height: 100%;
   width: 100%;
-  display: flex; /* or inline-flex */
+  display: flex;
+  /* or inline-flex */
   /* min-width: 30em; */
-	position: relative;
+  position: relative;
   border: 1px solid rgb(5, 5, 5);
   float: center;
 }
 
 .maxDimensions {
   max-width: 53em;
-	max-height: 40em;
+  max-height: 40em;
 }
+
 /* Popup style */
 
 .popup-box {
@@ -188,10 +203,10 @@ h1 {
   height: 100vh;
   top: 0;
   left: 0; */
-  padding:0;
-  margin:0;
-  top:0;
-  left:0;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   z-index: 90;
@@ -271,6 +286,7 @@ h1 {
   overscroll-behavior-inline: contain;
   /* scroll-snap-type: inline mandatory; */
 }
+
 /*
 .sidescroller > * {
   scroll-snap-align: start;
@@ -286,6 +302,7 @@ h1 {
   text-align: left;
   font-weight: bold;
 }
+
 .compareRightName {
   width: 50%;
   float: left;
@@ -327,7 +344,8 @@ h1 {
   text-align: center;
   vertical-align: middle;
 }
-.addToOutfitText{
+
+.addToOutfitText {
   font-style: italic;
   margin-top: 140px;
 }
@@ -341,7 +359,7 @@ h1 {
   color: #4a4e4e;
   cursor: pointer;
   display: inline-block;
-  font-family: "Amazon Ember",sans-serif;
+  font-family: "Amazon Ember", sans-serif;
   font-size: 13px;
   line-height: 29px;
   padding: 0 10px 0 11px;
@@ -386,17 +404,22 @@ h1 {
 
 .x-icon:before {
   position: absolute;
-  top: 15%; left: calc(50% - .0625em);
-  width: .125em; height: 70%;
+  top: 15%;
+  left: calc(50% - .0625em);
+  width: .125em;
+  height: 70%;
   border-radius: .125em;
   transform: rotate(45deg);
   background: currentcolor;
   content: ''
 }
+
 .x-icon:after {
   position: absolute;
-  top: 15%; left: calc(50% - .0625em);
-  width: .125em; height: 70%;
+  top: 15%;
+  left: calc(50% - .0625em);
+  width: .125em;
+  height: 70%;
   border-radius: .125em;
   transform: rotate(-45deg);
   background: currentcolor;
@@ -421,25 +444,26 @@ h1 {
   cursor: zoom-in;
   transition: all 190ms;
   -webkit-text-stroke: 1.5px rgb(92, 92, 92);
-	-webkit-text-fill-color: white;
+  -webkit-text-fill-color: white;
   opacity: 0.65;
   text-shadow: rgb(243, 243, 243) 0px 0px 5px;
 }
 
-#star-button-compare:hover   {
+#star-button-compare:hover {
   transform: rotate(216deg) scale(1.2);
   opacity: 0.9;
 }
 
 /* Caroursel Side Scroll Buttons */
 
-.leftScrollButtonPosition{
-  position:-webkit-sticky;
-  position:sticky;
+.leftScrollButtonPosition {
+  position: -webkit-sticky;
+  position: sticky;
   top: 240px;
   left: 15px;
   z-index: 99;
 }
+
 .leftScrollButton {
   cursor: pointer;
   position: absolute;
@@ -473,6 +497,7 @@ h1 {
   background: currentcolor;
   content: ''
 }
+
 .left-icon:after {
   position: absolute;
   bottom: 11%;
@@ -485,13 +510,14 @@ h1 {
   content: ''
 }
 
-.rightScrollButtonPosition{
-  position:-webkit-sticky;
-  position:sticky;
+.rightScrollButtonPosition {
+  position: -webkit-sticky;
+  position: sticky;
   top: 240px;
   right: 15px;
   z-index: 99;
 }
+
 .rightScrollButton {
   cursor: pointer;
   position: absolute;
@@ -525,6 +551,7 @@ h1 {
   background: currentcolor;
   content: ''
 }
+
 .right-icon:after {
   position: absolute;
   top: 11%;
@@ -537,7 +564,8 @@ h1 {
   content: ''
 }
 
-.leftScrollButton:hover, .rightScrollButton:hover {
+.leftScrollButton:hover,
+.rightScrollButton:hover {
   transform: scale(1.1);
   background-color: rgb(241, 241, 241);
   opacity: 0.9;
@@ -556,7 +584,8 @@ h1 {
   cursor: pointer;
 }
 
-.star-rating, .rating-text {
+.star-rating,
+.rating-text {
   display: inline-block;
   margin-bottom: 1.5em;
 }
@@ -569,7 +598,7 @@ h1 {
 
 .search-bar {
   border-radius: 1px;
-  background:rgb(255, 255, 255);
+  background: rgb(255, 255, 255);
 }
 
 .search-bar .form-control {
