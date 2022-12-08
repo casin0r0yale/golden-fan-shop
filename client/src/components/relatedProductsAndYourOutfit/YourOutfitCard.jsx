@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-const YourOutfitCard = (props) => {
+const YourOutfitCard = React.forwardRef((props, ref) => {
 
   var onClickDeleteProduct = () => {
     props.onClickDeleteProductYourOutfit(props.current_id);
@@ -11,9 +11,9 @@ const YourOutfitCard = (props) => {
   }
 
   return (
-    <div className='productCard' onClick={onClickNavigate}>
+    <div className='productCard' onClick={onClickNavigate} ref={ref}>
       <div>
-        <img className='productImageInCard' src={props.current_thumbnail}/>
+        <img className='productImageInCard' src={props.current_thumbnail ? props.current_thumbnail : 'https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/Reality_Stone_VFX.png/revision/latest?cb=20190427012609'}/>
       </div>
       <div></div>
       <div>
@@ -25,6 +25,6 @@ const YourOutfitCard = (props) => {
       <button onClick={onClickDeleteProduct} class="close-icon-yourOutfit"><div className='x-icon'></div></button>
     </div>
   )
-}
+});
 
 export default YourOutfitCard;
