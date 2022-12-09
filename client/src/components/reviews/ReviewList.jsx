@@ -8,6 +8,7 @@ const ReviewList = (props) => {
   const postPerClick = 2;
   const [next, setNext] = useState(postPerClick);
 
+
   const handleMorePosts = () => {
     setNext(next + postPerClick);
   }

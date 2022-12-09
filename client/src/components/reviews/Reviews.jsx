@@ -14,9 +14,6 @@ const Reviews = (props) => {
     setIsOpen(!isOpen);
   }
 
-  // var rating = getAverageRating(incomingList);
-
-
   return (
     <div className="review-module">
       <div className="rating-breakdown">

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../../styles/index.css";
 
-
 const StyleSelector = (props) => {
 
   // console.log(props.styles)
