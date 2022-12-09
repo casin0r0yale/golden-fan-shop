@@ -593,6 +593,7 @@ h1 {
 
 .review-list {
   height: 27em;
+  width: 30em;
   overflow-y: auto;
 }
 
@@ -606,8 +607,8 @@ h1 {
 }
 
 .review-tile {
-  /* display: flex;
-  flex-direction: row; */
+  display: flex;
+  flex-wrap: wrap;
   border-bottom: solid;
   border-width: .05em;
   margin-bottom: 1em;

@@ -6,16 +6,11 @@ import Popup from '../Popup.jsx';
 
 const Reviews = (props) => {
   var incomingList = props.reviewList;
-  // console.log('incomingList: ', incomingList);
   var numReviews = incomingList.length;
   var productInfo = props.product;
   const [formView, setFormView] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  // const [incomingList, setIncomingList] = useState([]);
 
-  // useEffect(() => {
-  //   setIncomingList(props.reviewList);
-  // }, [])
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -27,10 +22,6 @@ const Reviews = (props) => {
   }
 
   const forceUpdate = useForceUpdate();
-
-  //relevance - reviews that are most recent AND helpful, then most recent, then most helpful
-  //newest - most recent appears first
-  //helpful - reviews with most helpful scores
 
   const relevance = async () => {
     var sorted = await incomingList.sort((p1, p2) => {
@@ -61,7 +52,6 @@ const Reviews = (props) => {
 
 
   const sortBy = (event) => {
-    // console.log('this is the sort selection: ', event.target.value);
     if (event.target.value === "relevance") {
       relevance();
     }
@@ -77,7 +67,7 @@ const Reviews = (props) => {
   return (
     <div className="review-module" data-testid="reviews-module">
       <div className="rating-breakdown">
-        <RatingBreakdown rating={props.rating}/>
+        <RatingBreakdown rating={props.rating} reviewList={props.reviewList}/>
       </div>
       <div>
         <h3 className="reviewList-title">
