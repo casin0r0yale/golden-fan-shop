@@ -5,11 +5,10 @@ import RatingBreakdown from './RatingBreakdown.jsx';
 import Popup from '../Popup.jsx';
 
 const Reviews = (props) => {
-  // var incomingList = props.reviewList;
+  var incomingList = props.reviewList;
   var productInfo = props.product;
   const [formView, setFormView] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [incomingList, setIncomingList] = useState([]);
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
