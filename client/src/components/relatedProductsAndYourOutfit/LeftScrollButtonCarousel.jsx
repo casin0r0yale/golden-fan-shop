@@ -8,7 +8,7 @@ const LeftScrollButtonCarousel = (props) => {
   }
 
   return (
-    <div className="leftScrollButtonPosition">
+    <div className="leftScrollButtonPosition" data-testid='testLeftScrollButton'>
       <button className='leftScrollButton' onClick={onClickScrollLeft}>
         <div className='left-icon'></div>
       </button>

@@ -462,7 +462,7 @@ h1 {
   position: sticky;
   top: 240px;
   left: 15px;
-  z-index: 99;
+  z-index: 90;
 }
 
 .leftScrollButton {
@@ -516,7 +516,7 @@ h1 {
   position: sticky;
   top: 240px;
   right: 15px;
-  z-index: 99;
+  z-index: 85;
 }
 
 .rightScrollButton {
@@ -537,7 +537,7 @@ h1 {
   box-sizing: border-box;
   color: #717171;
   opacity: 0.75;
-  z-index: 99;
+  z-index: 70;
   /* transition: all 150ms; */
 }
 
