@@ -5,15 +5,22 @@ import Popup from '../Popup.jsx';
 var Questions = (props) => {
 
   const [isOpen, setIsOpen] = useState(false);
+  const [questionIndex, setQuestionIndex] = useState(2);
   const [isHelpful, setIsHelpful] = useState(false);
+
+  const toggleHelpfulness = () => {
+    setIsHelpful(!isHelpful);
+  }
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   }
 
-  const toggleHelpfulness = () => {
-    setIsHelpful(!isHelpful);
+  const loadMoreQuestions = () => {
+    setQuestionIndex(questionIndex + 1);
   }
+
+  const mappedQuestions = props.data.slice(0, questionIndex);
 
   return (
     <div>
@@ -22,7 +29,8 @@ var Questions = (props) => {
         <div className="search-bar">
           <input className="form-control" type="text"/>
         </div>
-        {props.data.map((question, index) => {
+        {mappedQuestions.map((question, index) => {
+
           return (
             <div>
               <h4 key={index}>Q: {question.question_body}</h4>
@@ -36,7 +44,7 @@ var Questions = (props) => {
             </div>
           );
           })}
-          <button className="answer-btn">More Answered Questions</button>
+          <button className="answer-btn" onClick={loadMoreQuestions}>More Answered Questions</button>
           <button onClick={togglePopup}>Add A New Question</button>
       </div>
     </div>
