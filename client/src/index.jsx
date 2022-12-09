@@ -33,6 +33,20 @@ const App = () => {
     getData();
   }, [focusProductId])
 
+  const getAverageRating = (reviewList) => {
+    var total = 0;
+    reviewList.forEach((review) => {
+      total += review.rating;
+    });
+    var average = total / reviewList.length;
+    var rounded = Math.round(average * 10) / 10;
+    return rounded;
+  }
+
+  const updateReviewList = (newReviewList) => {
+    setReviewList(newReviewList);
+  }
+
   var currentProductCardData = {};
 
   var getData = () => {

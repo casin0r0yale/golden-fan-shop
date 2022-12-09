@@ -10,6 +10,7 @@ const Reviews = (props) => {
   var productInfo = props.product;
   const [formView, setFormView] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [currList, setCurrList] = useState(incomingList);
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -24,12 +25,34 @@ const Reviews = (props) => {
       return ((p2.date - p1.date) && (p2.helpfulness - p1.helpfulness));
     })
     console.log('this is the relevance list: ', sorted);
+    // incomingList = sorted;
   }
+
+  const newest = () => {
+    var sorted = incomingList.sort((p1, p2) => {
+      return (p2.date - p1.date);
+    })
+    console.log('this is the newest list: ', sorted);
+  }
+
+  const helpfulness = () => {
+    var sorted = incomingList.sort((p1, p2) => {
+      return (p2.helpfulness - p1.helpfulness);
+    })
+    console.log('this is the helpfulness list: ', sorted);
+  }
+
 
   const sortBy = (event) => {
     console.log('this is the sort selection: ', event.target.value);
     if (event.target.value === "relevance") {
       relevance();
+    }
+    if (event.target.value === "newest") {
+      newest();
+    }
+    if (event.target.value === "helpfulness") {
+      helpfulness();
     }
   }
 
