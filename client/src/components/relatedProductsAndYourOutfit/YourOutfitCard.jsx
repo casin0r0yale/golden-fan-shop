@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import ProductRating from '../reviews/ProductRating.jsx';
 import axios from 'axios';
-import getAverageRating from '../../index.jsx';
+// import getAverageRating from '../../index.jsx';
+import {getAverageRating} from '../../App.jsx';
 
 const YourOutfitCard = React.forwardRef((props, ref) => {
 
@@ -28,7 +29,7 @@ const YourOutfitCard = React.forwardRef((props, ref) => {
   }
 
   return (
-    <div className='productCard' onClick={onClickNavigate} ref={ref}>
+    <div className='productCard' onClick={onClickNavigate} ref={ref} data-testid='testYourOutfitCard'>
       <div>
         <img className='productImageInCard' src={props.current_thumbnail ? props.current_thumbnail : 'https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/Reality_Stone_VFX.png/revision/latest?cb=20190427012609'}/>
       </div>

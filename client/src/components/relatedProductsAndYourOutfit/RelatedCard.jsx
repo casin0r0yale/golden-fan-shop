@@ -3,7 +3,9 @@ import Popup from '../Popup.jsx';
 import ComparisonTable from './ComparisonTable.jsx';
 import ProductRating from '../reviews/ProductRating.jsx';
 import axios from 'axios';
-import getAverageRating from '../../index.jsx';
+// import getAverageRating from '../../index.jsx';
+import {getAverageRating} from '../../App.jsx';
+
 
 const RelatedCard = React.forwardRef((props, ref) => {
 
