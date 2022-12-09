@@ -45,6 +45,7 @@ const App = () => {
 
   const updateReviewList = (newReviewList) => {
     setReviewList(newReviewList);
+    console.log('this is the updated reviewList: ', newReviewList);
   }
 
   var currentProductCardData = {};
@@ -216,7 +217,7 @@ const App = () => {
           { scrollToggleYourOutfitProgress && scrollYourOutfitProgress<100 && <RightScrollButtonCarousel moveRight={moveRight2}l/>}
         </div>
         <Questions data={productQnAData}/>
-        <Reviews rating={rating} reviewList={reviewList} product={productInfo}/>
+        <Reviews updateReviewList={updateReviewList} rating={rating} reviewList={reviewList} product={productInfo}/>
       </div>
   );
 };

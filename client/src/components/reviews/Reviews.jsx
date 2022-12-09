@@ -26,13 +26,16 @@ const Reviews = (props) => {
     })
     console.log('this is the relevance list: ', sorted);
     // incomingList = sorted;
+    // console.log('props: ', props);
+    props.updateReviewList(sorted);
   }
 
   const newest = () => {
     var sorted = incomingList.sort((p1, p2) => {
-      return (p2.date - p1.date);
+      return (p1.date - p2.date);
     })
     console.log('this is the newest list: ', sorted);
+    props.updateReviewList(sorted);
   }
 
   const helpfulness = () => {
@@ -40,6 +43,7 @@ const Reviews = (props) => {
       return (p2.helpfulness - p1.helpfulness);
     })
     console.log('this is the helpfulness list: ', sorted);
+    props.updateReviewList(sorted);
   }
 
 
