@@ -6,7 +6,7 @@ import Popup from '../Popup.jsx';
 
 const Reviews = (props) => {
   var incomingList = props.reviewList;
-  console.log('incomingList: ', incomingList);
+  // console.log('incomingList: ', incomingList);
   var numReviews = incomingList.length;
   var productInfo = props.product;
   const [formView, setFormView] = useState(false);
@@ -61,7 +61,7 @@ const Reviews = (props) => {
 
 
   const sortBy = (event) => {
-    console.log('this is the sort selection: ', event.target.value);
+    // console.log('this is the sort selection: ', event.target.value);
     if (event.target.value === "relevance") {
       relevance();
     }
@@ -75,7 +75,7 @@ const Reviews = (props) => {
 
 
   return (
-    <div className="review-module">
+    <div className="review-module" data-testid="reviews-module">
       <div className="rating-breakdown">
         <RatingBreakdown rating={props.rating}/>
       </div>
@@ -83,7 +83,7 @@ const Reviews = (props) => {
         <h3 className="reviewList-title">
           {numReviews} reviews, sorted by &nbsp;
           <select name="sort-options" className="reviewList-sort-button" onChange={sortBy}>
-            <option value="relevance" selected>relevance</option>
+            <option value="relevance" defaultValue>relevance</option>
             <option value="newest">newest</option>
             <option value="helpfulness">helpfulness</option>
           </select>

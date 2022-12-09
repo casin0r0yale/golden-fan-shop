@@ -36,6 +36,7 @@ const ReviewList = (props) => {
         <button
           type="button"
           className="add-review-button"
+          data-testid="add-review-button"
           // value="Add a review  + "
           onClick={props.togglePopup}
         >

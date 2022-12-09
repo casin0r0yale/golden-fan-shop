@@ -7,7 +7,7 @@ const RatingBreakdown = (props) => {
     <div>
       <p>RATINGS & REVIEWS</p>
       <div className="average-stars">
-        <h2 className="average-number">{props.rating}</h2>
+        <h2 className="average-number" data-testid="average-number">{props.rating}</h2>
         <ProductRating rating={props.rating}/>
       </div>
       <CharacteristicsBreakdown />
