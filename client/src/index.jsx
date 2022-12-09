@@ -45,7 +45,8 @@ const App = () => {
 
   const updateReviewList = (newReviewList) => {
     setReviewList(newReviewList);
-    console.log('this is the updated reviewList: ', newReviewList);
+    console.log('this is the newReviewList: ', newReviewList);
+    console.log('this is the reviewList state: ', reviewList);
   }
 
   var currentProductCardData = {};

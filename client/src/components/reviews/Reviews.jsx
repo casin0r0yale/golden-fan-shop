@@ -6,44 +6,57 @@ import Popup from '../Popup.jsx';
 
 const Reviews = (props) => {
   var incomingList = props.reviewList;
+  console.log('incomingList: ', incomingList);
   var numReviews = incomingList.length;
   var productInfo = props.product;
   const [formView, setFormView] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [currList, setCurrList] = useState(incomingList);
+  // const [incomingList, setIncomingList] = useState([]);
+
+  // useEffect(() => {
+  //   setIncomingList(props.reviewList);
+  // }, [])
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   }
 
+  const useForceUpdate = () => {
+    const [value, setValue] = useState([]);
+    return () => setValue(value => props.reviewList);
+  }
+
+  const forceUpdate = useForceUpdate();
+
   //relevance - reviews that are most recent AND helpful, then most recent, then most helpful
   //newest - most recent appears first
   //helpful - reviews with most helpful scores
 
-  const relevance = () => {
-    var sorted = incomingList.sort((p1, p2) => {
-      return ((p2.date - p1.date) && (p2.helpfulness - p1.helpfulness));
+  const relevance = async () => {
+    var sorted = await incomingList.sort((p1, p2) => {
+      return ((new Date(p2.date) - new Date(p1.date)) && (p2.helpfulness - p1.helpfulness));
     })
-    console.log('this is the relevance list: ', sorted);
-    // incomingList = sorted;
-    // console.log('props: ', props);
-    props.updateReviewList(sorted);
+    var sortedCopy = [...sorted];
+    props.updateReviewList(sortedCopy);
+    forceUpdate();
   }
 
-  const newest = () => {
-    var sorted = incomingList.sort((p1, p2) => {
-      return (p1.date - p2.date);
+  const newest = async () => {
+    var sorted = await incomingList.sort((p1, p2) => {
+      return (new Date(p2.date) - new Date(p1.date));
     })
-    console.log('this is the newest list: ', sorted);
-    props.updateReviewList(sorted);
+    var sortedCopy = [...sorted];
+    props.updateReviewList(sortedCopy);
+    forceUpdate();
   }
 
-  const helpfulness = () => {
-    var sorted = incomingList.sort((p1, p2) => {
+  const helpfulness = async () => {
+    var sorted = await incomingList.sort((p1, p2) => {
       return (p2.helpfulness - p1.helpfulness);
     })
-    console.log('this is the helpfulness list: ', sorted);
-    props.updateReviewList(sorted);
+    var sortedCopy = [...sorted];
+    props.updateReviewList(sortedCopy);
+    forceUpdate();
   }
 
 
