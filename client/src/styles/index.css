@@ -152,6 +152,16 @@ h1 {
   margin-left: 1.5em;
 }
 
+#checkout {
+ width: 24.5em;
+}
+
+#hearted {
+  width: 5em;
+  margin-left: 1.5em;
+  margin-bottom: -2.5em;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;

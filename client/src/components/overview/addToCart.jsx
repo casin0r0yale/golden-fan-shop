@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../../styles/index.css";
-import { AiOutlineHeart } from 'react-icons/ai';
-import { AiFillHeart } from 'react-icons/ai';
+
 
 
 const AddToCart = (props) => {
@@ -10,7 +9,6 @@ const AddToCart = (props) => {
 
   const [dropdownExpanded, setDropdownExpanded] = useState(false);
   const [quantityDropdownExpanded, setQuantityDropdownExpanded] = useState(false);
-  const [favorited, setFavorited] = useState(false);
 
 
   const onOptionSelect = option => {
@@ -34,14 +32,15 @@ const AddToCart = (props) => {
 
     setQuantitySelected('-');
     if (!props.styles[props.styleIndex]?.skus[null])
-      // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
-      //   props.styles[props.styleIndex]?.skus[size].quantity > 0
-      // })) 
-      {
-        setSizeSelected({});      }
-        else {
-          setSizeSelected({ size: "OUT OF STOCK" });
-        }
+    // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
+    //   props.styles[props.styleIndex]?.skus[size].quantity > 0
+    // })) 
+    {
+      setSizeSelected({});
+    }
+    else {
+      setSizeSelected({ size: "OUT OF STOCK" });
+    }
 
   }, [props.styles]); //
 
@@ -73,8 +72,9 @@ const AddToCart = (props) => {
 
         </div>
       </div>
-      {sizeSelected.quantity > 0 ? <button class="dropdown-button">ADD TO BAG</button> : ''}
-      <button onClick={() => { setFavorited(!favorited) }} class="dropdown-button" id="quantity" >{favorited ? <AiFillHeart size='25' /> : <AiOutlineHeart size='25' />} </button>
+      {sizeSelected.quantity > 0 ?
+        <button id="checkout" class="dropdown-button">ADD TO BAG</button> 
+       : ''}
     </div>
   )
 }
