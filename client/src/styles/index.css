@@ -462,7 +462,7 @@ h1 {
   position: sticky;
   top: 240px;
   left: 15px;
-  z-index: 99;
+  z-index: 90;
 }
 
 .leftScrollButton {
@@ -516,7 +516,7 @@ h1 {
   position: sticky;
   top: 240px;
   right: 15px;
-  z-index: 99;
+  z-index: 85;
 }
 
 .rightScrollButton {
@@ -537,7 +537,7 @@ h1 {
   box-sizing: border-box;
   color: #717171;
   opacity: 0.75;
-  z-index: 99;
+  z-index: 70;
   /* transition: all 150ms; */
 }
 
@@ -581,11 +581,20 @@ h1 {
 .rating-breakdown {
   display: flex;
   flex-direction: row;
+}
 
+.reviewList-title, .review-list {
+  margin-left: 2em;
+}
+
+.review-button-group {
+  margin-left: 2em;
 }
 
 .review-list {
-  margin-left: 2em;
+  height: 27em;
+  width: 30em;
+  overflow-y: auto;
 }
 
 .average-number {
@@ -598,10 +607,26 @@ h1 {
 }
 
 .review-tile {
-  /* border: solid; */
+  display: flex;
+  flex-wrap: wrap;
   border-bottom: solid;
   border-width: .05em;
   margin-bottom: 1em;
+}
+
+/* .review-name-date {
+  order: 2;
+} */
+
+.reviewList-sort-button {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: .25em;
+  border-bottom: solid;
+  width: auto;
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 .add-review-button, .more-reviews-button {
@@ -615,6 +640,7 @@ h1 {
   width: 12em;
   font-weight: bold;
 }
+
 
 .add-review-button {
   margin-left: .5em;
@@ -679,6 +705,12 @@ h1 {
 
 .answer-btn {
   margin-right: 1%;
+}
+
+/* Adding Answer Button */
+
+.add-answer-btn:hover {
+  color:rgb(131, 38, 171)
 }
 
 /* .size-radio-buttons {

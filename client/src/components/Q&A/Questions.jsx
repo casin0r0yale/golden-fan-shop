@@ -23,7 +23,7 @@ var Questions = (props) => {
   const mappedQuestions = props.data.slice(0, questionIndex);
 
   return (
-    <div>
+    <div data-testid="question-module">
       <h3>Questions &amp; Answers</h3>
       <div>
         <div className="search-bar">
@@ -35,7 +35,7 @@ var Questions = (props) => {
             <div>
               <h4 key={index}>Q: {question.question_body}</h4>
               <div>
-                <p>Helpful? <a onClick={toggleHelpfulness}>Yes({(isHelpful) ? question.question_helpfulness + 1 : question.question_helpfulness})</a> | <a onClick={togglePopup}>Add An Answer</a></p>
+                <p>Helpful? <a onClick={toggleHelpfulness}>Yes({(isHelpful) ? question.question_helpfulness + 1 : question.question_helpfulness})</a> | <a onClick={togglePopup} className="add-answer-btn">Add An Answer</a> | {(question.reported) ? 'Reported' : <a>Report Question</a>}</p>
               </div>
               <Answer answers={question.answers}/>
               <div>
