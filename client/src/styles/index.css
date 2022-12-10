@@ -141,14 +141,56 @@ h1 {
   border-width: 1px;
   border-color: #000;
   height: 4em;
-  width: 18em;
+  display: inline-block;
+  position: relative;
+  width: 16em;
   font-weight: bold;
   margin-top: 1.5em;
+  text-align: left;
+  padding-left: 2em;
+}
+
+.caret {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 2em;
+  transform: translateY(-50%);
+  font-size: 0.7em;
+  color:#000;
+}
+
+.plus {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 2em;
+  transform: translateY(-50%);
+  font-size: 0.7em;
+  color:#000;
+  transition: all 190ms;
+}
+.plus:hover {
+  transform: translateY(-50%) rotate(270deg) scale(1.2);
+}
+
+
+
+.dropdown-button:hover {
+  background-color: #f7fafa;
+  cursor: pointer;
+
+}
+
+.dropdown-button:active {
+  border-color: #677071;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  outline: 0;
 }
 
 
 #quantity {
-  width: 5em;
+  width: 7em;
   margin-left: 1.5em;
 }
 
