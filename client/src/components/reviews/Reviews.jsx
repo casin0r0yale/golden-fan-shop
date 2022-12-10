@@ -65,7 +65,7 @@ const Reviews = (props) => {
 
 
   return (
-    <div className="review-module" data-testid="reviews-module">
+    <div id="reviews" className="review-module" data-testid="reviews-module">
       <div className="rating-breakdown">
         <RatingBreakdown rating={props.rating} reviewList={props.reviewList}/>
       </div>

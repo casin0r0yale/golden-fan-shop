@@ -9,7 +9,7 @@ import { AiFillHeart } from 'react-icons/ai';
 const ProductInfo = (props) => {
   // console.log('general info', props.info);
   const [favorited, setFavorited] = useState(false);
-  
+
   const onClickYourOutfit = () => {
     props.onClickYourOutfit();
     setFavorited(!favorited);
@@ -20,11 +20,11 @@ const ProductInfo = (props) => {
 
   return (
     <div className="productInfo">
-      <ProductRating rating={props.rating}/>
+      <div style={{ display: "flex" }}><ProductRating rating={props.rating} /><a class="hyperlink" href="#reviews" style={{ marginBottom: "1.25em", marginLeft: "1em"}}>Read all reviews</a></div>
       <p>CATEGORY</p>
-      <div style={{display: 'flex',  alignItems: 'top'}}>
+      <div style={{ display: 'flex', alignItems: 'top' }}>
         <h1>{props.info.name}</h1>
-        <div  style={{marginTop:"1em"}}  onClick={onClickYourOutfit} id="hearted" >{favorited ? <AiFillHeart size="26"/> : <AiOutlineHeart size="26"/>} </div>
+        <div style={{ marginTop: "1em" }} onClick={onClickYourOutfit} id="hearted" >{favorited ? <AiFillHeart size="26" /> : <AiOutlineHeart size="26" />} </div>
       </div>
     </div>
   )
