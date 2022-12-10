@@ -29,7 +29,7 @@ const AddToCart = (props) => {
 
 
   useEffect(() => {
-    console.log('logg', props.styles[props.styleIndex])
+    console.log('logg', JSON.stringify(props.styles))
     // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
     //   console.log(props.styles[props.styleIndex]?.skus[size].quantity)
     //   props.styles[props.styleIndex]?.skus[size].quantity > 0
@@ -59,7 +59,7 @@ const AddToCart = (props) => {
 
 
   return (
-    <div className="addToCart">
+    <div data-testid='testAddToCart' className="addToCart">
       <div className="dropdown">
         <button onClick={() => { setDropdownExpanded(!dropdownExpanded) }} className="dropdown-button">{sizeSelected.size || "SELECT SIZE"}  <RxCaretDown size="20" class="caret" /></button>
         <div className={dropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>

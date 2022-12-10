@@ -16,8 +16,9 @@ const Overview = (props) => {
     setStyleIndex(0);
   }, [props.info]); //
 
+
   return (
-    <div>
+    <div data-testid='testOverview'>
       {props.styles?
       <div className="overviewContainer">
       <div className="productInfo"><ProductInfo rating={props.rating} info={props.info} onClickYourOutfit={props.onClickYourOutfit}/></div>
