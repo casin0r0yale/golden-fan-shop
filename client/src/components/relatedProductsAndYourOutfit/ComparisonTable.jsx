@@ -105,17 +105,17 @@ const ComparisonTable = (props) => {
   }, [])
 
   return (
-  <div class="row">
-    <div class="compareLeft">COMPARING</div><br/><br/>
+  <div className="row">
+    <div className="compareLeft">COMPARING</div><br/><br/>
 
-    <div class="compareLeftName">{primaryName}</div>
-    <div class="compareRightName">{props.related_name}</div><br/><br/><br/>
+    <div className="compareLeftName">{primaryName}</div>
+    <div className="compareRightName">{props.related_name}</div><br/><br/><br/>
 
     {fullListFeatures.map((item, index) => { return (
       <div key={index}>
-        <div class="compareLeft" style={{opacity: item[0]}}>&#x2713;</div>
-        <div class="compareMiddleColumn"> <a class="boldFont">{item[1]}</a> <a>{ ' ' + item[2]}</a> </div>
-        <div class="compareRight" style={{opacity: item[3]}}>&#x2713;</div>
+        <div className="compareLeft" style={{opacity: item[0]}}>&#x2713;</div>
+        <div className="compareMiddleColumn"> <a className="boldFont">{item[1]}</a> <a>{ ' ' + item[2]}</a> </div>
+        <div className="compareRight" style={{opacity: item[3]}}>&#x2713;</div>
       </div>
     )})}
 

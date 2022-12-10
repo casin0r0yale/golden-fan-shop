@@ -32,7 +32,7 @@ const RatingBreakdown = (props) => {
 
   var currPercentageArr = Object.values(getAllPercentage(reviewList));
 
-  console.log('this is the current percentage: ', currPercentageArr);
+  // console.log('this is the current percentage: ', currPercentageArr);
 
   const testData = [
     { bgcolor: "#6a1b9a", completed: 60 },
