@@ -5,9 +5,9 @@ var Answer = (props) => {
   return (
   <div>
     {answerObjList.map(answerKey => {
-      console.log(answerKey);
+      // console.log(answerKey);
       var currentAnswer = props.answers[answerKey];
-      console.log(currentAnswer)
+      // console.log(currentAnswer)
       var answerDate = new Date(currentAnswer.date).toDateString();
       return (
         <div>

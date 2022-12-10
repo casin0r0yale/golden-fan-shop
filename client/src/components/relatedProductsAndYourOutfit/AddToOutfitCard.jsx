@@ -1,16 +1,14 @@
 import React, {useState, useEffect} from 'react';
 
-const AddToOutfitCard = (props) => {
+const AddToOutfitCard = React.forwardRef((props, ref) => {
 
 
   var onClickYourOutfit = () => {
-
     props.onClickYourOutfit();
-
   }
 
   return (
-    <div className='productCard addToOutfitButton'>
+    <div className='productCard addToOutfitButton' ref={ref}>
       <div className='addToOutfitText'>
         Add To Outfit
       </div><br/>
@@ -19,6 +17,6 @@ const AddToOutfitCard = (props) => {
       </button>
     </div>
   )
-}
+});
 
 export default AddToOutfitCard;

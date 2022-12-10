@@ -514,7 +514,7 @@ h1 {
   position: sticky;
   top: 240px;
   left: 15px;
-  z-index: 99;
+  z-index: 90;
 }
 
 .leftScrollButton {
@@ -568,7 +568,7 @@ h1 {
   position: sticky;
   top: 240px;
   right: 15px;
-  z-index: 99;
+  z-index: 85;
 }
 
 .rightScrollButton {
@@ -589,7 +589,7 @@ h1 {
   box-sizing: border-box;
   color: #717171;
   opacity: 0.75;
-  z-index: 99;
+  z-index: 70;
   /* transition: all 150ms; */
 }
 
@@ -628,6 +628,84 @@ h1 {
 .review-module {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+}
+.rating-breakdown {
+  display: flex;
+  flex-direction: row;
+}
+
+.reviewList-title, .review-list {
+  margin-left: 2em;
+}
+
+.review-button-group {
+  margin-left: 2em;
+}
+
+.review-list {
+  height: 27em;
+  width: 30em;
+  overflow-y: auto;
+}
+
+.average-number {
+  font-size: 3em;
+  margin-right: .25em;
+}
+
+.number-of-stars {
+  margin-bottom: 1.25em;
+}
+
+.review-tile {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: solid;
+  border-width: .05em;
+  margin-bottom: 1em;
+}
+
+/* .review-name-date {
+  order: 2;
+} */
+
+.reviewList-sort-button {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: .25em;
+  border-bottom: solid;
+  width: auto;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.add-review-button, .more-reviews-button {
+  text-transform: uppercase;
+  background-color: white;
+  box-shadow: none;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000;
+  height: 4em;
+  width: 12em;
+  font-weight: bold;
+}
+
+
+.add-review-button {
+  margin-left: .5em;
+}
+
+.more-reviews-button {
+  margin-right: .5em;
+}
+
+.average-stars {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 #star-rating {
@@ -646,6 +724,16 @@ h1 {
 .rating-text {
   margin-left: .5em;
 }
+
+.on {
+  color: #000;
+}
+
+.off {
+  color: #ccc;
+}
+
+
 
 /*  Question Search Bar*/
 
@@ -683,16 +771,5 @@ h1 {
   margin-right: .25em;
 }
 
-.on {
-  color: #000;
-}
+*/
 
-.off {
-  color: #ccc;
-}*/
-
-.review-tile {
-  border: solid;
-  border-width: 1em;
-  border-radius: 1em;
-}
