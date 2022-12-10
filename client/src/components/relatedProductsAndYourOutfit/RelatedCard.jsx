@@ -1,24 +1,32 @@
 import React, {useState, useEffect} from 'react';
 import Popup from '../Popup.jsx';
 import ComparisonTable from './ComparisonTable.jsx';
+import ProductRating from '../reviews/ProductRating.jsx';
+import axios from 'axios';
+import getAverageRating from '../../index.jsx';
 
 const RelatedCard = React.forwardRef((props, ref) => {
 
-  // {props.related_id} also is passed in
   const [formView, setFormView] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [imgError, setImgError] = useState(true);
+  const [ratingRelatedCard, setRatingRelatedCard] = useState(0);
+
+  useEffect(() => {
+    axios.get('/getProductReviews', { params: { id: props.related_id } })
+    .then(function (response) {
+      var reviews = response.data.results;
+      var average = getAverageRating(reviews);
+      setRatingRelatedCard(average);
+    })
+    .catch(function (error) {
+    })
+  }, []);
 
   const togglePopup = (event) => {
     event.stopPropagation();
     setIsOpen(!isOpen);
   }
-
-  // useEffect(() => {
-  //   // console.log("🚀 ~ file: RelatedCard.jsx:19 ~ RelatedCard ~ relatedCardRef", relatedCardRef)
-
-  //   // props.gatherRefsRelated(relatedCardRef.current)
-  // }, [])
 
   var combineRelatedFeatures = [];
 
@@ -34,7 +42,6 @@ const RelatedCard = React.forwardRef((props, ref) => {
   }
 
   const hideImgWhenError = (e) => {
-    console.log("🚀 ~ file: RelatedCard.jsx:37 ~ hideImgWhenError ~ e", e)
     if(imgError) {
       setImgError(false);
       e.target.src = 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80';
@@ -60,7 +67,9 @@ const RelatedCard = React.forwardRef((props, ref) => {
         <div style={{fontSize: 12}} className='lineSpaceCard'>{props.related_category.toUpperCase()}</div>
         <div className='boldFont lineSpaceCard'>{props.related_name}</div>
         <div style={{fontSize: 12}} className='lineSpaceCard'>${props.related_price}</div>
-        <div className='lineSpaceCard'>TODO: Stars/Reviews</div>
+        <div className='lineSpaceCard'>
+          <ProductRating rating={ratingRelatedCard}/>
+        </div>
       </div>
     </div>
   )

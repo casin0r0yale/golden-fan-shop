@@ -4,9 +4,7 @@ const AddToOutfitCard = React.forwardRef((props, ref) => {
 
 
   var onClickYourOutfit = () => {
-
     props.onClickYourOutfit();
-
   }
 
   return (
