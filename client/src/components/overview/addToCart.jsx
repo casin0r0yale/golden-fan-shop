@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import "../../styles/index.css";
-import { AiOutlineHeart } from 'react-icons/ai';
-import { AiFillHeart } from 'react-icons/ai';
+import { RxCaretDown } from 'react-icons/Rx';
+import { AiOutlinePlus } from 'react-icons/ai';
+
+
+
 
 
 const AddToCart = (props) => {
@@ -10,7 +13,6 @@ const AddToCart = (props) => {
 
   const [dropdownExpanded, setDropdownExpanded] = useState(false);
   const [quantityDropdownExpanded, setQuantityDropdownExpanded] = useState(false);
-  const [favorited, setFavorited] = useState(false);
 
 
   const onOptionSelect = option => {
@@ -25,13 +27,9 @@ const AddToCart = (props) => {
     setQuantityDropdownExpanded(false);
   };
 
-  var onClickYourOutfit = () => {
-    props.onClickYourOutfit();
-    setFavorited(!favorited);
-  }
 
   useEffect(() => {
-    console.log('logg', props.styles[props.styleIndex]?.skus)
+    console.log('logg', props.styles[props.styleIndex])
     // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
     //   console.log(props.styles[props.styleIndex]?.skus[size].quantity)
     //   props.styles[props.styleIndex]?.skus[size].quantity > 0
@@ -39,22 +37,31 @@ const AddToCart = (props) => {
 
     setQuantitySelected('-');
     if (!props.styles[props.styleIndex]?.skus[null])
-      // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
-      //   props.styles[props.styleIndex]?.skus[size].quantity > 0
-      // }))
-      {
-        setSizeSelected({});      }
-        else {
-          setSizeSelected({ size: "OUT OF STOCK" });
-        }
+    // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
+    //   props.styles[props.styleIndex]?.skus[size].quantity > 0
+    // })) 
+    {
+      setSizeSelected({});
+    }
+    else {
+      setSizeSelected({ size: "OUT OF STOCK" });
+    }
 
   }, [props.styles]); //
+
+  const addToCart = clicked => {
+    console.log('clicked');    
+    props.onClickYourOutfit();
+    // setFavorited(!favorited);
+    alert(`${props.styles[props.styleIndex].name} has been added to your cart!`);
+  }
+
 
 
   return (
     <div className="addToCart">
       <div className="dropdown">
-        <button onClick={() => { setDropdownExpanded(!dropdownExpanded) }} className="dropdown-button">{sizeSelected.size || "SELECT SIZE"}</button>
+        <button onClick={() => { setDropdownExpanded(!dropdownExpanded) }} className="dropdown-button">{sizeSelected.size || "SELECT SIZE"}  <RxCaretDown size="20" class="caret" /></button>
         <div className={dropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
           {Object.keys((props.styles[props.styleIndex]?.skus) || {}).map(size => {
             if (props.styles[props.styleIndex]?.skus[size].quantity > 0) {
@@ -65,8 +72,8 @@ const AddToCart = (props) => {
       </div>
       <div className="dropdown">
         {!isNaN(quantitySelected) ?
-          <button className="dropdown-button" id="quantity" onClick={() => { setQuantityDropdownExpanded(!quantityDropdownExpanded) }}>{quantitySelected}</button>
-          : <button className="dropdown-button" id="quantity">{quantitySelected}</button>}
+          <div><button className="dropdown-button" id="quantity" onClick={() => { setQuantityDropdownExpanded(!quantityDropdownExpanded) }}>{quantitySelected}<div> <RxCaretDown class="caret" size="20" /></div> </button></div>
+          : <button className="dropdown-button" id="quantity">{quantitySelected} <RxCaretDown className="caret" size="20" /></button>}
         <div className={quantityDropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
           {sizeSelected.quantity > 15 ?
             Array.from(Array(15).keys()).map(quantity => {
@@ -78,8 +85,13 @@ const AddToCart = (props) => {
 
         </div>
       </div>
-      {sizeSelected.quantity > 0 ? <button className="dropdown-button">ADD TO BAG</button> : ''}
-      <button onMouseDown={onClickYourOutfit} onMouseUp={() => {setFavorited(!favorited);}} className="dropdown-button" id="quantity" >{favorited ? <AiFillHeart size='25' /> : <AiOutlineHeart size='25' />} </button>
+      {sizeSelected.quantity > 0 ?
+        <button id="checkout" className="dropdown-button" onClick={addToCart} >ADD TO BAG<AiOutlinePlus size="20" className='plus' /></button>
+        : ''}
+
+      <div>
+
+      </div>
     </div>
   )
 }
