@@ -47,7 +47,8 @@ const RatingBreakdown = (props) => {
         <h3>Rating Breakdown</h3>
         <p>{(numRecommend / numReviews) * 100}% of reviews recommend this product</p>
         {currPercentageArr.slice(0).reverse().map((rating, idx) => {
-          return <p onClick={() => console.log('clicked on this star:', currPercentageArr.length +  1 - 1 - idx)}>{currPercentageArr.length +  1 - 1 - idx} stars
+          let currStar = currPercentageArr.length +  1 - 1 - idx;
+          return <p onClick={() => console.log(props.starSort(currStar))}>{currStar} stars
           <PercentageBar bgcolor={'#59981A'} completed={rating[1]}/>{rating[0]} reviews</p>
         })}
       </div>

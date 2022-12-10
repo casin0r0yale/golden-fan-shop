@@ -50,6 +50,16 @@ const Reviews = (props) => {
     forceUpdate();
   }
 
+  const fiveStar = async () => {
+    var sorted = await incomingList.filter((review) => {
+      return review.rating === 5;
+    })
+    var sortedCopy = [...sorted];
+    console.log('these are only five star reviews: ', sortedCopy);
+    // props.updateReviewList(sortedCopy);
+    // forceUpdate();
+  }
+
 
   const sortBy = (event) => {
     if (event.target.value === "relevance") {
@@ -63,11 +73,17 @@ const Reviews = (props) => {
     }
   }
 
+  const starSort = (value) => {
+    if (value === 5) {
+      fiveStar();
+    }
+  }
+
 
   return (
     <div className="review-module" data-testid="reviews-module">
       <div className="rating-breakdown">
-        <RatingBreakdown rating={props.rating} reviewList={props.reviewList}/>
+        <RatingBreakdown rating={props.rating} reviewList={props.reviewList} starSort={starSort}/>
       </div>
       <div>
         <h3 className="reviewList-title">
