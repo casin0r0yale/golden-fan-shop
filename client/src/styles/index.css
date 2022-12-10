@@ -581,11 +581,20 @@ h1 {
 .rating-breakdown {
   display: flex;
   flex-direction: row;
+}
 
+.reviewList-title, .review-list {
+  margin-left: 2em;
+}
+
+.review-button-group {
+  margin-left: 2em;
 }
 
 .review-list {
-  margin-left: 2em;
+  height: 27em;
+  width: 30em;
+  overflow-y: auto;
 }
 
 .average-number {
@@ -598,10 +607,26 @@ h1 {
 }
 
 .review-tile {
-  /* border: solid; */
+  display: flex;
+  flex-wrap: wrap;
   border-bottom: solid;
   border-width: .05em;
   margin-bottom: 1em;
+}
+
+/* .review-name-date {
+  order: 2;
+} */
+
+.reviewList-sort-button {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: .25em;
+  border-bottom: solid;
+  width: auto;
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 .add-review-button, .more-reviews-button {
@@ -615,6 +640,7 @@ h1 {
   width: 12em;
   font-weight: bold;
 }
+
 
 .add-review-button {
   margin-left: .5em;

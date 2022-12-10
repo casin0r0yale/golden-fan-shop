@@ -33,6 +33,12 @@ const App = () => {
     getData();
   }, [focusProductId])
 
+  const updateReviewList = (newReviewList) => {
+    setReviewList(newReviewList);
+    console.log('this is the newReviewList: ', newReviewList);
+    console.log('this is the reviewList state: ', reviewList);
+  }
+
   var currentProductCardData = {};
 
   var getData = () => {
@@ -202,7 +208,7 @@ const App = () => {
           { scrollToggleYourOutfitProgress && scrollYourOutfitProgress<100 && <RightScrollButtonCarousel moveRight={moveRight2}l/>}
         </div>
         <Questions data={productQnAData}/>
-        <Reviews rating={rating} reviewList={reviewList} product={productInfo}/>
+        <Reviews rating={rating} reviewList={reviewList} product={productInfo} updateReviewList={updateReviewList}/>
       </div>
   );
 };
