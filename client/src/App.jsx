@@ -22,11 +22,11 @@ const App = () => {
   const [reviewList, setReviewList] = useState([]);
   const [rating, setRating] = useState(0);
 
-  const {moveRight, moveLeft, handleSideScroll, relatedCarourselRef, activeSlide,
+  const { moveRight, moveLeft, handleSideScroll, relatedCarourselRef, activeSlide,
     activeSlideRef, prevSlideRef, nextSlideRef, wrapperRef, scrollRelatedProgress, scrollToggleRelatedProgress,
     scrollYourOutfitProgress, scrollToggleYourOutfitProgress, relatedProductsData, setRelatedProductsData,
     yourOutfitList, setYourOutfitList, moveRight2, moveLeft2, handleSideScroll2, yourOutfitCarourselRef, activeSlide2,
-    activeSlideRef2, prevSlideRef2, nextSlideRef2, wrapperRef2, onceNext2, onceNext} = useCarouselSliderLogic();
+    activeSlideRef2, prevSlideRef2, nextSlideRef2, wrapperRef2, onceNext2, onceNext } = useCarouselSliderLogic();
 
   // Init GET Request
   useEffect(() => {
@@ -45,25 +45,25 @@ const App = () => {
 
     // INIT GET 1: GET Genral Data of target product
     axios.get('/getProductGeneralInfo', { params: { id: focusProductId } })
-    .then(function (response) {
-      setProductInfo(response.data);
-      var generalProductInfo = response.data;
-      var featuresArrayToChangeKey = generalProductInfo.features;
-      var primaryName = generalProductInfo.name;
+      .then(function (response) {
+        setProductInfo(response.data);
+        var generalProductInfo = response.data;
+        var featuresArrayToChangeKey = generalProductInfo.features;
+        var primaryName = generalProductInfo.name;
 
-      currentProductCardData['current_name'] = generalProductInfo.name;
-      currentProductCardData.current_category = generalProductInfo.category;
-      currentProductCardData.current_price = generalProductInfo.default_price;
-      currentProductCardData.current_id = generalProductInfo.id;
-      currentProductCardData.current_features = generalProductInfo.features;
+        currentProductCardData['current_name'] = generalProductInfo.name;
+        currentProductCardData.current_category = generalProductInfo.category;
+        currentProductCardData.current_price = generalProductInfo.default_price;
+        currentProductCardData.current_id = generalProductInfo.id;
+        currentProductCardData.current_features = generalProductInfo.features;
 
-      setCurrentProductOutfitCard(currentProductOutfitCard => ({
-        ...currentProductCardData
-      }));
+        setCurrentProductOutfitCard(currentProductOutfitCard => ({
+          ...currentProductCardData
+        }));
 
-      (async () => {
-        const myAsyncChangeKey = async (obj) => {
-          // Richard Edge Case TODO: in case no features or value keys
+        (async () => {
+          const myAsyncChangeKey = async (obj) => {
+            // Richard Edge Case TODO: in case no features or value keys
             obj['featurePrimary'] = obj['feature'];
             delete obj['feature'];
             obj['valuePrimary'] = obj['value'];
@@ -71,49 +71,49 @@ const App = () => {
             obj['namePrimary'] = primaryName;
             return obj;
           };
-        const tasks = featuresArrayToChangeKey.map(objOfFeatures => myAsyncChangeKey(objOfFeatures))
-        try {
-          const primaryFeatures = await Promise.all(tasks);
-          setFeaturesPrimaryProduct(JSON.stringify(primaryFeatures));
-        } catch (err) {
-          console.error(err)
-        }
-      })()
+          const tasks = featuresArrayToChangeKey.map(objOfFeatures => myAsyncChangeKey(objOfFeatures))
+          try {
+            const primaryFeatures = await Promise.all(tasks);
+            setFeaturesPrimaryProduct(JSON.stringify(primaryFeatures));
+          } catch (err) {
+            console.error(err)
+          }
+        })()
 
-    })
-    .catch(function (error) {
-      console.log('error GET GeneralInfo: ', error);
-    })
+      })
+      .catch(function (error) {
+        console.log('error GET GeneralInfo: ', error);
+      })
 
 
     // INIT GET 2: GET Product Styles
     axios.get('/getProductStyles', { params: { id: focusProductId } })
-    .then(function (response) {
-      setProductStyles(response.data.results);
-      // Getting Photo URL of current Product and saving it
-      var allStylesArray = response.data.results;
-      for (var i = 0 ; i < allStylesArray.length; i++) {
-        var currentStyleObj = allStylesArray[i];
-        if (currentStyleObj['default?'] === true) {
-          var photoUrl = currentStyleObj.photos[0].thumbnail_url;
-          currentProductCardData.current_thumbnail = photoUrl;
+      .then(function (response) {
+        setProductStyles(response.data.results);
+        // Getting Photo URL of current Product and saving it
+        var allStylesArray = response.data.results;
+        for (var i = 0; i < allStylesArray.length; i++) {
+          var currentStyleObj = allStylesArray[i];
+          if (currentStyleObj['default?'] === true) {
+            var photoUrl = currentStyleObj.photos[0].thumbnail_url;
+            currentProductCardData.current_thumbnail = photoUrl;
+          }
+          if (i === allStylesArray.length - 1) {
+            var photoUrl = allStylesArray[0].photos[0].thumbnail_url;
+            currentProductCardData.current_thumbnail = photoUrl;
+          }
         }
-        if (i === allStylesArray.length - 1) {
-          var photoUrl = allStylesArray[0].photos[0].thumbnail_url;
-          currentProductCardData.current_thumbnail = photoUrl;
-        }
-      }
-      setCurrentProductOutfitCard(currentProductOutfitCard => ({
-        ...currentProductCardData
-      }));
+        setCurrentProductOutfitCard(currentProductOutfitCard => ({
+          ...currentProductCardData
+        }));
 
-    })
-    .catch(function (error) {
-      console.log('error GET ProductStyles: ', error);
-    })
+      })
+      .catch(function (error) {
+        console.log('error GET ProductStyles: ', error);
+      })
 
     // INIT GET 3: GET Related Products (Richard's section to manipulate)
-    useRelatedProductLogic (focusProductId, setRelatedProductsData);
+    useRelatedProductLogic(focusProductId, setRelatedProductsData);
 
     // INIT GET 4: GET Product REVIEWS data (Tony's section to manipulate)
     axios.get('/getProductReviews', { params: { id: focusProductId } })
@@ -137,7 +137,7 @@ const App = () => {
         //setProductQnAData(response.data);
         var questionData = response.data.results;
         setProductQnAData(questionData);
-        console.log('Qna Data: ',questionData);
+        console.log('Qna Data: ', questionData);
 
       })
       .catch(function (error) {
@@ -151,22 +151,22 @@ const App = () => {
         return;
       }
     }
-    setYourOutfitList( (current) => {
+    setYourOutfitList((current) => {
       return [...current, currentProductOutfitCard]
     });
   }
 
   var onClickDeleteProductYourOutfit = (idToDelete) => {
 
-    yourOutfitList.forEach ((obj, index) => {
+    yourOutfitList.forEach((obj, index) => {
       if (obj.current_id === idToDelete) {
         setYourOutfitList([
           ...yourOutfitList.slice(0, index),
           ...yourOutfitList.slice(index + 1, yourOutfitList.length)
         ]);
-        }
-      })
-    }
+      }
+    })
+  }
 
   var onClickNavigateToNewProductPage = (id) => {
     console.log("NavigateToNewProductPage with id: ", id)
@@ -175,112 +175,112 @@ const App = () => {
 
   return (
 
-      <div>
-        <Header/>
-        <h2 data-testid='testYourOutfitCard'>Golden Fan Shop: Main App/Index Component</h2>
-        <Overview rating={rating} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit}/>
-        <div>RELATED PRODUCTS</div>
+    <div>
+      <Header />
+      <h2 data-testid='testYourOutfitCard'>Golden Fan Shop: Main App/Index Component</h2>
+      <Overview rating={rating} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} />
+      <div>RELATED PRODUCTS</div>
 
-        <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef}>
-          { scrollRelatedProgress > 3.3 ? (<LeftScrollButtonCarousel  moveLeft={moveLeft}/>) : null }
-          {relatedProductsData.map((itemObj, index) => {
+      <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef}>
+        {scrollRelatedProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft} />) : null}
+        {relatedProductsData.map((itemObj, index) => {
           return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} related_id={itemObj.related_id} related_name={itemObj.related_name}
-          related_category={itemObj.related_category} related_price={itemObj.related_price}
-          related_thumbnail={itemObj.related_thumbnail} {...itemObj.related_features} featuresPrimaryProductString={featuresPrimaryProduct}
-          key={`slide-${itemObj.related_id}`}
-          ref={index === activeSlide ? activeSlideRef : index-1===activeSlide ? nextSlideRef : index+1===activeSlide ? prevSlideRef : null}/>
-          })}
-          { scrollToggleRelatedProgress && scrollRelatedProgress<100 && <RightScrollButtonCarousel moveRight={moveRight}/>}
-        </div>
-        <br/>
-        <br/>
-        <div>YOUR OUTFIT</div>
-        <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} >
-          { scrollYourOutfitProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft2}/>) : null }
-          {yourOutfitList.map((itemObj, index) => {
-            return <YourOutfitCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} current_name={itemObj.current_name} current_id={itemObj.current_id}
+            related_category={itemObj.related_category} related_price={itemObj.related_price}
+            related_thumbnail={itemObj.related_thumbnail} {...itemObj.related_features} featuresPrimaryProductString={featuresPrimaryProduct}
+            key={`slide-${itemObj.related_id}`}
+            ref={index === activeSlide ? activeSlideRef : index - 1 === activeSlide ? nextSlideRef : index + 1 === activeSlide ? prevSlideRef : null} />
+        })}
+        {scrollToggleRelatedProgress && scrollRelatedProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight} />}
+      </div>
+      <br />
+      <br />
+      <div>YOUR OUTFIT</div>
+      <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} >
+        {scrollYourOutfitProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft2} />) : null}
+        {yourOutfitList.map((itemObj, index) => {
+          return <YourOutfitCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} current_name={itemObj.current_name} current_id={itemObj.current_id}
             current_category={itemObj.current_category} current_price={itemObj.current_price}
             current_thumbnail={itemObj.current_thumbnail} onClickDeleteProductYourOutfit={onClickDeleteProductYourOutfit}
             key={`slide-${itemObj.current_id}`}
-            ref={index === activeSlide2 ? activeSlideRef2 : index-1===activeSlide2 ? nextSlideRef2 : index+1===activeSlide2 ? prevSlideRef2 : null}/>
-          })}
-          <AddToOutfitCard onClickYourOutfit={onClickYourOutfit} ref={activeSlide2===yourOutfitList.length-1 ? nextSlideRef2 : null}/>
-          { scrollToggleYourOutfitProgress && scrollYourOutfitProgress<100 && <RightScrollButtonCarousel moveRight={moveRight2}l/>}
-        </div>
-        <Questions data={productQnAData}/>
-        <Reviews rating={rating} reviewList={reviewList} product={productInfo} updateReviewList={updateReviewList}/>
+            ref={index === activeSlide2 ? activeSlideRef2 : index - 1 === activeSlide2 ? nextSlideRef2 : index + 1 === activeSlide2 ? prevSlideRef2 : null} />
+        })}
+        <AddToOutfitCard onClickYourOutfit={onClickYourOutfit} ref={activeSlide2 === yourOutfitList.length - 1 ? nextSlideRef2 : null} />
+        {scrollToggleYourOutfitProgress && scrollYourOutfitProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight2} l />}
       </div>
+      <Questions data={productQnAData} />
+      <Reviews rating={rating} reviewList={reviewList} product={productInfo} updateReviewList={updateReviewList} />
+    </div>
   );
 };
 
-function useRelatedProductLogic (focusID, setRelated) {
+function useRelatedProductLogic(focusID, setRelated) {
   // INIT GET 3: GET Related Products (Richard's section to manipulate)
   axios.get('/getProductRelated', { params: { id: focusID } })
-  .then(function (response) {
+    .then(function (response) {
 
-    console.log('CHAIN 3: Richard Module - SUCCESS GET RELATED PRODUCTS: ', response.data);
-    var relatedProductData = response.data;
-    var relatedAllData = [];
+      console.log('CHAIN 3: Richard Module - SUCCESS GET RELATED PRODUCTS: ', response.data);
+      var relatedProductData = response.data;
+      var relatedAllData = [];
 
-    (async () => {
-      const myAsyncGetRelatedData = async (relatedId) => {
-        var relatedObj = {};
-        relatedObj.related_id = relatedId;
+      (async () => {
+        const myAsyncGetRelatedData = async (relatedId) => {
+          var relatedObj = {};
+          relatedObj.related_id = relatedId;
 
-        // Related Chain 3.1
-        return axios.get('/getProductGeneralInfo', { params: { id: relatedId } })
-        .then(function (response) {
-
-          relatedObj.related_name = response.data.name;
-          relatedObj.related_category = response.data.category;
-          relatedObj.related_price = response.data.default_price;
-          relatedObj.related_features = response.data.features;
-
-          // Related Chain 3.2
-          return axios.get('/getProductStyles', { params: { id: relatedId } })
+          // Related Chain 3.1
+          return axios.get('/getProductGeneralInfo', { params: { id: relatedId } })
             .then(function (response) {
-              var allStylesArray = response.data.results;
-              for (var i = 0 ; i < allStylesArray.length; i++) {
-                var currentStyleObj = allStylesArray[i];
-                if (currentStyleObj['default?'] === true) {
-                  var photoUrl = currentStyleObj.photos[0].thumbnail_url;
-                  relatedObj.related_thumbnail = photoUrl;
-                  return relatedObj;
-                }
-                if (i === allStylesArray.length - 1) {
-                  var photoUrl = allStylesArray[0].photos[0].thumbnail_url;
-                  relatedObj.related_thumbnail = photoUrl;
-                  return relatedObj;
-                }
-              }
 
-              // Related Chain 3.3 TODO
-              // Got all data besides for star data TODO
+              relatedObj.related_name = response.data.name;
+              relatedObj.related_category = response.data.category;
+              relatedObj.related_price = response.data.default_price;
+              relatedObj.related_features = response.data.features;
 
+              // Related Chain 3.2
+              return axios.get('/getProductStyles', { params: { id: relatedId } })
+                .then(function (response) {
+                  var allStylesArray = response.data.results;
+                  for (var i = 0; i < allStylesArray.length; i++) {
+                    var currentStyleObj = allStylesArray[i];
+                    if (currentStyleObj['default?'] === true) {
+                      var photoUrl = currentStyleObj.photos[0].thumbnail_url;
+                      relatedObj.related_thumbnail = photoUrl;
+                      return relatedObj;
+                    }
+                    if (i === allStylesArray.length - 1) {
+                      var photoUrl = allStylesArray[0].photos[0].thumbnail_url;
+                      relatedObj.related_thumbnail = photoUrl;
+                      return relatedObj;
+                    }
+                  }
+
+                  // Related Chain 3.3 TODO
+                  // Got all data besides for star data TODO
+
+                })
+                .catch(function (error) {
+                  console.log('error GET inner RelatedProducts: ', error);
+                })
             })
             .catch(function (error) {
               console.log('error GET inner RelatedProducts: ', error);
             })
-        })
-        .catch(function (error) {
-          console.log('error GET inner RelatedProducts: ', error);
-        })
-      }
-      const tasks = relatedProductData.map(id => myAsyncGetRelatedData(id))
-      try {
-        const results = await Promise.all(tasks);
-        setRelated(results);
-      } catch (err) {
-        console.error(err)
-      }
-    })()
-  })
-  .catch(function (error) {
-    console.log('error GET RelatedProducts: ', error);
-  })
+        }
+        const tasks = relatedProductData.map(id => myAsyncGetRelatedData(id))
+        try {
+          const results = await Promise.all(tasks);
+          setRelated(results);
+        } catch (err) {
+          console.error(err)
+        }
+      })()
+    })
+    .catch(function (error) {
+      console.log('error GET RelatedProducts: ', error);
+    })
 };
 
-function useCarouselSliderLogic () {
+function useCarouselSliderLogic() {
   // Main data
   const [relatedProductsData, setRelatedProductsData] = useState([]);
   const [yourOutfitList, setYourOutfitList] = useState([]);
@@ -513,11 +513,13 @@ function useCarouselSliderLogic () {
     setActiveSlide2(Math.round(scrollLeft / 274));
   };
 
-  return {moveRight, moveLeft, handleSideScroll, relatedCarourselRef, activeSlide,
+  return {
+    moveRight, moveLeft, handleSideScroll, relatedCarourselRef, activeSlide,
     activeSlideRef, prevSlideRef, nextSlideRef, wrapperRef, scrollRelatedProgress, scrollToggleRelatedProgress,
     scrollYourOutfitProgress, scrollToggleYourOutfitProgress, relatedProductsData, setRelatedProductsData,
     yourOutfitList, setYourOutfitList, moveRight2, moveLeft2, handleSideScroll2, yourOutfitCarourselRef, activeSlide2,
-    activeSlideRef2, prevSlideRef2, nextSlideRef2, wrapperRef2, onceNext2, onceNext}
+    activeSlideRef2, prevSlideRef2, nextSlideRef2, wrapperRef2, onceNext2, onceNext
+  }
 };
 
 const getAverageRating = (reviewList) => {
@@ -530,7 +532,7 @@ const getAverageRating = (reviewList) => {
   return rounded;
 }
 
-export {getAverageRating};
+export { getAverageRating };
 export default App;
 
 // ReactDOM.render(<App/>, document.getElementById('root'))

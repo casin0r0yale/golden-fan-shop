@@ -20,9 +20,9 @@ const Overview = (props) => {
     <div>
       {props.styles?
       <div className="overviewContainer">
-      <div className="productInfo"><ProductInfo rating={props.rating} info={props.info}/></div>
+      <div className="productInfo"><ProductInfo rating={props.rating} info={props.info} onClickYourOutfit={props.onClickYourOutfit}/></div>
       <div className="styleSelector"><StyleSelector onClick = {setIndex} styleIndex={styleIndex} styles={props.styles}/></div>
-      <div className="addToCart"><AddToCart styleIndex={styleIndex} styles={props.styles} onClickYourOutfit={props.onClickYourOutfit}/></div>
+      <div className="addToCart"><AddToCart styleIndex={styleIndex} styles={props.styles} /></div>
       <div className="imageGallery"><ImageGallery  styleIndex={styleIndex} styles={props.styles}/></div>
       </div>
       : ''
