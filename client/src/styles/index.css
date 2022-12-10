@@ -759,6 +759,12 @@ h1 {
   margin-right: 1%;
 }
 
+/* Adding Answer Button */
+
+.add-answer-btn:hover {
+  color:rgb(131, 38, 171)
+}
+
 /* .size-radio-buttons {
   display: inline-flex;
   flex-direction: column-reverse;
