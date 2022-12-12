@@ -4,11 +4,12 @@ const PercentageBar = (props) => {
   const { bgcolor, completed } = props;
 
   const containerStyles = {
-    height: 20,
-    width: '75%',
+    height: 5,
+    width: '45%',
+    // height: 10,
+    // width: '75%',
     backgroundColor: "#e0e0de",
-    // borderRadius: 50,
-    // margin: 50
+    borderRadius: 5
   }
 
   const fillerStyles = {
@@ -16,7 +17,6 @@ const PercentageBar = (props) => {
     width: `${completed}%`,
     backgroundColor: bgcolor,
     borderRadius: 'inherit',
-    // textAlign: 'right'
   }
 
   return (

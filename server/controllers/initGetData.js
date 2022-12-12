@@ -78,6 +78,24 @@ exports.getProductReviewsControl = (req, res) => {
   })
 };
 
+exports.getProductReviewMeta = (req, res) => {
+  var incomingParamProductId = req.query.id;
+  const options = {
+    method: 'GET',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${incomingParamProductId}`,
+    // params: { product_id: incomingParamProductId },
+    headers: { Authorization: process.env.AUTH_SECRET }
+  };
+  axios(options)
+  .then((result) => {
+    res.status(200).send(result.data);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).send(err);
+  });
+};
+
 
 exports.getProductQnAControl = (req, res) => {
 

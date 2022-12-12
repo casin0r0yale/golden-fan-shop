@@ -20,6 +20,7 @@ const App = () => {
   const [productQnAData, setProductQnAData] = useState([]);
   const [currentProductOutfitCard, setCurrentProductOutfitCard] = useState({});
   const [reviewList, setReviewList] = useState([]);
+  const [reviewMeta, setReviewMeta] = useState({});
   const [rating, setRating] = useState(0);
 
   const { moveRight, moveLeft, handleSideScroll, relatedCarourselRef, activeSlide,
@@ -127,7 +128,17 @@ const App = () => {
       })
       .catch(function (error) {
         console.log('error GET Reviews Data: ', error);
+      });
+
+    axios.get('/getProductReviewMeta', { params: { id: focusProductId } })
+      .then((response) => {
+        console.log('Success review meta response: ', response.data);
+        var meta = response.data;
+        setReviewMeta(meta);
       })
+      .catch((error) => {
+        console.log('error GET Review Meta: ', error);
+      });
 
     // INIT GET 5: GET Product Q&A data (Ste'fan's section to manipulate)
     axios.get('/getProductQnA', { params: { id: focusProductId } })
@@ -208,7 +219,7 @@ const App = () => {
         {scrollToggleYourOutfitProgress && scrollYourOutfitProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight2} l />}
       </div>
       <Questions data={productQnAData} />
-      <Reviews rating={rating} reviewList={reviewList} product={productInfo} updateReviewList={updateReviewList} />
+      <Reviews rating={rating} reviewList={reviewList} product={productInfo} meta={reviewMeta} updateReviewList={updateReviewList} />
     </div>
   );
 };

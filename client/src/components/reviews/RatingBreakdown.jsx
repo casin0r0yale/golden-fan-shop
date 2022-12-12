@@ -45,12 +45,14 @@ const RatingBreakdown = (props) => {
       </div>
       <div>
         <h3>Rating Breakdown</h3>
-        <p>{(numRecommend / numReviews) * 100}% of reviews recommend this product</p>
-        {currPercentageArr.slice(0).reverse().map((rating, idx) => {
-          let currStar = currPercentageArr.length +  1 - 1 - idx;
-          return <p onClick={() => console.log(props.starSort(currStar))}>{currStar} stars
-          <PercentageBar bgcolor={'#59981A'} completed={rating[1]}/>{rating[0]} reviews</p>
-        })}
+        <p>{Math.floor((numRecommend / numReviews) * 100)}% of reviews recommend this product</p>
+          <div className="star-bars">
+            {currPercentageArr.slice(0).reverse().map((rating, idx) => {
+            let currStar = currPercentageArr.length +  1 - 1 - idx;
+            return <div><p onClick={() => props.starSort(currStar)} className="bar">{currStar} stars
+            <PercentageBar bgcolor={'#59981A'} completed={rating[1]}/>{rating[0]} reviews</p></div>
+            })}
+          </div>
       </div>
       <CharacteristicsBreakdown reviewList={props.reviewList}/>
     </div>
