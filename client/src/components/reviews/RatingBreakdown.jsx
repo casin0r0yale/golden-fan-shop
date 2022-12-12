@@ -7,7 +7,9 @@ const RatingBreakdown = (props) => {
   var reviewList = props.reviewList;
   var numReviews = reviewList.length;
   var numRecommend = 0;
-  console.log('break down props: ', reviewList);
+  var meta = props.meta;
+  var metaArr = [];
+  console.log('break down meta: ', meta);
 
   const ratingPercentage = {
     1: [0],
@@ -35,6 +37,15 @@ const RatingBreakdown = (props) => {
     return ratingPercentage;
   }
 
+  const getAllCharacteristics = (obj) => {
+    for (var characteristic in obj) {
+      metaArr.push([characteristic, Number(obj[characteristic]["value"])]);
+    }
+    return metaArr;
+  }
+  getAllCharacteristics(meta.characteristics);
+  console.log('these are my characteristics arr: ', metaArr);
+  console.log('meta arr idx:', metaArr[0]);
   var currPercentageArr = Object.values(getAllPercentage(reviewList));
   return (
     <div>
@@ -48,13 +59,20 @@ const RatingBreakdown = (props) => {
         <p>{Math.floor((numRecommend / numReviews) * 100)}% of reviews recommend this product</p>
           <div className="star-bars">
             {currPercentageArr.slice(0).reverse().map((rating, idx) => {
-            let currStar = currPercentageArr.length +  1 - 1 - idx;
+            let currStar = currPercentageArr.length - idx;
             return <div><p onClick={() => props.starSort(currStar)} className="bar">{currStar} stars
             <PercentageBar bgcolor={'#59981A'} completed={rating[1]}/>{rating[0]} reviews</p></div>
             })}
           </div>
       </div>
-      <CharacteristicsBreakdown reviewList={props.reviewList}/>
+      <div>
+        {/* {metaArr.forEach((array) => {
+          array.map((characteristic) => {
+            return <div><CharacteristicsBreakdown bgcolor={'#59981A'} completed={characteristic[1]}/></div>
+          })
+        })} */}
+        <CharacteristicsBreakdown bgcolor={'#59981A'} completed={2.28 * 10}/>
+      </div>
     </div>
   )
 }

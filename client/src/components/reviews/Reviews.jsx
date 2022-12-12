@@ -8,6 +8,8 @@ const Reviews = (props) => {
   var incomingList = props.reviewList;
   var numReviews = incomingList.length;
   var productInfo = props.product;
+  var meta = props.meta;
+
   const [formView, setFormView] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [starFilterToggle, setStarFilterToggle] = useState(false);
@@ -171,7 +173,7 @@ const Reviews = (props) => {
   return (
     <div className="review-module" data-testid="reviews-module">
       <div className="rating-breakdown">
-        <RatingBreakdown rating={props.rating} reviewList={props.reviewList} starSort={starSort}/>
+        <RatingBreakdown rating={props.rating} meta={meta} reviewList={props.reviewList} starSort={starSort}/>
       </div>
       <div>
         <h3 className="reviewList-title">

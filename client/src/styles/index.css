@@ -723,6 +723,11 @@ h1 {
   margin-bottom: 0.25em;
 }
 
+.arrow {
+  position: relative;
+  bottom: .25em;
+}
+
 #star-rating {
   background-color: transparent;
   border: none;

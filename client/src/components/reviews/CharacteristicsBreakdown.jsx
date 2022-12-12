@@ -1,9 +1,39 @@
 import React from 'react';
+import { IoCaretDownSharp } from 'react-icons/io5'
 
 const CharacteristicsBreakdown = (props) => {
-  // console.log("props in characteristics: ", props.reviewList);
+  const { bgcolor, completed } = props;
+
+  const containerStyles = {
+    height: 5,
+    width: '45%',
+    // height: 10,
+    // width: '75%',
+    backgroundColor: "#e0e0de",
+    borderRadius: 5
+  }
+
+  const fillerStyles = {
+    height: 1,
+    width: `${completed}%`,
+    backgroundColor: "#e0e0de",
+    // borderRadius: 'inherit',
+    textAlign: 'right'
+  }
+
+  const labelStyles = {
+    padding: 5,
+    // color: 'white',
+    // fontWeight: 'bold'
+  }
+
   return (
-    <div>Characteristics Breakdown Place Holder</div>
+    <div style={containerStyles}>
+      <div style={fillerStyles}>
+        <span style={labelStyles} className="arrow"><IoCaretDownSharp /></span>
+        {/* <span style={labelStyles}>{`${completed}%`}</span> */}
+      </div>
+    </div>
   )
 }
 
