@@ -15,7 +15,7 @@ const CharacteristicsBreakdown = (props) => {
 
   const fillerStyles = {
     height: 1,
-    width: `${completed}%`,
+    width: `${completed * 2}%`,
     backgroundColor: "#e0e0de",
     // borderRadius: 'inherit',
     textAlign: 'right'

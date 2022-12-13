@@ -44,9 +44,10 @@ const RatingBreakdown = (props) => {
     return metaArr;
   }
   getAllCharacteristics(meta.characteristics);
-  console.log('these are my characteristics arr: ', metaArr);
+  console.log('these are my characteristics arr: ',  metaArr);
   console.log('meta arr idx:', metaArr[0]);
   var currPercentageArr = Object.values(getAllPercentage(reviewList));
+
   return (
     <div>
       <p>RATINGS & REVIEWS</p>
@@ -65,14 +66,15 @@ const RatingBreakdown = (props) => {
             })}
           </div>
       </div>
-      <div>
-        {/* {metaArr.forEach((array) => {
-          array.map((characteristic) => {
-            return <div><CharacteristicsBreakdown bgcolor={'#59981A'} completed={characteristic[1]}/></div>
-          })
-        })} */}
-        <CharacteristicsBreakdown bgcolor={'#59981A'} completed={2.28 * 10}/>
-      </div>
+          <div className="characteristics-bars">
+            {metaArr.map((review) => (
+              // return
+              <div>
+                <p>{review[0]}</p>
+                <CharacteristicsBreakdown completed={review[1] * 10}/>
+              </div>
+            ))}
+          </div>
     </div>
   )
 }
