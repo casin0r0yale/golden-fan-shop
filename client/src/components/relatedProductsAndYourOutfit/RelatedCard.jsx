@@ -51,7 +51,7 @@ const RelatedCard = React.forwardRef((props, ref) => {
   }
 
   return (
-    <div className='productCard' onClick={onClickNavigate} ref={ref}>
+    <div className='productCard' onClick={onClickNavigate} ref={ref} data-testid='testRelatedCard'>
       {isOpen && <Popup
       content={<>
         <ComparisonTable related_name={props.related_name} featuresPrimaryProductString={props.featuresPrimaryProductString} featuresRelatedProductString={JSON.stringify(combineRelatedFeatures)}/>
