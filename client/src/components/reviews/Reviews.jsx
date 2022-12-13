@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
@@ -36,6 +37,14 @@ const Reviews = (props) => {
 
   const handleFormSubmit = (object) => {
     console.log('this is the form object:', object);
+    var revSubmission = object;
+    axios.post('/submitReview', revSubmission)
+    .then((success) => {
+      console.log('Success form post!')
+    })
+    .catch((err) => {
+      console.error('Error submitting post: ', err);
+    });
   }
 
   const relevance = async () => {
