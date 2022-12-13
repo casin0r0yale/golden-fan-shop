@@ -29,7 +29,7 @@ const AddToCart = (props) => {
 
 
   useEffect(() => {
-    console.log('logg', props.styles[props.styleIndex])
+    // console.log('logg', props.styles[props.styleIndex])
     // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
     //   console.log(props.styles[props.styleIndex]?.skus[size].quantity)
     //   props.styles[props.styleIndex]?.skus[size].quantity > 0
@@ -39,7 +39,7 @@ const AddToCart = (props) => {
     if (!props.styles[props.styleIndex]?.skus[null])
     // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
     //   props.styles[props.styleIndex]?.skus[size].quantity > 0
-    // })) 
+    // }))
     {
       setSizeSelected({});
     }
@@ -50,7 +50,7 @@ const AddToCart = (props) => {
   }, [props.styles]); //
 
   const addToCart = clicked => {
-    console.log('clicked');    
+    console.log('clicked');
     props.onClickYourOutfit();
     // setFavorited(!favorited);
     alert(`${props.styles[props.styleIndex].name} has been added to your cart!`);
