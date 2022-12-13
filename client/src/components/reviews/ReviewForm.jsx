@@ -3,8 +3,15 @@ import StarRating from './StarRating.jsx';
 import ImageUpload from './ImageUpload.jsx';
 
 const ReviewForm = (props) => {
-
+  const [rating, setRating] = useState(null);
   const [charsLeft, setMinCharsLeft] = useState(50);
+  const [sizeRating, setSizeRating] = useState('');
+  const [widthText, setWidthText] = useState('');
+  const [comfortText, setComfortText] = useState('');
+  const [qualityText, setQualityText] = useState('');
+  const [lengthText, setLengthText] = useState('');
+  const [fitText, SetFitText] = useState('');
+  const [images, setImages] = useState([]);
 
   const handleCharCount = (event) => {
     const charCount = event.target.value.length;
@@ -12,16 +19,43 @@ const ReviewForm = (props) => {
     setMinCharsLeft(curMinCharsLeft);
   }
 
-  const currRating = (rating) => {
-    console.log('this is the current rating: ', rating);
-    //pass this rating into the form upon submission
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const nickname = event.target.nickname.value;
+    const email = event.target.email.value;
+    const summary = event.target.summary.value;
+    const body = event.target.body.value;
+
+    var formObj = {
+      product_id: props.id,
+      rating: rating,
+      summary: event.target.summary.value,
+      body: event.target.body.value,
+      recommend: event.target.recommend.value,
+      name: event.target.nickname.value,
+      email: event.target.email.value,
+      images: images,
+      characteristics: {
+        "14": Number(event.target.size.value),
+        "15": Number(event.target.width.value),
+        "16": Number(event.target.comfort.value),
+        "17": Number(event.target.quality.value),
+        "18": Number(event.target.length.value),
+        "19": Number(event.target.fit.value)
+      }
+    }
+    props.handleFormSubmit(formObj);
   }
 
-  const [sizeRating, setSizeRating] = useState('');
+  const currRating = (rating) => {
+    //pass this rating into the form upon submission
+    setRating(rating);
+  }
+
   const size = {
     one: null,
     two: "1/2 a size too small",
-    three: "Pefect",
+    three: "Perfect",
     four: "1/2 a size too big",
     five: null
   }
@@ -30,7 +64,6 @@ const ReviewForm = (props) => {
     setSizeRating(text);
   }
 
-  const [widthText, setWidthText] = useState('');
   const width = {
     one: null,
     two: "Slightly narrow",
@@ -43,7 +76,6 @@ const ReviewForm = (props) => {
     setWidthText(text);
   }
 
-  const [comfortText, setComfortText] = useState('');
   const comfort = {
     one: null,
     two: "Slightly uncomfortable",
@@ -56,7 +88,6 @@ const ReviewForm = (props) => {
     setComfortText(text);
   }
 
-  const [qualityText, setQualityText] = useState('');
   const quality = {
     one: null,
     two: "Below Average",
@@ -69,7 +100,6 @@ const ReviewForm = (props) => {
     setQualityText(text);
   }
 
-  const [lengthText, setLengthText] = useState('');
   const length = {
     one: null,
     two: "Runs slightly short",
@@ -82,7 +112,6 @@ const ReviewForm = (props) => {
     setLengthText(text);
   }
 
-  const [fitText, SetFitText] = useState('');
   const fit = {
     one: null,
     two: "Runs slightly tight",
@@ -99,24 +128,25 @@ const ReviewForm = (props) => {
   const imageUploadHandler = (images) => {
     console.log('these are the uploaded images: ', images)
     //find a way to pass images into your inputs upon form submission
+    setImages(images);
   }
 
   return (
     <div data-testid="review-form">
       <h2>Write Your Review</h2>
       <h3>About the {props.productName}</h3>
-      <form className="review-form">
+      <form className="review-form" onSubmit={handleSubmit}>
         <label>
           Overall Rating*
           <StarRating currRating={currRating}/>
-          {/**have an invisible input here that takes in rating and SHOULD be required */}
+          <input type="text" name="rating" value={rating} required hidden/>
         </label>
         <br></br>
         <label>
           Do you recommend this product?*
-          <input type="radio" id="yes" name="recommend" value="yes" required/>
+          <input type="radio" id="yes" name="recommend" value={true} required/>
           <label>yes</label>
-          <input type="radio" id="no" name="recommend" value="no" required/>
+          <input type="radio" id="no" name="recommend" value={false} required/>
           <label>no</label>
         </label>
           <br></br>

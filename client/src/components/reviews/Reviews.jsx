@@ -34,6 +34,10 @@ const Reviews = (props) => {
 
   const forceUpdate = useForceUpdate();
 
+  const handleFormSubmit = (object) => {
+    console.log('this is the form object:', object);
+  }
+
   const relevance = async () => {
     var sorted = await incomingList.sort((p1, p2) => {
       return ((new Date(p2.date) - new Date(p1.date)) && (p2.helpfulness - p1.helpfulness));
@@ -188,7 +192,7 @@ const Reviews = (props) => {
       </div>
       {isOpen && <Popup
         content={<>
-          <ReviewForm productName={productInfo.name}/>
+          <ReviewForm handleFormSubmit={handleFormSubmit} id={productInfo.id} productName={productInfo.name}/>
         </>}
         handleClose={togglePopup}
       />}
