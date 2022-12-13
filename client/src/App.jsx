@@ -222,7 +222,7 @@ const App = () => {
             {scrollToggleYourOutfitProgress && scrollYourOutfitProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight2} l />}
           </div>
         <Questions data={productQnAData} />
-      <Reviews rating={rating} reviewList={reviewList} product={productInfo} updateReviewList={updateReviewList} />
+      <Reviews rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
       </div>
     </div>
   );
