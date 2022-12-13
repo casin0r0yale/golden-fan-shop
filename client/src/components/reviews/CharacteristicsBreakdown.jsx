@@ -17,7 +17,7 @@ const CharacteristicsBreakdown = (props) => {
     height: 1,
     width: `${completed * 2}%`,
     backgroundColor: "#e0e0de",
-    // borderRadius: 'inherit',
+    transition: 'width 1s ease-in-out',
     textAlign: 'right'
   }
 

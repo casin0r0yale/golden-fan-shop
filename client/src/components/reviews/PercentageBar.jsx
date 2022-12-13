@@ -17,6 +17,7 @@ const PercentageBar = (props) => {
     width: `${completed}%`,
     backgroundColor: bgcolor,
     borderRadius: 'inherit',
+    transition: 'width 1s ease-in-out',
   }
 
   return (
