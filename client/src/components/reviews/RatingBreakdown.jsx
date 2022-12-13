@@ -11,6 +11,15 @@ const RatingBreakdown = (props) => {
   var metaArr = [];
   console.log('break down meta: ', meta);
 
+  const metaLowHi = {
+    Size: ['Too small', 'Too wide'],
+    Width: ['Too narrow', 'Too wide'],
+    Comfort: ['Uncomfortable', 'Perfect'],
+    Quality: ['Poor', 'Perfect'],
+    Length: ['Runs short', 'Runs long'],
+    Fit: ['Runs tight', 'Runs long']
+  }
+
   const ratingPercentage = {
     1: [0],
     2: [0],
@@ -44,8 +53,6 @@ const RatingBreakdown = (props) => {
     return metaArr;
   }
   getAllCharacteristics(meta.characteristics);
-  console.log('these are my characteristics arr: ',  metaArr);
-  console.log('meta arr idx:', metaArr[0]);
   var currPercentageArr = Object.values(getAllPercentage(reviewList));
 
   return (
@@ -66,12 +73,18 @@ const RatingBreakdown = (props) => {
             })}
           </div>
       </div>
-          <div className="characteristics-bars">
+          <div className="characteristic-bars">
             {metaArr.map((review) => (
               // return
               <div>
-                <p>{review[0]}</p>
-                <CharacteristicsBreakdown completed={review[1] * 10}/>
+                <p className="char-title">{review[0]}</p>
+                <div className="char-bar">
+                  <CharacteristicsBreakdown completed={review[1] * 10}/>
+                  <div className="hiLo">
+                    <p>{metaLowHi[review[0]][0]}</p>
+                    <p>{metaLowHi[review[0]][1]}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>

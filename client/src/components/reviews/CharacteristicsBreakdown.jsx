@@ -6,7 +6,7 @@ const CharacteristicsBreakdown = (props) => {
 
   const containerStyles = {
     height: 5,
-    width: '45%',
+    width: '100%',
     // height: 10,
     // width: '75%',
     backgroundColor: "#e0e0de",

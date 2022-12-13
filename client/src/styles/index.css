@@ -644,7 +644,8 @@ h1 {
 }
 
 .review-list {
-  height: 27em;
+  margin-top: 3em;
+  height: 31em;
   width: 30em;
   overflow-y: auto;
 }
@@ -713,6 +714,40 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.star-bars p {
+  font-size: .75em;
+}
+
+.characteristic-bars {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.char-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+.char-title {
+  margin-bottom: .25em;
+  font-size: .75em;
+  font-weight: bold;
+}
+
+.hiLo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hiLo p {
+  margin-top: 0;
+  font-size: .75em;
 }
 
 .bar {
