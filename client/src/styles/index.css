@@ -762,20 +762,21 @@ h1 {
 }
 
 .number-of-stars {
-  margin-bottom: 1.25em;
+  margin-bottom: 1em;
 }
 
 .review-tile {
-  display: flex;
   flex-wrap: wrap;
   border-bottom: solid;
   border-width: .05em;
   margin-bottom: 1em;
 }
 
-/* .review-name-date {
-  order: 2;
-} */
+.review-name-date {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
 
 .reviewList-sort-button {
   border-top: none;

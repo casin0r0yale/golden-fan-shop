@@ -26,8 +26,10 @@ const ReviewTile = (props) => {
 
   return(
     <div>
-      <ProductRating rating={props.review.rating} />
-      <p className="review-name-date"><AiFillCheckCircle />&nbsp;{props.review.reviewer_name}, {date}</p>
+      <div className="review-name-date">
+        <ProductRating rating={props.review.rating} />
+        <p><AiFillCheckCircle />&nbsp;{props.review.reviewer_name}, {date}</p>
+      </div>
       <h5>{props.review.summary}</h5>
       <p>{props.review.body}</p>
       <div className="helpful-report">
