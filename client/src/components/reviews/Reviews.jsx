@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
@@ -33,6 +34,18 @@ const Reviews = (props) => {
   }
 
   const forceUpdate = useForceUpdate();
+
+  const handleFormSubmit = (object) => {
+    console.log('this is the form object:', object);
+    var revSubmission = object;
+    axios.post('/submitReview', revSubmission)
+    .then((success) => {
+      console.log('Success form post!')
+    })
+    .catch((err) => {
+      console.error('Error submitting post: ', err);
+    });
+  }
 
   const relevance = async () => {
     var sorted = await incomingList.sort((p1, p2) => {
@@ -188,7 +201,7 @@ const Reviews = (props) => {
       </div>
       {isOpen && <Popup
         content={<>
-          <ReviewForm productName={productInfo.name}/>
+          <ReviewForm handleFormSubmit={handleFormSubmit} id={productInfo.id} productName={productInfo.name}/>
         </>}
         handleClose={togglePopup}
       />}

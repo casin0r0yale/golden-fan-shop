@@ -876,7 +876,7 @@ h1 {
   display: inline-block;
   margin-bottom: 1.5em;
 }
-
+/* Review Form Styling */
 .rating-text {
   margin-left: .5em;
 }
@@ -887,6 +887,14 @@ h1 {
 
 .off {
   color: #ccc;
+}
+
+.review-image-thumbnails {
+  width: 3em;
+  margin-top: .5em;
+  margin-bottom: 1em;
+  margin-left: .25em;
+  margin-right: .25em;
 }
 
 
@@ -925,13 +933,7 @@ h1 {
   display: inline-flex;
   flex-direction: column-reverse;
   align-items: center;
-.review-image-thumbnails {
-  width: 3em;
-  margin-top: .5em;
-  margin-bottom: 1em;
-  margin-left: .25em;
-  margin-right: .25em;
-}
+
 
 */
 

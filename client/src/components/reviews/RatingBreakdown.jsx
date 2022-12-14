@@ -9,7 +9,7 @@ const RatingBreakdown = (props) => {
   var numRecommend = 0;
   var meta = props.meta;
   var metaArr = [];
-  console.log('break down meta: ', meta);
+  // console.log('break down meta: ', meta);
 
   const metaLowHi = {
     Size: ['Too small', 'Too wide'],
