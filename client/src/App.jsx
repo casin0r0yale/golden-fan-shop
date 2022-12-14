@@ -32,6 +32,47 @@ const App = () => {
 
   // Init GET Request
   useEffect(() => {
+    // axios.get(`/ip/${focusProductId}`)
+    //   .then(function (response) {
+    //     setProductInfo(response.data);
+    //     var generalProductInfo = response.data;
+    //     var featuresArrayToChangeKey = generalProductInfo.features;
+    //     var primaryName = generalProductInfo.name;
+
+    //     currentProductCardData['current_name'] = generalProductInfo.name;
+    //     currentProductCardData.current_category = generalProductInfo.category;
+    //     currentProductCardData.current_price = generalProductInfo.default_price;
+    //     currentProductCardData.current_id = generalProductInfo.id;
+    //     currentProductCardData.current_features = generalProductInfo.features;
+
+    //     setCurrentProductOutfitCard(currentProductOutfitCard => ({
+    //       ...currentProductCardData
+    //     }));
+
+    //     (async () => {
+    //       const myAsyncChangeKey = async (obj) => {
+    //         // Richard Edge Case TODO: in case no features or value keys
+    //         obj['featurePrimary'] = obj['feature'];
+    //         delete obj['feature'];
+    //         obj['valuePrimary'] = obj['value'];
+    //         delete obj['value'];
+    //         obj['namePrimary'] = primaryName;
+    //         return obj;
+    //       };
+    //       const tasks = featuresArrayToChangeKey.map(objOfFeatures => myAsyncChangeKey(objOfFeatures))
+    //       try {
+    //         const primaryFeatures = await Promise.all(tasks);
+    //         setFeaturesPrimaryProduct(JSON.stringify(primaryFeatures));
+    //       } catch (err) {
+    //         console.error(err)
+    //       }
+    //     })()
+
+    //   })
+    //   .catch(function (error) {
+    //     console.log('error GET GeneralInfo: ', error);
+    //   })
+
     getData();
   }, [focusProductId])
 
@@ -43,13 +84,62 @@ const App = () => {
 
   var currentProductCardData = {};
 
+  // axios.get(`/ip/:id`)
+  //     .then(function (response) {
+  //       setProductInfo(response.data);
+  //       var generalProductInfo = response.data;
+  //       var featuresArrayToChangeKey = generalProductInfo.features;
+  //       var primaryName = generalProductInfo.name;
+
+  //       currentProductCardData['current_name'] = generalProductInfo.name;
+  //       currentProductCardData.current_category = generalProductInfo.category;
+  //       currentProductCardData.current_price = generalProductInfo.default_price;
+  //       currentProductCardData.current_id = generalProductInfo.id;
+  //       currentProductCardData.current_features = generalProductInfo.features;
+
+  //       setCurrentProductOutfitCard(currentProductOutfitCard => ({
+  //         ...currentProductCardData
+  //       }));
+
+  //       (async () => {
+  //         const myAsyncChangeKey = async (obj) => {
+  //           // Richard Edge Case TODO: in case no features or value keys
+  //           obj['featurePrimary'] = obj['feature'];
+  //           delete obj['feature'];
+  //           obj['valuePrimary'] = obj['value'];
+  //           delete obj['value'];
+  //           obj['namePrimary'] = primaryName;
+  //           return obj;
+  //         };
+  //         const tasks = featuresArrayToChangeKey.map(objOfFeatures => myAsyncChangeKey(objOfFeatures))
+  //         try {
+  //           const primaryFeatures = await Promise.all(tasks);
+  //           setFeaturesPrimaryProduct(JSON.stringify(primaryFeatures));
+  //         } catch (err) {
+  //           console.error(err)
+  //         }
+  //       })()
+
+  //     })
+  //     .catch(function (error) {
+  //       console.log('error GET GeneralInfo: ', error);
+  //     })
+  axios.get(`/`);
+      // .then(function (response) {
+
+      // })
+      // .catch(function (error) {
+      //   console.log('error GET GeneralInfo: ', error);
+      // })
+
   var getData = () => {
 
     // INIT GET 1: GET Genral Data of target product
-    axios.get('/getProductGeneralInfo', { params: { id: focusProductId } })
+    axios.get(`/ipCurrent`, {params: {id : focusProductId}})
       .then(function (response) {
         setProductInfo(response.data);
         var generalProductInfo = response.data;
+        console.log("🚀 ~ file: App.jsx:142 ~ generalProductInfo", generalProductInfo)
         var featuresArrayToChangeKey = generalProductInfo.features;
         var primaryName = generalProductInfo.name;
 
@@ -243,7 +333,7 @@ function useRelatedProductLogic(focusID, setRelated) {
           relatedObj.related_id = relatedId;
 
           // Related Chain 3.1
-          return axios.get('/getProductGeneralInfo', { params: { id: relatedId } })
+          return axios.get(`/ipRelated`, { params: { id: relatedId }})
             .then(function (response) {
 
               relatedObj.related_name = response.data.name;
