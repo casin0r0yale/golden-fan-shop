@@ -34,7 +34,7 @@ const ReviewForm = (props) => {
       recommend: event.target.recommend.value,
       name: event.target.nickname.value,
       email: event.target.email.value,
-      images: images,
+      photos: images,
       characteristics: {
         "14": Number(event.target.size.value),
         "15": Number(event.target.width.value),
