@@ -14,7 +14,7 @@ import axios from 'axios';
 
 const App = () => {
 
-  const [focusProductId, setFocusProductId] = useState(71704);
+  const [focusProductId, setFocusProductId] = useState(0);
   const [featuresPrimaryProduct, setFeaturesPrimaryProduct] = useState('');
   const [productStyles, setProductStyles] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
@@ -31,50 +31,91 @@ const App = () => {
     activeSlideRef2, prevSlideRef2, nextSlideRef2, wrapperRef2, onceNext2, onceNext } = useCarouselSliderLogic();
 
   // Init GET Request
+
   useEffect(() => {
-    // axios.get(`/ip/${focusProductId}`)
-    //   .then(function (response) {
-    //     setProductInfo(response.data);
-    //     var generalProductInfo = response.data;
-    //     var featuresArrayToChangeKey = generalProductInfo.features;
-    //     var primaryName = generalProductInfo.name;
 
-    //     currentProductCardData['current_name'] = generalProductInfo.name;
-    //     currentProductCardData.current_category = generalProductInfo.category;
-    //     currentProductCardData.current_price = generalProductInfo.default_price;
-    //     currentProductCardData.current_id = generalProductInfo.id;
-    //     currentProductCardData.current_features = generalProductInfo.features;
+    var targetIdInUrl = parseInt(window.location.pathname[4] + window.location.pathname[5] + window.location.pathname[6] + window.location.pathname[7] + window.location.pathname[8]);
+    console.log("🚀 ~ file: App.jsx:43 ~ useEffect ~ targetIdInUrl", targetIdInUrl)
 
-    //     setCurrentProductOutfitCard(currentProductOutfitCard => ({
-    //       ...currentProductCardData
-    //     }));
+    setFocusProductId(targetIdInUrl);
 
-    //     (async () => {
-    //       const myAsyncChangeKey = async (obj) => {
-    //         // Richard Edge Case TODO: in case no features or value keys
-    //         obj['featurePrimary'] = obj['feature'];
-    //         delete obj['feature'];
-    //         obj['valuePrimary'] = obj['value'];
-    //         delete obj['value'];
-    //         obj['namePrimary'] = primaryName;
-    //         return obj;
-    //       };
-    //       const tasks = featuresArrayToChangeKey.map(objOfFeatures => myAsyncChangeKey(objOfFeatures))
-    //       try {
-    //         const primaryFeatures = await Promise.all(tasks);
-    //         setFeaturesPrimaryProduct(JSON.stringify(primaryFeatures));
-    //       } catch (err) {
-    //         console.error(err)
-    //       }
-    //     })()
+  }, [])
 
-    //   })
-    //   .catch(function (error) {
-    //     console.log('error GET GeneralInfo: ', error);
-    //   })
+  useEffect(() => {
+    if (focusProductId === 0) {
+      return;
+    } else {
+      return getData();
+    }
 
-    getData();
   }, [focusProductId])
+
+  // useEffect(() => {
+  //   if (focusProductId === 0) {
+  //     return;
+  //   }
+  //     getData();
+  // }, [])
+
+  // useEffect(() => {
+  // }, [])
+
+// function MyComponent() {
+//   // Get the current URL
+//   const currentUrl = window.location.href;
+
+//   return (
+//     <div>
+//       <p>The current URL is: {currentUrl}</p>
+//       {/* Redirect the user to a different page when the button is clicked */}
+//       <button onClick={() => window.location.replace('https://www.example.com')}>
+//         Go to example.com
+//       </button>
+//     </div>
+//   );
+// }
+
+
+// function MyComponent() {
+//   // Use the useState hook to initialize state with a default value
+//   const [state, setState] = useState({
+//     name: 'John Doe',
+//     age: 25
+//   });
+
+//   // Use the useEffect hook to save the state to local storage when it changes
+//   useEffect(() => {
+//     // Save the state to local storage
+//     localStorage.setItem('myState', JSON.stringify(state));
+//   }, [state]); // Only run this effect when the state changes
+
+//   // Use the useEffect hook to restore the state from local storage when the component is mounted
+//   useEffect(() => {
+//     // Get the state from local storage
+//     const savedState = JSON.parse(localStorage.getItem('myState'));
+
+//     // If there is saved state, update the state with the saved values
+//     if (savedState) {
+//       setState(savedState);
+//     }
+//   }, []); // Only run this effect when the component is mounted
+
+//   // When the user clicks the button, update the state with the new values
+//   function handleClick() {
+//     setState({
+//       name: 'Jane Doe',
+//       age: 30
+//     });
+//   }
+
+//   return (
+//     <div>
+//       <h1>Hello, {state.name}!</h1>
+//       <p>You are {state.age} years old.</p>
+//       <button onClick={handleClick}>Update my info</button>
+//     </div>
+//   );
+// }
 
   const updateReviewList = (newReviewList) => {
     setReviewList(newReviewList);
@@ -84,53 +125,7 @@ const App = () => {
 
   var currentProductCardData = {};
 
-  // axios.get(`/ip/:id`)
-  //     .then(function (response) {
-  //       setProductInfo(response.data);
-  //       var generalProductInfo = response.data;
-  //       var featuresArrayToChangeKey = generalProductInfo.features;
-  //       var primaryName = generalProductInfo.name;
-
-  //       currentProductCardData['current_name'] = generalProductInfo.name;
-  //       currentProductCardData.current_category = generalProductInfo.category;
-  //       currentProductCardData.current_price = generalProductInfo.default_price;
-  //       currentProductCardData.current_id = generalProductInfo.id;
-  //       currentProductCardData.current_features = generalProductInfo.features;
-
-  //       setCurrentProductOutfitCard(currentProductOutfitCard => ({
-  //         ...currentProductCardData
-  //       }));
-
-  //       (async () => {
-  //         const myAsyncChangeKey = async (obj) => {
-  //           // Richard Edge Case TODO: in case no features or value keys
-  //           obj['featurePrimary'] = obj['feature'];
-  //           delete obj['feature'];
-  //           obj['valuePrimary'] = obj['value'];
-  //           delete obj['value'];
-  //           obj['namePrimary'] = primaryName;
-  //           return obj;
-  //         };
-  //         const tasks = featuresArrayToChangeKey.map(objOfFeatures => myAsyncChangeKey(objOfFeatures))
-  //         try {
-  //           const primaryFeatures = await Promise.all(tasks);
-  //           setFeaturesPrimaryProduct(JSON.stringify(primaryFeatures));
-  //         } catch (err) {
-  //           console.error(err)
-  //         }
-  //       })()
-
-  //     })
-  //     .catch(function (error) {
-  //       console.log('error GET GeneralInfo: ', error);
-  //     })
   axios.get(`/`);
-      // .then(function (response) {
-
-      // })
-      // .catch(function (error) {
-      //   console.log('error GET GeneralInfo: ', error);
-      // })
 
   var getData = () => {
 

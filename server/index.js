@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/ip/:id', express.static(__dirname + '/../client/dist'));
 app.listen(3000, () => console.log('Our Server is listening on port 3000...'));
 
-// INIT GET ROUTES
+// ROUTES
 
 app.get('/', initGetData.redirectFromHome);
 
