@@ -4,9 +4,6 @@ exports.redirectFromHome = (req, res) => {
 
     res.redirect('/ip/71704')
 
-    // console.log(err);
-    // res.status(500).send(err)
-
 }
 
 
@@ -14,7 +11,7 @@ exports.getCurrentProductCardControl = (req, res) => {
 
   var incomingParamProductId = req.query.id;
   // var incomingParamProductId = req.params.id;
-  console.log("🚀 ~ file: initGetData.js:7 ~ incomingParamProductId", incomingParamProductId)
+  // console.log("🚀 ~ file: initGetData.js:7 ~ incomingParamProductId", incomingParamProductId)
 
   const options = {
     method: 'GET',
@@ -35,7 +32,6 @@ exports.getCurrentProductCardControl = (req, res) => {
 exports.getRelatedProductCardControl = (req, res) => {
 
   var incomingParamProductId = req.query.id;
-  // var incomingParamProductId = req.params.id;
 
   const options = {
     method: 'GET',
