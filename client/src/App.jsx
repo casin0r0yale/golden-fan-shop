@@ -207,7 +207,7 @@ const App = () => {
         <AddToOutfitCard onClickYourOutfit={onClickYourOutfit} ref={activeSlide2 === yourOutfitList.length - 1 ? nextSlideRef2 : null} />
         {scrollToggleYourOutfitProgress && scrollYourOutfitProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight2} l />}
       </div>
-      <Questions data={productQnAData} />
+      <Questions data={productQnAData} product={productInfo} />
       <Reviews rating={rating} reviewList={reviewList} product={productInfo} updateReviewList={updateReviewList} />
     </div>
   );

@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import Answer from './Answer.jsx';
 import Popup from '../Popup.jsx';
+import NewQuestionForm from './NewQuestionForm.jsx';
 
 var Questions = (props) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(2);
   const [isHelpful, setIsHelpful] = useState(false);
+  var productInfo = props.product;
 
   const toggleHelpfulness = () => {
     setIsHelpful(!isHelpful);
@@ -39,12 +41,12 @@ var Questions = (props) => {
               </div>
               <Answer answers={question.answers}/>
               <div>
-                {isOpen && <Popup handleClose={togglePopup}/>}
+                {isOpen && <Popup handleClose={togglePopup} content={<NewQuestionForm productName={productInfo.name}/>}/>}
               </div>
             </div>
           );
           })}
-          <button className="answer-btn" onClick={loadMoreQuestions}>More Answered Questions</button>
+          {(props.data.length <= 2) ? null : <button className="answer-btn" onClick={loadMoreQuestions}>More Answered Questions</button>}
           <button onClick={togglePopup}>Add A New Question</button>
       </div>
     </div>
