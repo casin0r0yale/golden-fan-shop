@@ -20,7 +20,7 @@ const ReviewList = (props) => {
         {reviewList?.slice(0, next)?.map((review, index) => {
           return (
             <div key={review.review_id} className="review-tile">
-              <ReviewTile key={review.review_id} review={review}/>
+              <ReviewTile handleHelpClick={props.handleHelpClick} handleReportClick={props.handleReportClick} key={review.review_id} review={review}/>
             </div>
           )
         })}

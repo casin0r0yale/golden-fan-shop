@@ -751,6 +751,11 @@ h1 {
   overflow-y: auto;
 }
 
+.helpful-report {
+  display: flex;
+  flex-direction: row;
+}
+
 .average-number {
   font-size: 3em;
   margin-right: .25em;

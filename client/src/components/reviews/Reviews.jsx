@@ -47,6 +47,28 @@ const Reviews = (props) => {
     });
   }
 
+  const handleHelpClick = (review_id) => {
+    // console.log('this is the review id: ', {review_id: review_id});
+    axios.put('/helpClick', {review_id: review_id})
+    .then((success) => {
+      console.log('successful PUT req:', success)
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
+  const handleReportClick = (review_id) => {
+    // console.log('this is the review id: ', {review_id: review_id});
+    axios.put('/reportClick', {review_id: review_id})
+    .then((success) => {
+      console.log('successful PUT req:', success)
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
   const relevance = async () => {
     var sorted = await incomingList.sort((p1, p2) => {
       return ((new Date(p2.date) - new Date(p1.date)) && (p2.helpfulness - p1.helpfulness));
@@ -197,7 +219,7 @@ const Reviews = (props) => {
             <option value="helpfulness">helpfulness</option>
           </select>
         </h3>
-        <ReviewList reviewList={incomingList} togglePopup={togglePopup}/>
+        <ReviewList handleHelpClick={handleHelpClick} handleReportClick={handleReportClick} reviewList={incomingList} togglePopup={togglePopup}/>
       </div>
       {isOpen && <Popup
         content={<>
