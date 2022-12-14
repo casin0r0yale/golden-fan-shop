@@ -23,6 +23,11 @@ const Reviews = (props) => {
   const [oneStar, setOneStar] = useState(false);
   const [starFilter, setStarFilter] = useState([]);
 
+  useEffect(() => {
+    console.log('incoming list has changed!');
+    forceUpdate();
+  },[incomingList])
+
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -200,7 +205,7 @@ const Reviews = (props) => {
     // })
     // var sortedCopy = [...sorted];
     await setStarFilter(starSortedArr);
-    // props.updateReviewList(starSortedArr);
+    await props.updateReviewList(starSortedArr);
     console.log('this is the starSortedArr: ', starFilter);
     // forceUpdate();
   }
