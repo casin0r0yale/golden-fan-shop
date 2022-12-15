@@ -368,9 +368,10 @@ h1 {
 
 .form-box {
   position: relative;
-  width: 90%;
+  width: 50%;
+  top: 5em;
   margin: 0 auto;
-  height: auto;
+  height: 60%;
   max-height: 70vh;
   margin-top: calc(100vh - 85vh - 20px);
   background: #fff;
@@ -385,8 +386,8 @@ h1 {
   content: 'x';
   cursor: pointer;
   position: fixed;
-  right: calc(15% - 30px);
-  top: calc(100vh - 85vh - 33px);
+  right: calc(29% - 30px);
+  top: 7.7em;
   background: #ededed;
   width: 25px;
   height: 25px;
