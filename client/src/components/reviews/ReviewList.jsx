@@ -5,7 +5,7 @@ import { IoMdAdd } from 'react-icons/io';
 const ReviewList = (props) => {
   var numReviews = props.reviewList.length;
   var reviewList = props.reviewList;
-  // console.log('reviewList: ', reviewList);
+  console.log('this is my reviewList: ', reviewList);
   const postPerClick = 2;
   const [next, setNext] = useState(postPerClick);
 
@@ -37,7 +37,6 @@ const ReviewList = (props) => {
           type="button"
           className="add-review-button"
           data-testid="add-review-button"
-          // value="Add a review  + "
           onClick={props.togglePopup}
         >
         Add a review &nbsp; {<IoMdAdd />}

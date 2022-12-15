@@ -163,7 +163,7 @@ const ReviewForm = (props) => {
   return (
     <div data-testid="review-form">
       <h2>Write Your Review</h2>
-      <h3>About the {props.productName}</h3>
+      <h3>About {props.productName}</h3>
       <form className="review-form" onSubmit={handleSubmit}>
         <label>
           Overall Rating*

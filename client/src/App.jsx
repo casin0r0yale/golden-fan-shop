@@ -120,7 +120,7 @@ const App = () => {
     // INIT GET 4: GET Product REVIEWS data (Tony's section to manipulate)
     axios.get('/getProductReviews', { params: { id: focusProductId } })
       .then(function (response) {
-        console.log('CHAIN 4: Tony Module - SUCCESS GET PRODUCT REVIEWS DATA: ', response.data);
+        // console.log('CHAIN 4: Tony Module - SUCCESS GET PRODUCT REVIEWS DATA: ', response.data);
         // TODO: Manipulate and pass down response.data into module...
         var reviews = response.data.results;
         setReviewList(reviews);
@@ -133,7 +133,7 @@ const App = () => {
 
     axios.get('/getProductReviewMeta', { params: { id: focusProductId } })
       .then((response) => {
-        console.log('Success review meta response: ', response.data);
+        // console.log('Success review meta response: ', response.data);
         var meta = response.data;
         setReviewMeta(meta);
       })

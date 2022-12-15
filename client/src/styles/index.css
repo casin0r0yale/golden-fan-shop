@@ -778,6 +778,11 @@ h1 {
   justify-content: space-between;
 }
 
+.review-image {
+  height: 50px;
+  width: 50px;
+}
+
 .reviewList-sort-button {
   border-top: none;
   border-left: none;
