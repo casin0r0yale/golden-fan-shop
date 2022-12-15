@@ -8,7 +8,7 @@ const AddToOutfitCard = React.forwardRef((props, ref) => {
   }
 
   return (
-    <div className='productCard addToOutfitButton' ref={ref}>
+    <div className='productCard addToOutfitButton' ref={ref} data-testid='AddToOutfitTest'>
       <div className='addToOutfitText'>
         Add To Outfit
       </div><br/>

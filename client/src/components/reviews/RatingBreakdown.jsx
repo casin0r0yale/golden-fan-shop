@@ -52,7 +52,7 @@ const RatingBreakdown = (props) => {
     }
     return metaArr;
   }
-  // getAllCharacteristics(meta.characteristics);
+  getAllCharacteristics(meta.characteristics);
   var currPercentageArr = Object.values(getAllPercentage(reviewList));
 
   return (

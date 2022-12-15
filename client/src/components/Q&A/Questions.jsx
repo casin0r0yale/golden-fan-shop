@@ -64,7 +64,7 @@ var Questions = (props) => {
             </div>
           );
           })}
-          {(props.data.length <= 2) ? null : <button className="answer-btn" onClick={loadMoreQuestions}>More Answered Questions</button>}
+          {(filteredQuestions.length <= 2) ? null : <button className="answer-btn" onClick={loadMoreQuestions}>More Answered Questions</button>}
           <button onClick={toggleQuestionPopup}>Add A New Question</button>
       </div>
     </div>
