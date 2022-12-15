@@ -14,7 +14,7 @@ import axios from 'axios';
 
 const App = () => {
 
-  const [focusProductId, setFocusProductId] = useState(71704);
+  const [focusProductId, setFocusProductId] = useState(0);
   const [featuresPrimaryProduct, setFeaturesPrimaryProduct] = useState('');
   const [productStyles, setProductStyles] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
@@ -31,9 +31,37 @@ const App = () => {
     activeSlideRef2, prevSlideRef2, nextSlideRef2, wrapperRef2, onceNext2, onceNext } = useCarouselSliderLogic();
 
   // Init GET Request
+
   useEffect(() => {
-    getData();
+
+    const savedOutfitState = JSON.parse(localStorage.getItem("yourOutfitState"));
+
+    if (savedOutfitState.length > 0) {
+      // console.log("🚀 ~ file: App.jsx:41 ~ useEffect ~ savedOutfitState", savedOutfitState)
+      setYourOutfitList(savedOutfitState);
+    }
+
+    var targetIdInUrl = parseInt(window.location.pathname[4] + window.location.pathname[5] + window.location.pathname[6] + window.location.pathname[7] + window.location.pathname[8]);
+
+    setFocusProductId(targetIdInUrl);
+
+  }, [])
+
+  useEffect(() => {
+    if (focusProductId === 0) {
+      return;
+    } else {
+      return getData();
+    }
+
   }, [focusProductId])
+
+    // save the state to local storage when Your Outfit state changes
+  useEffect(() => {
+      // console.log('saving to localStorage...', yourOutfitList)
+      localStorage.setItem("yourOutfitState", JSON.stringify(yourOutfitList));
+    }, [yourOutfitList]);
+
 
   const updateReviewList = (newReviewList) => {
     setReviewList(newReviewList);
@@ -41,12 +69,16 @@ const App = () => {
     console.log('this is the reviewList state: ', reviewList);
   }
 
+
+  // Redirects for now to Item Detail Page
+  axios.get(`/`);
+
   var currentProductCardData = {};
 
   var getData = () => {
 
     // INIT GET 1: GET Genral Data of target product
-    axios.get('/getProductGeneralInfo', { params: { id: focusProductId } })
+    axios.get(`/ipCurrent`, {params: {id : focusProductId}})
       .then(function (response) {
         setProductInfo(response.data);
         var generalProductInfo = response.data;
@@ -221,7 +253,7 @@ const App = () => {
             <AddToOutfitCard onClickYourOutfit={onClickYourOutfit} ref={activeSlide2 === yourOutfitList.length - 1 ? nextSlideRef2 : null} />
             {scrollToggleYourOutfitProgress && scrollYourOutfitProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight2} l />}
           </div>
-        <Questions data={productQnAData} />
+        <Questions data={productQnAData} product={productInfo} />
       <Reviews rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
       </div>
     </div>
@@ -243,7 +275,7 @@ function useRelatedProductLogic(focusID, setRelated) {
           relatedObj.related_id = relatedId;
 
           // Related Chain 3.1
-          return axios.get('/getProductGeneralInfo', { params: { id: relatedId } })
+          return axios.get(`/ipRelated`, { params: { id: relatedId }})
             .then(function (response) {
 
               relatedObj.related_name = response.data.name;

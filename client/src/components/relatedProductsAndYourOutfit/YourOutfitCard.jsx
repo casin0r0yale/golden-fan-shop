@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductRating from '../reviews/ProductRating.jsx';
 import axios from 'axios';
 // import getAverageRating from '../../index.jsx';
-import {getAverageRating} from '../../App.jsx';
+import { getAverageRating } from '../../App.jsx';
 
 const YourOutfitCard = React.forwardRef((props, ref) => {
 
@@ -10,13 +10,13 @@ const YourOutfitCard = React.forwardRef((props, ref) => {
 
   useEffect(() => {
     axios.get('/getProductReviews', { params: { id: props.current_id } })
-    .then(function (response) {
-      var reviews = response.data.results;
-      var average = getAverageRating(reviews);
-      setRatingYourOutfitCard(average);
-    })
-    .catch(function (error) {
-    })
+      .then(function (response) {
+        var reviews = response.data.results;
+        var average = getAverageRating(reviews);
+        setRatingYourOutfitCard(average);
+      })
+      .catch(function (error) {
+      })
   }, []);
 
   var onClickDeleteProduct = (event) => {
@@ -30,18 +30,17 @@ const YourOutfitCard = React.forwardRef((props, ref) => {
 
   return (
     <div className='productCard' onClick={onClickNavigate} ref={ref} data-testid='testYourOutfitCard'>
-      <div>
-        <img className='productImageInCard' src={props.current_thumbnail ? props.current_thumbnail : 'https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/Reality_Stone_VFX.png/revision/latest?cb=20190427012609'}/>
-      </div>
-      <div></div>
-      <div>
-        <div style={{fontSize: 12}} className='lineSpaceCard'>{props.current_category.toUpperCase()}</div>
-        <div className='boldFont lineSpaceCard'>{props.current_name}</div>
-        <div style={{fontSize: 12}} className='lineSpaceCard'>${props.current_price}</div>
-        <div className='lineSpaceCard'>
-          <ProductRating rating={ratingYourOutfitCard}/>
+      <a href={'/ip/' + props.current_id} style={{textDecoration: 'none'}}>
+        <img className='productImageInCard' src={props.current_thumbnail ? props.current_thumbnail : 'https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/Reality_Stone_VFX.png/revision/latest?cb=20190427012609'} />
+        <div>
+          <div style={{ fontSize: 12 }} className='lineSpaceCard'>{props.current_category.toUpperCase()}</div>
+          <div className='boldFont lineSpaceCard'>{props.current_name}</div>
+          <div style={{ fontSize: 12 }} className='lineSpaceCard'>${props.current_price}</div>
+          <div className='lineSpaceCard'>
+            <ProductRating rating={ratingYourOutfitCard} />
+          </div>
         </div>
-      </div>
+      </a>
       <button onClick={onClickDeleteProduct} className="close-icon-yourOutfit"><div className='x-icon'></div></button>
     </div>
   )

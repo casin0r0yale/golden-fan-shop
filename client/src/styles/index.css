@@ -315,10 +315,10 @@ h1 {
 
 .verticalLine:after {
   position: absolute;
-  top: 14%;
-  left: 68%;
+  top: 12%;
+  left: 67%;
   width: .125em;
-  height: 78%;
+  height: 80%;
   border-radius: .125em;
   background:rgb(46, 46, 46);
   content: ''
