@@ -47,6 +47,8 @@ const Reviews = (props) => {
     axios.post('/submitReview', revSubmission)
     .then((success) => {
       console.log('Success form post!')
+      setIsOpen(false);
+      forceUpdate();
     })
     .catch((err) => {
       console.error('Error submitting post: ', err);
