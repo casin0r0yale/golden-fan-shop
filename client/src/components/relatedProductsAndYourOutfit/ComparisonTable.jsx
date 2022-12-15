@@ -105,7 +105,7 @@ const ComparisonTable = (props) => {
   }, [])
 
   return (
-  <div className="row">
+  <div className="row" data-testid='CompareTableTest'>
     <div className="compareLeft">COMPARING</div><br/><br/>
 
     <div className="compareLeftName">{primaryName}</div>
