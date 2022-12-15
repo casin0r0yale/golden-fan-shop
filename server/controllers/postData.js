@@ -15,7 +15,6 @@ exports.postReviewForm = (req, res) => {
   axios(options)
   .then((results) => {
     var created = JSON.parse(JSON.stringify(results.data));
-    // console.log('success in the api server: ', results);
     res.status(201).send(created);
   })
   .catch((error) => {

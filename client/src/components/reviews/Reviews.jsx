@@ -25,7 +25,6 @@ const Reviews = (props) => {
 
   useEffect(() => {
     console.log('incoming list has changed!');
-    console.log('meta data: ', )
     forceUpdate();
   },[incomingList])
 

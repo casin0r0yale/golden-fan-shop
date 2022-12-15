@@ -50,23 +50,25 @@ const ReviewForm = (props) => {
       photos: images,
       characteristics: {}
     }
+    // console.log('this is length value: ', event.target.length.value);
+    // console.log('this is fit value: ', event.target.fit.value);
 
-    if (event.target.size.value) {
+    if (charID["Size"]) {
       formObj.characteristics[charID["Size"]] = Number(event.target.size.value);
     }
-    if (event.target.width.value) {
+    if (charID["Width"]) {
       formObj.characteristics[charID["Width"]] = Number(event.target.width.value);
     }
-    if(event.target.comfort.value) {
+    if (charID["Comfort"]) {
       formObj.characteristics[charID["Comfort"]] = Number(event.target.comfort.value);
     }
-    if(event.target.quality.value) {
+    if(charID["Quality"]) {
       formObj.characteristics[charID["Quality"]] = Number(event.target.quality.value);
     }
-    if(event.target.length.value) {
+    if(charID["Length"]) {
       formObj.characteristics[charID["Length"]] = Number(event.target.length.value);
     }
-    if(event.target.fit.value) {
+    if(charID["Fit"]) {
       formObj.characteristics[charID["Fit"]] = Number(event.target.fit.value);
     }
     if(event.target.recommend.value) {
@@ -184,23 +186,26 @@ const ReviewForm = (props) => {
           <br></br>
         <label>
           Characteristics*
-          <fieldset>
-            <label className="size-radio-buttons">
-              <h4>Size</h4>
-                <p>{sizeRating}</p>
-                <input type="radio" id="one" name="size" value="1" onClick={() => sizeSelection("one")}/>
-                <label>1. A size too small</label>
-                <input type="radio" id="two" name="size" value="2" onClick={() => sizeSelection("two")}/>
-                <label>2</label>
-                <input type="radio" id="three" name="size" value="3" onClick={() => sizeSelection("three")}/>
-                <label>3</label>
-                <input type="radio" id="four" name="size" value="4" onClick={() => sizeSelection("four")}/>
-                <label>4</label>
-                <input type="radio" id="five" name="size" value="5" onClick={() => sizeSelection("five")}/>
-                <label>5. A size too wide</label>
-            </label>
-          </fieldset>
-          <fieldset>
+          {(charID["Size"] !== undefined) ?
+              <fieldset>
+              <label className="size-radio-buttons">
+                <h4>Size</h4>
+                  <p>{sizeRating}</p>
+                  <input type="radio" id="one" name="size" value="1" onClick={() => sizeSelection("one")}/>
+                  <label>1. A size too small</label>
+                  <input type="radio" id="two" name="size" value="2" onClick={() => sizeSelection("two")}/>
+                  <label>2</label>
+                  <input type="radio" id="three" name="size" value="3" onClick={() => sizeSelection("three")}/>
+                  <label>3</label>
+                  <input type="radio" id="four" name="size" value="4" onClick={() => sizeSelection("four")}/>
+                  <label>4</label>
+                  <input type="radio" id="five" name="size" value="5" onClick={() => sizeSelection("five")}/>
+                  <label>5. A size too wide</label>
+              </label>
+            </fieldset>
+          : null}
+          {(charID["Width"] !== undefined) ?
+            <fieldset>
             <label>
               <h4>Width</h4>
               <p>{widthText}</p>
@@ -216,70 +221,79 @@ const ReviewForm = (props) => {
               <label>5. Too wide</label>
             </label>
           </fieldset>
-          <fieldset>
-            <label>
-              <h4>Comfort</h4>
-              <p>{comfortText}</p>
-              <input type="radio" id="1" name="comfort" value="1" onClick={() => comfortSelection("one")}/>
-              <label>1. Uncomfortable</label>
-              <input type="radio" id="2" name="comfort" value="2" onClick={() => comfortSelection("two")}/>
-              <label>2</label>
-              <input type="radio" id="3" name="comfort" value="3" onClick={() => comfortSelection("three")}/>
-              <label>3</label>
-              <input type="radio" id="4" name="comfort" value="4" onClick={() => comfortSelection("four")}/>
-              <label>4</label>
-              <input type="radio" id="5" name="comfort" value="5" onClick={() => comfortSelection("five")}/>
-              <label>5. Perfect</label>
-            </label>
+          : null}
+          {(charID["Comfort"] !== undefined) ?
+            <fieldset>
+              <label>
+                <h4>Comfort</h4>
+                <p>{comfortText}</p>
+                <input type="radio" id="1" name="comfort" value="1" onClick={() => comfortSelection("one")}/>
+                <label>1. Uncomfortable</label>
+                <input type="radio" id="2" name="comfort" value="2" onClick={() => comfortSelection("two")}/>
+                <label>2</label>
+                <input type="radio" id="3" name="comfort" value="3" onClick={() => comfortSelection("three")}/>
+                <label>3</label>
+                <input type="radio" id="4" name="comfort" value="4" onClick={() => comfortSelection("four")}/>
+                <label>4</label>
+                <input type="radio" id="5" name="comfort" value="5" onClick={() => comfortSelection("five")}/>
+                <label>5. Perfect</label>
+              </label>
+            </fieldset>
+          : null}
+            {(charID["Quality"] !== undefined) ?
+            <fieldset>
+              <label>
+                <h4>Quality</h4>
+                <p>{qualityText}</p>
+                <input type="radio" id="1" name="quality" value="1" onClick={() => qualitySelection("one")}/>
+                <label>1. Poor</label>
+                <input type="radio" id="2" name="quality" value="2" onClick={() => qualitySelection("two")}/>
+                <label>2</label>
+                <input type="radio" id="3" name="quality" value="3" onClick={() => qualitySelection("three")}/>
+                <label>3</label>
+                <input type="radio" id="4" name="quality" value="4" onClick={() => qualitySelection("four")}/>
+                <label>4</label>
+                <input type="radio" id="5" name="quality" value="5" onClick={() => qualitySelection("five")}/>
+                <label>5. Perfect</label>
+              </label>
+            </fieldset>
+          : null}
+            {(charID["Length"] !== undefined) ?
+              <fieldset>
+                <label>
+                  <h4>Length</h4>
+                  <p>{lengthText}</p>
+                  <input type="radio" id="1" name="length" value="1" onClick={() => lengthSelection("one")}/>
+                  <label>1. Runs short</label>
+                  <input type="radio" id="2" name="length" value="2" onClick={() => lengthSelection("two")}/>
+                  <label>2</label>
+                  <input type="radio" id="3" name="length" value="3" onClick={() => lengthSelection("three")}/>
+                  <label>3</label>
+                  <input type="radio" id="4" name="length" value="4" onClick={() => lengthSelection("four")}/>
+                  <label>4</label>
+                  <input type="radio" id="5" name="length" value="5" onClick={() => lengthSelection("five")}/>
+                  <label>5. Runs long</label>
+                </label>
+            </fieldset>
+            : null}
+            {(charID["Fit"] !== undefined) ?
+            <fieldset>
+              <label>
+                <h4>Fit</h4>
+                <p>{fitText}</p>
+                <input type="radio" id="1" name="fit" value="1" onClick={() => fitSelection("one")}/>
+                <label>1. runs tight</label>
+                <input type="radio" id="2" name="fit" value="2" onClick={() => fitSelection("two")}/>
+                <label>2</label>
+                <input type="radio" id="3" name="fit" value="3" onClick={() => fitSelection("three")}/>
+                <label>3</label>
+                <input type="radio" id="4" name="fit" value="4" onClick={() => fitSelection("four")}/>
+                <label>4</label>
+                <input type="radio" id="5" name="fit" value="5" onClick={() => fitSelection("five")}/>
+                <label>5. Runs long</label>
+              </label>
           </fieldset>
-          <fieldset>
-            <label>
-              <h4>Quality</h4>
-              <p>{qualityText}</p>
-              <input type="radio" id="1" name="quality" value="1" onClick={() => qualitySelection("one")}/>
-              <label>1. Poor</label>
-              <input type="radio" id="2" name="quality" value="2" onClick={() => qualitySelection("two")}/>
-              <label>2</label>
-              <input type="radio" id="3" name="quality" value="3" onClick={() => qualitySelection("three")}/>
-              <label>3</label>
-              <input type="radio" id="4" name="quality" value="4" onClick={() => qualitySelection("four")}/>
-              <label>4</label>
-              <input type="radio" id="5" name="quality" value="5" onClick={() => qualitySelection("five")}/>
-              <label>5. Perfect</label>
-            </label>
-          </fieldset>
-          <fieldset>
-            <label>
-              <h4>Length</h4>
-              <p>{lengthText}</p>
-              <input type="radio" id="1" name="length" value="1" onClick={() => lengthSelection("one")}/>
-              <label>1. Runs short</label>
-              <input type="radio" id="2" name="length" value="2" onClick={() => lengthSelection("two")}/>
-              <label>2</label>
-              <input type="radio" id="3" name="length" value="3" onClick={() => lengthSelection("three")}/>
-              <label>3</label>
-              <input type="radio" id="4" name="length" value="4" onClick={() => lengthSelection("four")}/>
-              <label>4</label>
-              <input type="radio" id="5" name="length" value="5" onClick={() => lengthSelection("five")}/>
-              <label>5. Runs long</label>
-            </label>
-          </fieldset>
-          <fieldset>
-            <label>
-              <h4>Fit</h4>
-              <p>{fitText}</p>
-              <input type="radio" id="1" name="fit" value="1" onClick={() => fitSelection("one")}/>
-              <label>1. runs tight</label>
-              <input type="radio" id="2" name="fit" value="2" onClick={() => fitSelection("two")}/>
-              <label>2</label>
-              <input type="radio" id="3" name="fit" value="3" onClick={() => fitSelection("three")}/>
-              <label>3</label>
-              <input type="radio" id="4" name="fit" value="4" onClick={() => fitSelection("four")}/>
-              <label>4</label>
-              <input type="radio" id="5" name="fit" value="5" onClick={() => fitSelection("five")}/>
-              <label>5. Runs long</label>
-            </label>
-          </fieldset>
+          : null}
         </label>
         <br></br>
         <label>
