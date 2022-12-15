@@ -33,7 +33,7 @@ const ReviewTile = (props) => {
       <h5>{props.review.summary}</h5>
       <p>{props.review.body}</p>
       <div className="helpful-report">
-        <p>Was this review helpful? <a onClick={() => helpClick(props.review.review_id)}>Yes({(props.review.helpfulness) ? props.review.helpfulness : 0})</a>&nbsp;|&nbsp;</p>
+        <p>Helpful? <a onClick={() => helpClick(props.review.review_id)}>Yes({(props.review.helpfulness) ? props.review.helpfulness : 0})</a>&nbsp;|&nbsp;</p>
         <p onClick={() => reportClick(props.review.review_id)}>Report</p>
       </div>
       {/* {(photos.length !== 0) ? {photos} : null} */}

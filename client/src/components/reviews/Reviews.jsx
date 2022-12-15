@@ -25,6 +25,7 @@ const Reviews = (props) => {
 
   useEffect(() => {
     console.log('incoming list has changed!');
+    console.log('meta data: ', )
     forceUpdate();
   },[incomingList])
 
@@ -228,7 +229,7 @@ const Reviews = (props) => {
       </div>
       {isOpen && <Popup
         content={<>
-          <ReviewForm handleFormSubmit={handleFormSubmit} id={productInfo.id} productName={productInfo.name}/>
+          <ReviewForm handleFormSubmit={handleFormSubmit} id={productInfo.id} productName={productInfo.name} meta={meta}/>
         </>}
         handleClose={togglePopup}
       />}

@@ -19,6 +19,19 @@ const ReviewForm = (props) => {
     setMinCharsLeft(curMinCharsLeft);
   }
 
+  const charID = {};
+  var charObj = props.meta.characteristics;
+
+  const getCharID = () => {
+    for (var characteristic in charObj) {
+      charID[characteristic] = charObj[characteristic]["id"];
+    }
+    return charID;
+  }
+
+  getCharID();
+  console.log('this is the charID: ', charID);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const nickname = event.target.nickname.value;
@@ -31,18 +44,35 @@ const ReviewForm = (props) => {
       rating: rating,
       summary: event.target.summary.value,
       body: event.target.body.value,
-      recommend: event.target.recommend.value,
+      recommend: undefined,
       name: event.target.nickname.value,
       email: event.target.email.value,
       photos: images,
-      characteristics: {
-        "14": Number(event.target.size.value),
-        "15": Number(event.target.width.value),
-        "16": Number(event.target.comfort.value),
-        "17": Number(event.target.quality.value),
-        "18": Number(event.target.length.value),
-        "19": Number(event.target.fit.value)
-      }
+      characteristics: {}
+    }
+
+    if (event.target.size.value) {
+      formObj.characteristics[charID["Size"]] = Number(event.target.size.value);
+    }
+    if (event.target.width.value) {
+      formObj.characteristics[charID["Width"]] = Number(event.target.width.value);
+    }
+    if(event.target.comfort.value) {
+      formObj.characteristics[charID["Comfort"]] = Number(event.target.comfort.value);
+    }
+    if(event.target.quality.value) {
+      formObj.characteristics[charID["Quality"]] = Number(event.target.quality.value);
+    }
+    if(event.target.length.value) {
+      formObj.characteristics[charID["Length"]] = Number(event.target.length.value);
+    }
+    if(event.target.fit.value) {
+      formObj.characteristics[charID["Fit"]] = Number(event.target.fit.value);
+    }
+    if(event.target.recommend.value) {
+      formObj.recommend = true;
+    } else {
+      formObj.recommend = false;
     }
     props.handleFormSubmit(formObj);
   }
