@@ -6,6 +6,7 @@ const axios = require ('axios')
 const app = express();
 const cors = require("cors");
 const initGetData = require("./controllers/initGetData.js");
+const postData = require('./controllers/postData.js');
 
 
 app.use(express.json());
@@ -25,4 +26,8 @@ app.get('/getProductRelated', initGetData.getProductRelatedControl);
 
 app.get('/getProductReviews', initGetData.getProductReviewsControl);
 
+app.get('/getProductReviewMeta', initGetData.getProductReviewMeta);
+
 app.get('/getProductQnA', initGetData.getProductQnAControl);
+
+// app.post('/submitReview', postData.postReviewForm);

@@ -4,7 +4,7 @@ var NewQuestionForm = (props) => {
   return (
     <div>
       <h3>Ask Your Question</h3>
-      <h5>About the {props.productName}</h5>
+      <h4>About the {props.productName}</h4>
       <form>
         <label for="question">Question:</label><br></br>
         <textarea name="question" maxLength="1000" required></textarea><br></br><br></br>

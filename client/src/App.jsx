@@ -8,6 +8,7 @@ import YourOutfitCard from './components/relatedProductsAndYourOutfit/YourOutfit
 import LeftScrollButtonCarousel from './components/relatedProductsAndYourOutfit/LeftScrollButtonCarousel.jsx';
 import RightScrollButtonCarousel from './components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx';
 import Header from "./components/Header.jsx";
+import Description from "./components/Description.jsx";
 import Questions from './components/Q&A/Questions.jsx';
 import axios from 'axios';
 
@@ -20,6 +21,7 @@ const App = () => {
   const [productQnAData, setProductQnAData] = useState([]);
   const [currentProductOutfitCard, setCurrentProductOutfitCard] = useState({});
   const [reviewList, setReviewList] = useState([]);
+  const [reviewMeta, setReviewMeta] = useState({});
   const [rating, setRating] = useState(0);
 
   const { moveRight, moveLeft, handleSideScroll, relatedCarourselRef, activeSlide,
@@ -127,7 +129,17 @@ const App = () => {
       })
       .catch(function (error) {
         console.log('error GET Reviews Data: ', error);
+      });
+
+    axios.get('/getProductReviewMeta', { params: { id: focusProductId } })
+      .then((response) => {
+        console.log('Success review meta response: ', response.data);
+        var meta = response.data;
+        setReviewMeta(meta);
       })
+      .catch((error) => {
+        console.log('error GET Review Meta: ', error);
+      });
 
     // INIT GET 5: GET Product Q&A data (Ste'fan's section to manipulate)
     axios.get('/getProductQnA', { params: { id: focusProductId } })
@@ -179,33 +191,36 @@ const App = () => {
       <Header />
       <h2 data-testid='testYourOutfitCard'>Golden Fan Shop: Main App/Index Component</h2>
       <Overview rating={rating} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} />
-      <div>RELATED PRODUCTS</div>
+      <div className="margins-nonOverview">
+        <Description slogan={productInfo.slogan} desc={productInfo.description} featuresPrimaryProductString={featuresPrimaryProduct}/>
+        <div>RELATED PRODUCTS</div>
 
-      <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef}>
-        {scrollRelatedProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft} />) : null}
-        {relatedProductsData.map((itemObj, index) => {
-          return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} related_id={itemObj.related_id} related_name={itemObj.related_name}
-            related_category={itemObj.related_category} related_price={itemObj.related_price}
-            related_thumbnail={itemObj.related_thumbnail} {...itemObj.related_features} featuresPrimaryProductString={featuresPrimaryProduct}
-            key={`slide-${itemObj.related_id}`}
-            ref={index === activeSlide ? activeSlideRef : index - 1 === activeSlide ? nextSlideRef : index + 1 === activeSlide ? prevSlideRef : null} />
-        })}
-        {scrollToggleRelatedProgress && scrollRelatedProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight} />}
-      </div>
-      <br />
-      <br />
-      <div>YOUR OUTFIT</div>
-      <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} >
-        {scrollYourOutfitProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft2} />) : null}
-        {yourOutfitList.map((itemObj, index) => {
-          return <YourOutfitCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} current_name={itemObj.current_name} current_id={itemObj.current_id}
-            current_category={itemObj.current_category} current_price={itemObj.current_price}
-            current_thumbnail={itemObj.current_thumbnail} onClickDeleteProductYourOutfit={onClickDeleteProductYourOutfit}
-            key={`slide-${itemObj.current_id}`}
-            ref={index === activeSlide2 ? activeSlideRef2 : index - 1 === activeSlide2 ? nextSlideRef2 : index + 1 === activeSlide2 ? prevSlideRef2 : null} />
-        })}
-        <AddToOutfitCard onClickYourOutfit={onClickYourOutfit} ref={activeSlide2 === yourOutfitList.length - 1 ? nextSlideRef2 : null} />
-        {scrollToggleYourOutfitProgress && scrollYourOutfitProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight2} l />}
+        <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef}>
+          {scrollRelatedProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft} />) : null}
+          {relatedProductsData.map((itemObj, index) => {
+            return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} related_id={itemObj.related_id} related_name={itemObj.related_name}
+              related_category={itemObj.related_category} related_price={itemObj.related_price}
+              related_thumbnail={itemObj.related_thumbnail} {...itemObj.related_features} featuresPrimaryProductString={featuresPrimaryProduct}
+              key={`slide-${itemObj.related_id}`}
+              ref={index === activeSlide ? activeSlideRef : index - 1 === activeSlide ? nextSlideRef : index + 1 === activeSlide ? prevSlideRef : null} />
+          })}
+          {scrollToggleRelatedProgress && scrollRelatedProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight} />}
+        </div>
+        <br />
+        <br />
+        <div>YOUR OUTFIT</div>
+          <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} >
+            {scrollYourOutfitProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft2} />) : null}
+            {yourOutfitList.map((itemObj, index) => {
+              return <YourOutfitCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} current_name={itemObj.current_name} current_id={itemObj.current_id}
+                current_category={itemObj.current_category} current_price={itemObj.current_price}
+                current_thumbnail={itemObj.current_thumbnail} onClickDeleteProductYourOutfit={onClickDeleteProductYourOutfit}
+                key={`slide-${itemObj.current_id}`}
+                ref={index === activeSlide2 ? activeSlideRef2 : index - 1 === activeSlide2 ? nextSlideRef2 : index + 1 === activeSlide2 ? prevSlideRef2 : null} />
+            })}
+            <AddToOutfitCard onClickYourOutfit={onClickYourOutfit} ref={activeSlide2 === yourOutfitList.length - 1 ? nextSlideRef2 : null} />
+            {scrollToggleYourOutfitProgress && scrollYourOutfitProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight2} l />}
+          </div>
       </div>
       <Questions data={productQnAData} product={productInfo} />
       <Reviews rating={rating} reviewList={reviewList} product={productInfo} updateReviewList={updateReviewList} />
