@@ -779,8 +779,10 @@ h1 {
 }
 
 .review-image {
-  height: 50px;
-  width: 50px;
+  height: 5em;
+  width: 5em;
+  margin-right: 1em;
+  border-radius: .5em;
 }
 
 .reviewList-sort-button {
