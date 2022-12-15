@@ -30,7 +30,6 @@ const ReviewForm = (props) => {
   }
 
   getCharID();
-  console.log('this is the charID: ', charID);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -50,8 +49,6 @@ const ReviewForm = (props) => {
       photos: images,
       characteristics: {}
     }
-    // console.log('this is length value: ', event.target.length.value);
-    // console.log('this is fit value: ', event.target.fit.value);
 
     if (charID["Size"]) {
       formObj.characteristics[charID["Size"]] = Number(event.target.size.value);
@@ -81,7 +78,6 @@ const ReviewForm = (props) => {
   }
 
   const currRating = (rating) => {
-    //pass this rating into the form upon submission
     setRating(rating);
   }
 
