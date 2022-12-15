@@ -74,6 +74,7 @@ const ReviewForm = (props) => {
     } else {
       formObj.recommend = false;
     }
+
     props.handleFormSubmit(formObj);
   }
 
