@@ -23,6 +23,11 @@ const Reviews = (props) => {
   const [oneStar, setOneStar] = useState(false);
   const [starFilter, setStarFilter] = useState([]);
 
+  useEffect(() => {
+    console.log('incoming list has changed!');
+    forceUpdate();
+  },[incomingList])
+
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -41,9 +46,33 @@ const Reviews = (props) => {
     axios.post('/submitReview', revSubmission)
     .then((success) => {
       console.log('Success form post!')
+      setIsOpen(false);
+      forceUpdate();
     })
     .catch((err) => {
       console.error('Error submitting post: ', err);
+    });
+  }
+
+  const handleHelpClick = (review_id) => {
+    // console.log('this is the review id: ', {review_id: review_id});
+    axios.put('/helpClick', {review_id: review_id})
+    .then((success) => {
+      console.log('successful PUT req:', success)
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
+  const handleReportClick = (review_id) => {
+    // console.log('this is the review id: ', {review_id: review_id});
+    axios.put('/reportClick', {review_id: review_id})
+    .then((success) => {
+      console.log('successful PUT req:', success)
+    })
+    .catch((error) => {
+      console.error(error);
     });
   }
 
@@ -178,7 +207,7 @@ const Reviews = (props) => {
     // })
     // var sortedCopy = [...sorted];
     await setStarFilter(starSortedArr);
-    // props.updateReviewList(starSortedArr);
+    await props.updateReviewList(starSortedArr);
     console.log('this is the starSortedArr: ', starFilter);
     // forceUpdate();
   }
@@ -197,11 +226,11 @@ const Reviews = (props) => {
             <option value="helpfulness">helpfulness</option>
           </select>
         </h3>
-        <ReviewList reviewList={incomingList} togglePopup={togglePopup}/>
+        <ReviewList handleHelpClick={handleHelpClick} handleReportClick={handleReportClick} reviewList={incomingList} togglePopup={togglePopup}/>
       </div>
       {isOpen && <Popup
         content={<>
-          <ReviewForm handleFormSubmit={handleFormSubmit} id={productInfo.id} productName={productInfo.name}/>
+          <ReviewForm handleFormSubmit={handleFormSubmit} id={productInfo.id} productName={productInfo.name} meta={meta}/>
         </>}
         handleClose={togglePopup}
       />}

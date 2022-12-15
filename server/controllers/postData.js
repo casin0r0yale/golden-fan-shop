@@ -9,13 +9,16 @@ exports.postReviewForm = (req, res) => {
     method: 'POST',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`,
     headers: { Authorization: process.env.AUTH_SECRET },
+    "Content-Type": 'application/json',
     data: incomingReview
   };
-  axios.post(options)
+  axios(options)
   .then((results) => {
-    res.status(201).send(results);
+    var created = JSON.parse(JSON.stringify(results.data));
+    res.status(201).send(created);
   })
   .catch((error) => {
+    console.log('failure in the api server: ', error);
     res.status(500).send(error);
   });
 }
