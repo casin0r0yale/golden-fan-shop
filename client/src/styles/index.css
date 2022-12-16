@@ -370,9 +370,9 @@ h1 {
   position: relative;
   width: 50%;
   top: 5em;
-  margin: 0 auto;
-  height: 60%;
-  max-height: 70vh;
+  margin: auto;
+  height: auto;
+  max-height: 60vh;
   margin-top: calc(100vh - 85vh - 20px);
   background: #fff;
   border-radius: 10px;
@@ -385,9 +385,9 @@ h1 {
 .close-icon {
   content: 'x';
   cursor: pointer;
-  position: fixed;
-  right: calc(29% - 30px);
-  top: 7.7em;
+  position: absolute;
+  right: calc(4.5% - 30px);
+  top: calc(5% - 20px);
   background: #ededed;
   width: 25px;
   height: 25px;
@@ -780,6 +780,7 @@ h1 {
 }
 
 .review-name-date p {
+  margin-top: 0;
   font-size: .75em;
 }
 
@@ -892,11 +893,15 @@ h1 {
 .star-rating,
 .rating-text {
   display: inline-block;
-  margin-bottom: 1.5em;
 }
 /* Review Form Styling */
 .rating-text {
   margin-left: .5em;
+}
+
+.rating-text p {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .on {
@@ -905,6 +910,54 @@ h1 {
 
 .off {
   color: #ccc;
+}
+
+form.review-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+form.review-form fieldset {
+  background: #e0e0e0;
+  border-radius: 1em;
+  border: none;
+  margin-bottom: 1em;
+}
+
+.radio-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.characteristic-text {
+
+}
+
+form.review-form h5 {
+  margin-top: .25em;
+  font-size: .75em;
+  font-style: italic;
+  color:#677071;
+}
+
+form.review-form textarea {
+  font-family: inherit;
+}
+
+.review-summary {
+  width: 30em;
+  height: 1.5em;
+}
+
+.review-body {
+  width: 30em;
+  height: 5em;
+}
+.word-count {
+  margin-top: 0;
+  font-size: .75em;
 }
 
 .review-image-thumbnails {
@@ -947,11 +1000,4 @@ h1 {
   color:rgb(131, 38, 171)
 }
 
-/* .size-radio-buttons {
-  display: inline-flex;
-  flex-direction: column-reverse;
-  align-items: center;
-
-
-*/
 

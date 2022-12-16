@@ -184,11 +184,12 @@ const ReviewForm = (props) => {
           Characteristics*
           {(charID["Size"] !== undefined) ?
               <fieldset>
-              <label className="size-radio-buttons">
+              <label className="radio-buttons">
                 <h4>Size</h4>
-                  <p>{sizeRating}</p>
+                  <p className="characteristic-text">{sizeRating}</p>
                   <input type="radio" id="one" name="size" value="1" onClick={() => sizeSelection("one")}/>
-                  <label>1. A size too small</label>
+                  <p>A size too small</p>
+                  <label>1.</label>
                   <input type="radio" id="two" name="size" value="2" onClick={() => sizeSelection("two")}/>
                   <label>2</label>
                   <input type="radio" id="three" name="size" value="3" onClick={() => sizeSelection("three")}/>
@@ -196,7 +197,8 @@ const ReviewForm = (props) => {
                   <input type="radio" id="four" name="size" value="4" onClick={() => sizeSelection("four")}/>
                   <label>4</label>
                   <input type="radio" id="five" name="size" value="5" onClick={() => sizeSelection("five")}/>
-                  <label>5. A size too wide</label>
+                  <p>A size too wide</p>
+                  <label>5.</label>
               </label>
             </fieldset>
           : null}
@@ -204,7 +206,7 @@ const ReviewForm = (props) => {
             <fieldset>
             <label>
               <h4>Width</h4>
-              <p>{widthText}</p>
+              <p className="characteristic-text">{widthText}</p>
               <input type="radio" id="1" name="width" value="1" onClick={() => widthSelection("one")}/>
               <label>1. Too narrow</label>
               <input type="radio" id="2" name="width" value="2" onClick={() => widthSelection("two")}/>
@@ -222,7 +224,7 @@ const ReviewForm = (props) => {
             <fieldset>
               <label>
                 <h4>Comfort</h4>
-                <p>{comfortText}</p>
+                <p className="characteristic-text">{comfortText}</p>
                 <input type="radio" id="1" name="comfort" value="1" onClick={() => comfortSelection("one")}/>
                 <label>1. Uncomfortable</label>
                 <input type="radio" id="2" name="comfort" value="2" onClick={() => comfortSelection("two")}/>
@@ -240,7 +242,7 @@ const ReviewForm = (props) => {
             <fieldset>
               <label>
                 <h4>Quality</h4>
-                <p>{qualityText}</p>
+                <p className="characteristic-text">{qualityText}</p>
                 <input type="radio" id="1" name="quality" value="1" onClick={() => qualitySelection("one")}/>
                 <label>1. Poor</label>
                 <input type="radio" id="2" name="quality" value="2" onClick={() => qualitySelection("two")}/>
@@ -258,7 +260,7 @@ const ReviewForm = (props) => {
               <fieldset>
                 <label>
                   <h4>Length</h4>
-                  <p>{lengthText}</p>
+                  <p className="characteristic-text">{lengthText}</p>
                   <input type="radio" id="1" name="length" value="1" onClick={() => lengthSelection("one")}/>
                   <label>1. Runs short</label>
                   <input type="radio" id="2" name="length" value="2" onClick={() => lengthSelection("two")}/>
@@ -276,7 +278,7 @@ const ReviewForm = (props) => {
             <fieldset>
               <label>
                 <h4>Fit</h4>
-                <p>{fitText}</p>
+                <p className="characteristic-text">{fitText}</p>
                 <input type="radio" id="1" name="fit" value="1" onClick={() => fitSelection("one")}/>
                 <label>1. runs tight</label>
                 <input type="radio" id="2" name="fit" value="2" onClick={() => fitSelection("two")}/>
@@ -295,7 +297,7 @@ const ReviewForm = (props) => {
         <label>
           Review Summary
             <br></br>
-          <textarea type="text" name="summary" maxLength="60">
+          <textarea className="review-summary" type="text" name="summary" maxLength="60">
             Example: Best Purchase Ever!
           </textarea>
         </label>
@@ -304,11 +306,11 @@ const ReviewForm = (props) => {
         <label>
           Review Body
           <br></br>
-          <textarea type="text" name="body" minLength="50" maxLength="1000" onChange={handleCharCount}>
+          <textarea className="review-body" type="text" name="body" minLength="50" maxLength="1000" onChange={handleCharCount}>
             Why did you like the product or not?
           </textarea>
-          {(charsLeft > 0) ? <p> Minimum required characters left: {charsLeft}</p> : null}
-          {(charsLeft <= 0) ? <p>Minimum reached</p> : null}
+          {(charsLeft > 0) ? <p className="word-count"> Minimum required characters left: {charsLeft}</p> : null}
+          {(charsLeft <= 0) ? <p className="word-count">Minimum reached</p> : null}
         </label>
         <label>
           Upload Your Photos
