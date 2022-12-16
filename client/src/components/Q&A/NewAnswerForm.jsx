@@ -1,4 +1,4 @@
-import {React, useState} from 'React';
+import {useState} from 'react';
 
 var NewAnswerForm = (props) => {
   return (
