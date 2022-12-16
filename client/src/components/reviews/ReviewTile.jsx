@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProductRating from './ProductRating.jsx';
 import { format } from 'date-fns';
 import { AiFillCheckCircle } from 'react-icons/ai'
@@ -12,10 +12,17 @@ const ReviewTile = (props) => {
       photoArr.push(photo.url);
     });
   }
+  const [helpful, setHelpful] = useState(false);
+  var helpfulClickCount = 0;
 
   const helpClick = (review_id) => {
     // console.log('review id: ', review_id);
-    props.handleHelpClick(review_id);
+    helpfulClickCount++
+    if (helpfulClickCount === 1) {
+      setHelpful(true);
+      props.handleHelpClick(review_id);
+    }
+    // console.log('click count: ', helpfulClickCount);
   }
 
   const reportClick = (review_id) => {
@@ -34,7 +41,7 @@ const ReviewTile = (props) => {
       }) : null}
       <p>{props.review.body}</p>
       <div className="helpful-report">
-        <p>Helpful? <a onClick={() => helpClick(props.review.review_id)}>Yes({(props.review.helpfulness) ? props.review.helpfulness : 0})</a>&nbsp;|&nbsp;</p>
+        <p>Helpful? <a onClick={() => helpClick(props.review.review_id)}>Yes({(helpful) ? props.review.helpfulness + 1 : props.review.helpfulness})</a>&nbsp;|&nbsp;</p>
         <p onClick={() => reportClick(props.review.review_id)}>Report</p>
       </div>
 
