@@ -11,7 +11,6 @@ const ReviewTile = (props) => {
     photos.forEach((photo) => {
       photoArr.push(photo.url);
     });
-    // console.log('these are the photos: ', photoArr);
   }
 
   const helpClick = (review_id) => {
