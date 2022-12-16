@@ -375,7 +375,7 @@ h1 {
   max-height: 70vh;
   margin-top: calc(100vh - 85vh - 20px);
   background: #fff;
-  border-radius: 4px;
+  border-radius: 10px;
   padding: 20px;
   border: 1px solid #999;
   overflow: auto;
@@ -746,8 +746,7 @@ h1 {
 }
 
 .review-list {
-  margin-top: 3em;
-  height: 31em;
+  height: 35em;
   width: 30em;
   overflow-y: auto;
 }
@@ -775,12 +774,17 @@ h1 {
 
 .review-name-date {
   display: flex;
-  align-items: flex-end;
   justify-content: space-between;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.review-name-date p {
+  font-size: .75em;
 }
 
 .review-image {
-  height: 5em;
+  height: auto;
   width: 5em;
   margin-right: 1em;
   border-radius: .5em;
