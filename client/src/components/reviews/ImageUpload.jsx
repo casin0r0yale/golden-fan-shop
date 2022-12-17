@@ -30,13 +30,13 @@ class ImageUpload extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="image-upload-buttons">
         {(this.fileArray || []).map(url => (
             <img key={url} className="review-image-thumbnails" src={url} alt="..." />
         ))}
         {(this.fileArray.length < 5) ? <input type="file" onChange={this.uploadMulitpleFiles} multiple/> : null}
         <br></br>
-        <button type="button" onClick={this.uploadFiles}>Upload</button>
+        <button className="form-buttons"type="button" onClick={this.uploadFiles}>Upload</button>
       </div>
     )
   }

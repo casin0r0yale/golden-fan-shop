@@ -183,114 +183,114 @@ const ReviewForm = (props) => {
         <label>
           Characteristics*
           {(charID["Size"] !== undefined) ?
-              <fieldset>
-              <label className="radio-buttons">
-                <h4>Size</h4>
-                  <p className="characteristic-text">{sizeRating}</p>
+            <fieldset className="characteristic-fields">
+              <h4>Size</h4>
+              <p className="characteristic-text">{sizeRating}</p>
+                <div className="radio-buttons">
                   <input type="radio" id="one" name="size" value="1" onClick={() => sizeSelection("one")}/>
-                  <p>A size too small</p>
-                  <label>1.</label>
+                  <label for="one">1.</label>
+                  <div className="lo-text">A size too small</div>
                   <input type="radio" id="two" name="size" value="2" onClick={() => sizeSelection("two")}/>
-                  <label>2</label>
+                  <label for="two">2.</label>
                   <input type="radio" id="three" name="size" value="3" onClick={() => sizeSelection("three")}/>
-                  <label>3</label>
+                  <label for="three">3.</label>
                   <input type="radio" id="four" name="size" value="4" onClick={() => sizeSelection("four")}/>
-                  <label>4</label>
+                  <label for="four">4.</label>
                   <input type="radio" id="five" name="size" value="5" onClick={() => sizeSelection("five")}/>
-                  <p>A size too wide</p>
-                  <label>5.</label>
-              </label>
+                  <label for="five">5.</label>
+                  <div className="hi-text">A size too wide</div>
+                </div>
             </fieldset>
           : null}
           {(charID["Width"] !== undefined) ?
-            <fieldset>
-            <label>
-              <h4>Width</h4>
-              <p className="characteristic-text">{widthText}</p>
-              <input type="radio" id="1" name="width" value="1" onClick={() => widthSelection("one")}/>
-              <label>1. Too narrow</label>
-              <input type="radio" id="2" name="width" value="2" onClick={() => widthSelection("two")}/>
-              <label>2</label>
-              <input type="radio" id="3" name="width" value="3" onClick={() => widthSelection("three")}/>
-              <label>3</label>
-              <input type="radio" id="4" name="width" value="4" onClick={() => widthSelection("four")}/>
-              <label>4</label>
-              <input type="radio" id="5" name="width" value="5" onClick={() => widthSelection("five")}/>
-              <label>5. Too wide</label>
-            </label>
+            <fieldset className="characteristic-fields">
+            <h4>Width</h4>
+            <p className="characteristic-text">{widthText}</p>
+                <label className="radio-buttons">
+                  <input type="radio" id="one" name="width" value="1" onClick={() => widthSelection("one")}/>
+                  <label for="one">1. Too narrow</label>
+                  <input type="radio" id="two" name="width" value="2" onClick={() => widthSelection("two")}/>
+                  <label for="two">2.</label>
+                  <input type="radio" id="three" name="width" value="3" onClick={() => widthSelection("three")}/>
+                  <label for="three">3.</label>
+                  <input type="radio" id="four" name="width" value="4" onClick={() => widthSelection("four")}/>
+                  <label for="four">4.</label>
+                  <input type="radio" id="five" name="width" value="5" onClick={() => widthSelection("five")}/>
+                  <label for="five">5. Too wide</label>
+                </label>
           </fieldset>
           : null}
           {(charID["Comfort"] !== undefined) ?
-            <fieldset>
-              <label>
-                <h4>Comfort</h4>
-                <p className="characteristic-text">{comfortText}</p>
-                <input type="radio" id="1" name="comfort" value="1" onClick={() => comfortSelection("one")}/>
-                <label>1. Uncomfortable</label>
-                <input type="radio" id="2" name="comfort" value="2" onClick={() => comfortSelection("two")}/>
-                <label>2</label>
-                <input type="radio" id="3" name="comfort" value="3" onClick={() => comfortSelection("three")}/>
-                <label>3</label>
-                <input type="radio" id="4" name="comfort" value="4" onClick={() => comfortSelection("four")}/>
-                <label>4</label>
-                <input type="radio" id="5" name="comfort" value="5" onClick={() => comfortSelection("five")}/>
-                <label>5. Perfect</label>
-              </label>
+            <fieldset className="characteristic-fields">
+            <h4>Comfort</h4>
+            <p className="characteristic-text">{comfortText}</p>
+                <label className="radio-buttons">
+                  <input type="radio" id="1" name="comfort" value="1" onClick={() => comfortSelection("one")}/>
+                  <label>1. Uncomfortable</label>
+                  <input type="radio" id="2" name="comfort" value="2" onClick={() => comfortSelection("two")}/>
+                  <label>2</label>
+                  <input type="radio" id="3" name="comfort" value="3" onClick={() => comfortSelection("three")}/>
+                  <label>3</label>
+                  <input type="radio" id="4" name="comfort" value="4" onClick={() => comfortSelection("four")}/>
+                  <label>4</label>
+                  <input type="radio" id="5" name="comfort" value="5" onClick={() => comfortSelection("five")}/>
+                  <label>5. Perfect</label>
+                </label>
             </fieldset>
           : null}
             {(charID["Quality"] !== undefined) ?
-            <fieldset>
-              <label>
-                <h4>Quality</h4>
-                <p className="characteristic-text">{qualityText}</p>
-                <input type="radio" id="1" name="quality" value="1" onClick={() => qualitySelection("one")}/>
-                <label>1. Poor</label>
-                <input type="radio" id="2" name="quality" value="2" onClick={() => qualitySelection("two")}/>
-                <label>2</label>
-                <input type="radio" id="3" name="quality" value="3" onClick={() => qualitySelection("three")}/>
-                <label>3</label>
-                <input type="radio" id="4" name="quality" value="4" onClick={() => qualitySelection("four")}/>
-                <label>4</label>
-                <input type="radio" id="5" name="quality" value="5" onClick={() => qualitySelection("five")}/>
-                <label>5. Perfect</label>
-              </label>
+            <fieldset className="characteristic-fields">
+            <h4>Quality</h4>
+            <p className="characteristic-text">{qualityText}</p>
+                <label className="radio-buttons">
+                  <input type="radio" id="1" name="quality" value="1" onClick={() => qualitySelection("one")}/>
+                  <label>1. Poor</label>
+                  <input type="radio" id="2" name="quality" value="2" onClick={() => qualitySelection("two")}/>
+                  <label>2</label>
+                  <input type="radio" id="3" name="quality" value="3" onClick={() => qualitySelection("three")}/>
+                  <label>3</label>
+                  <input type="radio" id="4" name="quality" value="4" onClick={() => qualitySelection("four")}/>
+                  <label>4</label>
+                  <input type="radio" id="5" name="quality" value="5" onClick={() => qualitySelection("five")}/>
+                  <label>5. Perfect</label>
+                </label>
             </fieldset>
           : null}
             {(charID["Length"] !== undefined) ?
-              <fieldset>
-                <label>
-                  <h4>Length</h4>
-                  <p className="characteristic-text">{lengthText}</p>
-                  <input type="radio" id="1" name="length" value="1" onClick={() => lengthSelection("one")}/>
-                  <label>1. Runs short</label>
-                  <input type="radio" id="2" name="length" value="2" onClick={() => lengthSelection("two")}/>
-                  <label>2</label>
-                  <input type="radio" id="3" name="length" value="3" onClick={() => lengthSelection("three")}/>
-                  <label>3</label>
-                  <input type="radio" id="4" name="length" value="4" onClick={() => lengthSelection("four")}/>
-                  <label>4</label>
-                  <input type="radio" id="5" name="length" value="5" onClick={() => lengthSelection("five")}/>
-                  <label>5. Runs long</label>
-                </label>
-            </fieldset>
+              <fieldset className="characteristic-fields">
+              <h4>Length</h4>
+              <p className="characteristic-text">{lengthText}</p>
+                  <label className="radio-buttons">
+                    <input type="radio" id="1" name="length" value="1" onClick={() => lengthSelection("one")}/>
+                    <label>1. Runs short</label>
+                    <input type="radio" id="2" name="length" value="2" onClick={() => lengthSelection("two")}/>
+                    <label>2</label>
+                    <input type="radio" id="3" name="length" value="3" onClick={() => lengthSelection("three")}/>
+                    <label>3</label>
+                    <input type="radio" id="4" name="length" value="4" onClick={() => lengthSelection("four")}/>
+                    <label>4</label>
+                    <input type="radio" id="5" name="length" value="5" onClick={() => lengthSelection("five")}/>
+                    <label>5. Runs long</label>
+                  </label>
+              </fieldset>
             : null}
             {(charID["Fit"] !== undefined) ?
-            <fieldset>
-              <label>
-                <h4>Fit</h4>
-                <p className="characteristic-text">{fitText}</p>
-                <input type="radio" id="1" name="fit" value="1" onClick={() => fitSelection("one")}/>
-                <label>1. runs tight</label>
-                <input type="radio" id="2" name="fit" value="2" onClick={() => fitSelection("two")}/>
-                <label>2</label>
-                <input type="radio" id="3" name="fit" value="3" onClick={() => fitSelection("three")}/>
-                <label>3</label>
-                <input type="radio" id="4" name="fit" value="4" onClick={() => fitSelection("four")}/>
-                <label>4</label>
-                <input type="radio" id="5" name="fit" value="5" onClick={() => fitSelection("five")}/>
-                <label>5. Runs long</label>
-              </label>
-          </fieldset>
+            <fieldset className="characteristic-fields">
+            <h4>Fit</h4>
+            <p className="characteristic-text">{fitText}</p>
+                  <label className="radio-buttons">
+                    <input type="radio" id="1" name="fit" value="1" onClick={() => fitSelection("one")}/>
+                    <label>1. runs tight</label>
+                    <input type="radio" id="2" name="fit" value="2" onClick={() => fitSelection("two")}/>
+                    <label>2</label>
+                    <input type="radio" id="3" name="fit" value="3" onClick={() => fitSelection("three")}/>
+                    <label>3</label>
+                    <input type="radio" id="4" name="fit" value="4" onClick={() => fitSelection("four")}/>
+                    <label>4</label>
+                    <input type="radio" id="5" name="fit" value="5" onClick={() => fitSelection("five")}/>
+                    <label>5. Runs long</label>
+                  </label>
+            </fieldset>
           : null}
         </label>
         <br></br>
@@ -329,7 +329,7 @@ const ReviewForm = (props) => {
           <input type="email" name="email" placeholder="Example: jackson11@email.com" maxLength="60" required/>
           <h5>For authentication reasons, you will not be emailed</h5>
         </label>
-        <button>Submit</button>
+        <button className="form-buttons">Submit</button>
       </form>
     </div>
   )
