@@ -21,7 +21,6 @@ const Reviews = (props) => {
   const [threeStar, setThreeStar] = useState(false);
   const [twoStar, setTwoStar] = useState(false);
   const [oneStar, setOneStar] = useState(false);
-  const [starFilter, setStarFilter] = useState([]);
 
   useEffect(() => {
     console.log('incoming list has changed!');
@@ -115,101 +114,106 @@ const Reviews = (props) => {
     }
   }
 
-  let starSortedArr = [];
+
+  const defaultList = incomingList.slice(0);
+
   const starSort = async (value) => {
+    let updatedReviewList = [];
+
     if (value === 5) {
+      // console.log('star selected: ', value);
       setFiveStar(!fiveStar);
       if (fiveStar) {
-         await incomingList.forEach((review) => {
+         await defaultList.forEach((review) => {
           if (review.rating === 5) {
-            starSortedArr.push(review);
+            updatedReviewList.push(review);
           }
         });
       }
       if (!fiveStar) {
-        await starSortedArr.forEach((review, index) => {
+        await updatedReviewList.forEach((review, index) => {
           if (review.rating === 5) {
-            starSortedArr.splice(index, 1);
+            updatedReviewList.splice(index, 1);
           }
         });
       }
     }
-    if (value === 4) {
-      setFourStar(!fourStar);
-      if (fourStar) {
-        await incomingList.forEach((review) => {
-          if (review.rating === 4) {
-            starSortedArr.push(review);
-          }
-        });
-      }
-      if (!fourStar) {
-        await starSortedArr.forEach((review, index) => {
-          if (review.rating === 4) {
-            starSortedArr.splice(index, 1);
-          }
-        });
-      }
+    // if (value === 4) {
+    //   setFourStar(!fourStar);
+    //   if (fourStar) {
+    //     await incomingList.forEach((review) => {
+    //       if (review.rating === 4) {
+    //         starSortedArr.push(review);
+    //       }
+    //     });
+    //   }
+    //   if (!fourStar) {
+    //     await starSortedArr.forEach((review, index) => {
+    //       if (review.rating === 4) {
+    //         starSortedArr.splice(index, 1);
+    //       }
+    //     });
+    //   }
+    // }
+    // if (value === 3) {
+    //   setThreeStar(!threeStar);
+    //   if (threeStar) {
+    //     await incomingList.forEach((review) => {
+    //       if (review.rating === 3) {
+    //         starSortedArr.push(review);
+    //       }
+    //     });
+    //   }
+    //   if (!threeStar) {
+    //     await starSortedArr.forEach((review, index) => {
+    //       if (review.rating === 3) {
+    //         starSortedArr.splice(index, 1);
+    //       }
+    //     });
+    //   }
+    // }
+    // if (value === 2) {
+    //   setTwoStar(!twoStar);
+    //   if (twoStar) {
+    //     await incomingList.forEach((review) => {
+    //       if (review.rating === 2) {
+    //         starSortedArr.push(review);
+    //       }
+    //     });
+    //   }
+    //   if (!twoStar){
+    //     await starSortedArr.forEach((review, index) => {
+    //       if (review.rating === 2) {
+    //         starSortedArr.splice(index, 1);
+    //       }
+    //     });
+    //   }
+    // }
+    // if (value === 1) {
+    //   setOneStar(!oneStar);
+    //   if (oneStar) {
+    //     await incomingList.forEach((review) => {
+    //       if (review.rating === 1) {
+    //         starSortedArr.push(review);
+    //       }
+    //     });
+    //   }
+    //   if (!oneStar) {
+    //     await starSortedArr.forEach((review, index) => {
+    //       if (review.rating === 1) {
+    //         starSortedArr.splice(index, 1);
+    //       }
+    //     });
+    //   }
+    // }
+    if (!fiveStar && !fourStar && !threeStar && !twoStar && !oneStar) {
+      setStarFilterToggle(false);
+    } else {
+      setStarFilterToggle(true);
     }
-    if (value === 3) {
-      setThreeStar(!threeStar);
-      if (threeStar) {
-        await incomingList.forEach((review) => {
-          if (review.rating === 3) {
-            starSortedArr.push(review);
-          }
-        });
-      }
-      if (!threeStar) {
-        await starSortedArr.forEach((review, index) => {
-          if (review.rating === 3) {
-            starSortedArr.splice(index, 1);
-          }
-        });
-      }
-    }
-    if (value === 2) {
-      setTwoStar(!twoStar);
-      if (twoStar) {
-        await incomingList.forEach((review) => {
-          if (review.rating === 2) {
-            starSortedArr.push(review);
-          }
-        });
-      }
-      if (!twoStar){
-        await starSortedArr.forEach((review, index) => {
-          if (review.rating === 2) {
-            starSortedArr.splice(index, 1);
-          }
-        });
-      }
-    }
-    if (value === 1) {
-      setOneStar(!oneStar);
-      if (oneStar) {
-        await incomingList.forEach((review) => {
-          if (review.rating === 1) {
-            starSortedArr.push(review);
-          }
-        });
-      }
-      if (!oneStar) {
-        await starSortedArr.forEach((review, index) => {
-          if (review.rating === 1) {
-            starSortedArr.splice(index, 1);
-          }
-        });
-      }
-    }
-    // var sorted = await incomingList.filter((review) => {
-    //   return review.rating === value;
-    // })
-    // var sortedCopy = [...sorted];
-    await setStarFilter(starSortedArr);
-    await props.updateReviewList(starSortedArr);
-    console.log('this is the starSortedArr: ', starFilter);
-    // forceUpdate();
+    setStarReviews(updatedReviewList);
+    // console.log('this is the star Sorted array: ', starSortedArr);
+    // props.updateReviewList(starSortedArr);
   }
 
   return (
@@ -226,7 +230,7 @@ const Reviews = (props) => {
             <option value="helpfulness">helpfulness</option>
           </select>
         </h3>
-        <ReviewList handleHelpClick={handleHelpClick} handleReportClick={handleReportClick} reviewList={incomingList} togglePopup={togglePopup}/>
+        <ReviewList handleHelpClick={handleHelpClick} handleReportClick={handleReportClick} reviewList={starFilterToggle ? starReviews : incomingList} togglePopup={togglePopup}/>
       </div>
       {isOpen && <Popup
         content={<>

@@ -15,18 +15,21 @@ const ReviewTile = (props) => {
   const [helpful, setHelpful] = useState(false);
   var helpfulClickCount = 0;
 
-  const helpClick = (review_id) => {
+  const helpClick = async (review_id) => {
     // console.log('review id: ', review_id);
     helpfulClickCount++
-    if (helpfulClickCount === 1) {
+    if (helpfulClickCount <= 1) {
       setHelpful(true);
-      props.handleHelpClick(review_id);
+      await props.handleHelpClick(review_id);
+    } else {
+      alert('Cannot vote more than once!');
     }
     // console.log('click count: ', helpfulClickCount);
   }
 
-  const reportClick = (review_id) => {
-    props.handleReportClick(review_id);
+  const reportClick = async (review_id) => {
+    await props.handleReportClick(review_id);
+    alert('Review has been reported');
   }
 
   return(
