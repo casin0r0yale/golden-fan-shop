@@ -71,7 +71,7 @@ const AddToCart = (props) => {
       </div>
       <div widgetname="Overview" className="dropdown">
         {!isNaN(quantitySelected) ?
-          <div widgetname="Overview"><button widgetname="Overview" className="dropdown-button" id="quantity" onClick={() => { setQuantityDropdownExpanded(!quantityDropdownExpanded) }}>{quantitySelected}<div widgetname="Overview"> <RxCaretDown class="caret" size="20" /></div> </button></div>
+          <div widgetname="Overview"><button widgetname="Overview" className="dropdown-button" id="quantity" onClick={() => { setQuantityDropdownExpanded(!quantityDropdownExpanded) }}>{quantitySelected}<div widgetname="Overview"> <RxCaretDown className="caret" size="20" /></div> </button></div>
           : <button widgetname="Overview" className="dropdown-button" id="quantity">{quantitySelected} <RxCaretDown className="caret" size="20" /></button>}
         <div widgetname="Overview" className={quantityDropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
           {sizeSelected.quantity > 15 ?
