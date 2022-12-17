@@ -24,6 +24,11 @@ const Reviews = (props) => {
 
   useEffect(() => {
     console.log('incoming list has changed!');
+    if (fiveStar || fourStar || threeStar || twoStar || oneStar) {
+      setStarFilterToggle(true);
+    } else {
+      setStarFilterToggle(false);
+    }
     forceUpdate();
   },[incomingList])
 
@@ -35,6 +40,10 @@ const Reviews = (props) => {
   const useForceUpdate = () => {
     const [value, setValue] = useState([]);
     return () => setValue(value => props.reviewList);
+  }
+
+  const clearFilters = () => {
+    setStarFilterToggle(false);
   }
 
   const forceUpdate = useForceUpdate();
@@ -118,7 +127,7 @@ const Reviews = (props) => {
   const defaultList = incomingList.slice(0);
 
   const starSort = async (value) => {
-    let updatedReviewList = [];
+    let updatedReviewList = [...starReviews];
 
     if (value === 5) {
       // console.log('star selected: ', value);
@@ -138,80 +147,82 @@ const Reviews = (props) => {
         });
       }
     }
-    // if (value === 4) {
-    //   setFourStar(!fourStar);
-    //   if (fourStar) {
-    //     await incomingList.forEach((review) => {
-    //       if (review.rating === 4) {
-    //         starSortedArr.push(review);
-    //       }
-    //     });
-    //   }
-    //   if (!fourStar) {
-    //     await starSortedArr.forEach((review, index) => {
-    //       if (review.rating === 4) {
-    //         starSortedArr.splice(index, 1);
-    //       }
-    //     });
-    //   }
-    // }
-    // if (value === 3) {
-    //   setThreeStar(!threeStar);
-    //   if (threeStar) {
-    //     await incomingList.forEach((review) => {
-    //       if (review.rating === 3) {
-    //         starSortedArr.push(review);
-    //       }
-    //     });
-    //   }
-    //   if (!threeStar) {
-    //     await starSortedArr.forEach((review, index) => {
-    //       if (review.rating === 3) {
-    //         starSortedArr.splice(index, 1);
-    //       }
-    //     });
-    //   }
-    // }
-    // if (value === 2) {
-    //   setTwoStar(!twoStar);
-    //   if (twoStar) {
-    //     await incomingList.forEach((review) => {
-    //       if (review.rating === 2) {
-    //         starSortedArr.push(review);
-    //       }
-    //     });
-    //   }
-    //   if (!twoStar){
-    //     await starSortedArr.forEach((review, index) => {
-    //       if (review.rating === 2) {
-    //         starSortedArr.splice(index, 1);
-    //       }
-    //     });
-    //   }
-    // }
-    // if (value === 1) {
-    //   setOneStar(!oneStar);
-    //   if (oneStar) {
-    //     await incomingList.forEach((review) => {
-    //       if (review.rating === 1) {
-    //         starSortedArr.push(review);
-    //       }
-    //     });
-    //   }
-    //   if (!oneStar) {
-    //     await starSortedArr.forEach((review, index) => {
-    //       if (review.rating === 1) {
-    //         starSortedArr.splice(index, 1);
-    //       }
-    //     });
-    //   }
-    // }
-    if (!fiveStar && !fourStar && !threeStar && !twoStar && !oneStar) {
-      setStarFilterToggle(false);
-    } else {
-      setStarFilterToggle(true);
+    if (value === 4) {
+      setFourStar(!fourStar);
+      if (fourStar) {
+        await defaultList.forEach((review) => {
+          if (review.rating === 4) {
+            updatedReviewList.push(review);
+          }
+        });
+      }
+      if (!fourStar) {
+        await updatedReviewList.forEach((review, index) => {
+          if (review.rating === 4) {
+            updatedReviewList.splice(index, 1);
+          }
+        });
+      }
     }
+    if (value === 3) {
+      setThreeStar(!threeStar);
+      if (threeStar) {
+        await defaultList.forEach((review) => {
+          if (review.rating === 3) {
+            updatedReviewList.push(review);
+          }
+        });
+      }
+      if (!threeStar) {
+        await updatedReviewList.forEach((review, index) => {
+          if (review.rating === 3) {
+            updatedReviewList.splice(index, 1);
+          }
+        });
+      }
+    }
+    if (value === 2) {
+      setTwoStar(!twoStar);
+      if (twoStar) {
+        await defaultList.forEach((review) => {
+          if (review.rating === 2) {
+            updatedReviewList.push(review);
+          }
+        });
+      }
+      if (!twoStar){
+        await updatedReviewList.forEach((review, index) => {
+          if (review.rating === 2) {
+            updatedReviewList.splice(index, 1);
+          }
+        });
+      }
+    }
+    if (value === 1) {
+      setOneStar(!oneStar);
+      if (oneStar) {
+        await defaultList.forEach((review) => {
+          if (review.rating === 1) {
+            updatedReviewList.push(review);
+          }
+        });
+      }
+      if (!oneStar) {
+        await updatedReviewList.forEach((review, index) => {
+          if (review.rating === 1) {
+            updatedReviewList.splice(index, 1);
+          }
+        });
+      }
+    }
+    if (fiveStar || fourStar || threeStar || twoStar || oneStar) {
+      setStarFilterToggle(true);
+    } else {
+      setStarFilterToggle(false);
+    }
+    // let oldReviews = [...starReviews];
     setStarReviews(updatedReviewList);
+    forceUpdate();
     // console.log('this is the star Sorted array: ', starSortedArr);
     // props.updateReviewList(starSortedArr);
   }
@@ -219,7 +230,7 @@ const Reviews = (props) => {
   return (
     <div className="review-module" data-testid="reviews-module">
       <div className="rating-breakdown">
-        <RatingBreakdown rating={props.rating} meta={meta} reviewList={props.reviewList} starSort={starSort}/>
+        <RatingBreakdown rating={props.rating} meta={meta} reviewList={props.reviewList} starSort={starSort} fiveStar={fiveStar} fourStar={fourStar} threeStar={threeStar} twoStar={twoStar} oneStar={oneStar} toggle={starFilterToggle} clear={clearFilters}/>
       </div>
       <div>
         <h3 className="reviewList-title">

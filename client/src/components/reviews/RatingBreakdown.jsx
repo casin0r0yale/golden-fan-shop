@@ -65,10 +65,18 @@ const RatingBreakdown = (props) => {
       <div>
         <h3>Rating Breakdown</h3>
         <p>{Math.floor((numRecommend / numReviews) * 100)}% of reviews recommend this product</p>
+        <div className="filter-label-group">
+          {(props.fiveStar) ? <div className="filter-label">5 Star</div> : null}
+          {(props.fourStar) ? <div className="filter-label">4 Star</div> : null}
+          {(props.threeStar) ? <div className="filter-label">3 Star</div> : null}
+          {(props.twoStar) ? <div className="filter-label">2 Star</div> : null}
+          {(props.oneStar) ? <div className="filter-label">1 Star</div> : null}
+          {(props.toggle === true) ? <div className="filter-label" onClick={props.clear}>Clear</div> : null}
+        </div>
           <div className="star-bars">
             {currPercentageArr.slice(0).reverse().map((rating, idx) => {
             let currStar = currPercentageArr.length - idx;
-            return <div><p onClick={() => props.starSort(currStar)} className="bar">{currStar} stars
+            return <div className="star-bar"><p onClick={() => props.starSort(currStar)} className="bar">{currStar} stars
             <PercentageBar bgcolor={'#59981A'} completed={rating[1]}/>{rating[0]} reviews</p></div>
             })}
           </div>

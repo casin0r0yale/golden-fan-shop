@@ -870,6 +870,35 @@ h1 {
   font-size: .75em;
 }
 
+.filter-label-group {
+  display: flex;
+  font-size: .25em;
+  justify-content: flex-start;
+}
+
+.filter-label {
+  background-color: rgb(0, 0, 0);
+  padding: 1em;
+  font-weight: bold;
+  color: white;
+  margin-right: 1em;
+}
+
+.star-bar:hover {
+  background-color:rgb(228, 228, 228);
+  border-radius: .15em;
+}
+
+.star-bar:active {
+  background-color:rgb(228, 228, 228);
+  border-radius: .15em;
+}
+
+.star-bar.active {
+  background-color:rgb(228, 228, 228);
+  border-radius: .15em;
+}
+
 .bar {
   display: flex;
   align-items: center;
