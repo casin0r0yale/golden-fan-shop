@@ -12,6 +12,16 @@ const ReviewForm = (props) => {
   const [lengthText, setLengthText] = useState('');
   const [fitText, SetFitText] = useState('');
   const [images, setImages] = useState([]);
+  const [summaryDefault, setSummaryDefault] = useState('Example: Best Purchase Ever!');
+  const [bodyDefault, setBodyDefault] = useState('Why did you like the product or not?');
+
+  const summaryClick = (event) => {
+    setSummaryDefault(null);
+  }
+
+  const bodyClick = (event) => {
+    setBodyDefault(null);
+  }
 
   const handleCharCount = (event) => {
     const charCount = event.target.value.length;
@@ -297,8 +307,8 @@ const ReviewForm = (props) => {
         <label>
           Review Summary
             <br></br>
-          <textarea className="review-summary" type="text" name="summary" maxLength="60">
-            Example: Best Purchase Ever!
+          <textarea onClick={summaryClick} className="review-summary" type="text" name="summary" maxLength="60">
+            {summaryDefault}
           </textarea>
         </label>
           <br></br>
@@ -306,8 +316,8 @@ const ReviewForm = (props) => {
         <label>
           Review Body
           <br></br>
-          <textarea className="review-body" type="text" name="body" minLength="50" maxLength="1000" onChange={handleCharCount}>
-            Why did you like the product or not?
+          <textarea onClick={bodyClick} className="review-body" type="text" name="body" minLength="50" maxLength="1000" onChange={handleCharCount}>
+            {bodyDefault}
           </textarea>
           {(charsLeft > 0) ? <p className="word-count"> Minimum required characters left: {charsLeft}</p> : null}
           {(charsLeft <= 0) ? <p className="word-count">Minimum reached</p> : null}
@@ -320,16 +330,15 @@ const ReviewForm = (props) => {
           <br></br>
         <label>
           What is your nickname?*
-          <br></br>
-          <input type="text" name="nickname" placeholder="Example: jackson11!" maxLength="60" required/>
+          <input className="name-input" type="text" name="nickname" placeholder="Example: jackson11!" maxLength="60" required/>
           <h5>For privacy reasons, do not use your full name or email address</h5>
         </label>
         <label>
           Your Email*
-          <input type="email" name="email" placeholder="Example: jackson11@email.com" maxLength="60" required/>
+          <input className="email-input" type="email" name="email" placeholder="Example: jackson11@email.com" maxLength="60" required/>
           <h5>For authentication reasons, you will not be emailed</h5>
         </label>
-        <button className="form-buttons">Submit</button>
+        <button className="submit-button">Submit</button>
       </form>
     </div>
   )

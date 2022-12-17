@@ -6,7 +6,8 @@ class ImageUpload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      file: [null]
+      file: [null],
+      uploaded: false
     }
     this.uploadMulitpleFiles = this.uploadMulitpleFiles.bind(this);
     this.uploadFiles = this.uploadFiles.bind(this);
@@ -26,17 +27,20 @@ class ImageUpload extends React.Component {
     event.preventDefault()
     var images = this.state.file
     this.props.handleImages(images);
+    this.setState({uploaded: true});
   }
 
   render() {
     return (
       <div className="image-upload-buttons">
-        {(this.fileArray || []).map(url => (
-            <img key={url} className="review-image-thumbnails" src={url} alt="..." />
-        ))}
+        <div className="review-images">
+          {(this.fileArray || []).map(url => (
+              <img key={url} className="review-image-thumbnail" src={url} alt="..." />
+          ))}
+        </div>
         {(this.fileArray.length < 5) ? <input type="file" onChange={this.uploadMulitpleFiles} multiple/> : null}
         <br></br>
-        <button className="form-buttons"type="button" onClick={this.uploadFiles}>Upload</button>
+        <button className="upload-button"type="button" onClick={this.uploadFiles}>{(this.state.uploaded) ? "Uploaded" : "Upload" }</button>
       </div>
     )
   }
