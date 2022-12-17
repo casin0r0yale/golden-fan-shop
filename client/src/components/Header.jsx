@@ -10,7 +10,7 @@ const Header = () => {
   }
 
   return (
-    <div className="header">
+    <div className="header" moduleName="Header">
       <div onClick = {refreshPage} className="header-left">
         <img src={require('../img/Logo.png')} alt="Golden Fan Logo" />
       </div>

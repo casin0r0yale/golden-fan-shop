@@ -213,7 +213,7 @@ const Reviews = (props) => {
   }
 
   return (
-    <div className="review-module" data-testid="reviews-module">
+    <div className="review-module" data-testid="reviews-module"  moduleName="Reviews">
       <div className="rating-breakdown">
         <RatingBreakdown rating={props.rating} meta={meta} reviewList={props.reviewList} starSort={starSort}/>
       </div>
