@@ -1,15 +1,22 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, Suspense } from "react";
 import ReactDOM from 'react-dom';
 import Overview from './components/overview/overview.jsx';
-import Reviews from './components/reviews/Reviews.jsx';
-import RelatedCard from './components/relatedProductsAndYourOutfit/RelatedCard.jsx';
-import AddToOutfitCard from './components/relatedProductsAndYourOutfit/AddToOutfitCard.jsx';
-import YourOutfitCard from './components/relatedProductsAndYourOutfit/YourOutfitCard.jsx';
-import LeftScrollButtonCarousel from './components/relatedProductsAndYourOutfit/LeftScrollButtonCarousel.jsx';
-import RightScrollButtonCarousel from './components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx';
+const Reviews = React.lazy(() => import('./components/reviews/Reviews.jsx'));
+// import Reviews from './components/reviews/Reviews.jsx';
+const RelatedCard = React.lazy(() => import('./components/relatedProductsAndYourOutfit/RelatedCard.jsx'));
+// import RelatedCard from './components/relatedProductsAndYourOutfit/RelatedCard.jsx';
+const AddToOutfitCard = React.lazy(() => import('./components/relatedProductsAndYourOutfit/AddToOutfitCard.jsx'));
+// import AddToOutfitCard from './components/relatedProductsAndYourOutfit/AddToOutfitCard.jsx';
+const YourOutfitCard = React.lazy(() => import('./components/relatedProductsAndYourOutfit/YourOutfitCard.jsx'));
+// import YourOutfitCard from './components/relatedProductsAndYourOutfit/YourOutfitCard.jsx';
+const LeftScrollButtonCarousel = React.lazy(() => import('./components/relatedProductsAndYourOutfit/LeftScrollButtonCarousel.jsx'));
+const RightScrollButtonCarousel = React.lazy(() => import('./components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx')) ;
+// import LeftScrollButtonCarousel from './components/relatedProductsAndYourOutfit/LeftScrollButtonCarousel.jsx';
+// import RightScrollButtonCarousel from './components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx';
 import Header from "./components/Header.jsx";
 import Description from "./components/Description.jsx";
-import Questions from './components/Q&A/Questions.jsx';
+const Questions = React.lazy(() => import('./components/Q&A/Questions.jsx'));
+// import Questions from './components/Q&A/Questions.jsx';
 import useClickTracker from './hooks/useClickTracker.jsx';
 import axios from 'axios';
 
@@ -239,6 +246,7 @@ const App = () => {
         <div widgetname="Related/YourOutfit">RELATED PRODUCTS</div>
 
         <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef} widgetname="Related Products">
+        <Suspense fallback={<div>Loading...</div>}>
           {scrollRelatedProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft} />) : null}
           {relatedProductsData.map((itemObj, index) => {
             return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} related_id={itemObj.related_id} related_name={itemObj.related_name}
@@ -248,11 +256,13 @@ const App = () => {
               ref={index === activeSlide ? activeSlideRef : index - 1 === activeSlide ? nextSlideRef : index + 1 === activeSlide ? prevSlideRef : null} />
           })}
           {scrollToggleRelatedProgress && scrollRelatedProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight} />}
+          </Suspense>
         </div>
         <br />
         <br />
         <div widgetname="Related/YourOutfit">YOUR OUTFIT</div>
           <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} widgetname="Your Outfit">
+          <Suspense fallback={<div>Loading...</div>}>
             {scrollYourOutfitProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft2} />) : null}
             {yourOutfitList.map((itemObj, index) => {
               return <YourOutfitCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} current_name={itemObj.current_name} current_id={itemObj.current_id}
@@ -263,9 +273,12 @@ const App = () => {
             })}
             <AddToOutfitCard onClickYourOutfit={onClickYourOutfit} ref={activeSlide2 === yourOutfitList.length - 1 ? nextSlideRef2 : null} />
             {scrollToggleYourOutfitProgress && scrollYourOutfitProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight2} l />}
+           </Suspense>
           </div>
+        <Suspense fallback={<div>Loading...</div>}>
         <Questions data={productQnAData} product={productInfo} />
-      <Reviews rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
+        <Reviews rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
+        </Suspense>
       </div>
     </div>
   );
