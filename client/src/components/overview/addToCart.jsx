@@ -77,10 +77,10 @@ const AddToCart = (props) => {
         <div moduleName="Overview" className={quantityDropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
           {sizeSelected.quantity > 15 ?
             Array.from(Array(15).keys()).map(quantity => {
-              return (<p onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
+              return (<p moduleName="Overview" onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
             })
             : Array.from(Array(sizeSelected.quantity).keys()).map(quantity => {
-              return (<p onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
+              return (<p moduleName="Overview" onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
             })}
 
         </div>

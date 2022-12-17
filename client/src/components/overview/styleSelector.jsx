@@ -9,9 +9,9 @@ const StyleSelector = (props) => {
     <div moduleName="Overview"  className="styleSelector">
       {!props.styles[props.styleIndex]?.sale_price ? <p>${props.styles[props.styleIndex]?.original_price}</p>
         :
-        <p><span  moduleName="Overview" className="strikeThrough"> ${props.styles[props.styleIndex]?.original_price} </span> ${props.styles[props.styleIndex]?.sale_price}</p>
+        <p moduleName="Overview"><span moduleName="Overview" className="strikeThrough"> ${props.styles[props.styleIndex]?.original_price} </span> ${props.styles[props.styleIndex]?.sale_price}</p>
       }
-      <h3 moduleName="Overview" >STYLE &gt; <span  moduleName="Overview" style={{ fontWeight: "normal" }}>SELECTED STYLE</span></h3>
+      <h3 moduleName="Overview" >STYLE &gt; <span moduleName="Overview" style={{ fontWeight: "normal" }}>SELECTED STYLE</span></h3>
       <div moduleName="Overview"  className="styleContainer">
         {props.styles?.map((product, index) => {
 
