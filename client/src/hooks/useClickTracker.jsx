@@ -3,13 +3,16 @@ import axios from 'axios';
 
 const useClickTracker = () => {
   const [clickInfo, setClickInfo] = useState({
-    element: null,
-    widget: null,
-    time: null
+    element: '',
+    widget: '',
+    time: ''
   })
 
   useEffect(() => {
 
+    if (clickInfo.element === '') {
+      return;
+    }
 
     axios.post('/clickTrackPost', clickInfo)
     .then((response) => {
@@ -20,9 +23,6 @@ const useClickTracker = () => {
     .catch ((err) => {
       console.log("AXIOS Click Tracking err: ", err)
     })
-
-
-
 
   }, [clickInfo])
 
