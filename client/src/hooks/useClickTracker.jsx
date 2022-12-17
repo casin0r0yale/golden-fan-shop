@@ -10,17 +10,13 @@ const useClickTracker = () => {
 
   useEffect(() => {
 
-    console.log("Tracked Click before axios:", clickInfo);
-
     if (!clickInfo.element) {
       return;
     }
 
     axios.post('/clickTrackPost', clickInfo)
     .then((response) => {
-
       console.log("AXIOS Tracked Click! Here's the info: ", clickInfo);
-
     })
     .catch ((err) => {
       console.log("AXIOS Click Tracking err: ", err)
@@ -32,9 +28,8 @@ const useClickTracker = () => {
 
     setClickInfo({
       element: event.target.tagName ? event.target.tagName : "null",
-      widget: event.target.getAttribute("moduleName") ? event.target.getAttribute("moduleName") : "null",
+      widget: event.target.getAttribute("widgetname") ? event.target.getAttribute("widgetname") : "null",
       time: new Date(Date.now()).toString()
-      // moduleName: __filename,
     })
   }
 

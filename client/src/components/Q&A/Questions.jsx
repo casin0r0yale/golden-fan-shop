@@ -42,7 +42,7 @@ var Questions = (props) => {
   const mappedQuestions = filteredQuestions.slice(0, questionIndex);
 
   return (
-    <div data-testid="question-module"  moduleName="Questions & Answers">
+    <div data-testid="question-module">
       <h3>Questions &amp; Answers</h3>
       <div>
         <div className="search-bar">

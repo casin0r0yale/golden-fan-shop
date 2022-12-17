@@ -11,7 +11,6 @@ import Header from "./components/Header.jsx";
 import Description from "./components/Description.jsx";
 import Questions from './components/Q&A/Questions.jsx';
 import useClickTracker from './hooks/useClickTracker.jsx';
-// import { ModuleNameContext } from "./hooks/contextModuleName.jsx"
 import axios from 'axios';
 
 const App = () => {
@@ -34,13 +33,13 @@ const App = () => {
 
   const {clickInfo, onClickTracker} = useClickTracker();
 
-  const moduleName = {
-    overview: "Overview",
-    yourOutfit: "Your Outfit",
-    relatedProducts: "Related Products",
-    qna: "Questions & Answers",
-    reviews: "Reviews",
-  }
+  // const moduleName = {
+  //   overview: "Overview",
+  //   yourOutfit: "Your Outfit",
+  //   relatedProducts: "Related Products",
+  //   qna: "Questions & Answers",
+  //   reviews: "Reviews",
+  // }
 
   // Init GET Request
 
@@ -233,15 +232,13 @@ const App = () => {
 
     <div onClick={onClickTracker}>
       <Header />
-      {/* <ModuleNameContext.Provider props={moduleName}> */}
         <h2 data-testid='testYourOutfitCard'>Golden Fan Shop: Main App/Index Component</h2>
         <Overview rating={rating} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} />
-      {/* </ModuleNameContext.Provider> */}
       <div className="margins-nonOverview">
         <Description slogan={productInfo.slogan} desc={productInfo.description} featuresPrimaryProductString={featuresPrimaryProduct}/>
-        <div moduleName="Related Products">RELATED PRODUCTS</div>
+        <div widgetname="Related/YourOutfit">RELATED PRODUCTS</div>
 
-        <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef} moduleName="Related Products">
+        <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef} widgetname="Related Products">
           {scrollRelatedProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft} />) : null}
           {relatedProductsData.map((itemObj, index) => {
             return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} related_id={itemObj.related_id} related_name={itemObj.related_name}
@@ -254,8 +251,8 @@ const App = () => {
         </div>
         <br />
         <br />
-        <div  moduleName="Your Outfit">YOUR OUTFIT</div>
-          <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} moduleName="Your Outfit">
+        <div widgetname="Related/YourOutfit">YOUR OUTFIT</div>
+          <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} widgetname="Your Outfit">
             {scrollYourOutfitProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft2} />) : null}
             {yourOutfitList.map((itemObj, index) => {
               return <YourOutfitCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} current_name={itemObj.current_name} current_id={itemObj.current_id}

@@ -4,7 +4,6 @@ import { IoStarSharp, IoStarOutline, IoStarHalfSharp } from 'react-icons/io5';
 const ProductRating = (props) => {
   var rating = props.rating;
   var ratingRoundDown = Math.floor(rating);
-  var moduleName = props.moduleName;
 
   const createStars = (number) => {
     var array = [];
@@ -28,8 +27,8 @@ const ProductRating = (props) => {
   var stars = createStars(ratingRoundDown);
 
   return (
-    <div moduleName={moduleName} className="number-of-stars" data-testid="average-stars">
-      <span moduleName={moduleName}>{stars}</span>
+    <div className="number-of-stars" data-testid="average-stars">
+      <span>{stars}</span>
     </div>
   )
 }

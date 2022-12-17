@@ -26,7 +26,6 @@ exports.postReviewForm = (req, res) => {
 exports.postClickTrack = (req, res) => {
 
   var clickTrackData = req.body;
-  console.log('this is click track in server- clickTrackData: ', clickTrackData)
 
   var options = {
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions',

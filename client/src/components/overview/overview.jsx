@@ -17,13 +17,13 @@ const Overview = (props) => {
   }, [props.info]); //
 
   return (
-    <div moduleName="Overview">
+    <div widgetname="Overview">
       {props.styles?
-      <div moduleName="Overview" className="overviewContainer">
-      <div moduleName="Overview" className="productInfo"><ProductInfo rating={props.rating} info={props.info} onClickYourOutfit={props.onClickYourOutfit}/></div>
-      <div moduleName="Overview" className="styleSelector"><StyleSelector onClick = {setIndex} styleIndex={styleIndex} styles={props.styles}/></div>
-      <div moduleName="Overview" className="addToCart"><AddToCart styleIndex={styleIndex} styles={props.styles} /></div>
-      <div moduleName="Overview" className="imageGallery"><ImageGallery  styleIndex={styleIndex} styles={props.styles}/></div>
+      <div widgetname="Overview" className="overviewContainer">
+      <div widgetname="Overview" className="productInfo"><ProductInfo rating={props.rating} info={props.info} onClickYourOutfit={props.onClickYourOutfit}/></div>
+      <div widgetname="Overview" className="styleSelector"><StyleSelector onClick = {setIndex} styleIndex={styleIndex} styles={props.styles}/></div>
+      <div widgetname="Overview" className="addToCart"><AddToCart styleIndex={styleIndex} styles={props.styles} /></div>
+      <div widgetname="Overview" className="imageGallery"><ImageGallery  styleIndex={styleIndex} styles={props.styles}/></div>
       </div>
       : ''
     }
