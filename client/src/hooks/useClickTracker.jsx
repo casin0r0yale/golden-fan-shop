@@ -3,14 +3,16 @@ import axios from 'axios';
 
 const useClickTracker = () => {
   const [clickInfo, setClickInfo] = useState({
-    element: '',
-    widget: '',
-    time: ''
+    element: null,
+    widget: null,
+    time: null
   })
 
   useEffect(() => {
 
-    if (clickInfo.element === '') {
+    console.log("Tracked Click before axios:", clickInfo);
+
+    if (!clickInfo.element) {
       return;
     }
 
@@ -29,8 +31,8 @@ const useClickTracker = () => {
   const handleClick = (event) => {
 
     setClickInfo({
-      element: event.target.tagName,
-      widget: event.target.getAttribute("moduleName"),
+      element: event.target.tagName ? event.target.tagName : "null",
+      widget: event.target.getAttribute("moduleName") ? event.target.getAttribute("moduleName") : "null",
       time: new Date(Date.now()).toString()
       // moduleName: __filename,
     })
