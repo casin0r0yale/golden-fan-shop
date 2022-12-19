@@ -23,14 +23,14 @@ const Reviews = (props) => {
   const [oneStar, setOneStar] = useState(false);
 
   useEffect(() => {
-    console.log('incoming list has changed!');
+    // console.log('incoming list has changed!');
     if (fiveStar || fourStar || threeStar || twoStar || oneStar) {
       setStarFilterToggle(true);
     } else {
       setStarFilterToggle(false);
     }
-    // forceUpdate();
-  },[incomingList, fiveStar, fourStar, threeStar, twoStar, oneStar])
+
+  },[starReviews]);
 
 
   const togglePopup = () => {
@@ -131,9 +131,9 @@ const Reviews = (props) => {
 
 
   const defaultList = incomingList.slice(0);
+  let updatedReviewList = [...starReviews];
 
-  const starSort = async (value) => {
-    let updatedReviewList = [...starReviews];
+  const starSort = (value) => {
 
     if (value === 5) {
       // console.log('star selected: ', value);
@@ -221,16 +221,13 @@ const Reviews = (props) => {
         });
       }
     }
-
-    if (fiveStar || fourStar || threeStar || twoStar || oneStar) {
-      setStarFilterToggle(true);
-    } else {
-      setStarFilterToggle(false);
-      setStarReviews([]);
-    }
-    // let oldReviews = [...starReviews];
-    await setStarReviews(updatedReviewList);
-    // forceUpdate();
+    // console.log('updated liust: ', updatedReviewList);
+    setStarReviews(updatedReviewList);
+    // if (fiveStar || fourStar || threeStar || twoStar || oneStar) {
+    //   setStarFilterToggle(true);
+    // } else {
+    //   setStarFilterToggle(false);
+    // }
 
   }
 
