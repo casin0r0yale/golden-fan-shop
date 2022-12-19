@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ProductRating from './ProductRating.jsx';
 import { format } from 'date-fns';
 import { AiFillCheckCircle } from 'react-icons/ai'
@@ -12,16 +12,24 @@ const ReviewTile = (props) => {
       photoArr.push(photo.url);
     });
   }
+
   const [helpful, setHelpful] = useState(false);
   var helpfulClickCount = 0;
+  var helpRef = useRef(0);
+
+  useEffect(() => {
+
+  }, [helpfulClickCount])
 
   const helpClick = async (review_id) => {
     // console.log('review id: ', review_id);
     helpfulClickCount++
-    if (helpfulClickCount <= 1) {
+    helpRef.current++
+    console.log('ref count: ', helpRef.current);
+    if (helpRef.current === 1) {
       setHelpful(true);
       await props.handleHelpClick(review_id);
-    } else {
+    } else if (helpRef.current > 1){
       alert('Cannot vote more than once!');
     }
     // console.log('click count: ', helpfulClickCount);

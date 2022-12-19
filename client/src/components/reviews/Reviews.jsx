@@ -29,8 +29,8 @@ const Reviews = (props) => {
     } else {
       setStarFilterToggle(false);
     }
-    forceUpdate();
-  },[incomingList])
+    // forceUpdate();
+  },[incomingList, fiveStar, fourStar, threeStar, twoStar, oneStar])
 
 
   const togglePopup = () => {
@@ -43,7 +43,13 @@ const Reviews = (props) => {
   }
 
   const clearFilters = () => {
+    setFiveStar(false);
+    setFourStar(false);
+    setThreeStar(false);
+    setTwoStar(false);
+    setOneStar(false);
     setStarFilterToggle(false);
+    setStarReviews([]);
   }
 
   const forceUpdate = useForceUpdate();
@@ -133,14 +139,14 @@ const Reviews = (props) => {
       // console.log('star selected: ', value);
       setFiveStar(!fiveStar);
       if (fiveStar) {
-         await defaultList.forEach((review) => {
+        defaultList.forEach((review) => {
           if (review.rating === 5) {
             updatedReviewList.push(review);
           }
         });
       }
       if (!fiveStar) {
-        await updatedReviewList.forEach((review, index) => {
+        updatedReviewList.forEach((review, index) => {
           if (review.rating === 5) {
             updatedReviewList.splice(index, 1);
           }
@@ -150,14 +156,14 @@ const Reviews = (props) => {
     if (value === 4) {
       setFourStar(!fourStar);
       if (fourStar) {
-        await defaultList.forEach((review) => {
+        defaultList.forEach((review) => {
           if (review.rating === 4) {
             updatedReviewList.push(review);
           }
         });
       }
       if (!fourStar) {
-        await updatedReviewList.forEach((review, index) => {
+        updatedReviewList.forEach((review, index) => {
           if (review.rating === 4) {
             updatedReviewList.splice(index, 1);
           }
@@ -167,14 +173,14 @@ const Reviews = (props) => {
     if (value === 3) {
       setThreeStar(!threeStar);
       if (threeStar) {
-        await defaultList.forEach((review) => {
+        defaultList.forEach((review) => {
           if (review.rating === 3) {
             updatedReviewList.push(review);
           }
         });
       }
       if (!threeStar) {
-        await updatedReviewList.forEach((review, index) => {
+        updatedReviewList.forEach((review, index) => {
           if (review.rating === 3) {
             updatedReviewList.splice(index, 1);
           }
@@ -184,14 +190,14 @@ const Reviews = (props) => {
     if (value === 2) {
       setTwoStar(!twoStar);
       if (twoStar) {
-        await defaultList.forEach((review) => {
+        defaultList.forEach((review) => {
           if (review.rating === 2) {
             updatedReviewList.push(review);
           }
         });
       }
       if (!twoStar){
-        await updatedReviewList.forEach((review, index) => {
+        updatedReviewList.forEach((review, index) => {
           if (review.rating === 2) {
             updatedReviewList.splice(index, 1);
           }
@@ -201,30 +207,31 @@ const Reviews = (props) => {
     if (value === 1) {
       setOneStar(!oneStar);
       if (oneStar) {
-        await defaultList.forEach((review) => {
+        defaultList.forEach((review) => {
           if (review.rating === 1) {
             updatedReviewList.push(review);
           }
         });
       }
       if (!oneStar) {
-        await updatedReviewList.forEach((review, index) => {
+        updatedReviewList.forEach((review, index) => {
           if (review.rating === 1) {
             updatedReviewList.splice(index, 1);
           }
         });
       }
     }
+
     if (fiveStar || fourStar || threeStar || twoStar || oneStar) {
       setStarFilterToggle(true);
     } else {
       setStarFilterToggle(false);
+      setStarReviews([]);
     }
     // let oldReviews = [...starReviews];
-    setStarReviews(updatedReviewList);
-    forceUpdate();
-    // console.log('this is the star Sorted array: ', starSortedArr);
-    // props.updateReviewList(starSortedArr);
+    await setStarReviews(updatedReviewList);
+    // forceUpdate();
+
   }
 
   return (

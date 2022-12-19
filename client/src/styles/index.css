@@ -885,7 +885,7 @@ h1 {
 }
 
 .star-bar:hover {
-  background-color:rgb(228, 228, 228);
+  background-color:rgba(235, 235, 235, 0.905);
   border-radius: .15em;
 }
 
