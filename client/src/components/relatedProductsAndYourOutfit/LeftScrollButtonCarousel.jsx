@@ -8,9 +8,9 @@ const LeftScrollButtonCarousel = (props) => {
   }
 
   return (
-    <div className="leftScrollButtonPosition" data-testid='testLeftScrollButton'>
-      <button className='leftScrollButton' onClick={onClickScrollLeft}>
-        <div className='left-icon'></div>
+    <div widgetname="Related/YourOutfit" className="leftScrollButtonPosition" data-testid='testLeftScrollButton'>
+      <button widgetname="Related/YourOutfit" className='leftScrollButton' onClick={onClickScrollLeft}>
+        <div widgetname="Related/YourOutfit" className='left-icon'></div>
       </button>
     </div>
   )

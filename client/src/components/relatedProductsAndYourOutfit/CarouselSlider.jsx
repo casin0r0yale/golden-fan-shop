@@ -1,3 +1,5 @@
+// Potential refactor
+
 // import React, {useState, useEffect} from 'react';
 // import LeftScrollButtonCarousel from './LeftScrollButtonCarousel.jsx';
 // import RightScrollButtonCarousel from './RightScrollButtonCarousel.jsx';

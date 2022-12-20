@@ -54,26 +54,26 @@ const RelatedCard = React.forwardRef((props, ref) => {
   }
 
   return (
-    <div className='productCard' ref={ref} data-testid='testRelatedCard'>
+    <div widgetname="Related/YourOutfit" className='productCard' ref={ref} data-testid='testRelatedCard'>
       {isOpen && <Popup
         content={<>
           <ComparisonTable related_name={props.related_name} featuresPrimaryProductString={props.featuresPrimaryProductString} featuresRelatedProductString={JSON.stringify(combineRelatedFeatures)} />
         </>}
         handleClose={togglePopup}
       />}
-      <button id="star-button-compare" onClick={togglePopup} className="star">
+      <button widgetname="Related/YourOutfit" id="star-button-compare" onClick={togglePopup} className="star">
         &#9733;
       </button>
-      <a href={'/ip/' + props.related_id} style={{textDecoration: 'none'}} onClick={onClickNavigate} >
-        <div>
-          <img className='productImageInCard' src={props.related_thumbnail ? props.related_thumbnail : 'https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/Reality_Stone_VFX.png/revision/latest?cb=20190427012609'} />
+      <a widgetname="Related/YourOutfit" href={'/ip/' + props.related_id} style={{textDecoration: 'none'}} onClick={onClickNavigate} >
+        <div widgetname="Related/YourOutfit">
+          <img widgetname="Related/YourOutfit" className='productImageInCard' src={props.related_thumbnail ? props.related_thumbnail : 'https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/Reality_Stone_VFX.png/revision/latest?cb=20190427012609'} />
         </div>
 
-        <div>
-          <div style={{ fontSize: 12 }} className='lineSpaceCard'>{props.related_category.toUpperCase()}</div>
-          <div className='boldFont lineSpaceCard'>{props.related_name}</div>
-          <div style={{ fontSize: 12 }} className='lineSpaceCard'>${props.related_price}</div>
-          <div className='lineSpaceCard'>
+        <div widgetname="Related/YourOutfit">
+          <div widgetname="Related/YourOutfit" style={{ fontSize: 12 }} className='lineSpaceCard'>{props.related_category.toUpperCase()}</div>
+          <div widgetname="Related/YourOutfit" className='boldFont lineSpaceCard'>{props.related_name}</div>
+          <div widgetname="Related/YourOutfit" style={{ fontSize: 12 }} className='lineSpaceCard'>${props.related_price}</div>
+          <div widgetname="Related/YourOutfit" className='lineSpaceCard'>
             <ProductRating rating={ratingRelatedCard} />
           </div>
         </div>
