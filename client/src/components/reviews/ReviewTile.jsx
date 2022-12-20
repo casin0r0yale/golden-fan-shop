@@ -39,15 +39,17 @@ const ReviewTile = (props) => {
   }
 
   return(
-    <div>
+    <div data-testid="review-tile">
       <div className="review-name-date">
         <ProductRating rating={props.review.rating} />
         <p><AiFillCheckCircle />&nbsp;{props.review.reviewer_name}, {date}</p>
       </div>
       <h5>{props.review.summary}</h5>
-      {(photoArr.length !== 0) ? photoArr.map((url) => {
-        return <img className="review-image"src={url}/>
-      }) : null}
+      <div data-testid="review-images">
+        {(photoArr.length !== 0) ? photoArr.map((url) => {
+          return <img className="review-image"src={url}/>
+        }) : null}
+      </div>
       <p>{props.review.body}</p>
       <div className="helpful-report">
         <p>Helpful? <a onClick={() => helpClick(props.review.review_id)}>Yes({(helpful) ? props.review.helpfulness + 1 : props.review.helpfulness})</a>&nbsp;|&nbsp;</p>

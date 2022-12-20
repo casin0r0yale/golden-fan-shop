@@ -884,6 +884,10 @@ h1 {
   margin-right: 1em;
 }
 
+.filter-label:hover {
+  background-color: rgb(80, 80, 80);
+}
+
 .star-bar:hover {
   background-color:rgba(235, 235, 235, 0.905);
   border-radius: .15em;

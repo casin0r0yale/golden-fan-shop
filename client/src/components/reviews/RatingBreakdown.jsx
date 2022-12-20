@@ -60,17 +60,19 @@ const RatingBreakdown = (props) => {
       <p>RATINGS & REVIEWS</p>
       <div className="average-stars">
         <h2 className="average-number" data-testid="average-number">{props.rating}</h2>
-        <ProductRating rating={props.rating}/>
+        <div data-testid="average-stars">
+          <ProductRating rating={props.rating}/>
+        </div>
       </div>
       <div>
         <h3>Rating Breakdown</h3>
         <p>{Math.floor((numRecommend / numReviews) * 100)}% of reviews recommend this product</p>
         <div className="filter-label-group">
-          {(props.fiveStar) ? <div className="filter-label">5 Star</div> : null}
-          {(props.fourStar) ? <div className="filter-label">4 Star</div> : null}
-          {(props.threeStar) ? <div className="filter-label">3 Star</div> : null}
-          {(props.twoStar) ? <div className="filter-label">2 Star</div> : null}
-          {(props.oneStar) ? <div className="filter-label">1 Star</div> : null}
+          {(props.fiveStar) ? <div className="filter-label" onClick={() => props.starSort(5)}>5 Star</div> : null}
+          {(props.fourStar) ? <div className="filter-label" onClick={() => props.starSort(4)}>4 Star</div> : null}
+          {(props.threeStar) ? <div className="filter-label" onClick={() => props.starSort(3)}>3 Star</div> : null}
+          {(props.twoStar) ? <div className="filter-label" onClick={() => props.starSort(2)}>2 Star</div> : null}
+          {(props.oneStar) ? <div className="filter-label" onClick={() => props.starSort(1)}>1 Star</div> : null}
           {(props.toggle === true) ? <div className="filter-label" onClick={props.clear}>Clear</div> : null}
         </div>
           <div className="star-bars">
@@ -81,7 +83,7 @@ const RatingBreakdown = (props) => {
             })}
           </div>
       </div>
-          <div className="characteristic-bars">
+          <div className="characteristic-bars" data-testid="characteristic-bars">
             {metaArr.map((review) => (
               // return
               <div>

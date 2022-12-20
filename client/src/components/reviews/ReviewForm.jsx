@@ -193,7 +193,7 @@ const ReviewForm = (props) => {
         <label>
           Characteristics*
           {(charID["Size"] !== undefined) ?
-            <fieldset className="characteristic-fields">
+            <fieldset className="characteristic-fields" data-testid="size">
               <h4>Size</h4>
               <p className="characteristic-text">{sizeRating}</p>
                 <div className="radio-buttons">
@@ -213,7 +213,7 @@ const ReviewForm = (props) => {
             </fieldset>
           : null}
           {(charID["Width"] !== undefined) ?
-            <fieldset className="characteristic-fields">
+            <fieldset className="characteristic-fields" data-testid="width">
             <h4>Width</h4>
             <p className="characteristic-text">{widthText}</p>
                 <label className="radio-buttons">
@@ -231,7 +231,7 @@ const ReviewForm = (props) => {
           </fieldset>
           : null}
           {(charID["Comfort"] !== undefined) ?
-            <fieldset className="characteristic-fields">
+            <fieldset className="characteristic-fields" data-testid="comfort">
             <h4>Comfort</h4>
             <p className="characteristic-text">{comfortText}</p>
                 <label className="radio-buttons">
@@ -249,7 +249,7 @@ const ReviewForm = (props) => {
             </fieldset>
           : null}
             {(charID["Quality"] !== undefined) ?
-            <fieldset className="characteristic-fields">
+            <fieldset className="characteristic-fields" data-testid="quality">
             <h4>Quality</h4>
             <p className="characteristic-text">{qualityText}</p>
                 <label className="radio-buttons">
@@ -267,7 +267,7 @@ const ReviewForm = (props) => {
             </fieldset>
           : null}
             {(charID["Length"] !== undefined) ?
-              <fieldset className="characteristic-fields">
+              <fieldset className="characteristic-fields" data-testid="length">
               <h4>Length</h4>
               <p className="characteristic-text">{lengthText}</p>
                   <label className="radio-buttons">
@@ -285,7 +285,7 @@ const ReviewForm = (props) => {
               </fieldset>
             : null}
             {(charID["Fit"] !== undefined) ?
-            <fieldset className="characteristic-fields">
+            <fieldset className="characteristic-fields" data-testid="fit">
             <h4>Fit</h4>
             <p className="characteristic-text">{fitText}</p>
                   <label className="radio-buttons">

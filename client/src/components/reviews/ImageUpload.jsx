@@ -32,7 +32,7 @@ class ImageUpload extends React.Component {
 
   render() {
     return (
-      <div className="image-upload-buttons">
+      <div className="image-upload-buttons" data-testid="image-upload-buttons">
         <div className="review-images">
           {(this.fileArray || []).map(url => (
               <img key={url} className="review-image-thumbnail" src={url} alt="..." />
