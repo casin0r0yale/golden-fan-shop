@@ -9,6 +9,7 @@ exports.putHelpClick = (req, res) => {
     method: 'PUT',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${review_id}/helpful`,
     headers: { Authorization: process.env.AUTH_SECRET },
+    // data: review_id
   };
   axios(options)
   .then((results) => {
@@ -16,6 +17,7 @@ exports.putHelpClick = (req, res) => {
     res.status(204).send(data);
   })
   .catch((error) => {
+    console.log('helpful server error: ', error);
     res.status(500).send(error);
   });
 
@@ -30,6 +32,7 @@ exports.putReportClick = (req, res) => {
     method: 'PUT',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${review_id}/report`,
     headers: { Authorization: process.env.AUTH_SECRET },
+    // data: review_id
   };
   axios(options)
   .then((results) => {
@@ -37,6 +40,7 @@ exports.putReportClick = (req, res) => {
     res.status(204).send(data);
   })
   .catch((error) => {
+    console.log('report server error: ', error);
     res.status(500).send(error);
   });
 

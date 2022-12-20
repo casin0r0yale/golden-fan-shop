@@ -80,22 +80,22 @@ const Description = (props) => {
   }, [jsonString])
 
   return (
-    <div className="lineAnchor">
-      <div className='middle-columnDesc verticalLine'></div>
-      <div className="rowDesc">
-        <div className="first-columnDesc">
-          <h3 style={{fontSize: 15}}>{props.slogan}</h3>
-          <div style={{fontSize: 15}}>{props.desc}</div>
+    <div widgetname="Overview" className="lineAnchor" widgetname="Overview">
+      <div widgetname="Overview" className='middle-columnDesc verticalLine'></div>
+      <div widgetname="Overview" className="rowDesc">
+        <div widgetname="Overview" className="first-columnDesc">
+          <h3 widgetname="Overview" style={{fontSize: 15}}>{props.slogan}</h3>
+          <div widgetname="Overview" style={{fontSize: 15}}>{props.desc}</div>
         </div>
 
 
-        <div className="second-columnDesc">
+        <div widgetname="Overview" className="second-columnDesc">
 
           {fullListFeaturesDesc.map((item, index) => {
             return (
-              <div className='rowDesc2' key={index}>
-                <div style={{fontSize: 15}} className="columnCheck" style={{ opacity: item[0] }}>&#x2713;</div>
-                <div style={{fontSize: 15}} className="columnFeature"> <a class="boldFont">{item[1]}</a> <a>{' ' + item[2]}</a> </div>
+              <div widgetname="Overview" className='rowDesc2' key={index}>
+                <div widgetname="Overview" style={{fontSize: 15}} className="columnCheck" style={{ opacity: item[0] }}>&#x2713;</div>
+                <div widgetname="Overview" style={{fontSize: 15}} className="columnFeature"> <a widgetname="Overview" class="boldFont">{item[1]}</a> <a widgetname="Overview" >{' ' + item[2]}</a> </div>
               </div>
             )
           })}
