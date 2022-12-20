@@ -23,12 +23,9 @@ const Reviews = (props) => {
   const [oneStar, setOneStar] = useState(false);
 
   useEffect(() => {
-    console.log('inside the useEffect');
     if (fiveStar || fourStar || threeStar || twoStar || oneStar) {
-      console.log('there is a star rating')
       setStarFilterToggle(true);
     } else {
-      console.log('there is not a star rating')
       setStarFilterToggle(false);
     }
 
