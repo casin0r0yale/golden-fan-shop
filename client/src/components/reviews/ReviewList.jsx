@@ -16,7 +16,7 @@ const ReviewList = (props) => {
 
   return (
     <div>
-      <div className="review-list">
+      <div className="review-list" data-testid="review-list">
         {reviewList?.slice(0, next)?.map((review, index) => {
           return (
             <div key={review.review_id} className="review-tile">
