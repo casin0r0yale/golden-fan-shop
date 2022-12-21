@@ -14,7 +14,7 @@ const Overview = (props) => {
   }
   useEffect(() => {
     setStyleIndex(0);
-  }, [props.info]); //
+  }, [props.info]);
 
   return (
     <div widgetname="Overview">

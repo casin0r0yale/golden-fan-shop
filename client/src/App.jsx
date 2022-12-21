@@ -52,8 +52,23 @@ const App = () => {
     // Create Observer and set callback action
     const observer = new IntersectionObserver((yourOutfitDiv) => {
       if (yourOutfitDiv[0].isIntersecting) {
-        console.log("Observed Boundary!");
+        console.log("Observed Boundary! Loading QnA and Review Modules...");
         setBottomHalfView(true);
+
+        axios.get('/getProductQnA', { params: { id: focusProductId } })
+          .then(function (response) {
+            console.log('CHAIN 5: Stefan Module - SUCCESS GET PRODUCT Q&A DATA: ', response.data);
+            // TODO: Manipulate and pass down response.data into module...
+            //setProductQnAData(response.data);
+            var questionData = response.data.results;
+            setProductQnAData(questionData);
+            console.log('Qna Data: ', questionData);
+
+          })
+          .catch(function (error) {
+            console.log('error GET QnA Data: ', error);
+          })
+
         observer.disconnect();
       }
     })
@@ -201,21 +216,6 @@ const App = () => {
       .catch((error) => {
         console.log('error GET Review Meta: ', error);
       });
-
-    // INIT GET 5: GET Product Q&A data (Ste'fan's section to manipulate)
-    axios.get('/getProductQnA', { params: { id: focusProductId } })
-      .then(function (response) {
-        console.log('CHAIN 5: Stefan Module - SUCCESS GET PRODUCT Q&A DATA: ', response.data);
-        // TODO: Manipulate and pass down response.data into module...
-        //setProductQnAData(response.data);
-        var questionData = response.data.results;
-        setProductQnAData(questionData);
-        console.log('Qna Data: ', questionData);
-
-      })
-      .catch(function (error) {
-        console.log('error GET QnA Data: ', error);
-      })
   }
 
   var onClickYourOutfit = (data) => {
@@ -250,7 +250,7 @@ const App = () => {
 
     <div onClick={onClickTracker}>
       <Header />
-      <h2 data-testid='testYourOutfitCard'>Golden Fan Shop: Main App/Index Component</h2>
+      <h2 data-testid='testYourOutfitCard'>Golden Fan Shop</h2>
       <Overview rating={rating} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} />
       <div className="margins-nonOverview">
         <Description slogan={productInfo.slogan} desc={productInfo.description} featuresPrimaryProductString={featuresPrimaryProduct} />
@@ -292,12 +292,6 @@ const App = () => {
             <Reviews rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
           </Suspense>
         )}
-        {/* {bottomHalfView ? (
-          <Suspense fallback={<div>Loading...</div>}>
-            <Questions data={productQnAData} product={productInfo} />
-            <Reviews rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
-          </Suspense>
-        ) : null} */}
       </div>
     </div>
   );
