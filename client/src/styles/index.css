@@ -943,6 +943,17 @@ h1 {
   color:rgb(131, 38, 171)
 }
 
+/* Answer List */
+.answer-list {
+  overflow-y: auto;
+  height: 10.6em;
+}
+
+/* Question Below Bar */
+.question-below-bar {
+  margin-left: 0em;
+}
+
 /* .size-radio-buttons {
   display: inline-flex;
   flex-direction: column-reverse;

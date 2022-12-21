@@ -3,6 +3,7 @@ import Answer from './Answer.jsx';
 import Popup from '../Popup.jsx';
 import NewQuestionForm from './NewQuestionForm.jsx';
 import NewAnswerForm from './NewAnswerForm.jsx';
+import axios from 'axios';
 
 var Questions = (props) => {
 
@@ -18,7 +19,6 @@ var Questions = (props) => {
   }
 
   const toggleQuestionPopup = () => {
-    console.log(productInfo)
     setIsQuestionOpen(!isQuestionOpen);
   }
 
@@ -39,11 +39,28 @@ var Questions = (props) => {
     console.log(filteredQuestions);
   }
 
+  const handleQuestionFormSubmit = (object) => {
+    console.log('This is my submission object: ', object);
+    var submittedQuestion = object
+    axios.post('/submitQuestion', submittedQuestion)
+    .then(success => {
+      console.log(success)
+    })
+    .catch(err => {
+      console.log('Error posting form', err);
+    })
+  }
+
+  // const handleAnswerFormSubmit = (object) => {
+  //   console.log('This is my submission object: ', object);
+  //   var submittedAnswer =
+  // }
+
   const mappedQuestions = filteredQuestions.slice(0, questionIndex);
 
   return (
     <div data-testid="question-module">
-      <h3>Questions &amp; Answers</h3>
+      <p>QUESTIONS &amp; ANSWERS</p>
       <div>
         <div className="search-bar">
           <input className="form-control" type="text" onChange={changeFilter}/>
@@ -53,12 +70,12 @@ var Questions = (props) => {
           return (
             <div>
               <h4 key={index}>Q: {question.question_body}</h4>
-              <div>
+              <div className="question-below-bar">
                 <p>Helpful? <a onClick={toggleHelpfulness}>Yes({(isHelpful) ? question.question_helpfulness + 1 : question.question_helpfulness})</a> | <a onClick={toggleAnswerPopup} className="add-answer-btn">Add An Answer</a> | {(question.reported) ? 'Reported' : <a>Report Question</a>}</p>
               </div>
               <Answer answers={question.answers}/>
               <div>
-                {isQuestionOpen && <Popup handleClose={toggleQuestionPopup} content={<NewQuestionForm productName={productInfo.name}/>}/>}
+                {isQuestionOpen && <Popup handleClose={toggleQuestionPopup} content={<NewQuestionForm productName={productInfo.name} handleFormSubmit={handleQuestionFormSubmit} id={productInfo.id}/>}/>}
                 {isAnswerOpen && <Popup handleClose={toggleAnswerPopup} content={<NewAnswerForm currentQuestion={question.question_body} productName={productInfo.name}/>}/>}
               </div>
             </div>

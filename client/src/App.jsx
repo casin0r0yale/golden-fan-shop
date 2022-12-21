@@ -176,7 +176,7 @@ const App = () => {
     // INIT GET 5: GET Product Q&A data (Ste'fan's section to manipulate)
     axios.get('/getProductQnA', { params: { id: focusProductId } })
       .then(function (response) {
-        console.log('CHAIN 5: Stefan Module - SUCCESS GET PRODUCT Q&A DATA: ', response.data);
+        // console.log('CHAIN 5: Stefan Module - SUCCESS GET PRODUCT Q&A DATA: ', response.data);
         // TODO: Manipulate and pass down response.data into module...
         //setProductQnAData(response.data);
         var questionData = response.data.results;

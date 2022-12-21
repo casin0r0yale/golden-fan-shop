@@ -38,6 +38,8 @@ app.get('/getProductQnA', initGetData.getProductQnAControl);
 
 app.post('/submitReview', postData.postReviewForm);
 
+app.post('/submitQuestion', postData.postQuestionForm);
+
 app.put('/helpClick', putData.putHelpClick);
 
 app.put('/reportClick', putData.putReportClick);

@@ -1,11 +1,22 @@
 import React, {useState} from 'react';
 
 var NewQuestionForm = (props) => {
+
+  const handleSubmit = (event) => {
+    var formObj = {
+      body: event.target.question.value,
+      name: event.target.user.value,
+      email: event.target.email.value,
+      product_id: props.id
+    }
+    event.preventDefault();
+    props.handleFormSubmit(formObj);
+  }
   return (
     <div>
       <h3>Ask Your Question</h3>
       <h4>About the {props.productName}</h4>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label for="question">Question:</label><br></br>
         <textarea name="question" maxLength="1000" required></textarea><br></br><br></br>
         <label for="user">Username: </label><br></br>

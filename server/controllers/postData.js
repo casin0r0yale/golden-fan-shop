@@ -22,3 +22,23 @@ exports.postReviewForm = (req, res) => {
     res.status(500).send(error);
   });
 }
+exports.postQuestionForm = (req, res) => {
+  var incomingQuestion = req.body;
+  const options = {
+    method: 'POST',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions`,
+    headers: {Authorization: process.env.AUTH_SECRET},
+    "Content-Type": 'application/json',
+    data: incomingQuestion
+  }
+  axios(options)
+  .then(results => {
+    console.log('Success: ',results.data);
+    var created = JSON.parse(JSON.stringify(results.data));
+    res.status(201).send(created);
+  })
+  .catch(err => {
+    console.log('failure in the  Question api server: ', err);
+    res.status(500).send(err)
+  })
+}

@@ -1,11 +1,16 @@
 import {useState} from 'react';
 
 var NewAnswerForm = (props) => {
+  const handleSubmit = (event) => {
+    var formObj = {
+
+    }
+  }
   return (
     <div>
       <h3>Submit Your Answer</h3>
       <h4>{props.productName} : {props.currentQuestion}</h4>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label for="answer">Answer:</label><br></br>
         <textarea name="answer" id="answer" maxLength="1000" required></textarea><br></br><br></br>
         <label for="user">Username:</label><br></br>

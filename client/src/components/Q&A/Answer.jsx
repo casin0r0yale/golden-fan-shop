@@ -12,7 +12,7 @@ var Answer = (props) => {
     setAnswerIndex(answerObjList.length + 1);
   }
   return (
-  <div>
+  <div className="answer-list">
     {renderedAnswers.map(answerKey => {
       // console.log(answerKey);
       var currentAnswer = props.answers[answerKey];
