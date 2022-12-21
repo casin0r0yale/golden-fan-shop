@@ -40,7 +40,7 @@ const App = () => {
 
   const {clickInfo, onClickTracker} = useClickTracker();
 
-  // const moduleName = {
+  // const moduleName = {- ONe
   //   overview: "Overview",
   //   yourOutfit: "Your Outfit",
   //   relatedProducts: "Related Products",
@@ -54,9 +54,11 @@ const App = () => {
 
     const savedOutfitState = JSON.parse(localStorage.getItem("yourOutfitState"));
 
-    if (savedOutfitState.length > 0) {
-      // console.log("🚀 ~ file: App.jsx:41 ~ useEffect ~ savedOutfitState", savedOutfitState)
-      setYourOutfitList(savedOutfitState);
+    if (savedOutfitState) {
+      if (savedOutfitState.length > 0) {
+        // console.log("🚀 ~ file: App.jsx:41 ~ useEffect ~ savedOutfitState", savedOutfitState)
+        setYourOutfitList(savedOutfitState);
+      }
     }
 
     var targetIdInUrl = parseInt(window.location.pathname[4] + window.location.pathname[5] + window.location.pathname[6] + window.location.pathname[7] + window.location.pathname[8]);
