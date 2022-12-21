@@ -33,6 +33,8 @@ const App = () => {
   const [rating, setRating] = useState(0);
   const [bottomHalfView, setBottomHalfView] = useState(false)
 
+  const loadBottomBoundary = useRef(null)
+
   const { moveRight, moveLeft, handleSideScroll, relatedCarourselRef, activeSlide,
     activeSlideRef, prevSlideRef, nextSlideRef, wrapperRef, scrollRelatedProgress, scrollToggleRelatedProgress,
     scrollYourOutfitProgress, scrollToggleYourOutfitProgress, relatedProductsData, setRelatedProductsData,
@@ -45,20 +47,19 @@ const App = () => {
   useEffect(() => {
     if (focusProductId === 0) return;
     if (productInfo.length === 0) return;
-    if (!yourOutfitCarourselRef?.current) return;
+    if (!loadBottomBoundary?.current) return;
 
+    // Create Observer and set callback action
     const observer = new IntersectionObserver((yourOutfitDiv) => {
-      console.log("yourOutfitDiv: ", yourOutfitDiv);
       if (yourOutfitDiv[0].isIntersecting) {
-        console.log("🚀 ~ I see the boundary!");
+        console.log("Observed Boundary!");
         setBottomHalfView(true);
+        observer.disconnect();
       }
-
     })
 
-    observer.observe(yourOutfitCarourselRef.current);
-
-  }, [yourOutfitCarourselRef])
+    observer.observe(loadBottomBoundary.current);
+  }, [focusProductId, productInfo])
 
   useEffect(() => {
 
@@ -270,7 +271,7 @@ const App = () => {
         </div>
         <br />
         <br />
-        <div widgetname="Related/YourOutfit">YOUR OUTFIT</div>
+        <div ref={loadBottomBoundary} widgetname="Related/YourOutfit">YOUR OUTFIT</div>
         <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} widgetname="Your Outfit">
           <Suspense fallback={<div>Loading...</div>}>
             {scrollYourOutfitProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft2} />) : null}
@@ -285,10 +286,18 @@ const App = () => {
             {scrollToggleYourOutfitProgress && scrollYourOutfitProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight2} l />}
           </Suspense>
         </div>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Questions data={productQnAData} product={productInfo} />
-          <Reviews rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
-        </Suspense>
+        {bottomHalfView && (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Questions data={productQnAData} product={productInfo} />
+            <Reviews rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
+          </Suspense>
+        )}
+        {/* {bottomHalfView ? (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Questions data={productQnAData} product={productInfo} />
+            <Reviews rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
+          </Suspense>
+        ) : null} */}
       </div>
     </div>
   );
@@ -334,10 +343,6 @@ function useRelatedProductLogic(focusID, setRelated) {
                       return relatedObj;
                     }
                   }
-
-                  // Related Chain 3.3 TODO
-                  // Got all data besides for star data TODO
-
                 })
                 .catch(function (error) {
                   console.log('error GET inner RelatedProducts: ', error);
