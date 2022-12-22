@@ -13,6 +13,7 @@ const LeftScrollButtonCarousel = React.lazy(() => import('./components/relatedPr
 const RightScrollButtonCarousel = React.lazy(() => import('./components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx'));
 const Questions = React.lazy(() => import('./components/Q&A/Questions.jsx'));
 const Reviews = React.lazy(() => import('./components/reviews/Reviews.jsx'));
+import Spinner from './img/spiffygif_46x46.gif';
 
 const App = () => {
 
@@ -251,7 +252,7 @@ const App = () => {
         <div widgetname="Related/YourOutfit">RELATED PRODUCTS</div>
 
         <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef} widgetname="Related Products">
-          <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<img src={Spinner} alt="Loading..."/>}>
             {scrollRelatedProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft} />) : null}
             {relatedProductsData.map((itemObj, index) => {
               return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} related_id={itemObj.related_id} related_name={itemObj.related_name}
@@ -267,7 +268,7 @@ const App = () => {
         <br />
         <div ref={loadBottomBoundary} widgetname="Related/YourOutfit">YOUR OUTFIT</div>
         <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} widgetname="Your Outfit">
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<img src={Spinner} alt="Loading..."/>}>
             {scrollYourOutfitProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft2} />) : null}
             {yourOutfitList.map((itemObj, index) => {
               return <YourOutfitCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} current_name={itemObj.current_name} current_id={itemObj.current_id}
@@ -281,7 +282,7 @@ const App = () => {
           </Suspense>
         </div>
         {bottomHalfView && (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<img src={Spinner} alt="Loading..."/>}>
             <Questions data={productQnAData} product={productInfo} />
             <Reviews rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
           </Suspense>
