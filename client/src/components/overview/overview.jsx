@@ -9,7 +9,7 @@ const Overview = (props) => {
   // console.log('overview', props.info);
   const [styleIndex, setStyleIndex] = useState(0);
   const setIndex = (index) => {
-    console.log(index);
+    // console.log(index);
     setStyleIndex(index);
   }
   useEffect(() => {
