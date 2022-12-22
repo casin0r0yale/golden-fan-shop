@@ -62,9 +62,9 @@ const AddToCart = (props) => {
       <div widgetname="Overview" className="dropdown">
         <button widgetname="Overview" onClick={() => { setDropdownExpanded(!dropdownExpanded) }} className="dropdown-button">{sizeSelected.size || "SELECT SIZE"}  <RxCaretDown size="20" className="caret" /></button>
         <div widgetname="Overview" className={dropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
-          {Object.keys((props.styles[props.styleIndex]?.skus) || {}).map(size => {
+          {Object.keys((props.styles[props.styleIndex]?.skus) || {}).map((size, index) => {
             if (props.styles[props.styleIndex]?.skus[size].quantity > 0) {
-              return (<p widgetname="Overview" onClick={() => { onOptionSelect(props.styles[props.styleIndex]?.skus[size]) }}>{props.styles[props.styleIndex]?.skus[size].size}</p>)
+              return (<p widgetname="Overview" key={index} onClick={() => { onOptionSelect(props.styles[props.styleIndex]?.skus[size]) }}>{props.styles[props.styleIndex]?.skus[size].size}</p>)
             }
           })}
         </div>
