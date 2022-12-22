@@ -60,7 +60,7 @@ const AddToCart = (props) => {
   return (
     <div widgetname="Overview" className="addToCart">
       <div widgetname="Overview" className="dropdown">
-        <button widgetname="Overview" onClick={() => { setDropdownExpanded(!dropdownExpanded) }} className="dropdown-button">{sizeSelected.size || "SELECT SIZE"}  <RxCaretDown size="20" class="caret" /></button>
+        <button widgetname="Overview" onClick={() => { setDropdownExpanded(!dropdownExpanded) }} className="dropdown-button">{sizeSelected.size || "SELECT SIZE"}  <RxCaretDown size="20" className="caret" /></button>
         <div widgetname="Overview" className={dropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
           {Object.keys((props.styles[props.styleIndex]?.skus) || {}).map(size => {
             if (props.styles[props.styleIndex]?.skus[size].quantity > 0) {
@@ -75,11 +75,11 @@ const AddToCart = (props) => {
           : <button widgetname="Overview" className="dropdown-button" id="quantity">{quantitySelected} <RxCaretDown className="caret" size="20" /></button>}
         <div widgetname="Overview" className={quantityDropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
           {sizeSelected.quantity > 15 ?
-            Array.from(Array(15).keys()).map(quantity => {
-              return (<p widgetname="Overview" onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
+            Array.from(Array(15).keys()).map((quantity, index) => {
+              return (<p widgetname="Overview" key={index} onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
             })
-            : Array.from(Array(sizeSelected.quantity).keys()).map(quantity => {
-              return (<p widgetname="Overview" onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
+            : Array.from(Array(sizeSelected.quantity).keys()).map((quantity, index) => {
+              return (<p widgetname="Overview" key={index} onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
             })}
 
         </div>
