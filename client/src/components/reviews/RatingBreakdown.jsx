@@ -78,8 +78,8 @@ const RatingBreakdown = (props) => {
           <div className="star-bars">
             {currPercentageArr.slice(0).reverse().map((rating, idx) => {
             let currStar = currPercentageArr.length - idx;
-            return <div className="star-bar" key={idx}><p onClick={() => props.starSort(currStar)} className="bar">{currStar} stars
-            <PercentageBar bgcolor={'#59981A'} completed={rating[1]}/>{rating[0]} reviews</p></div>
+            return <div className="star-bar" key={idx}><div onClick={() => props.starSort(currStar)} className="bar">{currStar} stars
+            <PercentageBar bgcolor={'#59981A'} completed={rating[1]}/>{rating[0]} reviews</div></div>
             })}
           </div>
       </div>
