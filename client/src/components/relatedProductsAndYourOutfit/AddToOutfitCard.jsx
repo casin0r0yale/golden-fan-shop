@@ -8,11 +8,11 @@ const AddToOutfitCard = React.forwardRef((props, ref) => {
   }
 
   return (
-    <div className='productCard addToOutfitButton' ref={ref} data-testid='AddToOutfitTest'>
-      <div className='addToOutfitText'>
+    <div widgetname="Related/YourOutfit" className='productCard addToOutfitButton' ref={ref} data-testid='AddToOutfitTest'>
+      <div widgetname="Related/YourOutfit" className='addToOutfitText'>
         Add To Outfit
       </div><br/>
-      <button className='button-add-to-outfit' onClick={onClickYourOutfit}>
+      <button widgetname="Related/YourOutfit" className='button-add-to-outfit' onClick={onClickYourOutfit}>
         +
       </button>
     </div>

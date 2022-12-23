@@ -21,12 +21,15 @@ const Reviews = (props) => {
   const [threeStar, setThreeStar] = useState(false);
   const [twoStar, setTwoStar] = useState(false);
   const [oneStar, setOneStar] = useState(false);
-  const [starFilter, setStarFilter] = useState([]);
 
   useEffect(() => {
-    console.log('incoming list has changed!');
-    forceUpdate();
-  },[incomingList])
+    if (fiveStar || fourStar || threeStar || twoStar || oneStar) {
+      setStarFilterToggle(true);
+    } else {
+      setStarFilterToggle(false);
+    }
+
+  },[starReviews]);
 
 
   const togglePopup = () => {
@@ -36,6 +39,16 @@ const Reviews = (props) => {
   const useForceUpdate = () => {
     const [value, setValue] = useState([]);
     return () => setValue(value => props.reviewList);
+  }
+
+  const clearFilters = () => {
+    setFiveStar(false);
+    setFourStar(false);
+    setThreeStar(false);
+    setTwoStar(false);
+    setOneStar(false);
+    setStarFilterToggle(false);
+    setStarReviews([]);
   }
 
   const forceUpdate = useForceUpdate();
@@ -115,107 +128,103 @@ const Reviews = (props) => {
     }
   }
 
-  let starSortedArr = [];
-  const starSort = async (value) => {
+
+  const defaultList = incomingList.slice(0);
+  let updatedReviewList = [...starReviews];
+
+  const starSort = (value) => {
     if (value === 5) {
-      setFiveStar(!fiveStar);
-      if (fiveStar) {
-         await incomingList.forEach((review) => {
-          if (review.rating === 5) {
-            starSortedArr.push(review);
-          }
-        });
-      }
       if (!fiveStar) {
-        await starSortedArr.forEach((review, index) => {
+        defaultList.forEach((review) => {
           if (review.rating === 5) {
-            starSortedArr.splice(index, 1);
+            updatedReviewList.push(review);
           }
         });
       }
+      if (fiveStar) {
+        updatedReviewList.forEach((review, index) => {
+          if (review.rating === 5) {
+            updatedReviewList.splice(index, 1);
+          }
+        });
+      }
+      setFiveStar(!fiveStar); // it's async, boo annoying
     }
     if (value === 4) {
-      setFourStar(!fourStar);
-      if (fourStar) {
-        await incomingList.forEach((review) => {
-          if (review.rating === 4) {
-            starSortedArr.push(review);
-          }
-        });
-      }
       if (!fourStar) {
-        await starSortedArr.forEach((review, index) => {
+        defaultList.forEach((review) => {
           if (review.rating === 4) {
-            starSortedArr.splice(index, 1);
+            updatedReviewList.push(review);
           }
         });
       }
+      if (fourStar) {
+        updatedReviewList.forEach((review, index) => {
+          if (review.rating === 4) {
+            updatedReviewList.splice(index, 1);
+          }
+        });
+      }
+      setFourStar(!fourStar);
     }
     if (value === 3) {
-      setThreeStar(!threeStar);
-      if (threeStar) {
-        await incomingList.forEach((review) => {
-          if (review.rating === 3) {
-            starSortedArr.push(review);
-          }
-        });
-      }
       if (!threeStar) {
-        await starSortedArr.forEach((review, index) => {
+        defaultList.forEach((review) => {
           if (review.rating === 3) {
-            starSortedArr.splice(index, 1);
+            updatedReviewList.push(review);
           }
         });
       }
+      if (threeStar) {
+        updatedReviewList.forEach((review, index) => {
+          if (review.rating === 3) {
+            updatedReviewList.splice(index, 1);
+          }
+        });
+      }
+      setThreeStar(!threeStar);
     }
     if (value === 2) {
+      if (!twoStar) {
+        defaultList.forEach((review) => {
+          if (review.rating === 2) {
+            updatedReviewList.push(review);
+          }
+        });
+      }
+      if (twoStar){
+        updatedReviewList.forEach((review, index) => {
+          if (review.rating === 2) {
+            updatedReviewList.splice(index, 1);
+          }
+        });
+      }
       setTwoStar(!twoStar);
-      if (twoStar) {
-        await incomingList.forEach((review) => {
-          if (review.rating === 2) {
-            starSortedArr.push(review);
-          }
-        });
-      }
-      if (!twoStar){
-        await starSortedArr.forEach((review, index) => {
-          if (review.rating === 2) {
-            starSortedArr.splice(index, 1);
-          }
-        });
-      }
     }
     if (value === 1) {
-      setOneStar(!oneStar);
-      if (oneStar) {
-        await incomingList.forEach((review) => {
-          if (review.rating === 1) {
-            starSortedArr.push(review);
-          }
-        });
-      }
       if (!oneStar) {
-        await starSortedArr.forEach((review, index) => {
+        defaultList.forEach((review) => {
           if (review.rating === 1) {
-            starSortedArr.splice(index, 1);
+            updatedReviewList.push(review);
           }
         });
       }
+      if (oneStar) {
+        updatedReviewList.forEach((review, index) => {
+          if (review.rating === 1) {
+            updatedReviewList.splice(index, 1);
+          }
+        });
+      }
+      setOneStar(!oneStar);
     }
-    // var sorted = await incomingList.filter((review) => {
-    //   return review.rating === value;
-    // })
-    // var sortedCopy = [...sorted];
-    await setStarFilter(starSortedArr);
-    await props.updateReviewList(starSortedArr);
-    console.log('this is the starSortedArr: ', starFilter);
-    // forceUpdate();
+    setStarReviews(updatedReviewList);
   }
 
   return (
     <div className="review-module" data-testid="reviews-module">
       <div className="rating-breakdown">
-        <RatingBreakdown rating={props.rating} meta={meta} reviewList={props.reviewList} starSort={starSort}/>
+        <RatingBreakdown rating={props.rating} meta={meta} reviewList={props.reviewList} starSort={starSort} fiveStar={fiveStar} fourStar={fourStar} threeStar={threeStar} twoStar={twoStar} oneStar={oneStar} toggle={starFilterToggle} clear={clearFilters}/>
       </div>
       <div>
         <h3 className="reviewList-title">
@@ -226,7 +235,7 @@ const Reviews = (props) => {
             <option value="helpfulness">helpfulness</option>
           </select>
         </h3>
-        <ReviewList handleHelpClick={handleHelpClick} handleReportClick={handleReportClick} reviewList={incomingList} togglePopup={togglePopup}/>
+        <ReviewList handleHelpClick={handleHelpClick} handleReportClick={handleReportClick} reviewList={starFilterToggle ? starReviews : incomingList} togglePopup={togglePopup}/>
       </div>
       {isOpen && <Popup
         content={<>

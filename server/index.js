@@ -39,6 +39,7 @@ app.get('/getProductQnA', initGetData.getProductQnAControl);
 app.post('/submitReview', postData.postReviewForm);
 
 app.post('/submitQuestion', postData.postQuestionForm);
+app.post('/clickTrackPost', postData.postClickTrack);
 
 app.put('/helpClick', putData.putHelpClick);
 

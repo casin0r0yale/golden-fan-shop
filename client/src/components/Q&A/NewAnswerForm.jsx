@@ -1,10 +1,25 @@
 import {useState} from 'react';
+import ImageUpload from '../reviews/ImageUpload.jsx';
 
 var NewAnswerForm = (props) => {
+
+  const [images, setImages] = useState([]);
+
   const handleSubmit = (event) => {
     var formObj = {
-
+      body: event.target.answer.value,
+      name: event.target.user.value,
+      email: event.target.email.value,
+      photos: images
     }
+
+    event.preventDefault();
+    props.handleFormSubmit(formObj);
+  }
+
+  const imageUploadHandler = (images) => {
+    console.log('This is the amount of images that I have: ', images);
+    setImages(images);
   }
   return (
     <div>
@@ -19,8 +34,8 @@ var NewAnswerForm = (props) => {
         <label for="email">Email:</label><br></br>
         <input type="email" name="email" id="email" maxLength="60" placeholder="Example: jack@email.com" required/><br></br><br></br>
         <b>For authentication reasons, you will not emailed.</b><br></br><br></br>
-        <label for="photos">Upload Photos Here:</label><br></br>
-        <input type="file" name="photos" multiple required/><br></br><br></br>
+        <label>Upload Photos Here:</label><br></br>
+        <ImageUpload handleImages={imageUploadHandler}/>
         <input type="submit"/>
       </form>
     </div>

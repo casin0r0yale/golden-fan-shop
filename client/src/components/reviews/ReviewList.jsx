@@ -5,7 +5,7 @@ import { IoMdAdd } from 'react-icons/io';
 const ReviewList = (props) => {
   var numReviews = props.reviewList.length;
   var reviewList = props.reviewList;
-  console.log('this is my reviewList: ', reviewList);
+  // console.log('this is my reviewList: ', reviewList);
   const postPerClick = 2;
   const [next, setNext] = useState(postPerClick);
 
@@ -16,7 +16,7 @@ const ReviewList = (props) => {
 
   return (
     <div>
-      <div className="review-list">
+      <div className="review-list" data-testid="review-list">
         {reviewList?.slice(0, next)?.map((review, index) => {
           return (
             <div key={review.review_id} className="review-tile">
