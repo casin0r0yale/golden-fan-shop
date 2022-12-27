@@ -11,6 +11,14 @@ class ImageUpload extends React.Component {
     }
     this.uploadMulitpleFiles = this.uploadMulitpleFiles.bind(this);
     this.uploadFiles = this.uploadFiles.bind(this);
+    this.createFileList = this.createFileList.bind(this);
+  }
+
+  createFileList(file) {
+    const fileList = new FileList();
+    fileList[0] = file;
+    fileList.item = index => fileList[index];
+    return fileList;
   }
 
   uploadMulitpleFiles(event) {
@@ -21,6 +29,7 @@ class ImageUpload extends React.Component {
     this.setState({
       file: this.fileArray
     })
+    console.log('this is my fileArray:', this.fileArray);
   }
 
   uploadFiles(event){
