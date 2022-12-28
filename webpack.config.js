@@ -29,4 +29,10 @@ module.exports = {
       },
     ],
   },
+  //Potential fix for deployment bug?
+  resolve: {
+    alias: {
+      "react-icons": path.resolve(__dirname, "./node_modules/react-icons"),
+    },
+  },
 };

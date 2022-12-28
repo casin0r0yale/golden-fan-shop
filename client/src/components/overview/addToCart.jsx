@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "../../styles/index.css";
-import { RxCaretDown } from 'react-icons/Rx';
+// need to be lowercase "rx" for compiling in deployment
+import { RxCaretDown } from 'react-icons/rx';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 
