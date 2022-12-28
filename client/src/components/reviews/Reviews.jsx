@@ -12,7 +12,7 @@ const Reviews = (props) => {
   var meta = props.meta;
 
   const [formView, setFormView] = useState(false);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [starFilterToggle, setStarFilterToggle] = useState(false);
   const [starReviews, setStarReviews] = useState([]);
 
