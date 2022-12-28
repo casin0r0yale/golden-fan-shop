@@ -9,6 +9,7 @@ import RelatedCard from '../client/src/components/relatedProductsAndYourOutfit/R
 import AddToOutfitCard from '../client/src/components/relatedProductsAndYourOutfit/AddToOutfitCard.jsx';
 import LeftScrollButtonCarousel from '../client/src/components/relatedProductsAndYourOutfit/LeftScrollButtonCarousel.jsx';
 import RightScrollButtonCarousel from '../client/src/components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx';
+// import Spinner from '../client/src/img/spiffygif_46x46.gif';
 
 test('should render Left ScrollButtonCarousel', () => {
 

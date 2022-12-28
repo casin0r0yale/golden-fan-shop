@@ -13,7 +13,7 @@ var Answer = (props) => {
   }
   return (
   <div>
-    {renderedAnswers.map(answerKey => {
+    {renderedAnswers.map((answerKey, index) => {
       // console.log(answerKey);
       var currentAnswer = props.answers[answerKey];
       // console.log(currentAnswer)
@@ -24,7 +24,7 @@ var Answer = (props) => {
       //   setIsHelpful(!isHelpful);
       // }
       return (
-        <div>
+        <div key={index}>
           <p>A: {currentAnswer.body}</p>
           <p> by {currentAnswer.answerer_name}, {answerDate}  |  Helpful? <a>Yes({currentAnswer.helpfulness})</a></p>
         </div>

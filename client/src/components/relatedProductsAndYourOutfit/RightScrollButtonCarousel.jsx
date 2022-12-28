@@ -4,7 +4,6 @@ const RightScrollButtonCarousel = (props) => {
 
   var onClickScrollRight = () => {
     props.moveRight();
-    console.log('clicked right!');
   }
 
   return (

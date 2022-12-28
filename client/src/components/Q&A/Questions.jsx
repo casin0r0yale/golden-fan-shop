@@ -51,7 +51,7 @@ var Questions = (props) => {
         {mappedQuestions.map((question, index) => {
 
           return (
-            <div>
+            <div key={index}>
               <h4 key={index}>Q: {question.question_body}</h4>
               <div>
                 <p>Helpful? <a onClick={toggleHelpfulness}>Yes({(isHelpful) ? question.question_helpfulness + 1 : question.question_helpfulness})</a> | <a onClick={toggleAnswerPopup} className="add-answer-btn">Add An Answer</a> | {(question.reported) ? 'Reported' : <a>Report Question</a>}</p>

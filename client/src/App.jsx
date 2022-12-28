@@ -1,24 +1,19 @@
 import React, { useEffect, useState, useRef, Suspense } from "react";
 import ReactDOM from 'react-dom';
-import Overview from './components/overview/overview.jsx';
-const Reviews = React.lazy(() => import('./components/reviews/Reviews.jsx'));
-// import Reviews from './components/reviews/Reviews.jsx';
-const RelatedCard = React.lazy(() => import('./components/relatedProductsAndYourOutfit/RelatedCard.jsx'));
-// import RelatedCard from './components/relatedProductsAndYourOutfit/RelatedCard.jsx';
-const AddToOutfitCard = React.lazy(() => import('./components/relatedProductsAndYourOutfit/AddToOutfitCard.jsx'));
-// import AddToOutfitCard from './components/relatedProductsAndYourOutfit/AddToOutfitCard.jsx';
-const YourOutfitCard = React.lazy(() => import('./components/relatedProductsAndYourOutfit/YourOutfitCard.jsx'));
-// import YourOutfitCard from './components/relatedProductsAndYourOutfit/YourOutfitCard.jsx';
-const LeftScrollButtonCarousel = React.lazy(() => import('./components/relatedProductsAndYourOutfit/LeftScrollButtonCarousel.jsx'));
-const RightScrollButtonCarousel = React.lazy(() => import('./components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx'));
-// import LeftScrollButtonCarousel from './components/relatedProductsAndYourOutfit/LeftScrollButtonCarousel.jsx';
-// import RightScrollButtonCarousel from './components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx';
-import Header from "./components/Header.jsx";
-import Description from "./components/Description.jsx";
-const Questions = React.lazy(() => import('./components/Q&A/Questions.jsx'));
-// import Questions from './components/Q&A/Questions.jsx';
 import useClickTracker from './hooks/useClickTracker.jsx';
 import axios from 'axios';
+
+import Header from "./components/Header.jsx";
+import Overview from './components/overview/overview.jsx';
+import Description from "./components/Description.jsx";
+const RelatedCard = React.lazy(() => import('./components/relatedProductsAndYourOutfit/RelatedCard.jsx'));
+const AddToOutfitCard = React.lazy(() => import('./components/relatedProductsAndYourOutfit/AddToOutfitCard.jsx'));
+const YourOutfitCard = React.lazy(() => import('./components/relatedProductsAndYourOutfit/YourOutfitCard.jsx'));
+const LeftScrollButtonCarousel = React.lazy(() => import('./components/relatedProductsAndYourOutfit/LeftScrollButtonCarousel.jsx'));
+const RightScrollButtonCarousel = React.lazy(() => import('./components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx'));
+const Questions = React.lazy(() => import('./components/Q&A/Questions.jsx'));
+const Reviews = React.lazy(() => import('./components/reviews/Reviews.jsx'));
+const Spinner = require('./img/spiffygif_46x46.gif'); // comment out before running Jest Tests
 
 const App = () => {
 
@@ -57,12 +52,12 @@ const App = () => {
 
         axios.get('/getProductQnA', { params: { id: focusProductId } })
           .then(function (response) {
-            console.log('CHAIN 5: Stefan Module - SUCCESS GET PRODUCT Q&A DATA: ', response.data);
+            // console.log('CHAIN 5: Stefan Module - SUCCESS GET PRODUCT Q&A DATA: ', response.data);
             // TODO: Manipulate and pass down response.data into module...
             //setProductQnAData(response.data);
             var questionData = response.data.results;
             setProductQnAData(questionData);
-            console.log('Qna Data: ', questionData);
+            // console.log('Qna Data: ', questionData);
 
           })
           .catch(function (error) {
@@ -257,7 +252,7 @@ const App = () => {
         <div widgetname="Related/YourOutfit">RELATED PRODUCTS</div>
 
         <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef} widgetname="Related Products">
-          <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<img src={Spinner} alt="Loading..."/>}>
             {scrollRelatedProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft} />) : null}
             {relatedProductsData.map((itemObj, index) => {
               return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} related_id={itemObj.related_id} related_name={itemObj.related_name}
@@ -273,7 +268,7 @@ const App = () => {
         <br />
         <div ref={loadBottomBoundary} widgetname="Related/YourOutfit">YOUR OUTFIT</div>
         <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} widgetname="Your Outfit">
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<img src={Spinner} alt="Loading..."/>}>
             {scrollYourOutfitProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft2} />) : null}
             {yourOutfitList.map((itemObj, index) => {
               return <YourOutfitCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} current_name={itemObj.current_name} current_id={itemObj.current_id}
@@ -287,7 +282,7 @@ const App = () => {
           </Suspense>
         </div>
         {bottomHalfView && (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<img src={Spinner} alt="Loading..."/>}>
             <Questions data={productQnAData} product={productInfo} />
             <Reviews rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
           </Suspense>
@@ -302,7 +297,7 @@ function useRelatedProductLogic(focusID, setRelated) {
   axios.get('/getProductRelated', { params: { id: focusID } })
     .then(function (response) {
 
-      console.log('CHAIN 3: Richard Module - SUCCESS GET RELATED PRODUCTS: ', response.data);
+      // console.log('CHAIN 3: Richard Module - SUCCESS GET RELATED PRODUCTS: ', response.data);
       var relatedProductData = response.data;
       var relatedAllData = [];
 
