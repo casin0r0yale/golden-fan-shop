@@ -13,6 +13,7 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
     "^image![a-zA-Z0-9$_-]+$": "GlobalImageStub",
+    // '^[@./a-zA-Z0-9$_-]+\\.(png)$': 'RelativeImageStub',
     '^[@./a-zA-Z0-9$_-]+\\.(png|gif)$': 'RelativeImageStub',
     '^.+\\.(css|less)$': '<rootDir>/config/CSSStub.js'
   },

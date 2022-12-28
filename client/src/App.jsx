@@ -13,7 +13,7 @@ const LeftScrollButtonCarousel = React.lazy(() => import('./components/relatedPr
 const RightScrollButtonCarousel = React.lazy(() => import('./components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx'));
 const Questions = React.lazy(() => import('./components/Q&A/Questions.jsx'));
 const Reviews = React.lazy(() => import('./components/reviews/Reviews.jsx'));
-import Spinner from './img/spiffygif_46x46.gif';
+const Spinner = require('./img/spiffygif_46x46.gif'); // comment out before running Jest Tests
 
 const App = () => {
 
