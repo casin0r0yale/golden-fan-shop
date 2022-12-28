@@ -1,15 +1,22 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, Suspense } from "react";
 import ReactDOM from 'react-dom';
 import Overview from './components/overview/overview.jsx';
-import Reviews from './components/reviews/Reviews.jsx';
-import RelatedCard from './components/relatedProductsAndYourOutfit/RelatedCard.jsx';
-import AddToOutfitCard from './components/relatedProductsAndYourOutfit/AddToOutfitCard.jsx';
-import YourOutfitCard from './components/relatedProductsAndYourOutfit/YourOutfitCard.jsx';
-import LeftScrollButtonCarousel from './components/relatedProductsAndYourOutfit/LeftScrollButtonCarousel.jsx';
-import RightScrollButtonCarousel from './components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx';
+const Reviews = React.lazy(() => import('./components/reviews/Reviews.jsx'));
+// import Reviews from './components/reviews/Reviews.jsx';
+const RelatedCard = React.lazy(() => import('./components/relatedProductsAndYourOutfit/RelatedCard.jsx'));
+// import RelatedCard from './components/relatedProductsAndYourOutfit/RelatedCard.jsx';
+const AddToOutfitCard = React.lazy(() => import('./components/relatedProductsAndYourOutfit/AddToOutfitCard.jsx'));
+// import AddToOutfitCard from './components/relatedProductsAndYourOutfit/AddToOutfitCard.jsx';
+const YourOutfitCard = React.lazy(() => import('./components/relatedProductsAndYourOutfit/YourOutfitCard.jsx'));
+// import YourOutfitCard from './components/relatedProductsAndYourOutfit/YourOutfitCard.jsx';
+const LeftScrollButtonCarousel = React.lazy(() => import('./components/relatedProductsAndYourOutfit/LeftScrollButtonCarousel.jsx'));
+const RightScrollButtonCarousel = React.lazy(() => import('./components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx'));
+// import LeftScrollButtonCarousel from './components/relatedProductsAndYourOutfit/LeftScrollButtonCarousel.jsx';
+// import RightScrollButtonCarousel from './components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx';
 import Header from "./components/Header.jsx";
 import Description from "./components/Description.jsx";
-import Questions from './components/Q&A/Questions.jsx';
+const Questions = React.lazy(() => import('./components/Q&A/Questions.jsx'));
+// import Questions from './components/Q&A/Questions.jsx';
 import useClickTracker from './hooks/useClickTracker.jsx';
 import axios from 'axios';
 
@@ -24,6 +31,9 @@ const App = () => {
   const [reviewList, setReviewList] = useState([]);
   const [reviewMeta, setReviewMeta] = useState({});
   const [rating, setRating] = useState(0);
+  const [bottomHalfView, setBottomHalfView] = useState(false)
+
+  const loadBottomBoundary = useRef(null)
 
   const { moveRight, moveLeft, handleSideScroll, relatedCarourselRef, activeSlide,
     activeSlideRef, prevSlideRef, nextSlideRef, wrapperRef, scrollRelatedProgress, scrollToggleRelatedProgress,
@@ -31,25 +41,49 @@ const App = () => {
     yourOutfitList, setYourOutfitList, moveRight2, moveLeft2, handleSideScroll2, yourOutfitCarourselRef, activeSlide2,
     activeSlideRef2, prevSlideRef2, nextSlideRef2, wrapperRef2, onceNext2, onceNext } = useCarouselSliderLogic();
 
-  const {clickInfo, onClickTracker} = useClickTracker();
+  const { clickInfo, onClickTracker } = useClickTracker();
 
-  // const moduleName = {
-  //   overview: "Overview",
-  //   yourOutfit: "Your Outfit",
-  //   relatedProducts: "Related Products",
-  //   qna: "Questions & Answers",
-  //   reviews: "Reviews",
-  // }
+  // Lazy Loading on user downwards scroll
+  useEffect(() => {
+    if (focusProductId === 0) return;
+    if (productInfo.length === 0) return;
+    if (!loadBottomBoundary?.current) return;
 
-  // Init GET Request
+    // Create Observer and set callback action
+    const observer = new IntersectionObserver((yourOutfitDiv) => {
+      if (yourOutfitDiv[0].isIntersecting) {
+        console.log("Observed Boundary! Loading QnA and Review Modules...");
+        setBottomHalfView(true);
+
+        axios.get('/getProductQnA', { params: { id: focusProductId } })
+          .then(function (response) {
+            console.log('CHAIN 5: Stefan Module - SUCCESS GET PRODUCT Q&A DATA: ', response.data);
+            // TODO: Manipulate and pass down response.data into module...
+            //setProductQnAData(response.data);
+            var questionData = response.data.results;
+            setProductQnAData(questionData);
+            console.log('Qna Data: ', questionData);
+
+          })
+          .catch(function (error) {
+            console.log('error GET QnA Data: ', error);
+          })
+
+        observer.disconnect();
+      }
+    })
+
+    observer.observe(loadBottomBoundary.current);
+  }, [focusProductId, productInfo])
 
   useEffect(() => {
 
     const savedOutfitState = JSON.parse(localStorage.getItem("yourOutfitState"));
 
-    if (savedOutfitState.length > 0) {
-      // console.log("🚀 ~ file: App.jsx:41 ~ useEffect ~ savedOutfitState", savedOutfitState)
-      setYourOutfitList(savedOutfitState);
+    if (savedOutfitState) {
+      if (savedOutfitState.length > 0) {
+        setYourOutfitList(savedOutfitState);
+      }
     }
 
     var targetIdInUrl = parseInt(window.location.pathname[4] + window.location.pathname[5] + window.location.pathname[6] + window.location.pathname[7] + window.location.pathname[8]);
@@ -64,14 +98,13 @@ const App = () => {
     } else {
       return getData();
     }
-
   }, [focusProductId])
 
-    // save the state to local storage when Your Outfit state changes
+  // save the state to local storage when Your Outfit state changes
   useEffect(() => {
-      // console.log('saving to localStorage...', yourOutfitList)
-      localStorage.setItem("yourOutfitState", JSON.stringify(yourOutfitList));
-    }, [yourOutfitList]);
+    // console.log('saving to localStorage...', yourOutfitList)
+    localStorage.setItem("yourOutfitState", JSON.stringify(yourOutfitList));
+  }, [yourOutfitList]);
 
 
   const updateReviewList = (newReviewList) => {
@@ -89,7 +122,7 @@ const App = () => {
   var getData = () => {
 
     // INIT GET 1: GET Genral Data of target product
-    axios.get(`/ipCurrent`, {params: {id : focusProductId}})
+    axios.get(`/ipCurrent`, { params: { id: focusProductId } })
       .then(function (response) {
         setProductInfo(response.data);
         var generalProductInfo = response.data;
@@ -183,21 +216,6 @@ const App = () => {
       .catch((error) => {
         console.log('error GET Review Meta: ', error);
       });
-
-    // INIT GET 5: GET Product Q&A data (Ste'fan's section to manipulate)
-    axios.get('/getProductQnA', { params: { id: focusProductId } })
-      .then(function (response) {
-        console.log('CHAIN 5: Stefan Module - SUCCESS GET PRODUCT Q&A DATA: ', response.data);
-        // TODO: Manipulate and pass down response.data into module...
-        //setProductQnAData(response.data);
-        var questionData = response.data.results;
-        setProductQnAData(questionData);
-        console.log('Qna Data: ', questionData);
-
-      })
-      .catch(function (error) {
-        console.log('error GET QnA Data: ', error);
-      })
   }
 
   var onClickYourOutfit = (data) => {
@@ -232,27 +250,30 @@ const App = () => {
 
     <div onClick={onClickTracker}>
       <Header />
-        <h2 data-testid='testYourOutfitCard'>Golden Fan Shop: Main App/Index Component</h2>
-        <Overview rating={rating} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} />
+      <h2 data-testid='testYourOutfitCard'>Golden Fan Shop</h2>
+      <Overview rating={rating} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} />
       <div className="margins-nonOverview">
-        <Description slogan={productInfo.slogan} desc={productInfo.description} featuresPrimaryProductString={featuresPrimaryProduct}/>
+        <Description slogan={productInfo.slogan} desc={productInfo.description} featuresPrimaryProductString={featuresPrimaryProduct} />
         <div widgetname="Related/YourOutfit">RELATED PRODUCTS</div>
 
         <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef} widgetname="Related Products">
-          {scrollRelatedProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft} />) : null}
-          {relatedProductsData.map((itemObj, index) => {
-            return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} related_id={itemObj.related_id} related_name={itemObj.related_name}
-              related_category={itemObj.related_category} related_price={itemObj.related_price}
-              related_thumbnail={itemObj.related_thumbnail} {...itemObj.related_features} featuresPrimaryProductString={featuresPrimaryProduct}
-              key={`slide-${itemObj.related_id}`}
-              ref={index === activeSlide ? activeSlideRef : index - 1 === activeSlide ? nextSlideRef : index + 1 === activeSlide ? prevSlideRef : null} />
-          })}
-          {scrollToggleRelatedProgress && scrollRelatedProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight} />}
+          <Suspense fallback={<div>Loading...</div>}>
+            {scrollRelatedProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft} />) : null}
+            {relatedProductsData.map((itemObj, index) => {
+              return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} related_id={itemObj.related_id} related_name={itemObj.related_name}
+                related_category={itemObj.related_category} related_price={itemObj.related_price}
+                related_thumbnail={itemObj.related_thumbnail} {...itemObj.related_features} featuresPrimaryProductString={featuresPrimaryProduct}
+                key={`slide-${itemObj.related_id}`}
+                ref={index === activeSlide ? activeSlideRef : index - 1 === activeSlide ? nextSlideRef : index + 1 === activeSlide ? prevSlideRef : null} />
+            })}
+            {scrollToggleRelatedProgress && scrollRelatedProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight} />}
+          </Suspense>
         </div>
         <br />
         <br />
-        <div widgetname="Related/YourOutfit">YOUR OUTFIT</div>
-          <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} widgetname="Your Outfit">
+        <div ref={loadBottomBoundary} widgetname="Related/YourOutfit">YOUR OUTFIT</div>
+        <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} widgetname="Your Outfit">
+          <Suspense fallback={<div>Loading...</div>}>
             {scrollYourOutfitProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft2} />) : null}
             {yourOutfitList.map((itemObj, index) => {
               return <YourOutfitCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} current_name={itemObj.current_name} current_id={itemObj.current_id}
@@ -263,9 +284,14 @@ const App = () => {
             })}
             <AddToOutfitCard onClickYourOutfit={onClickYourOutfit} ref={activeSlide2 === yourOutfitList.length - 1 ? nextSlideRef2 : null} />
             {scrollToggleYourOutfitProgress && scrollYourOutfitProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight2} l />}
-          </div>
-        <Questions data={productQnAData} product={productInfo} />
-      <Reviews rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
+          </Suspense>
+        </div>
+        {bottomHalfView && (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Questions data={productQnAData} product={productInfo} />
+            <Reviews rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
+          </Suspense>
+        )}
       </div>
     </div>
   );
@@ -286,7 +312,7 @@ function useRelatedProductLogic(focusID, setRelated) {
           relatedObj.related_id = relatedId;
 
           // Related Chain 3.1
-          return axios.get(`/ipRelated`, { params: { id: relatedId }})
+          return axios.get(`/ipRelated`, { params: { id: relatedId } })
             .then(function (response) {
 
               relatedObj.related_name = response.data.name;
@@ -311,10 +337,6 @@ function useRelatedProductLogic(focusID, setRelated) {
                       return relatedObj;
                     }
                   }
-
-                  // Related Chain 3.3 TODO
-                  // Got all data besides for star data TODO
-
                 })
                 .catch(function (error) {
                   console.log('error GET inner RelatedProducts: ', error);
