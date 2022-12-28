@@ -21,8 +21,8 @@ const PercentageBar = (props) => {
   }
 
   return (
-    <div style={containerStyles}>
-      <div style={fillerStyles}>
+    <div widgetname="Review/Star-Rating-Breakdown" style={containerStyles}>
+      <div widgetname="Review/Star-Rating-Breakdown" style={fillerStyles}>
       </div>
     </div>
   )

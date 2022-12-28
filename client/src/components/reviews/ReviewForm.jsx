@@ -3,7 +3,7 @@ import StarRating from './StarRating.jsx';
 import ImageUpload from './ImageUpload.jsx';
 
 const ReviewForm = (props) => {
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState(0);
   const [charsLeft, setMinCharsLeft] = useState(50);
   const [sizeRating, setSizeRating] = useState('');
   const [widthText, setWidthText] = useState('');
@@ -171,12 +171,12 @@ const ReviewForm = (props) => {
   }
 
   return (
-    <div data-testid="review-form">
-      <div className="form-title">
-        <h2>Write Your Review</h2>
-        <h3>About {props.productName}</h3>
+    <div data-testid="review-form" widgetname="Review Form">
+      <div widgetname="Review Form" className="form-title">
+        <h2 widgetname="Review Form">Write Your Review</h2>
+        <h3 widgetname="Review Form">About {props.productName}</h3>
       </div>
-      <form className="review-form" onSubmit={handleSubmit}>
+      <form widgetname="Review Form" className="review-form" onSubmit={handleSubmit}>
         <label>
           <h3>Overall Rating*</h3>
           <StarRating currRating={currRating}/>
@@ -372,7 +372,7 @@ const ReviewForm = (props) => {
           <input className="email-input" type="email" name="email" placeholder="Example: jackson11@email.com" maxLength="60" required/>
           <h5>For authentication reasons, you will not be emailed</h5>
         </label>
-        <button className="submit-button">Submit</button>
+        <button widgetname="Review Form" className="submit-button">Submit</button>
       </form>
     </div>
   )
