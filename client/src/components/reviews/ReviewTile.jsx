@@ -44,10 +44,17 @@ const ReviewTile = (props) => {
         <ProductRating widgetname="Review Tile" rating={props.review.rating} />
         <p widgetname="Review Tile"><AiFillCheckCircle />&nbsp;{props.review.reviewer_name}, {date}</p>
       </div>
+<<<<<<< HEAD
       <h5 widgetname="Review Tile">{props.review.summary}</h5>
       <div widgetname="Review Tile" data-testid="review-images">
         {(photoArr.length !== 0) ? photoArr.map((url, idx) => {
           return <img widgetname="Review Tile" className="review-image"src={url} key={idx}/>
+=======
+      <h5>{props.review.summary}</h5>
+      <div data-testid="review-images">
+        {(photoArr.length !== 0) ? photoArr.map((url, idx) => {
+          return <img className="review-image"src={url} key={idx}/>
+>>>>>>> main
         }) : null}
       </div>
       <p widgetname="Review Tile">{props.review.body}</p>
