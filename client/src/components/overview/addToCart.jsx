@@ -6,7 +6,6 @@ import { AiOutlinePlus } from 'react-icons/ai';
 
 
 
-
 const AddToCart = (props) => {
   const [sizeSelected, setSizeSelected] = useState({});
   const [quantitySelected, setQuantitySelected] = useState('-');
@@ -29,7 +28,7 @@ const AddToCart = (props) => {
 
 
   useEffect(() => {
-    console.log('logg', JSON.stringify(props.styles))
+    console.log('logg', props.styles[props.styleIndex])
     // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
     //   console.log(props.styles[props.styleIndex]?.skus[size].quantity)
     //   props.styles[props.styleIndex]?.skus[size].quantity > 0
@@ -39,7 +38,7 @@ const AddToCart = (props) => {
     if (!props.styles[props.styleIndex]?.skus[null])
     // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
     //   props.styles[props.styleIndex]?.skus[size].quantity > 0
-    // })) 
+    // }))
     {
       setSizeSelected({});
     }
@@ -50,7 +49,7 @@ const AddToCart = (props) => {
   }, [props.styles]); //
 
   const addToCart = clicked => {
-    console.log('clicked');    
+    console.log('clicked');
     props.onClickYourOutfit();
     // setFavorited(!favorited);
     alert(`${props.styles[props.styleIndex].name} has been added to your cart!`);
@@ -59,37 +58,37 @@ const AddToCart = (props) => {
 
 
   return (
-    <div data-testid='testAddToCart' className="addToCart">
-      <div className="dropdown">
-        <button onClick={() => { setDropdownExpanded(!dropdownExpanded) }} className="dropdown-button">{sizeSelected.size || "SELECT SIZE"}  <RxCaretDown size="20" class="caret" /></button>
-        <div className={dropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
+    <div data-testid='testAddToCart' widgetname="Overview" className="addToCart">
+      <div widgetname="Overview" className="dropdown">
+        <button widgetname="Overview" onClick={() => { setDropdownExpanded(!dropdownExpanded) }} className="dropdown-button">{sizeSelected.size || "SELECT SIZE"}  <RxCaretDown size="20" class="caret" /></button>
+        <div widgetname="Overview" className={dropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
           {Object.keys((props.styles[props.styleIndex]?.skus) || {}).map(size => {
             if (props.styles[props.styleIndex]?.skus[size].quantity > 0) {
-              return (<p onClick={() => { onOptionSelect(props.styles[props.styleIndex]?.skus[size]) }}>{props.styles[props.styleIndex]?.skus[size].size}</p>)
+              return (<p widgetname="Overview" onClick={() => { onOptionSelect(props.styles[props.styleIndex]?.skus[size]) }}>{props.styles[props.styleIndex]?.skus[size].size}</p>)
             }
           })}
         </div>
       </div>
-      <div className="dropdown">
+      <div widgetname="Overview" className="dropdown">
         {!isNaN(quantitySelected) ?
-          <div><button className="dropdown-button" id="quantity" onClick={() => { setQuantityDropdownExpanded(!quantityDropdownExpanded) }}>{quantitySelected}<div> <RxCaretDown class="caret" size="20" /></div> </button></div>
-          : <button className="dropdown-button" id="quantity">{quantitySelected} <RxCaretDown className="caret" size="20" /></button>}
-        <div className={quantityDropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
+          <div widgetname="Overview"><button widgetname="Overview" className="dropdown-button" id="quantity" onClick={() => { setQuantityDropdownExpanded(!quantityDropdownExpanded) }}>{quantitySelected}<div widgetname="Overview"> <RxCaretDown className="caret" size="20" /></div> </button></div>
+          : <button widgetname="Overview" className="dropdown-button" id="quantity">{quantitySelected} <RxCaretDown className="caret" size="20" /></button>}
+        <div widgetname="Overview" className={quantityDropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
           {sizeSelected.quantity > 15 ?
             Array.from(Array(15).keys()).map(quantity => {
-              return (<p onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
+              return (<p widgetname="Overview" onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
             })
             : Array.from(Array(sizeSelected.quantity).keys()).map(quantity => {
-              return (<p onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
+              return (<p widgetname="Overview" onClick={() => { onQuantitySelect(quantity + 1) }}>{quantity + 1}</p>)
             })}
 
         </div>
       </div>
       {sizeSelected.quantity > 0 ?
-        <button id="checkout" className="dropdown-button" onClick={addToCart} >ADD TO BAG<AiOutlinePlus size="20" className='plus' /></button>
+        <button widgetname="Overview" id="checkout" className="dropdown-button" onClick={addToCart} >ADD TO BAG<AiOutlinePlus size="20" className='plus' /></button>
         : ''}
 
-      <div>
+      <div widgetname="Overview">
 
       </div>
     </div>
@@ -164,3 +163,6 @@ const AddToCart = (props) => {
 //   background-color: rgba(0, 0, 0, 0.1);
 // }
 export default AddToCart;
+// .select-items div:hover, .same-as-selected {
+//   background-color: rgba(0, 0, 0, 0.1);
+// }

@@ -8,18 +8,21 @@ import YourOutfitCard from './components/relatedProductsAndYourOutfit/YourOutfit
 import LeftScrollButtonCarousel from './components/relatedProductsAndYourOutfit/LeftScrollButtonCarousel.jsx';
 import RightScrollButtonCarousel from './components/relatedProductsAndYourOutfit/RightScrollButtonCarousel.jsx';
 import Header from "./components/Header.jsx";
+import Description from "./components/Description.jsx";
 import Questions from './components/Q&A/Questions.jsx';
+import useClickTracker from './hooks/useClickTracker.jsx';
 import axios from 'axios';
 
 const App = () => {
 
-  const [focusProductId, setFocusProductId] = useState(71704);
+  const [focusProductId, setFocusProductId] = useState(0);
   const [featuresPrimaryProduct, setFeaturesPrimaryProduct] = useState('');
   const [productStyles, setProductStyles] = useState([]);
   const [productInfo, setProductInfo] = useState([]);
   const [productQnAData, setProductQnAData] = useState([]);
   const [currentProductOutfitCard, setCurrentProductOutfitCard] = useState({});
   const [reviewList, setReviewList] = useState([]);
+  const [reviewMeta, setReviewMeta] = useState({});
   const [rating, setRating] = useState(0);
 
   const { moveRight, moveLeft, handleSideScroll, relatedCarourselRef, activeSlide,
@@ -28,10 +31,48 @@ const App = () => {
     yourOutfitList, setYourOutfitList, moveRight2, moveLeft2, handleSideScroll2, yourOutfitCarourselRef, activeSlide2,
     activeSlideRef2, prevSlideRef2, nextSlideRef2, wrapperRef2, onceNext2, onceNext } = useCarouselSliderLogic();
 
+  const {clickInfo, onClickTracker} = useClickTracker();
+
+  // const moduleName = {
+  //   overview: "Overview",
+  //   yourOutfit: "Your Outfit",
+  //   relatedProducts: "Related Products",
+  //   qna: "Questions & Answers",
+  //   reviews: "Reviews",
+  // }
+
   // Init GET Request
+
   useEffect(() => {
-    getData();
+
+    const savedOutfitState = JSON.parse(localStorage.getItem("yourOutfitState"));
+
+    if (savedOutfitState.length > 0) {
+      // console.log("🚀 ~ file: App.jsx:41 ~ useEffect ~ savedOutfitState", savedOutfitState)
+      setYourOutfitList(savedOutfitState);
+    }
+
+    var targetIdInUrl = parseInt(window.location.pathname[4] + window.location.pathname[5] + window.location.pathname[6] + window.location.pathname[7] + window.location.pathname[8]);
+
+    setFocusProductId(targetIdInUrl);
+
+  }, [])
+
+  useEffect(() => {
+    if (focusProductId === 0) {
+      return;
+    } else {
+      return getData();
+    }
+
   }, [focusProductId])
+
+    // save the state to local storage when Your Outfit state changes
+  useEffect(() => {
+      // console.log('saving to localStorage...', yourOutfitList)
+      localStorage.setItem("yourOutfitState", JSON.stringify(yourOutfitList));
+    }, [yourOutfitList]);
+
 
   const updateReviewList = (newReviewList) => {
     setReviewList(newReviewList);
@@ -39,12 +80,16 @@ const App = () => {
     console.log('this is the reviewList state: ', reviewList);
   }
 
+
+  // Redirects for now to Item Detail Page
+  axios.get(`/`);
+
   var currentProductCardData = {};
 
   var getData = () => {
 
     // INIT GET 1: GET Genral Data of target product
-    axios.get('/getProductGeneralInfo', { params: { id: focusProductId } })
+    axios.get(`/ipCurrent`, {params: {id : focusProductId}})
       .then(function (response) {
         setProductInfo(response.data);
         var generalProductInfo = response.data;
@@ -118,7 +163,7 @@ const App = () => {
     // INIT GET 4: GET Product REVIEWS data (Tony's section to manipulate)
     axios.get('/getProductReviews', { params: { id: focusProductId } })
       .then(function (response) {
-        console.log('CHAIN 4: Tony Module - SUCCESS GET PRODUCT REVIEWS DATA: ', response.data);
+        // console.log('CHAIN 4: Tony Module - SUCCESS GET PRODUCT REVIEWS DATA: ', response.data);
         // TODO: Manipulate and pass down response.data into module...
         var reviews = response.data.results;
         setReviewList(reviews);
@@ -127,7 +172,17 @@ const App = () => {
       })
       .catch(function (error) {
         console.log('error GET Reviews Data: ', error);
+      });
+
+    axios.get('/getProductReviewMeta', { params: { id: focusProductId } })
+      .then((response) => {
+        // console.log('Success review meta response: ', response.data);
+        var meta = response.data;
+        setReviewMeta(meta);
       })
+      .catch((error) => {
+        console.log('error GET Review Meta: ', error);
+      });
 
     // INIT GET 5: GET Product Q&A data (Ste'fan's section to manipulate)
     axios.get('/getProductQnA', { params: { id: focusProductId } })
@@ -175,40 +230,43 @@ const App = () => {
 
   return (
 
-    <div>
+    <div onClick={onClickTracker}>
       <Header />
-      <h2 data-testid='testYourOutfitCard'>Golden Fan Shop: Main App/Index Component</h2>
-      <Overview rating={rating} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} />
-      <div>RELATED PRODUCTS</div>
+        <h2 data-testid='testYourOutfitCard'>Golden Fan Shop: Main App/Index Component</h2>
+        <Overview rating={rating} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} />
+      <div className="margins-nonOverview">
+        <Description slogan={productInfo.slogan} desc={productInfo.description} featuresPrimaryProductString={featuresPrimaryProduct}/>
+        <div widgetname="Related/YourOutfit">RELATED PRODUCTS</div>
 
-      <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef}>
-        {scrollRelatedProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft} />) : null}
-        {relatedProductsData.map((itemObj, index) => {
-          return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} related_id={itemObj.related_id} related_name={itemObj.related_name}
-            related_category={itemObj.related_category} related_price={itemObj.related_price}
-            related_thumbnail={itemObj.related_thumbnail} {...itemObj.related_features} featuresPrimaryProductString={featuresPrimaryProduct}
-            key={`slide-${itemObj.related_id}`}
-            ref={index === activeSlide ? activeSlideRef : index - 1 === activeSlide ? nextSlideRef : index + 1 === activeSlide ? prevSlideRef : null} />
-        })}
-        {scrollToggleRelatedProgress && scrollRelatedProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight} />}
+        <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef} widgetname="Related Products">
+          {scrollRelatedProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft} />) : null}
+          {relatedProductsData.map((itemObj, index) => {
+            return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} related_id={itemObj.related_id} related_name={itemObj.related_name}
+              related_category={itemObj.related_category} related_price={itemObj.related_price}
+              related_thumbnail={itemObj.related_thumbnail} {...itemObj.related_features} featuresPrimaryProductString={featuresPrimaryProduct}
+              key={`slide-${itemObj.related_id}`}
+              ref={index === activeSlide ? activeSlideRef : index - 1 === activeSlide ? nextSlideRef : index + 1 === activeSlide ? prevSlideRef : null} />
+          })}
+          {scrollToggleRelatedProgress && scrollRelatedProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight} />}
+        </div>
+        <br />
+        <br />
+        <div widgetname="Related/YourOutfit">YOUR OUTFIT</div>
+          <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} widgetname="Your Outfit">
+            {scrollYourOutfitProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft2} />) : null}
+            {yourOutfitList.map((itemObj, index) => {
+              return <YourOutfitCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} current_name={itemObj.current_name} current_id={itemObj.current_id}
+                current_category={itemObj.current_category} current_price={itemObj.current_price}
+                current_thumbnail={itemObj.current_thumbnail} onClickDeleteProductYourOutfit={onClickDeleteProductYourOutfit}
+                key={`slide-${itemObj.current_id}`}
+                ref={index === activeSlide2 ? activeSlideRef2 : index - 1 === activeSlide2 ? nextSlideRef2 : index + 1 === activeSlide2 ? prevSlideRef2 : null} />
+            })}
+            <AddToOutfitCard onClickYourOutfit={onClickYourOutfit} ref={activeSlide2 === yourOutfitList.length - 1 ? nextSlideRef2 : null} />
+            {scrollToggleYourOutfitProgress && scrollYourOutfitProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight2} l />}
+          </div>
+        <Questions data={productQnAData} product={productInfo} />
+      <Reviews rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
       </div>
-      <br />
-      <br />
-      <div>YOUR OUTFIT</div>
-      <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} >
-        {scrollYourOutfitProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft2} />) : null}
-        {yourOutfitList.map((itemObj, index) => {
-          return <YourOutfitCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} current_name={itemObj.current_name} current_id={itemObj.current_id}
-            current_category={itemObj.current_category} current_price={itemObj.current_price}
-            current_thumbnail={itemObj.current_thumbnail} onClickDeleteProductYourOutfit={onClickDeleteProductYourOutfit}
-            key={`slide-${itemObj.current_id}`}
-            ref={index === activeSlide2 ? activeSlideRef2 : index - 1 === activeSlide2 ? nextSlideRef2 : index + 1 === activeSlide2 ? prevSlideRef2 : null} />
-        })}
-        <AddToOutfitCard onClickYourOutfit={onClickYourOutfit} ref={activeSlide2 === yourOutfitList.length - 1 ? nextSlideRef2 : null} />
-        {scrollToggleYourOutfitProgress && scrollYourOutfitProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight2} l />}
-      </div>
-      <Questions data={productQnAData} />
-      <Reviews rating={rating} reviewList={reviewList} product={productInfo} updateReviewList={updateReviewList} />
     </div>
   );
 };
@@ -228,7 +286,7 @@ function useRelatedProductLogic(focusID, setRelated) {
           relatedObj.related_id = relatedId;
 
           // Related Chain 3.1
-          return axios.get('/getProductGeneralInfo', { params: { id: relatedId } })
+          return axios.get(`/ipRelated`, { params: { id: relatedId }})
             .then(function (response) {
 
               relatedObj.related_name = response.data.name;

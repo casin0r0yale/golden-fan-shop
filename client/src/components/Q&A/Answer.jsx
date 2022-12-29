@@ -31,7 +31,7 @@ var Answer = (props) => {
       );
     })}
 
-    <b onClick={loadAnswers}>LOAD MORE ANSWERS</b>
+    {(answerObjList.length > 2) ? <b onClick={loadAnswers}>LOAD MORE ANSWERS</b> : null}
   </div>
   );
 };

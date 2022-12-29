@@ -3,14 +3,13 @@ import React from "react";
 
 const Popup = (props) => {
 
-  // const onClickClose = (event) => {
-  //   props.handleClose();
-  // }
+  const onClickFormBox = (event) => {
+    event.stopPropagation();
+  }
 
   return (
-    <div className="popup-box">
-      <div className="form-box">
-        <span className="close-icon" onClick={props.handleClose}>x</span>
+    <div className="popup-box" onClick={props.handleClose}>
+      <div className="form-box" onClick={onClickFormBox}>
         {props.content}
       </div>
     </div>
