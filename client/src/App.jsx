@@ -17,6 +17,7 @@ const Spinner = require('./img/spiffygif_46x46.gif'); // comment out before runn
 
 const App = () => {
 
+  const [serverError, setServerError] = useState(false);
   const [focusProductId, setFocusProductId] = useState(0);
   const [featuresPrimaryProduct, setFeaturesPrimaryProduct] = useState('');
   const [productStyles, setProductStyles] = useState([]);
@@ -183,6 +184,7 @@ const App = () => {
       })
       .catch(function (error) {
         console.log('error GET ProductStyles: ', error);
+        setServerError(true);
       })
 
     // INIT GET 3: GET Related Products (Richard's section to manipulate)
@@ -261,7 +263,7 @@ const App = () => {
     <div onClick={onClickTracker}>
       <Header />
       <h2 data-testid='testYourOutfitCard'>Golden Fan Shop</h2>
-      <Overview rating={rating} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} />
+      <Overview rating={rating} serverError={serverError} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} />
       <div className="margins-nonOverview">
         <Description slogan={productInfo.slogan} desc={productInfo.description} featuresPrimaryProductString={featuresPrimaryProduct} />
         <div widgetname="Related/YourOutfit">RELATED PRODUCTS</div>

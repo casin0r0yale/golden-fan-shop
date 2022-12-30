@@ -6,10 +6,6 @@ import { BsChevronDown } from 'react-icons/bs';
 import { BsChevronUp } from 'react-icons/bs';
 import { FaLess } from 'react-icons/fa';
 import { AiOutlineShrink } from 'react-icons/ai';
-
-
-
-
 import "../../styles/index.css";
 
 
@@ -24,15 +20,15 @@ const ImageGallery = (props) => {
 
     const arrowClicked = (int) => {
         setPrimaryImageIndex(primaryImageIndex + int)
-        if ((props.styles[props.styleIndex]?.photos.length - arrowIndex) > 5)
-            setArrowIndex(arrowIndex + int);
+        if ((props.styles[props.styleIndex]?.photos.length - (arrowIndex + int)) >= 5 && (arrowIndex + int) >= 0)
+        setArrowIndex(arrowIndex + int);
     }
 
     // if (props.photos && props.chosenStyle) {
     return (
         <div widgetname="Overview" data-testid='testImageGallery'>
             <div widgetname="Overview" id="main-img-expanded">
-                <img widgetname="Overview" id="primary-img-expanded" className="maxDimensionsExpanded" src={props.styles[props.styleIndex]?.photos[primaryImageIndex].thumbnail_url}
+                <img widgetname="Overview" id="primary-img-expanded" className="maxDimensionsExpanded" src={props.styles[props.styleIndex]?.photos[primaryImageIndex].url}
                     onClick={() => { props.setExpandedView(false); props.setPrimaryImageIndex(primaryImageIndex); }} />
                 < AiOutlineShrink   onClick={() => { props.setExpandedView(false);}} size="1.5em" color="white" className="expanded" /> 
                 <div className='photoList'>
