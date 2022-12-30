@@ -57,42 +57,42 @@ const RatingBreakdown = (props) => {
 
   return (
     <div>
-      <p>RATINGS & REVIEWS</p>
-      <div className="average-stars">
-        <h2 className="average-number" data-testid="average-number">{props.rating}</h2>
-        <div data-testid="average-stars">
+      <p widgetname="Review/Rating-Breakdown">RATINGS & REVIEWS</p>
+      <div widgetname="Review/Average-Star-Rating" className="average-stars">
+        <h2 widgetname="Review/Average-Star-Rating" className="average-number" data-testid="average-number">{props.rating}</h2>
+        <div widgetname="Review/Average-Star-Rating" data-testid="average-stars">
           <ProductRating rating={props.rating}/>
         </div>
       </div>
       <div>
-        <h3>Rating Breakdown</h3>
-        <p>{Math.floor((numRecommend / numReviews) * 100)}% of reviews recommend this product</p>
-        <div className="filter-label-group">
-          {(props.fiveStar) ? <div className="filter-label" onClick={() => props.starSort(5)}>5 Star</div> : null}
-          {(props.fourStar) ? <div className="filter-label" onClick={() => props.starSort(4)}>4 Star</div> : null}
-          {(props.threeStar) ? <div className="filter-label" onClick={() => props.starSort(3)}>3 Star</div> : null}
-          {(props.twoStar) ? <div className="filter-label" onClick={() => props.starSort(2)}>2 Star</div> : null}
-          {(props.oneStar) ? <div className="filter-label" onClick={() => props.starSort(1)}>1 Star</div> : null}
-          {(props.toggle === true) ? <div className="filter-label" onClick={props.clear}>Clear</div> : null}
+        <h3 widgetname="Review/Star-Rating-Breakdown">Rating Breakdown</h3>
+        <p widgetname="Review/Star-Rating-Breakdown">{Math.floor((numRecommend / numReviews) * 100)}% of reviews recommend this product</p>
+        <div widgetname="Review/Star-Rating-Filter" className="filter-label-group">
+          {(props.fiveStar) ? <div widgetname="Review/Star-Rating-Filter" className="filter-label" onClick={() => props.starSort(5)}>5 Star</div> : null}
+          {(props.fourStar) ? <div widgetname="Review/Star-Rating-Filter" className="filter-label" onClick={() => props.starSort(4)}>4 Star</div> : null}
+          {(props.threeStar) ? <div widgetname="Review/Star-Rating-Filter" className="filter-label" onClick={() => props.starSort(3)}>3 Star</div> : null}
+          {(props.twoStar) ? <div widgetname="Review/Star-Rating-Filter" className="filter-label" onClick={() => props.starSort(2)}>2 Star</div> : null}
+          {(props.oneStar) ? <div widgetname="Review/Star-Rating-Filter" className="filter-label" onClick={() => props.starSort(1)}>1 Star</div> : null}
+          {(props.toggle === true) ? <div widgetname="Review/Star-Rating-Filter" className="filter-label" onClick={props.clear}>Clear</div> : null}
         </div>
-          <div className="star-bars">
+          <div widgetname="Review/Star-Rating-Breakdown" className="star-bars">
             {currPercentageArr.slice(0).reverse().map((rating, idx) => {
             let currStar = currPercentageArr.length - idx;
-            return <div className="star-bar" key={idx}><div onClick={() => props.starSort(currStar)} className="bar">{currStar} stars
+            return <div widgetname="Review/Star-Rating-Breakdown" className="star-bar" key={idx}><div widgetname="Review/Star-Rating-Breakdown" onClick={() => props.starSort(currStar)} className="bar">{currStar} stars
             <PercentageBar bgcolor={'#59981A'} completed={rating[1]}/>{rating[0]} reviews</div></div>
             })}
           </div>
       </div>
-          <div className="characteristic-bars" data-testid="characteristic-bars">
+          <div widgetname="Review/Characteristics-Breakdown" className="characteristic-bars" data-testid="characteristic-bars">
             {metaArr.map((review, idx) => (
               // return
-              <div key={idx}>
-                <p className="char-title">{review[0]}</p>
-                <div className="char-bar">
+              <div widgetname="Review/Characteristics-Breakdown" key={idx}>
+                <p widgetname="Review/Characteristics-Breakdown" className="char-title">{review[0]}</p>
+                <div widgetname="Review/Characteristics-Breakdown" className="char-bar">
                   <CharacteristicsBreakdown completed={review[1] * 10}/>
-                  <div className="hiLo">
-                    <p>{metaLowHi[review[0]][0]}</p>
-                    <p>{metaLowHi[review[0]][1]}</p>
+                  <div widgetname="Review/Characteristics-Breakdown" className="hiLo">
+                    <p widgetname="Review/Characteristics-Breakdown">{metaLowHi[review[0]][0]}</p>
+                    <p widgetname="Review/Characteristics-Breakdown">{metaLowHi[review[0]][1]}</p>
                   </div>
                 </div>
               </div>

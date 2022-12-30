@@ -28,10 +28,9 @@ const CharacteristicsBreakdown = (props) => {
   }
 
   return (
-    <div style={containerStyles}>
-      <div style={fillerStyles}>
-        <span style={labelStyles} className="arrow"><IoCaretDownSharp /></span>
-        {/* <span style={labelStyles}>{`${completed}%`}</span> */}
+    <div widgetname="Review/Characteristics-Breakdown" style={containerStyles}>
+      <div widgetname="Review/Characteristics-Breakdown" style={fillerStyles}>
+        <span widgetname="Review/Characteristics-Breakdown" style={labelStyles} className="arrow"><IoCaretDownSharp /></span>
       </div>
     </div>
   )

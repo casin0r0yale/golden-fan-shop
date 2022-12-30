@@ -136,11 +136,11 @@ exports.getProductQnAControl = (req, res) => {
     headers: { Authorization: process.env.AUTH_SECRET },
   };
   axios(options)
-    .then((result) => {
-      res.status(200).send(result.data)
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send(err)
-    })
+  .then((result) => {
+    res.status(200).send(result.data)
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).send(err)
+  })
 }
