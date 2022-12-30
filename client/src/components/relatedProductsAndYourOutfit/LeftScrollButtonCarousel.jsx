@@ -4,7 +4,6 @@ const LeftScrollButtonCarousel = (props) => {
 
   var onClickScrollLeft = () => {
     props.moveLeft();
-    console.log('clicked left!');
   }
 
   return (

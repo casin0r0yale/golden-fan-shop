@@ -105,7 +105,7 @@ var Questions = (props) => {
           }
 
           return (
-            <div widgetname="Questions/Answers">
+            <div widgetname="Questions/Answers" key={index}>
               <h4 key={index} widgetname="Questions/Answers">Q: {question.question_body}</h4>
               <div className="question-below-bar" widgetname="Questions/Answers">
                 <p widgetname="Questions/Answers">Helpful? {helpful ? <a widgetname="Questions/Answers">Yes ({questionHelpfulness})</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes ({questionHelpfulness})</a>} | <a onClick={toggleAnswerPopup} className="hyperlink" widgetname="Questions/Answers">Add An Answer</a> | {(reported) ? <a widgetname="Questions/Answers">Reported</a> : <a onClick={toggleReported} widgetname="Questions/Answers" className="hyperlink">Report Question</a>}</p>

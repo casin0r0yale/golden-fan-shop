@@ -30,12 +30,12 @@ const YourOutfitCard = React.forwardRef((props, ref) => {
 
   return (
     <div widgetname="Related/YourOutfit" className='productCard' onClick={onClickNavigate} ref={ref} data-testid='testYourOutfitCard'>
-      <a widgetname="Related/YourOutfit" href={'/ip/' + props.current_id} style={{textDecoration: 'none'}}>
+      <a widgetname="Related/YourOutfit" href={props.current_id? '/ip/' + props.current_id : null} style={{textDecoration: 'none'}}>
         <img widgetname="Related/YourOutfit" className='productImageInCard' src={props.current_thumbnail ? props.current_thumbnail : 'https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/Reality_Stone_VFX.png/revision/latest?cb=20190427012609'} />
         <div widgetname="Related/YourOutfit">
-          <div widgetname="Related/YourOutfit" style={{ fontSize: 12 }} className='lineSpaceCard'>{props.current_category.toUpperCase()}</div>
-          <div widgetname="Related/YourOutfit" className='boldFont lineSpaceCard'>{props.current_name}</div>
-          <div widgetname="Related/YourOutfit" style={{ fontSize: 12 }} className='lineSpaceCard'>${props.current_price}</div>
+          <div widgetname="Related/YourOutfit" style={{ fontSize: 12 }} className='lineSpaceCard'>{props.current_category ? props.current_category.toUpperCase() : null}</div>
+          <div widgetname="Related/YourOutfit" className='boldFont lineSpaceCard'>{props.current_name ? props.current_name : null}</div>
+          <div widgetname="Related/YourOutfit" style={{ fontSize: 12 }} className='lineSpaceCard'>${props.current_price ? props.current_price : null}</div>
           <div widgetname="Related/YourOutfit" className='lineSpaceCard'>
             <ProductRating rating={ratingYourOutfitCard} />
           </div>

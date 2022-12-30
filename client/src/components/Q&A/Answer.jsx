@@ -15,8 +15,13 @@ var Answer = (props) => {
 
   const [isHelpful, setIsHelpful] = useState(false);
   return (
+<<<<<<< HEAD
   <div className="answer-list">
     {renderedAnswers.map(answerKey => {
+=======
+  <div>
+    {renderedAnswers.map((answerKey, index) => {
+>>>>>>> 80dd5b372cacdfbf9c95bde358f8bff02f5300e4
       // console.log(answerKey);
       var currentAnswer = props.answers[answerKey];
       // console.log(currentAnswer)
@@ -43,7 +48,7 @@ var Answer = (props) => {
         })
       }
       return (
-        <div widgetname="Questions/Answers">
+        <div widgetname="Questions/Answers" key={index}>
           <p widgetname="Questions/Answers">A: {currentAnswer.body}</p>
           <p widgetname="Questions/Answers"> by {currentAnswer.answerer_name}, {answerDate}  |  Helpful? <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes({currentAnswer.helpfulness})</a>  |  <a onClick={toggleReport} className="hyperlink" widgetname="Questions/Answers">Report Answer</a></p>
           <div>
