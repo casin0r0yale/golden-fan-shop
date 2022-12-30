@@ -22,7 +22,7 @@ const ImageGallery = (props) => {
 
   const arrowClicked = (int) => {
     setPrimaryImageIndex(primaryImageIndex + int)
-    if ((props.styles[props.styleIndex]?.photos.length - primaryImageIndex) > 5 && (arrowIndex + int) >= 0)
+    if ((props.styles[props.styleIndex]?.photos.length - (arrowIndex + int)) >= 5 && (arrowIndex + int) >= 0)
       setArrowIndex(arrowIndex + int);
     console.log('arrowInd', arrowIndex, 'length', props.styles[props.styleIndex]?.photos.length, 'plus', int, "diff", props.styles[props.styleIndex]?.photos.length - arrowIndex);
   }
@@ -31,7 +31,7 @@ const ImageGallery = (props) => {
   return (
     <div widgetname="Overview" data-testid='testImageGallery'>
       <div widgetname="Overview" id="main-img">
-        <img widgetname="Overview" id="primary-img" className="maxDimensions" src={props.styles[props.styleIndex]?.photos[primaryImageIndex].thumbnail_url}
+        <img widgetname="Overview" id="primary-img" className="maxDimensions" src={props.styles[props.styleIndex]?.photos[primaryImageIndex].url}
           onClick={() => { props.setExpandedView(true); props.setPrimaryImageIndex(primaryImageIndex); }} />
         < AiOutlineExpand onClick={() => { props.setPrimaryImageIndex(primaryImageIndex); props.setExpandedView(true); }} size="1.5em" color="white" className="expanded" />
 

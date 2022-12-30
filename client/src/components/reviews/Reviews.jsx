@@ -222,7 +222,7 @@ const Reviews = (props) => {
   }
 
   return (
-    <div widgetname="Ratings/Reviews" className="review-module" data-testid="reviews-module">
+    <div id="reviews" widgetname="Ratings/Reviews" className="review-module" data-testid="reviews-module">
       <div widgetname="Ratings/Reviews" className="rating-breakdown">
         <RatingBreakdown rating={props.rating} meta={meta} reviewList={props.reviewList} starSort={starSort} fiveStar={fiveStar} fourStar={fourStar} threeStar={threeStar} twoStar={twoStar} oneStar={oneStar} toggle={starFilterToggle} clear={clearFilters}/>
       </div>
