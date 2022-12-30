@@ -8,8 +8,8 @@ const Popup = (props) => {
   }
 
   return (
-    <div className="popup-box" onClick={props.handleClose}>
-      <div className="form-box" onClick={onClickFormBox}>
+    <div widgetname="popup-box" className="popup-box" onClick={props.handleClose}>
+      <div widgetname="popup-box" className="form-box" onClick={onClickFormBox}>
         {props.content}
       </div>
     </div>

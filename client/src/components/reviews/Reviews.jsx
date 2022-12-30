@@ -222,17 +222,17 @@ const Reviews = (props) => {
   }
 
   return (
-    <div className="review-module" data-testid="reviews-module">
-      <div className="rating-breakdown">
+    <div widgetname="Ratings/Reviews" className="review-module" data-testid="reviews-module">
+      <div widgetname="Ratings/Reviews" className="rating-breakdown">
         <RatingBreakdown rating={props.rating} meta={meta} reviewList={props.reviewList} starSort={starSort} fiveStar={fiveStar} fourStar={fourStar} threeStar={threeStar} twoStar={twoStar} oneStar={oneStar} toggle={starFilterToggle} clear={clearFilters}/>
       </div>
-      <div>
-        <h3 className="reviewList-title">
+      <div widgetname="Ratings/Reviews">
+        <h3 widgetname="Ratings/Reviews" className="reviewList-title">
           {numReviews} reviews, sorted by &nbsp;
-          <select name="sort-options" className="reviewList-sort-button" onChange={sortBy}>
-            <option value="relevance" defaultValue>relevance</option>
-            <option value="newest">newest</option>
-            <option value="helpfulness">helpfulness</option>
+          <select widgetname="Ratings/Reviews-Sort" name="sort-options" className="reviewList-sort-button" onChange={sortBy}>
+            <option widgetname="Ratings/Reviews-Sort" value="relevance" defaultValue>relevance</option>
+            <option widgetname="Ratings/Reviews-Sort" value="newest">newest</option>
+            <option widgetname="Ratings/Reviews-Sort" value="helpfulness">helpfulness</option>
           </select>
         </h3>
         <ReviewList handleHelpClick={handleHelpClick} handleReportClick={handleReportClick} reviewList={starFilterToggle ? starReviews : incomingList} togglePopup={togglePopup}/>
