@@ -211,6 +211,21 @@ const App = () => {
       .catch((error) => {
         console.log('error GET Review Meta: ', error);
       });
+
+    // INIT GET 5: GET Product Q&A data (Ste'fan's section to manipulate)
+    axios.get('/getProductQnA', { params: { id: focusProductId } })
+      .then(function (response) {
+        // console.log('CHAIN 5: Stefan Module - SUCCESS GET PRODUCT Q&A DATA: ', response.data);
+        // TODO: Manipulate and pass down response.data into module...
+        //setProductQnAData(response.data);
+        var questionData = response.data.results;
+        setProductQnAData(questionData);
+        console.log('Qna Data: ', questionData);
+
+      })
+      .catch(function (error) {
+        console.log('error GET QnA Data: ', error);
+      })
   }
 
   var onClickYourOutfit = (data) => {
