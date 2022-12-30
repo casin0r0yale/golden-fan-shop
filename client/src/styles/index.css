@@ -77,7 +77,7 @@ h1 {
 /* OVERVIEW MODULE */
 
 .overviewContainer {
-  margin-top: 5em;
+  margin-top: 80px;
   margin-bottom: 2em;
   display: grid;
   grid-template-columns: repeat(16, 1fr);
@@ -286,7 +286,7 @@ h1 {
 }
 
 .expandedView {
-  margin-top: 3em;
+  margin-top: 48px;
 }
 
 .expanded {
