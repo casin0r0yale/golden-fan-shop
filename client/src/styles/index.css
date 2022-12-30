@@ -911,6 +911,7 @@ h1 {
   justify-content: space-between;
   margin-top: 0.25em;
   margin-bottom: 0.25em;
+  font-size: .75em;
 }
 
 .arrow {
@@ -953,41 +954,51 @@ form.review-form {
   justify-content: center;
 }
 
+.form-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-form h3 {
+  margin-bottom: .5em;
+}
+
+.review-form input[type="radio" i] {
+  cursor: pointer;
+
+}
+
 form.review-form fieldset {
-  background: #e0e0e0;
-  border-radius: 1em;
+  background: #373737;
+  color: white;
+  border-radius: .5em;
   border: none;
   margin-bottom: 1em;
 }
 
-.characteristic-fields {
-  /* display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: center; */
-}
-
 .radio-buttons {
   display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.radio-buttons label {
+  visibility: hidden;
+  position: absolute;
 }
 
 .characteristic-text {
-  position: relative;
-  bottom: 2.5em;
   text-align: center;
 }
 
-.hi-text {
-  position: absolute;
-  left: 28em;
+.review-form h4 {
+  text-align: center;
+  margin-bottom: inherit;
 }
 
-.low-text {
-  position: absolute;
-  right: 3em;
+.hi-lo-group-text {
+  display: flex;
+  margin-top: .5em;
+  justify-content: space-between;
 }
 
 

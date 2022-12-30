@@ -64,11 +64,11 @@ var Questions = (props) => {
 
   return (
     <div data-testid="question-module">
-      <p>QUESTIONS &amp; ANSWERS</p>
+      <p widgetname="Questions/Answers">QUESTIONS &amp; ANSWERS</p>
       <div>
         <div className="wrap">
           <div className="search">
-            <input className="form-control" type="text" onChange={changeFilter}/>
+            <input className="form-control" type="text" onChange={changeFilter} widgetname="Questions/Answers"/>
             <button className="searchButton">
               <i className="fa fa-search"></i>
             </button>
@@ -108,7 +108,7 @@ var Questions = (props) => {
             <div widgetname="Questions/Answers" key={index}>
               <h4 key={index} widgetname="Questions/Answers">Q: {question.question_body}</h4>
               <div className="question-below-bar" widgetname="Questions/Answers">
-                <p widgetname="Questions/Answers">Helpful? {helpful ? <a widgetname="Questions/Answers">Yes ({questionHelpfulness})</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes ({questionHelpfulness})</a>} | <a onClick={toggleAnswerPopup} className="hyperlink" widgetname="Questions/Answers">Add An Answer</a> | {(reported) ? <a widgetname="Questions/Answers">Reported</a> : <a onClick={toggleReported} widgetname="Questions/Answers" className="hyperlink">Report Question</a>}</p>
+                <p widgetname="Questions/Answers">Helpful? {isHelpful ? <a widgetname="Questions/Answers">Yes ({questionHelpfulness})</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes ({questionHelpfulness})</a>} | <a onClick={toggleAnswerPopup} className="hyperlink" widgetname="Questions/Answers">Add An Answer</a> | {(isReported) ? <a widgetname="Questions/Answers">Reported</a> : <a onClick={toggleReported} widgetname="Questions/Answers" className="hyperlink">Report Question</a>}</p>
               </div>
               <Answer answers={question.answers}/>
               <div>

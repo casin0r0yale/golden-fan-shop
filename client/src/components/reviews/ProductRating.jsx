@@ -27,8 +27,8 @@ const ProductRating = (props) => {
   var stars = createStars(ratingRoundDown);
 
   return (
-    <div className="number-of-stars">
-      <span>{stars}</span>
+    <div widgetname="Star Rating" className="number-of-stars">
+      <span widgetname="Star Rating">{stars}</span>
     </div>
   )
 }
