@@ -83,6 +83,8 @@ h1 {
   grid-template-columns: repeat(16, 1fr);
   grid-column-gap: 1.4em;
   grid-row-gap: 0.4em;
+  margin-left: -4%;
+  margin-right: 4%;
 }
 
 .productInfo {
