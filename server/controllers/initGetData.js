@@ -1,8 +1,8 @@
-const axios = require('axios')
+const axios = require ('axios')
 
 exports.redirectFromHome = (req, res) => {
 
-  res.redirect('/ip/71704')
+    res.redirect('/ip/71704')
 
 }
 
@@ -20,13 +20,13 @@ exports.getCurrentProductCardControl = (req, res) => {
   };
 
   axios(options)
-    .then((result) => {
-      res.status(200).send(result.data)
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send(err)
-    })
+  .then((result) => {
+    res.status(200).send(result.data)
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).send(err)
+  })
 }
 
 exports.getRelatedProductCardControl = (req, res) => {
@@ -40,13 +40,13 @@ exports.getRelatedProductCardControl = (req, res) => {
   };
 
   axios(options)
-    .then((result) => {
-      res.status(200).send(result.data)
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send(err)
-    })
+  .then((result) => {
+    res.status(200).send(result.data)
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).send(err)
+  })
 }
 
 exports.getProductStylesControl = (req, res) => {
@@ -59,13 +59,13 @@ exports.getProductStylesControl = (req, res) => {
     headers: { Authorization: process.env.AUTH_SECRET },
   };
   axios(options)
-    .then((result) => {
-      res.status(200).send(result.data)
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send(err)
-    })
+  .then((result) => {
+    res.status(200).send(result.data)
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).send(err)
+  })
 }
 
 exports.getProductRelatedControl = (req, res) => {
@@ -78,14 +78,14 @@ exports.getProductRelatedControl = (req, res) => {
     headers: { Authorization: process.env.AUTH_SECRET },
   };
   axios(options)
-    .then((result) => {
-      // Logic code controller need to import function
-      res.status(200).send(result.data)
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send(err)
-    })
+  .then((result) => {
+    // Logic code controller need to import function
+    res.status(200).send(result.data)
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).send(err)
+  })
 };
 
 exports.getProductReviewsControl = (req, res) => {
@@ -98,13 +98,13 @@ exports.getProductReviewsControl = (req, res) => {
     headers: { Authorization: process.env.AUTH_SECRET },
   };
   axios(options)
-    .then((result) => {
-      res.status(200).send(result.data)
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send(err)
-    })
+  .then((result) => {
+    res.status(200).send(result.data)
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).send(err)
+  })
 };
 
 exports.getProductReviewMeta = (req, res) => {
@@ -116,13 +116,13 @@ exports.getProductReviewMeta = (req, res) => {
     headers: { Authorization: process.env.AUTH_SECRET }
   };
   axios(options)
-    .then((result) => {
-      res.status(200).send(result.data);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send(err);
-    });
+  .then((result) => {
+    res.status(200).send(result.data);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).send(err);
+  });
 };
 
 

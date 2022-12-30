@@ -6,12 +6,12 @@ const StyleSelector = (props) => {
   // console.log(props.styles)
 
   return (
-    <div widgetname="Overview"  data-testid='testStyleSelector'  className="styleSelector">
+    <div widgetname="Overview"  className="styleSelector">
       {!props.styles[props.styleIndex]?.sale_price ? <p>${props.styles[props.styleIndex]?.original_price}</p>
         :
         <p widgetname="Overview"><span widgetname="Overview" className="strikeThrough"> ${props.styles[props.styleIndex]?.original_price} </span> ${props.styles[props.styleIndex]?.sale_price}</p>
       }
-      <h3 widgetname="Overview" >STYLE &gt; <span widgetname="Overview" style={{ fontWeight: "normal" }}>{props.styles[props.styleIndex]?.name}</span></h3>
+      <h3 widgetname="Overview" >STYLE &gt; <span widgetname="Overview" style={{ fontWeight: "normal" }}>SELECTED STYLE</span></h3>
       <div widgetname="Overview"  className="styleContainer">
         {props.styles?.map((product, index) => {
 
