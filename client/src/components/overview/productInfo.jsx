@@ -9,6 +9,7 @@ const ProductInfo = (props) => {
   // console.log('general info', props.info);
   const [favorited, setFavorited] = useState(false);
 
+
   const onClickYourOutfit = () => {
     props.onClickYourOutfit();
     setFavorited(true);
@@ -18,12 +19,12 @@ const ProductInfo = (props) => {
   }
 
   return (
-    <div widgetname="Overview" className="productInfo">
-      <ProductRating rating={props.rating} widgetname="Overview"/>
-      <p widgetname="Overview" >CATEGORY</p>
-      <div widgetname="Overview" style={{display: 'flex',  alignItems: 'top'}}>
-        <h1 widgetname="Overview" >{props.info.name}</h1>
-        <div widgetname="Overview" style={{marginTop:"1em"}}  onMouseUp={onMouseUpHandler} onMouseOut={onMouseUpHandler} onMouseDown={onClickYourOutfit} id="hearted" >{favorited ? <AiFillHeart size="26"/> : <AiOutlineHeart size="26"/>} </div>
+    <div  widgetname="Overview" data-testid='testProductInfo' className="productInfo">
+      <div  widgetname="Overview" style={{ display: "flex" }}><ProductRating rating={props.rating} /><a className="hyperlink" href="#reviews" style={{ marginBottom: "1.25em", marginLeft: "1em"}}>Read all reviews</a></div>
+      <p>CATEGORY</p>
+      <div  widgetname="Overview" style={{ display: 'flex', alignItems: 'top' }}>
+        <h1  widgetname="Overview">{props.info.name}</h1>
+        <div  widgetname="Overview" style={{ marginTop: "1em" }} onClick={onClickYourOutfit} id="hearted" >{favorited ? <AiFillHeart size="26" /> : <AiOutlineHeart size="26" />} </div>
       </div>
     </div>
   )

@@ -29,7 +29,7 @@ const AddToCart = (props) => {
 
 
   useEffect(() => {
-    // console.log('logg', props.styles[props.styleIndex])
+    console.log('logg', props.styles[props.styleIndex])
     // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
     //   console.log(props.styles[props.styleIndex]?.skus[size].quantity)
     //   props.styles[props.styleIndex]?.skus[size].quantity > 0
@@ -59,7 +59,7 @@ const AddToCart = (props) => {
 
 
   return (
-    <div widgetname="Overview" className="addToCart">
+    <div data-testid='testAddToCart' widgetname="Overview" className="addToCart">
       <div widgetname="Overview" className="dropdown">
         <button widgetname="Overview" onClick={() => { setDropdownExpanded(!dropdownExpanded) }} className="dropdown-button">{sizeSelected.size || "SELECT SIZE"}  <RxCaretDown size="20" className="caret" /></button>
         <div widgetname="Overview" className={dropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
@@ -164,3 +164,6 @@ const AddToCart = (props) => {
 //   background-color: rgba(0, 0, 0, 0.1);
 // }
 export default AddToCart;
+// .select-items div:hover, .same-as-selected {
+//   background-color: rgba(0, 0, 0, 0.1);
+// }
