@@ -10,14 +10,14 @@ const Overview = (props) => {
   // console.log('overview', props.info);
   const [styleIndex, setStyleIndex] = useState(0);
   const setIndex = (index) => {
-    console.log(index);
+    // console.log(index);
     setStyleIndex(index);
   }
   const [expandedView, setExpandedView] = useState(false);
 
   useEffect(() => {
     setStyleIndex(0);
-  }, [props.info]); //
+  }, [props.info]);
 
 
 

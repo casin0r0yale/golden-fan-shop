@@ -95,7 +95,7 @@ const Description = (props) => {
             return (
               <div widgetname="Overview" className='rowDesc2' key={index}>
                 <div widgetname="Overview" style={{fontSize: 15}} className="columnCheck" style={{ opacity: item[0] }}>&#x2713;</div>
-                <div widgetname="Overview" style={{fontSize: 15}} className="columnFeature"> <a widgetname="Overview" class="boldFont">{item[1]}</a> <a widgetname="Overview" >{' ' + item[2]}</a> </div>
+                <div widgetname="Overview" style={{fontSize: 15}} className="columnFeature"> <a widgetname="Overview" className="boldFont">{item[1]}</a> <a widgetname="Overview" >{' ' + item[2]}</a> </div>
               </div>
             )
           })}

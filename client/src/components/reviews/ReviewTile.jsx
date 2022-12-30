@@ -46,8 +46,8 @@ const ReviewTile = (props) => {
       </div>
       <h5>{props.review.summary}</h5>
       <div data-testid="review-images">
-        {(photoArr.length !== 0) ? photoArr.map((url) => {
-          return <img className="review-image"src={url}/>
+        {(photoArr.length !== 0) ? photoArr.map((url, idx) => {
+          return <img className="review-image"src={url} key={idx}/>
         }) : null}
       </div>
       <p>{props.review.body}</p>

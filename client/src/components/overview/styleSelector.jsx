@@ -16,14 +16,14 @@ const StyleSelector = (props) => {
         {props.styles?.map((product, index) => {
 
           return (index === props.styleIndex ?
-            <div widgetname="Overview" >
+            <div widgetname="Overview" key={index}>
               <div widgetname="Overview"  className="styleGroup">
                 <div widgetname="Overview"  className="selected">&#8202; &#x2713;</div>
                 <img  widgetname="Overview" className="stylePreview" src={product.photos[0].thumbnail_url} onClick={() => props.onClick(index)} />
               </div>
             </div>
             :
-            <div widgetname="Overview" >
+            <div widgetname="Overview" key={index}>
 
               <div widgetname="Overview"  className="styleGroup">
                 <img  widgetname="Overview" className="stylePreview" src={product.photos[0].thumbnail_url} onClick={() => props.onClick(index)} />
