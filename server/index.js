@@ -36,6 +36,8 @@ app.get('/getProductReviewMeta', initGetData.getProductReviewMeta);
 
 app.get('/getProductQnA', initGetData.getProductQnAControl);
 
+app.post('/uploadImg', postData.postImg);
+
 app.post('/submitReview', postData.postReviewForm);
 
 app.post('/submitQuestion', postData.postQuestionForm);

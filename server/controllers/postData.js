@@ -89,3 +89,27 @@ exports.postClickTrack = (req, res) => {
   });
 }
 
+exports.postImg = (req, res) => {
+  var imgFile = req;
+  console.log('this is the imgFile name:', imgFile);
+
+  var options = {
+    url: 'https://api.imgbb.com/1/upload',
+    method: 'POST',
+    key: process.env.IMGBB_KEY,
+    image: imgFile
+  }
+
+  axios(options)
+  .then((results) => {
+    var imgURL = JSON.parse(JSON.stringify(results.data));
+    console.log('success POST img url', imgURL);
+    res.status(201).send(results);
+  })
+  .catch((error) => {
+    console.log('error getting img url', error);
+    res.status(500).send(error);
+  });
+
+}
+
