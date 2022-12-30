@@ -4,6 +4,7 @@ import AddToCart from './addToCart.jsx';
 import ImageGallery from './imageGallery.jsx';
 import ProductInfo from './productInfo.jsx';
 import StyleSelector from './styleSelector.jsx';
+import ExpandedView from './expandedView.jsx'
 
 const Overview = (props) => {
   // console.log('overview', props.info);
@@ -12,23 +13,33 @@ const Overview = (props) => {
     // console.log(index);
     setStyleIndex(index);
   }
+  const [expandedView, setExpandedView] = useState(false);
+  const [primaryImageIndex, setPrimaryImageIndex] = useState(0);
+
+
   useEffect(() => {
     setStyleIndex(0);
   }, [props.info]);
 
+
+
   return (
-    <div widgetname="Overview">
-      {props.styles?
-      <div widgetname="Overview" className="overviewContainer">
-      <div widgetname="Overview" className="productInfo"><ProductInfo rating={props.rating} info={props.info} onClickYourOutfit={props.onClickYourOutfit}/></div>
-      <div widgetname="Overview" className="styleSelector"><StyleSelector onClick = {setIndex} styleIndex={styleIndex} styles={props.styles}/></div>
-      <div widgetname="Overview" className="addToCart"><AddToCart styleIndex={styleIndex} styles={props.styles} /></div>
-      <div widgetname="Overview" className="imageGallery"><ImageGallery  styleIndex={styleIndex} styles={props.styles}/></div>
+    <div widgetname="Overview" data-testid='testOverview'>
+      {props.styles ?
+         expandedView ?
+            <div widgetname="Overview" className="expandedView"><ExpandedView setExpandedView={setExpandedView} primaryImageIndex={primaryImageIndex} setPrimaryImageIndex={setPrimaryImageIndex} styleIndex={styleIndex} styles={props.styles} />
+            </div>
+            :
+        <div widgetname="Overview" className="overviewContainer">
+              <div widgetname="Overview" className="productInfo"><ProductInfo rating={props.rating} info={props.info} onClickYourOutfit={props.onClickYourOutfit} /></div>
+              <div widgetname="Overview" className="styleSelector"><StyleSelector onClick={setIndex} styleIndex={styleIndex} styles={props.styles} /></div>
+              <div widgetname="Overview" className="addToCart"><AddToCart onClickYourOutfit={props.onClickYourOutfit} styleIndex={styleIndex} styles={props.styles} /></div>
+              <div widgetname="Overview" className="imageGallery"><ImageGallery setExpandedView={setExpandedView} primaryImageIndex={primaryImageIndex} setPrimaryImageIndex={setPrimaryImageIndex} styleIndex={styleIndex} styles={props.styles} /></div>
+            </div>
+        : ''
+      }
       </div>
-      : ''
-    }
-      </div>
-  )
+      )
 }
 
-export default Overview;
+      export default Overview;
