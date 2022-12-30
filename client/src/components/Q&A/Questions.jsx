@@ -11,12 +11,9 @@ var Questions = (props) => {
   const [isAnswerOpen, setIsAnswerOpen] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(2);
   const [isHelpful, setIsHelpful] = useState(false);
+  const [isReported, setIsReported] = useState(false);
   const [filter, setFilter] = useState('');
   var productInfo = props.product;
-
-  const toggleHelpfulness = () => {
-    setIsHelpful(!isHelpful);
-  }
 
   const toggleQuestionPopup = () => {
     setIsQuestionOpen(!isQuestionOpen);
@@ -51,10 +48,17 @@ var Questions = (props) => {
     })
   }
 
-  // const handleAnswerFormSubmit = (object) => {
-  //   console.log('This is my submission object: ', object);
-  //   var submittedAnswer =
-  // }
+  const handleAnswerFormSubmit = (object) => {
+    console.log('This is my submission object: ', object);
+    var submittedAnswer = object;
+    axios.post('/submitAnswer', submittedAnswer)
+    .then(success => {
+      console.log(success)
+    })
+    .catch(err => {
+      console.log('Error posting form', err);
+    })
+  }
 
   const mappedQuestions = filteredQuestions.slice(0, questionIndex);
 
@@ -62,27 +66,61 @@ var Questions = (props) => {
     <div data-testid="question-module">
       <p>QUESTIONS &amp; ANSWERS</p>
       <div>
-        <div className="search-bar">
-          <input className="form-control" type="text" onChange={changeFilter}/>
+        <div className="wrap">
+          <div className="search">
+            <input className="form-control" type="text" onChange={changeFilter}/>
+            <button className="searchButton">
+              <i className="fa fa-search"></i>
+            </button>
+          </div>
         </div>
+        <div className="question-block">
         {mappedQuestions.map((question, index) => {
+          var questionHelpfulness = question.question_helpfulness;
+          var helpful = false;
+          var reported = question.reported;
+          const toggleHelpfulness = () => {
+            helpful = true;
+            setIsHelpful(!isHelpful);
+            questionHelpfulness += 1;
+            axios.put('/helpfulQuestion', {question_id: question.question_id})
+            .then(success => {
+              console.log(success);
+            })
+            .catch(err => {
+              console.log('Error requesting helpful', err);
+            })
+          }
+
+          const toggleReported = () => {
+            reported = !reported;
+            setIsReported(!isReported);
+            axios.put('/reportedQuestion', {question_id: question.question_id})
+            .then(success => {
+              console.log(success);
+            })
+            .catch(err => {
+              console.log('Error requesting reported', err);
+            })
+          }
 
           return (
-            <div>
-              <h4 key={index}>Q: {question.question_body}</h4>
-              <div className="question-below-bar">
-                <p>Helpful? <a onClick={toggleHelpfulness}>Yes({(isHelpful) ? question.question_helpfulness + 1 : question.question_helpfulness})</a> | <a onClick={toggleAnswerPopup} className="add-answer-btn">Add An Answer</a> | {(question.reported) ? 'Reported' : <a>Report Question</a>}</p>
+            <div widgetname="Questions/Answers">
+              <h4 key={index} widgetname="Questions/Answers">Q: {question.question_body}</h4>
+              <div className="question-below-bar" widgetname="Questions/Answers">
+                <p widgetname="Questions/Answers">Helpful? {helpful ? <a widgetname="Questions/Answers">Yes ({questionHelpfulness})</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes ({questionHelpfulness})</a>} | <a onClick={toggleAnswerPopup} className="hyperlink" widgetname="Questions/Answers">Add An Answer</a> | {(reported) ? <a widgetname="Questions/Answers">Reported</a> : <a onClick={toggleReported} widgetname="Questions/Answers" className="hyperlink">Report Question</a>}</p>
               </div>
               <Answer answers={question.answers}/>
               <div>
                 {isQuestionOpen && <Popup handleClose={toggleQuestionPopup} content={<NewQuestionForm productName={productInfo.name} handleFormSubmit={handleQuestionFormSubmit} id={productInfo.id}/>}/>}
-                {isAnswerOpen && <Popup handleClose={toggleAnswerPopup} content={<NewAnswerForm currentQuestion={question.question_body} productName={productInfo.name}/>}/>}
+                {isAnswerOpen && <Popup handleClose={toggleAnswerPopup} content={<NewAnswerForm currentQuestion={question.question_body} productName={productInfo.name} questionId={question.question_id} handleFormSubmit={handleAnswerFormSubmit}/>}/>}
               </div>
             </div>
           );
           })}
-          {(filteredQuestions.length <= 2) ? null : <button className="answer-btn" onClick={loadMoreQuestions}>More Answered Questions</button>}
-          <button onClick={toggleQuestionPopup}>Add A New Question</button>
+          </div>
+          {(mappedQuestions.length >= props.data.length) ? null : <button className="answer-btn" onClick={loadMoreQuestions} widgetname="Questions/Answers">More Answered Questions</button>}
+          <button onClick={toggleQuestionPopup} widgetname="Questions/Answers" className="new-question-btn">Add A New Question</button>
       </div>
     </div>
   );

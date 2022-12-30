@@ -39,8 +39,20 @@ app.get('/getProductQnA', initGetData.getProductQnAControl);
 app.post('/submitReview', postData.postReviewForm);
 
 app.post('/submitQuestion', postData.postQuestionForm);
+
+app.post('/submitAnswer', postData.postAnswerForm);
+
 app.post('/clickTrackPost', postData.postClickTrack);
 
 app.put('/helpClick', putData.putHelpClick);
 
 app.put('/reportClick', putData.putReportClick);
+
+app.put('/helpfulQuestion', putData.questionHelpfulness);
+
+app.put('/reportedQuestion', putData.questionReported);
+
+app.put('/helpfulAnswer', putData.answerHelpfulness);
+
+app.put('/reportAnswer', putData.answerReported);
+

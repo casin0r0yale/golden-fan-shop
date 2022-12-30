@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
 body {
   font-family: 'Helvetica', 'Arial', sans-serif;
   /* float: left; */
@@ -1100,22 +1102,27 @@ form.review-form input[type="file"]::file-selector-button:hover {
 
 /*  Question Search Bar*/
 
-.search-bar {
-  border-radius: 1px;
-  background: rgb(255, 255, 255);
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
 }
 
-.search-bar .form-control {
-  border-radius: 2px;
-  width: 80%;
+.form-control {
+  width: 100%;
+  border: 0.2em solid rgb(0, 0, 0);
+  border-right: none;
+  padding: 0.5em;
+  height: 2em;
+  border-radius: 0.5em 0 0 0.5em;
+  outline: none;
 }
 
-.search-bar .btn {
-  border-radius: 2px;
-  width: 20%;
-  margin-left: -1px;
+.wrap {
+  width: 50%;
+  position: absolute;
+  left: 60%;
 }
-
 /* Answer Button */
 
 .answer-btn {
@@ -1124,7 +1131,7 @@ form.review-form input[type="file"]::file-selector-button:hover {
 
 /* Adding Answer Button */
 
-.add-answer-btn:hover {
+.hyperlink:hover {
   color:rgb(131, 38, 171)
 }
 
@@ -1138,6 +1145,31 @@ form.review-form input[type="file"]::file-selector-button:hover {
 .question-below-bar {
   margin-left: 0em;
 }
+
+.answer-image {
+  height: auto;
+  width: 5em;
+  margin-right: 1em;
+  border-radius: .5em;
+}
+
+.answer-btn, .new-question-btn {
+  text-transform: uppercase;
+  background-color: white;
+  box-shadow: none;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000;
+  height: 4em;
+  width: 12em;
+  font-weight: bold;
+  margin-top: 1.5em;
+}
+
+.question-block {
+  margin-top: 1em;
+}
+
 
 /* .size-radio-buttons {
   display: inline-flex;

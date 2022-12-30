@@ -43,6 +43,29 @@ exports.postQuestionForm = (req, res) => {
   })
 }
 
+exports.postAnswerForm = (req, res) => {
+  var incomingAnswer = req.body;
+  var questionId = incomingAnswer.questionId;
+  delete incomingAnswer.questionId;
+  const options = {
+    method: 'POST',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/answers`,
+    headers: {Authorization: process.env.AUTH_SECRET},
+    "Content-Type": 'application/json',
+    data: incomingAnswer
+  }
+  axios(options)
+  .then(results => {
+    console.log('Success: ', results.data);
+    var created = JSON.parse(JSON.stringify(results.data));
+    res.status(201).send(created)
+  })
+  .catch(err => {
+    console.log('failure in the Answer api server: ', err);
+    res.status(500).send(err)
+  })
+}
+
 exports.postClickTrack = (req, res) => {
 
   var clickTrackData = req.body;
