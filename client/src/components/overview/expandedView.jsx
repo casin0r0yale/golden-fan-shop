@@ -16,7 +16,7 @@ import "../../styles/index.css";
 
 const ImageGallery = (props) => {
 
-    const [primaryImageIndex, setPrimaryImageIndex] = useState(0);
+    const [primaryImageIndex, setPrimaryImageIndex] = useState(props.primaryImageIndex);
     const [arrowIndex, setArrowIndex] = useState(0);
 
 
@@ -53,7 +53,7 @@ const ImageGallery = (props) => {
                         ? <div></div>
                         :
                         <BsChevronDown
-                            size="1.5em" color="gray" class="down-Arrow" onClick={() => arrowClicked(1)} />
+                            size="1.5em" color="gray" className="down-Arrow" onClick={() => arrowClicked(1)} />
                     }
                 </div>
             </div>

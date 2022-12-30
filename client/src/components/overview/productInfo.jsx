@@ -20,7 +20,7 @@ const ProductInfo = (props) => {
 
   return (
     <div  widgetname="Overview" data-testid='testProductInfo' className="productInfo">
-      <div  widgetname="Overview" style={{ display: "flex" }}><ProductRating rating={props.rating} /><a class="hyperlink" href="#reviews" style={{ marginBottom: "1.25em", marginLeft: "1em"}}>Read all reviews</a></div>
+      <div  widgetname="Overview" style={{ display: "flex" }}><ProductRating rating={props.rating} /><a className="hyperlink" href="#reviews" style={{ marginBottom: "1.25em", marginLeft: "1em"}}>Read all reviews</a></div>
       <p>CATEGORY</p>
       <div  widgetname="Overview" style={{ display: 'flex', alignItems: 'top' }}>
         <h1  widgetname="Overview">{props.info.name}</h1>

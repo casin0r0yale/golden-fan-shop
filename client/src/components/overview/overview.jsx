@@ -14,6 +14,8 @@ const Overview = (props) => {
     setStyleIndex(index);
   }
   const [expandedView, setExpandedView] = useState(false);
+  const [primaryImageIndex, setPrimaryImageIndex] = useState(0);
+
 
   useEffect(() => {
     setStyleIndex(0);
@@ -25,14 +27,14 @@ const Overview = (props) => {
     <div widgetname="Overview" data-testid='testOverview'>
       {props.styles ?
          expandedView ?
-            <div widgetname="Overview" className="expandedView"><ExpandedView setExpandedView={setExpandedView} styleIndex={styleIndex} styles={props.styles} />
+            <div widgetname="Overview" className="expandedView"><ExpandedView setExpandedView={setExpandedView} primaryImageIndex={primaryImageIndex} setPrimaryImageIndex={setPrimaryImageIndex} styleIndex={styleIndex} styles={props.styles} />
             </div>
             :
         <div widgetname="Overview" className="overviewContainer">
               <div widgetname="Overview" className="productInfo"><ProductInfo rating={props.rating} info={props.info} onClickYourOutfit={props.onClickYourOutfit} /></div>
               <div widgetname="Overview" className="styleSelector"><StyleSelector onClick={setIndex} styleIndex={styleIndex} styles={props.styles} /></div>
               <div widgetname="Overview" className="addToCart"><AddToCart onClickYourOutfit={props.onClickYourOutfit} styleIndex={styleIndex} styles={props.styles} /></div>
-              <div widgetname="Overview" className="imageGallery"><ImageGallery setExpandedView={setExpandedView} styleIndex={styleIndex} styles={props.styles} /></div>
+              <div widgetname="Overview" className="imageGallery"><ImageGallery setExpandedView={setExpandedView} primaryImageIndex={primaryImageIndex} setPrimaryImageIndex={setPrimaryImageIndex} styleIndex={styleIndex} styles={props.styles} /></div>
             </div>
         : ''
       }
