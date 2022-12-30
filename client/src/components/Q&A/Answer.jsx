@@ -15,13 +15,8 @@ var Answer = (props) => {
 
   const [isHelpful, setIsHelpful] = useState(false);
   return (
-<<<<<<< HEAD
-  <div className="answer-list">
-    {renderedAnswers.map(answerKey => {
-=======
-  <div>
+  <div className="answer-list" widgetname="Questions/Answers">
     {renderedAnswers.map((answerKey, index) => {
->>>>>>> 80dd5b372cacdfbf9c95bde358f8bff02f5300e4
       // console.log(answerKey);
       var currentAnswer = props.answers[answerKey];
       // console.log(currentAnswer)
