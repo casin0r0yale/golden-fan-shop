@@ -12,17 +12,38 @@ class ImageUpload extends React.Component {
     }
     this.uploadMulitpleFiles = this.uploadMulitpleFiles.bind(this);
     this.uploadFiles = this.uploadFiles.bind(this);
+    // this.encodeImageFileAsURL = this.encodeImageFileAsURL.bind(this);
   }
+
+  // async encodeImageFileAsURL(file) {
+  //   return new Promise((resolve, reject) => {
+  //     var reader = new FileReader();
+  //     reader.onloadend = function () {
+  //       reader.result ? resolve(reader.result) : reject();
+  //     }
+  //     reader.readAsDataURL(file);
+  //   });
+  // }
 
   uploadMulitpleFiles(event) {
     this.fileObj.push(event.target.files);
     for (var i = 0; i < this.fileObj[0].length; i++) {
       let photoObj = this.fileObj[0][i];
+      // let imageData;
       // this.thumbnailArray.push(URL.createObjectURL(photoObj));
-      console.log('this is the photoObj:', photoObj);
+      // this.encodeImageFileAsURL(photoObj)
+      // .then((result) => {
+      //   console.log('this is the imgData: ', result);
+      //   imageData = result;
+      // })
+      // .catch((error) => {
+      //   console.log('error getting imgData: ', error);
+      // });
+      console.log('this is the photoObj: ', photoObj);
       axios.post('/uploadImg', photoObj)
       .then((res) => {
         console.log('got img url', console.log(res));
+        //this.thumbnailArray.push(res);
       })
       .catch((err) => {
         console.error(err);

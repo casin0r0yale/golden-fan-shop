@@ -1,4 +1,5 @@
 const axios = require('axios');
+const fs = require('fs');
 
 exports.postReviewForm = (req, res) => {
 
@@ -90,8 +91,23 @@ exports.postClickTrack = (req, res) => {
 }
 
 exports.postImg = (req, res) => {
-  var imgFile = req;
-  console.log('this is the imgFile name:', imgFile);
+  var imgFile = req.body;
+  console.log('this is the req:', imgFile);
+
+  function base64_encode(file) {
+    // read binary data
+    var bitmap = fs.readFileSync(file);
+    // convert binary data to base64 encoded string
+    return new Buffer(bitmap).toString('base64');
+}
+
+  base64_encode(JSON.stringify(imgFile))
+  .then((result) => {
+    console.log('this is the imgData: ', result);
+  })
+  .catch((error) => {
+    console.log('error getting imgData: ', error);
+  });
 
   var options = {
     url: 'https://api.imgbb.com/1/upload',
@@ -100,16 +116,16 @@ exports.postImg = (req, res) => {
     image: imgFile
   }
 
-  axios(options)
-  .then((results) => {
-    var imgURL = JSON.parse(JSON.stringify(results.data));
-    console.log('success POST img url', imgURL);
-    res.status(201).send(results);
-  })
-  .catch((error) => {
-    console.log('error getting img url', error);
-    res.status(500).send(error);
-  });
+  // axios(options)
+  // .then((results) => {
+  //   var imgURL = JSON.parse(JSON.stringify(results.data));
+  //   console.log('success POST img url', imgURL);
+  //   res.status(201).send(imgURL);
+  // })
+  // .catch((error) => {
+  //   console.log('error getting img url', error);
+  //   res.status(500).send(error);
+  // });
 
 }
 
