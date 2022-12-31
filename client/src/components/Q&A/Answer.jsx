@@ -55,7 +55,7 @@ var Answer = (props) => {
       }
       return (
         <div widgetname="Questions/Answers" key={index}>
-          <p widgetname="Questions/Answers">A: {currentAnswer.body}</p>
+          <p widgetname="Questions/Answers">A:  {currentAnswer.body}</p>
           <p widgetname="Questions/Answers"> by {currentAnswer.answerer_name}, {answerDate}  |  Helpful? <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes({currentAnswer.helpfulness})</a>  |  <a onClick={toggleReport} className="hyperlink" widgetname="Questions/Answers">Report Answer</a></p>
           <div>
             {currentAnswer.photos.length ? currentAnswer.photos.map(photo => {
