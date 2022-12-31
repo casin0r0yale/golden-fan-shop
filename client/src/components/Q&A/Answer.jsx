@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import Popup from '../Popup.jsx';
+import ExpandedImage from './ExpandedImage.jsx';
 
 var Answer = (props) => {
 
@@ -14,6 +16,13 @@ var Answer = (props) => {
   }
 
   const [isHelpful, setIsHelpful] = useState(false);
+  const [isReported, setIsReported] = useState(false);
+  const [isImageExpanded, setIsImageExpanded] = useState(false);
+  var imageArray = [];
+
+  const toggleImageExpand = () => {
+    setIsImageExpanded(!isImageExpanded);
+  }
   return (
   <div className="answer-list" widgetname="Questions/Answers">
     {renderedAnswers.map((answerKey, index) => {
@@ -21,6 +30,8 @@ var Answer = (props) => {
       var currentAnswer = props.answers[answerKey];
       // console.log(currentAnswer)
       var answerDate = new Date(currentAnswer.date).toDateString();
+
+      imageArray = currentAnswer.photos;
 
       var toggleHelpfulness = () => {
         setIsHelpful(!isHelpful);
@@ -49,7 +60,10 @@ var Answer = (props) => {
           <div>
             {currentAnswer.photos.length ? currentAnswer.photos.map(photo => {
               return(
-                <img className="answer-image"src={photo} alt="photo" widgetname="Questions/Answers"/>
+                <div>
+                  <img className="answer-image"src={photo} alt="photo" widgetname="Questions/Answers" onClick={toggleImageExpand}/>
+                  {isImageExpanded && <Popup handleClose={toggleImageExpand} content={<ExpandedImage url={photo}/>}/>}
+                </div>
               );
             }) : null }
           </div>
