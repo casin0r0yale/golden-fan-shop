@@ -17,6 +17,7 @@ const Overview = (props) => {
   const [primaryImageIndex, setPrimaryImageIndex] = useState(0);
 
 
+
   useEffect(() => {
     setStyleIndex(0);
   }, [props.info]);
@@ -25,7 +26,7 @@ const Overview = (props) => {
 
   return (
     <div widgetname="Overview" data-testid='testOverview'>
-      {props.styles ?
+      {!props.serverError ?
          expandedView ?
             <div widgetname="Overview" className="expandedView"><ExpandedView setExpandedView={setExpandedView} primaryImageIndex={primaryImageIndex} setPrimaryImageIndex={setPrimaryImageIndex} styleIndex={styleIndex} styles={props.styles} />
             </div>
@@ -36,7 +37,7 @@ const Overview = (props) => {
               <div widgetname="Overview" className="addToCart"><AddToCart onClickYourOutfit={props.onClickYourOutfit} styleIndex={styleIndex} styles={props.styles} /></div>
               <div widgetname="Overview" className="imageGallery"><ImageGallery setExpandedView={setExpandedView} primaryImageIndex={primaryImageIndex} setPrimaryImageIndex={setPrimaryImageIndex} styleIndex={styleIndex} styles={props.styles} /></div>
             </div>
-        : ''
+        : <h2 style={{marginTop: "4em"}}>We have encountered an error with our backend server! Please try refreshing in a moment!</h2>
       }
       </div>
       )
