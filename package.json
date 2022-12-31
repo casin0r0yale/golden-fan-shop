@@ -10,7 +10,10 @@
     "server-dev": "nodemon server/index.js",
     "react-dev": "npx webpack -w",
     "build": "nodemon server/index.js && npx webpack -w",
-    "start": "node server/index.js"
+    "oldstart": "node server/index.js",
+    "start": "pm2 start server/index.js",
+    "uglify": "sudo chmod +x minify-js.sh ./minify-js.sh",
+    "productionprep": "npm install && npx webpack && sudo chmod +x minify-js.sh ./minify-js.sh && pm2 start server/index.js"
   },
   "repository": {
     "type": "git",
