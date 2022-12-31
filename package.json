@@ -9,7 +9,11 @@
     "review-test": "mocha ReviewTest.test.js --require global-jsdom/register --require @babel/register",
     "server-dev": "nodemon server/index.js",
     "react-dev": "npx webpack -w",
-    "build": "nodemon server/index.js && npx webpack -w"
+    "build": "nodemon server/index.js && npx webpack -w",
+    "oldstart": "node server/index.js",
+    "start": "pm2 start server/index.js",
+    "uglify": "sudo chmod +x minify-js.sh ./minify-js.sh",
+    "productionprep": "npm install && npx webpack && sudo chmod +x minify-js.sh ./minify-js.sh && pm2 start server/index.js"
   },
   "repository": {
     "type": "git",
