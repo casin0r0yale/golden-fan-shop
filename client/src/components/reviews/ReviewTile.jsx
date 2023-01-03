@@ -65,11 +65,11 @@ const ReviewTile = (props) => {
       <p widgetname="Review Tile">{props.review.body}</p>
       <div widgetname="Review Tile" className="helpful-report">
         <p widgetname="Review Tile">Helpful? <a widgetname="Review Tile" onClick={() => helpClick(props.review.review_id)}>Yes({(helpful) ? props.review.helpfulness + 1 : props.review.helpfulness})</a>&nbsp;|&nbsp;</p>
-        <p widgetname="Review Tile" onClick={() => reportClick(props.review.review_id)}>Report</p>
+        <p widgetname="Review Tile" onClick={() => reportClick(props.review.review_id)}><a>Report</a></p>
       </div>
       {isOpen && <Popup
         content={<>
-          <img src={imgLink} />
+          <img className="review-thumbnail-popup" src={imgLink} />
         </>}
         handleClose={togglePopup}
       />}

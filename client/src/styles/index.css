@@ -881,6 +881,16 @@ h1 {
   flex-direction: row;
 }
 
+.helpful-report a {
+  color: rgb(100, 100, 100);
+  text-decoration: underline;
+  font-size: .8em;
+}
+
+.helpful-report a:hover {
+  color:rgb(131, 38, 171)
+}
+
 .average-number {
   font-size: 3em;
   margin-right: .25em;
@@ -997,7 +1007,7 @@ h1 {
 
 .filter-label-group {
   display: flex;
-  font-size: .25em;
+  font-size: .50em;
   justify-content: flex-start;
 }
 
@@ -1304,12 +1314,4 @@ form.review-form input[type="file"]::file-selector-button:hover {
   margin-top: 1em;
 }
 
-
-/* .size-radio-buttons {
-  display: inline-flex;
-  flex-direction: column-reverse;
-  align-items: center;
-
-
-*/
 
