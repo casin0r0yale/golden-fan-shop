@@ -335,10 +335,10 @@ h1 {
 .photoList {
   position: absolute;
   top: 0;
-  display: grid; 
-  grid-auto-columns: 1fr; 
-  grid-template-rows: .5fr 1fr 1fr 1fr 1fr 1fr; 
-  gap: 1.5em 0px; 
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-rows: .5fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 1.5em 0px;
   left: -4em;
   align-items: center;
   justify-items: center;
@@ -355,7 +355,7 @@ h1 {
 .selectedImage {
   border-bottom: .25em solid rgb(60, 60, 60);
   padding-bottom: .2em;
-  
+
 }
 
 /* .up-Arrow {
@@ -501,6 +501,10 @@ h1 {
   border: 1px solid #999;
   overflow: auto;
   z-index: 91;
+}
+
+.form-box img {
+  width: 100%;
 }
 
 .close-icon {
