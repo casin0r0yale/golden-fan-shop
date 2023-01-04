@@ -8,15 +8,12 @@ const cors = require("cors");
 const initGetData = require("./controllers/initGetData.js");
 const postData = require('./controllers/postData.js');
 const putData = require('./controllers/putData.js');
-<<<<<<< HEAD
 //for image uploads
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' });
 
-=======
 const deleteData = require('./controllers/deleteData.js');
 const compression = require('compression');
->>>>>>> main
 
 app.use(express.json());
 app.use(cors()); // Not sure if needed
