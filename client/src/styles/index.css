@@ -346,10 +346,9 @@ h1 {
 
 .onePhoto {
   height: 3em;
-  width: 3em;;
+  width: 3em;
   box-shadow: #000;
   /* border: 1px solid rgb(5, 5, 5); */
-
 }
 
 .selectedImage {
@@ -358,11 +357,20 @@ h1 {
 
 }
 
-/* .up-Arrow {
-  top: 0;
+.textCartPopUp {
+  text-align: center;
   z-index: 1000;
-  color: white;
-} */
+  color: rgb(5, 5, 5);
+}
+
+.buttonCartContain {
+  display: grid;
+}
+
+.buttonCartPopUp {
+  /* position: absolute; */
+  margin: auto;
+}
 
 /* .down-Arrow {
   position: absolute;
@@ -1262,6 +1270,18 @@ form.review-form input[type="file"]::file-selector-button:hover {
   outline: none;
 }
 
+.searchButton {
+  width: 2em;
+  height: 1.43em;
+  border: 0.1em solid #000000;
+  background: #000000;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 0.5em 0.5em 0;
+  cursor: pointer;
+  font-size: 2em;
+}
+
 .wrap {
   width: 50%;
   position: absolute;
@@ -1283,6 +1303,8 @@ form.review-form input[type="file"]::file-selector-button:hover {
 .answer-list {
   overflow-y: auto;
   height: 10.6em;
+  font-size: 0.9em;
+  margin-left: 2em;
 }
 
 /* Question Below Bar */

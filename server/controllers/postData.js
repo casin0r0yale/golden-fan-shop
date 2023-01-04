@@ -104,6 +104,28 @@ exports.postImg = (req, res) => {
     console.log('error getting img url', error);
     res.status(500).send(error);
   });
+}
 
+exports.postAddToCart = (req, res) => {
+
+  var cartData = req.body.params;
+
+  var options = {
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart',
+    method: 'POST',
+    headers: { Authorization: process.env.AUTH_SECRET },
+    "Content-Type": 'application/json',
+    data: cartData
+  };
+
+  axios(options)
+  .then((results) => {
+    var cartSuccess = JSON.parse(JSON.stringify(results.data));
+    res.status(201).send(cartSuccess);
+  })
+  .catch((error) => {
+    console.log('failure in the api add to cart: ', error);
+    res.status(500).send(error);
+  });
 }
 

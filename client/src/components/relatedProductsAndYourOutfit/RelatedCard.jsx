@@ -9,7 +9,7 @@ import { getAverageRating } from '../../App.jsx';
 
 const RelatedCard = React.forwardRef((props, ref) => {
 
-  const [formView, setFormView] = useState(false);
+  // const [formView, setFormView] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [imgError, setImgError] = useState(true);
   const [ratingRelatedCard, setRatingRelatedCard] = useState(0);
