@@ -54,6 +54,11 @@ h1 {
   height: 3em;
 }
 
+.logo {
+  height: 2.44em;
+  width: 9.65em;
+}
+
 .header-right {
   display: flex;
   align-items: center;
@@ -335,10 +340,10 @@ h1 {
 .photoList {
   position: absolute;
   top: 0;
-  display: grid; 
-  grid-auto-columns: 1fr; 
-  grid-template-rows: .5fr 1fr 1fr 1fr 1fr 1fr; 
-  gap: 1.5em 0px; 
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-rows: .5fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 1.5em 0px;
   left: -4em;
   align-items: center;
   justify-items: center;
@@ -355,7 +360,7 @@ h1 {
 .selectedImage {
   border-bottom: .25em solid rgb(60, 60, 60);
   padding-bottom: .2em;
-  
+
 }
 
 /* .up-Arrow {
@@ -372,6 +377,8 @@ h1 {
 } */
 
 .maxDimensions {
+  width: 60em;
+  height: 45em;
   max-width: 60em;
   max-height: 45em;
 }

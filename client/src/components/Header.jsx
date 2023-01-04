@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <div className="header" widgetname="Header">
       <div widgetname="Header" onClick = {refreshPage} className="header-left">
-        <img widgetname="Header" src={require('../img/Logo.png')} alt="Golden Fan Logo" />
+        <img widgetname="Header" className="logo" src={require('../img/Logo.png')} alt="Golden Fan Logo" />
       </div>
       <div widgetname="Header" className="header-right">
         <FaShoppingCart size="25"/>
