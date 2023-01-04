@@ -8,10 +8,11 @@ const cors = require("cors");
 const initGetData = require("./controllers/initGetData.js");
 const postData = require('./controllers/postData.js');
 const putData = require('./controllers/putData.js');
-
+const compression = require('compression');
 
 app.use(express.json());
 app.use(cors()); // Not sure if needed
+app.use(compression())
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/ip/:id', express.static(__dirname + '/../client/dist'));
