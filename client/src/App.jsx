@@ -241,6 +241,19 @@ const App = () => {
     });
   }
 
+  var onClickAddToCart = (sku) => {
+  console.log("🚀 ~ file: App.jsx:245 ~ onClickAddToCart ~ sku", sku)
+
+    axios.post('/addToCart', { params: { sku_id: sku } })
+    .then((response) => {
+      console.log("ADDED TO CART SUCCESSFUL Response: ", response);
+    })
+    .catch ((err) => {
+      console.log("CART FAILURE - ERROR: ", err)
+    })
+
+  }
+
   var onClickDeleteProductYourOutfit = (idToDelete) => {
 
     yourOutfitList.forEach((obj, index) => {
@@ -263,7 +276,7 @@ const App = () => {
     <div onClick={onClickTracker}>
       <Header />
       <h2 data-testid='testYourOutfitCard'>Golden Fan Shop</h2>
-      <Overview rating={rating} serverError={serverError} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} />
+      <Overview rating={rating} serverError={serverError} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} onClickAddToCart={onClickAddToCart} />
       <div className="margins-nonOverview">
         <Description slogan={productInfo.slogan} desc={productInfo.description} featuresPrimaryProductString={featuresPrimaryProduct} />
         <div widgetname="Related/YourOutfit">RELATED PRODUCTS</div>

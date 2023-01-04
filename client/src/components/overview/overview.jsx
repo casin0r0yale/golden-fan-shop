@@ -34,7 +34,7 @@ const Overview = (props) => {
         <div widgetname="Overview" className="overviewContainer">
               <div widgetname="Overview" className="productInfo"><ProductInfo rating={props.rating} info={props.info} onClickYourOutfit={props.onClickYourOutfit} /></div>
               <div widgetname="Overview" className="styleSelector"><StyleSelector onClick={setIndex} styleIndex={styleIndex} styles={props.styles} /></div>
-              <div widgetname="Overview" className="addToCart"><AddToCart onClickYourOutfit={props.onClickYourOutfit} styleIndex={styleIndex} styles={props.styles} /></div>
+              <div widgetname="Overview" className="addToCart"><AddToCart onClickAddToCart={props.onClickAddToCart} styleIndex={styleIndex} styles={props.styles} /></div>
               <div widgetname="Overview" className="imageGallery"><ImageGallery setExpandedView={setExpandedView} primaryImageIndex={primaryImageIndex} setPrimaryImageIndex={setPrimaryImageIndex} styleIndex={styleIndex} styles={props.styles} /></div>
             </div>
         : <h2 style={{marginTop: "4em"}}>We have encountered an error with our backend server! Please try refreshing in a moment!</h2>

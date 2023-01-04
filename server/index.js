@@ -45,6 +45,8 @@ app.post('/submitAnswer', postData.postAnswerForm);
 
 app.post('/clickTrackPost', postData.postClickTrack);
 
+app.post('/addToCart', postData.postAddToCart);
+
 app.put('/helpClick', putData.putHelpClick);
 
 app.put('/reportClick', putData.putReportClick);
