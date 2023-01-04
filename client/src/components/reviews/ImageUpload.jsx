@@ -29,25 +29,31 @@ class ImageUpload extends React.Component {
     this.fileObj.push(event.target.files);
     for (var i = 0; i < this.fileObj[0].length; i++) {
       let photoObj = this.fileObj[0][i];
-      let imageData;
+      console.log('photoObj: ', photoObj);
+      let imageData = new FormData();
+
 
       this.encodeImageFileAsURL(photoObj)
       .then((result) => {
         console.log('this is the imgData: ', result);
-        imageData = result;
+        let imageBlob = new Blob([result]);
+        imageData.append('file', imageBlob);
+      })
+      .then(() => {
+        console.log('this is the imageData: ', imageData);
+        axios.post('/uploadImg', imageData)
+        .then((res) => {
+          console.log('got img url', console.log(res));
+          //this.thumbnailArray.push(res);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
       })
       .catch((error) => {
         console.log('error getting imgData: ', error);
       });
-      // console.log('this is the formData: ', photo);
-      axios.post('/uploadImg', imageData)
-      .then((res) => {
-        console.log('got img url', console.log(res));
-        //this.thumbnailArray.push(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+
     }
 
     this.setState({

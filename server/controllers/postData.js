@@ -91,16 +91,11 @@ exports.postClickTrack = (req, res) => {
 }
 
 exports.postImg = (req, res) => {
-  var imgFile = req.file;
+  var imgFile = req.files;
   console.log('this is the req:', imgFile);
 
 
-  var options = {
-    url: 'https://api.imgbb.com/1/upload',
-    method: 'POST',
-    key: process.env.IMGBB_KEY,
-    image: imgFile
-  }
+
 
   // axios(options)
   // .then((results) => {
