@@ -43,7 +43,7 @@ class ImageUpload extends React.Component {
         console.log('this is the imageData: ', imageData);
         axios.post('/uploadImg', imageData)
         .then((res) => {
-          console.log('got img url', console.log(res));
+          console.log('got img url: ', res.data);
           //this.thumbnailArray.push(res);
         })
         .catch((err) => {

@@ -1,5 +1,6 @@
 const axios = require('axios');
-const fs = require('fs');
+const cloudinary = require('../cloudinary');
+const uploader = require('../multer');
 
 exports.postReviewForm = (req, res) => {
 
@@ -91,22 +92,28 @@ exports.postClickTrack = (req, res) => {
 }
 
 exports.postImg = (req, res) => {
-  var imgFile = req.files;
+  var imgFile = req.files[0].path;
   console.log('this is the req:', imgFile);
 
 
+  // var options = {
+  //   method: 'POST',
+  //   url: `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_USER_NAME}/image/upload`,
+  //   data: imgFile
+  // }
 
-
-  // axios(options)
-  // .then((results) => {
-  //   var imgURL = JSON.parse(JSON.stringify(results.data));
-  //   console.log('success POST img url', imgURL);
-  //   res.status(201).send(imgURL);
-  // })
-  // .catch((error) => {
-  //   console.log('error getting img url', error);
-  //   res.status(500).send(error);
-  // });
+  cloudinary.v2.uploader.upload(imgFile)
+  .then((results) => {
+    var imgURL = results.url;
+    console.log('success POST img url: ', imgURL);
+    // var imgURL = JSON.parse(JSON.stringify(results.data));
+    // console.log('success POST img url', imgURL);
+    res.status(201).send(JSON.parse(JSON.stringify(imgURL)));
+  })
+  .catch((error) => {
+    console.log('error getting img url', error);
+    res.status(500).send(error);
+  });
 
 }
 
