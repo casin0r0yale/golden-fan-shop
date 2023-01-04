@@ -3,7 +3,8 @@ import axios from 'axios';
 
 class ImageUpload extends React.Component {
   fileObj = [];
-  thumbnailArray = [];
+  thumbnailPreview = [];
+  imgURLArray = [];
   constructor(props) {
     super(props);
     this.state = {
@@ -27,9 +28,12 @@ class ImageUpload extends React.Component {
 
   uploadMulitpleFiles(event) {
     this.fileObj.push(event.target.files);
+    // let thumbnailArr = [];
     for (var i = 0; i < this.fileObj[0].length; i++) {
       let photoObj = this.fileObj[0][i];
       console.log('photoObj: ', photoObj);
+      let thumbnailLocalURL = URL.createObjectURL(photoObj);
+      this.thumbnailPreview.push(thumbnailLocalURL);
       let imageData = new FormData();
 
 
@@ -44,7 +48,8 @@ class ImageUpload extends React.Component {
         axios.post('/uploadImg', imageData)
         .then((res) => {
           console.log('got img url: ', res.data);
-          //this.thumbnailArray.push(res);
+          let imageURL = res.data;
+          this.imgURLArray.push(imageURL);
         })
         .catch((err) => {
           console.error(err);
@@ -57,13 +62,14 @@ class ImageUpload extends React.Component {
     }
 
     this.setState({
-      file: this.thumbnailArray
+      files: this.imgURLArray,
+      // thumbnailArray: thumbnailArr
     })
   }
 
   uploadFiles(event){
     event.preventDefault()
-    var images = this.state.file
+    var images = this.state.files
     this.props.handleImages(images);
     this.setState({uploaded: true});
   }
@@ -72,11 +78,11 @@ class ImageUpload extends React.Component {
     return (
       <div className="image-upload-buttons" data-testid="image-upload-buttons">
         <div className="review-images">
-          {(this.thumbnailArray || []).map(url => (
+          {(this.thumbnailPreview || []).map(url => (
               <img key={url} className="review-image-thumbnail" src={url} alt="..." />
           ))}
         </div>
-        {(this.thumbnailArray.length < 5) ? <input type="file" onChange={this.uploadMulitpleFiles} multiple/> : null}
+        {(this.thumbnailPreview.length < 5) ? <input type="file" onChange={this.uploadMulitpleFiles} multiple/> : null}
         <br></br>
         <button className="upload-button"type="button" onClick={this.uploadFiles}>{(this.state.uploaded) ? "Uploaded" : "Upload" }</button>
       </div>
