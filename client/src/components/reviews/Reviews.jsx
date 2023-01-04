@@ -61,6 +61,7 @@ const Reviews = (props) => {
       console.log('Success form post!')
       setIsOpen(false);
       forceUpdate();
+      alert('Review has been submitted!');
     })
     .catch((err) => {
       console.error('Error submitting post: ', err);
