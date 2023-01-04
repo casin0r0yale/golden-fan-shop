@@ -9,7 +9,7 @@ const ProductInfo = (props) => {
   // console.log('general info', props.info);
   const [favorited, setFavorited] = useState(false);
 
-  console.log(props.info)
+  // console.log(props.info)
   const onClickYourOutfit = () => {
     props.onClickYourOutfit();
     setFavorited(true);

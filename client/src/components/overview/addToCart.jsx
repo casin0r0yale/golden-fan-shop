@@ -10,13 +10,16 @@ import { AiOutlinePlus } from 'react-icons/ai';
 const AddToCart = (props) => {
   const [sizeSelected, setSizeSelected] = useState({});
   const [quantitySelected, setQuantitySelected] = useState('-');
+  const [skuSelected, setSkuSelected] = useState(0);
+
 
   const [dropdownExpanded, setDropdownExpanded] = useState(false);
   const [quantityDropdownExpanded, setQuantityDropdownExpanded] = useState(false);
 
 
-  const onOptionSelect = option => {
+  const onOptionSelect = (option, sku) => {
     setSizeSelected(option);
+    setSkuSelected(sku);
     setDropdownExpanded(false);
     setQuantitySelected(1);
     console.log(Object.keys(sizeSelected).length > 0)
@@ -29,7 +32,7 @@ const AddToCart = (props) => {
 
 
   useEffect(() => {
-    console.log('logg', props.styles[props.styleIndex])
+    // console.log('logg', props.styles[props.styleIndex])
     // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
     //   console.log(props.styles[props.styleIndex]?.skus[size].quantity)
     //   props.styles[props.styleIndex]?.skus[size].quantity > 0
@@ -50,8 +53,7 @@ const AddToCart = (props) => {
   }, [props.styles]); //
 
   const addToCart = clicked => {
-    console.log('clicked');
-    props.onClickYourOutfit();
+    props.onClickAddToCart(skuSelected);
     // setFavorited(!favorited);
     alert(`${props.styles[props.styleIndex].name} has been added to your cart!`);
   }
@@ -65,7 +67,7 @@ const AddToCart = (props) => {
         <div widgetname="Overview" className={dropdownExpanded ? "dropdown-content dropdownExpanded" : "dropdown-content"}>
           {Object.keys((props.styles[props.styleIndex]?.skus) || {}).map((size, index) => {
             if (props.styles[props.styleIndex]?.skus[size].quantity > 0) {
-              return (<p widgetname="Overview" key={index} onClick={() => { onOptionSelect(props.styles[props.styleIndex]?.skus[size]) }}>{props.styles[props.styleIndex]?.skus[size].size}</p>)
+              return (<p widgetname="Overview" key={index} onClick={() => { onOptionSelect(props.styles[props.styleIndex]?.skus[size], size) }}>{props.styles[props.styleIndex]?.skus[size].size}</p>)
             }
           })}
         </div>

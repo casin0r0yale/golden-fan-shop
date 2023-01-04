@@ -9,16 +9,6 @@
  */
 (self["webpackChunkgolden_fan_shop"] = self["webpackChunkgolden_fan_shop"] || []).push([["client_src_components_Q_A_Questions_jsx"],{
 
-/***/ "./client/src/components/Popup.jsx":
-/*!*****************************************!*\
-  !*** ./client/src/components/Popup.jsx ***!
-  \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ \"./node_modules/react/jsx-runtime.js\");\n\n\nvar Popup = function Popup(props) {\n  var onClickFormBox = function onClickFormBox(event) {\n    event.stopPropagation();\n  };\n  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(\"div\", {\n    widgetname: \"popup-box\",\n    className: \"popup-box\",\n    onClick: props.handleClose,\n    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(\"div\", {\n      widgetname: \"popup-box\",\n      className: \"form-box\",\n      onClick: onClickFormBox,\n      children: props.content\n    })\n  });\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Popup);\n\n//# sourceURL=webpack://golden-fan-shop/./client/src/components/Popup.jsx?");
-
-/***/ }),
-
 /***/ "./client/src/components/Q&A/Answer.jsx":
 /*!**********************************************!*\
   !*** ./client/src/components/Q&A/Answer.jsx ***!

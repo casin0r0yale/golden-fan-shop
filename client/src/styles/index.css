@@ -335,10 +335,10 @@ h1 {
 .photoList {
   position: absolute;
   top: 0;
-  display: grid; 
-  grid-auto-columns: 1fr; 
-  grid-template-rows: .5fr 1fr 1fr 1fr 1fr 1fr; 
-  gap: 1.5em 0px; 
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-rows: .5fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 1.5em 0px;
   left: -4em;
   align-items: center;
   justify-items: center;
@@ -346,23 +346,31 @@ h1 {
 
 .onePhoto {
   height: 3em;
-  width: 3em;;
+  width: 3em;
   box-shadow: #000;
   /* border: 1px solid rgb(5, 5, 5); */
-
 }
 
 .selectedImage {
   border-bottom: .25em solid rgb(60, 60, 60);
   padding-bottom: .2em;
-  
+
 }
 
-/* .up-Arrow {
-  top: 0;
+.textCartPopUp {
+  text-align: center;
   z-index: 1000;
-  color: white;
-} */
+  color: rgb(5, 5, 5);
+}
+
+.buttonCartContain {
+  display: grid;
+}
+
+.buttonCartPopUp {
+  /* position: absolute; */
+  margin: auto;
+}
 
 /* .down-Arrow {
   position: absolute;
