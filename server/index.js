@@ -8,6 +8,10 @@ const cors = require("cors");
 const initGetData = require("./controllers/initGetData.js");
 const postData = require('./controllers/postData.js');
 const putData = require('./controllers/putData.js');
+//for image uploads
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' });
+
 const deleteData = require('./controllers/deleteData.js');
 const compression = require('compression');
 
@@ -37,6 +41,8 @@ app.get('/getProductReviews', initGetData.getProductReviewsControl);
 app.get('/getProductReviewMeta', initGetData.getProductReviewMeta);
 
 app.get('/getProductQnA', initGetData.getProductQnAControl);
+
+app.post('/uploadImg', upload.any(), postData.postImg);
 
 app.get('/getCart', initGetData.getCart);
 

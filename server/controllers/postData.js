@@ -1,4 +1,6 @@
 const axios = require('axios');
+const cloudinary = require('../cloudinary');
+const uploader = require('../multer');
 
 exports.postReviewForm = (req, res) => {
 
@@ -85,6 +87,21 @@ exports.postClickTrack = (req, res) => {
   })
   .catch((error) => {
     console.log('failure in the api click track server: ', error);
+    res.status(500).send(error);
+  });
+}
+
+exports.postImg = (req, res) => {
+  var imgFile = req.files[0].path;
+
+  cloudinary.v2.uploader.upload(imgFile)
+  .then((results) => {
+    var imgURL = results.url;
+    console.log('success POST img url: ', imgURL);
+    res.status(201).send(JSON.parse(JSON.stringify(imgURL)));
+  })
+  .catch((error) => {
+    console.log('error getting img url', error);
     res.status(500).send(error);
   });
 }
