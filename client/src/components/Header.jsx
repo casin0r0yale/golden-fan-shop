@@ -35,7 +35,7 @@ const Header = (props) => {
       </div>
       <div widgetname="Header" className="header-right">
       <div>
-        {props.cartNumber}
+        {props.cartNumber === 0 ? null : props.cartNumber}
       </div>
         <button onClick={togglePopup}>
           <FaShoppingCart size="25"/>
