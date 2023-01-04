@@ -15,10 +15,6 @@ const ReviewForm = (props) => {
   const [summaryDefault, setSummaryDefault] = useState('Example: Best Purchase Ever!');
   const [bodyDefault, setBodyDefault] = useState('Why did you like the product or not?');
 
-  // useEffect(() => {
-
-  // }, [rating])
-
   const summaryClick = (event) => {
     setSummaryDefault(null);
   }
