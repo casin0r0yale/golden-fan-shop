@@ -27,6 +27,7 @@ const App = () => {
   const [reviewList, setReviewList] = useState([]);
   const [reviewMeta, setReviewMeta] = useState({});
   const [rating, setRating] = useState(0);
+  const [cartNumber, setCartNumber] = useState(0);
   const [bottomHalfView, setBottomHalfView] = useState(false)
 
   const loadBottomBoundary = useRef(null)
@@ -228,6 +229,17 @@ const App = () => {
       .catch(function (error) {
         console.log('error GET QnA Data: ', error);
       })
+
+    // INIT GET 6: GET Cart data
+
+      axios.get('/getCart')
+      .then((response) => {
+        // console.log("GET CART SUCCESSFUL Response: ", response);
+        setCartNumber(response.data.length);
+      })
+      .catch ((err) => {
+        console.log("CART GET FAILURE - ERROR: ", err)
+      })
   }
 
   var onClickYourOutfit = (data) => {
@@ -242,16 +254,36 @@ const App = () => {
   }
 
   var onClickAddToCart = (sku) => {
-  console.log("🚀 ~ file: App.jsx:245 ~ onClickAddToCart ~ sku", sku)
-
     axios.post('/addToCart', { params: { sku_id: sku } })
     .then((response) => {
       console.log("ADDED TO CART SUCCESSFUL Response: ", response);
+
+      axios.get('/getCart')
+      .then((response) => {
+        // console.log("GET CART SUCCESSFUL Response: ", response);
+        setCartNumber(response.data.length);
+      })
+      .catch ((err) => {
+        console.log("CART GET FAILURE - ERROR: ", err)
+      })
+
     })
     .catch ((err) => {
       console.log("CART FAILURE - ERROR: ", err)
     })
+  }
 
+  var onClickDeleteCart = (idToDelete) => {
+    console.log('Axios Delete!')
+
+    axios.delete('/deleteCart')
+    .then((response) => {
+      console.log("DELETE CART SUCCESSFUL: ", response);
+      setCartNumber(response.data.length);
+    })
+    .catch ((err) => {
+      console.log("CART DELETE FAILURE - ERROR: ", err)
+    })
   }
 
   var onClickDeleteProductYourOutfit = (idToDelete) => {
@@ -274,7 +306,7 @@ const App = () => {
   return (
 
     <div onClick={onClickTracker}>
-      <Header />
+      <Header cartNumber={cartNumber} onClickDeleteCart={onClickDeleteCart}/>
       <h2 data-testid='testYourOutfitCard'>Golden Fan Shop</h2>
       <Overview rating={rating} serverError={serverError} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} onClickAddToCart={onClickAddToCart} />
       <div className="margins-nonOverview">

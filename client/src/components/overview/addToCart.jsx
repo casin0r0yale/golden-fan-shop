@@ -32,7 +32,7 @@ const AddToCart = (props) => {
 
 
   useEffect(() => {
-    console.log('logg', props.styles[props.styleIndex])
+    // console.log('logg', props.styles[props.styleIndex])
     // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
     //   console.log(props.styles[props.styleIndex]?.skus[size].quantity)
     //   props.styles[props.styleIndex]?.skus[size].quantity > 0

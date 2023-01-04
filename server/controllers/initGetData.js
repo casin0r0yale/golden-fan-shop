@@ -144,3 +144,19 @@ exports.getProductQnAControl = (req, res) => {
     res.status(500).send(err)
   })
 }
+exports.getCart = (req, res) => {
+
+  const options = {
+    method: 'GET',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart`,
+    headers: { Authorization: process.env.AUTH_SECRET },
+  };
+  axios(options)
+  .then((result) => {
+    res.status(200).send(result.data)
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).send(err)
+  })
+}

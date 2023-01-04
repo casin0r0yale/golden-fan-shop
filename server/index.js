@@ -8,6 +8,7 @@ const cors = require("cors");
 const initGetData = require("./controllers/initGetData.js");
 const postData = require('./controllers/postData.js');
 const putData = require('./controllers/putData.js');
+const deleteData = require('./controllers/deleteData.js');
 const compression = require('compression');
 
 app.use(express.json());
@@ -37,6 +38,8 @@ app.get('/getProductReviewMeta', initGetData.getProductReviewMeta);
 
 app.get('/getProductQnA', initGetData.getProductQnAControl);
 
+app.get('/getCart', initGetData.getCart);
+
 app.post('/submitReview', postData.postReviewForm);
 
 app.post('/submitQuestion', postData.postQuestionForm);
@@ -46,6 +49,8 @@ app.post('/submitAnswer', postData.postAnswerForm);
 app.post('/clickTrackPost', postData.postClickTrack);
 
 app.post('/addToCart', postData.postAddToCart);
+
+app.delete('/deleteCart', deleteData.deleteCart);
 
 app.put('/helpClick', putData.putHelpClick);
 

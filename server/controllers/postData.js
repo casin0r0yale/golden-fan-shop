@@ -92,7 +92,6 @@ exports.postClickTrack = (req, res) => {
 exports.postAddToCart = (req, res) => {
 
   var cartData = req.body.params;
-  console.log("🚀 ~ file: postData.js:95 ~ cartData", cartData)
 
   var options = {
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart',
