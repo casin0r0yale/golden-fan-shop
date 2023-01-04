@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 // import { BsStar } from 'react-icons/bs';
 
 const StarRating = (props) => {
@@ -8,7 +8,7 @@ const StarRating = (props) => {
 
   const handleRating = (idx) => {
     setRating(idx);
-    props.currRating(rating);
+    props.currRating(idx);
   }
 
   // const ratingLabel = (rating) => {
