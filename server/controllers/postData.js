@@ -91,23 +91,9 @@ exports.postClickTrack = (req, res) => {
 }
 
 exports.postImg = (req, res) => {
-  var imgFile = req.body;
+  var imgFile = req.file;
   console.log('this is the req:', imgFile);
 
-  function base64_encode(file) {
-    // read binary data
-    var bitmap = fs.readFileSync(file);
-    // convert binary data to base64 encoded string
-    return new Buffer(bitmap).toString('base64');
-}
-
-  base64_encode(JSON.stringify(imgFile))
-  .then((result) => {
-    console.log('this is the imgData: ', result);
-  })
-  .catch((error) => {
-    console.log('error getting imgData: ', error);
-  });
 
   var options = {
     url: 'https://api.imgbb.com/1/upload',

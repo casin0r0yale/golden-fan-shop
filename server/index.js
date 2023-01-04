@@ -8,6 +8,9 @@ const cors = require("cors");
 const initGetData = require("./controllers/initGetData.js");
 const postData = require('./controllers/postData.js');
 const putData = require('./controllers/putData.js');
+//for image uploads
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' });
 
 
 app.use(express.json());
@@ -36,7 +39,7 @@ app.get('/getProductReviewMeta', initGetData.getProductReviewMeta);
 
 app.get('/getProductQnA', initGetData.getProductQnAControl);
 
-app.post('/uploadImg', postData.postImg);
+app.post('/uploadImg', upload.single('photo'), postData.postImg);
 
 app.post('/submitReview', postData.postReviewForm);
 
