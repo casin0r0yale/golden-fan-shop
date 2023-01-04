@@ -25,7 +25,6 @@ const ReviewTile = (props) => {
   }, [helpfulClickCount])
 
   const helpClick = async (review_id) => {
-    // console.log('review id: ', review_id);
     helpfulClickCount++
     helpRef.current++
     if (helpRef.current === 1) {

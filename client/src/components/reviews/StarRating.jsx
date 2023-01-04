@@ -11,12 +11,6 @@ const StarRating = (props) => {
     props.currRating(idx);
   }
 
-  // const ratingLabel = (rating) => {
-  //   label = {
-  //     one
-  //   }
-  // }
-
   return (
     <div className="star-rating">
       {[...Array(5)].map((star, index) => {

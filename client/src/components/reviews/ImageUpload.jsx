@@ -28,10 +28,8 @@ class ImageUpload extends React.Component {
 
   uploadMulitpleFiles(event) {
     this.fileObj.push(event.target.files);
-    // let thumbnailArr = [];
     for (var i = 0; i < this.fileObj[0].length; i++) {
       let photoObj = this.fileObj[0][i];
-      console.log('photoObj: ', photoObj);
       let thumbnailLocalURL = URL.createObjectURL(photoObj);
       this.thumbnailPreview.push(thumbnailLocalURL);
       let imageData = new FormData();
@@ -39,15 +37,12 @@ class ImageUpload extends React.Component {
 
       this.encodeImageFileAsURL(photoObj)
       .then((result) => {
-        console.log('this is the imgData: ', result);
         let imageBlob = new Blob([result]);
         imageData.append('file', imageBlob);
       })
       .then(() => {
-        console.log('this is the imageData: ', imageData);
         axios.post('/uploadImg', imageData)
         .then((res) => {
-          console.log('got img url: ', res.data);
           let imageURL = res.data;
           this.imgURLArray.push(imageURL);
         })
@@ -63,7 +58,6 @@ class ImageUpload extends React.Component {
 
     this.setState({
       files: this.imgURLArray,
-      // thumbnailArray: thumbnailArr
     })
   }
 
