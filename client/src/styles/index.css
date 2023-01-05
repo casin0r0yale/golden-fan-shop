@@ -357,6 +357,20 @@ h1 {
 
 }
 
+.cart-number {
+  background-color: royalblue;
+  padding: 0.15em;
+  width: 1em;
+  height: 1em;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  position: absolute;
+  right: 2.65em;
+  top: 2em;
+  line-height: 1em;
+}
+
 .textCartPopUp {
   text-align: center;
   z-index: 1000;

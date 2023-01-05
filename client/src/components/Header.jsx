@@ -34,10 +34,10 @@ const Header = (props) => {
         <img widgetname="Header" src={require('../img/Logo.png')} alt="Golden Fan Logo" />
       </div>
       <div widgetname="Header" className="header-right">
-      <div>
+      <div className="cart-number">
         {props.cartNumber === 0 ? null : props.cartNumber}
       </div>
-        <button onClick={togglePopup}>
+        <button className="shopping-cart-icon" onClick={togglePopup}>
           <FaShoppingCart size="25"/>
         </button>
       </div>
