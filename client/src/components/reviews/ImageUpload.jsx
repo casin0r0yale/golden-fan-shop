@@ -1,4 +1,5 @@
 import React from 'react';
+var cl = new cloudinary.Cloudinary({cloud_name: "dohu1qlnn", secure: true});
 
 class ImageUpload extends React.Component {
   fileObj = [];
@@ -13,14 +14,15 @@ class ImageUpload extends React.Component {
     this.uploadFiles = this.uploadFiles.bind(this);
   }
 
-  uploadMulitpleFiles(event) {
-    this.fileObj.push(event.target.files);
-    for (var i = 0; i < this.fileObj[0].length; i++) {
-      this.fileArray.push(URL.createObjectURL(this.fileObj[0][i]));
-    }
-    this.setState({
-      file: this.fileArray
-    })
+  uploadMulitpleFiles(files) {
+    const formData = new FormData();
+    // this.fileObj.push(event.target.files);
+    // for (var i = 0; i < this.fileObj[0].length; i++) {
+    //   this.fileArray.push(URL.createObjectURL(this.fileObj[0][i]));
+    // }
+    // this.setState({
+    //   file: this.fileArray
+    // })
   }
 
   uploadFiles(event){
@@ -38,7 +40,9 @@ class ImageUpload extends React.Component {
               <img key={url} className="review-image-thumbnail" src={url} alt="..." />
           ))}
         </div>
-        {(this.fileArray.length < 5) ? <input type="file" onChange={this.uploadMulitpleFiles} multiple/> : null}
+        {(this.fileArray.length < 5) ? <input type="file" onChange={(event) => {
+          this.uploadMulitpleFiles(event.target.files)
+        }} multiple/> : null}
         <br></br>
         <button className="upload-button"type="button" onClick={this.uploadFiles}>{(this.state.uploaded) ? "Uploaded" : "Upload" }</button>
       </div>

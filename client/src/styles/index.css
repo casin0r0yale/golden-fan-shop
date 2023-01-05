@@ -335,10 +335,10 @@ h1 {
 .photoList {
   position: absolute;
   top: 0;
-  display: grid; 
-  grid-auto-columns: 1fr; 
-  grid-template-rows: .5fr 1fr 1fr 1fr 1fr 1fr; 
-  gap: 1.5em 0px; 
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-rows: .5fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 1.5em 0px;
   left: -4em;
   align-items: center;
   justify-items: center;
@@ -355,7 +355,7 @@ h1 {
 .selectedImage {
   border-bottom: .25em solid rgb(60, 60, 60);
   padding-bottom: .2em;
-  
+
 }
 
 /* .up-Arrow {
@@ -1249,8 +1249,7 @@ form.review-form input[type="file"]::file-selector-button:hover {
 }
 
 .searchButton {
-  width: 2em;
-  height: 1.43em;
+  width: 3em;
   border: 0.1em solid #000000;
   background: #000000;
   text-align: center;
@@ -1280,7 +1279,7 @@ form.review-form input[type="file"]::file-selector-button:hover {
 /* Answer List */
 .answer-list {
   overflow-y: auto;
-  height: 10.6em;
+  height: 25.5em;
   font-size: 0.9em;
   margin-left: 2em;
 }

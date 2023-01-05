@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import Answer from './Answer.jsx';
+import Answer from './AnswerList.jsx';
 import Popup from '../Popup.jsx';
 import NewQuestionForm from './NewQuestionForm.jsx';
 import NewAnswerForm from './NewAnswerForm.jsx';
+import Question from './Question.jsx';
 import axios from 'axios';
 
 var Questions = (props) => {
@@ -69,8 +70,8 @@ var Questions = (props) => {
         {/* <div className="wrap"> */}
           <div className="search">
             <input className="form-control" type="text" onChange={changeFilter} widgetname="Questions/Answers"/>
-            <button className="searchButton">
-              <i className="fa fa-search"></i>
+            <button className="searchButton" name="searchButton" widgetname="Questions/Answers">
+              <i className="fa fa-search" widgetname="Questions/Answers"></i>
             </button>
           </div>
         {/* </div> */}
@@ -105,15 +106,17 @@ var Questions = (props) => {
           }
 
           return (
-            <div widgetname="Questions/Answers" key={index}>
-              <h4 key={index} widgetname="Questions/Answers">Q: {question.question_body}</h4>
-              <div className="question-below-bar" widgetname="Questions/Answers">
-                <p widgetname="Questions/Answers">Helpful? {isHelpful ? <a widgetname="Questions/Answers">Yes ({questionHelpfulness})</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes ({questionHelpfulness})</a>} | <a onClick={toggleAnswerPopup} className="hyperlink" widgetname="Questions/Answers">Add An Answer</a> | {(isReported) ? <a widgetname="Questions/Answers">Reported</a> : <a onClick={toggleReported} widgetname="Questions/Answers" className="hyperlink">Report Question</a>}</p>
-              </div>
-              <Answer answers={question.answers}/>
+            <div>
+            {/* // <div widgetname="Questions/Answers" key={index}>
+            //   <h4 key={index} widgetname="Questions/Answers">Q: {question.question_body}</h4>
+            //   <div className="question-below-bar" widgetname="Questions/Answers">
+            //     <p widgetname="Questions/Answers">Helpful? {isHelpful ? <a widgetname="Questions/Answers">Yes ({questionHelpfulness})</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes ({questionHelpfulness})</a>} | <a onClick={toggleAnswerPopup} className="hyperlink" widgetname="Questions/Answers">Add An Answer</a> | {(isReported) ? <a widgetname="Questions/Answers">Reported</a> : <a onClick={toggleReported} widgetname="Questions/Answers" className="hyperlink">Report Question</a>}</p>
+            //   </div>
+            //   <Answer answers={question.answers}/> */}
+            <Question data={question} product={productInfo}/>
               <div>
                 {isQuestionOpen && <Popup handleClose={toggleQuestionPopup} content={<NewQuestionForm productName={productInfo.name} handleFormSubmit={handleQuestionFormSubmit} id={productInfo.id}/>}/>}
-                {isAnswerOpen && <Popup handleClose={toggleAnswerPopup} content={<NewAnswerForm currentQuestion={question.question_body} productName={productInfo.name} questionId={question.question_id} handleFormSubmit={handleAnswerFormSubmit}/>}/>}
+                {/* {isAnswerOpen && <Popup handleClose={toggleAnswerPopup} content={<NewAnswerForm currentQuestion={question.question_body} productName={productInfo.name} questionId={question.question_id} handleFormSubmit={handleAnswerFormSubmit}/>}/>} */}
               </div>
             </div>
           );

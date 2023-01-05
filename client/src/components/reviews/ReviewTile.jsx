@@ -47,7 +47,7 @@ const ReviewTile = (props) => {
       <h5 widgetname="Review Tile">{props.review.summary}</h5>
       <div widgetname="Review Tile" data-testid="review-images">
         {(photoArr.length !== 0) ? photoArr.map((url, idx) => {
-          return <img widgetname="Review Tile" className="review-image"src={url} key={idx}/>
+          return <img widgetname="Review Tile" className="review-image"src={url} key={idx} alt="..."/>
         }) : null}
       </div>
       <p widgetname="Review Tile">{props.review.body}</p>

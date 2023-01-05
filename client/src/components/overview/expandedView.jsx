@@ -29,8 +29,8 @@ const ImageGallery = (props) => {
         <div widgetname="Overview" data-testid='testImageGallery'>
             <div widgetname="Overview" id="main-img-expanded">
                 <img widgetname="Overview" id="primary-img-expanded" className="maxDimensionsExpanded" src={props.styles[props.styleIndex]?.photos[primaryImageIndex].url}
-                    onClick={() => { props.setExpandedView(false); props.setPrimaryImageIndex(primaryImageIndex); }} />
-                < AiOutlineShrink   onClick={() => { props.setExpandedView(false);}} size="1.5em" color="white" className="expanded" /> 
+                    onClick={() => { props.setExpandedView(false); props.setPrimaryImageIndex(primaryImageIndex); }} alt="..."/>
+                < AiOutlineShrink   onClick={() => { props.setExpandedView(false);}} size="1.5em" color="white" className="expanded" />
                 <div className='photoList'>
                     {primaryImageIndex === 0
                         ? <div></div>
@@ -39,12 +39,12 @@ const ImageGallery = (props) => {
                     {props.styles[props.styleIndex]?.photos.map((photo, index) => {
                         return (
                             index >= arrowIndex && index - arrowIndex <= 4 ? (
-                                <img key={index} onClick={() => setPrimaryImageIndex(index)} className={index === primaryImageIndex ? "onePhoto selectedImage" : "onePhoto"} src={photo.thumbnail_url} />
+                                <img key={index} onClick={() => setPrimaryImageIndex(index)} className={index === primaryImageIndex ? "onePhoto selectedImage" : "onePhoto"} src={photo.thumbnail_url} alt="..." />
                             ) : null
 
                         )
                     })}
-                
+
                     {primaryImageIndex === props.styles[props.styleIndex]?.photos.length - 1
                         ? <div></div>
                         :

@@ -1,39 +1,21 @@
-import React, {useState} from 'react';
-import axios from 'axios';
+import React, {useState}  from 'react';
 import Popup from '../Popup.jsx';
 import ExpandedImage from './ExpandedImage.jsx';
+import axios from 'axios';
 
 var Answer = (props) => {
-
-  var answerObjList = Object.keys(props.answers);
-
-  const [answerIndex, setAnswerIndex] = useState(2);
-
-  var renderedAnswers = answerObjList.slice(0, answerIndex);
-
-  var loadAnswers = () => {
-    setAnswerIndex(answerObjList.length + 1);
-  }
-
   const [isHelpful, setIsHelpful] = useState(false);
   const [isReported, setIsReported] = useState(false);
   const [isImageExpanded, setIsImageExpanded] = useState(false);
-  var imageArray = [];
 
-  const toggleImageExpand = () => {
-    setIsImageExpanded(!isImageExpanded);
-  }
-  return (
-  <div className="answer-list" widgetname="Questions/Answers">
-    {renderedAnswers.map((answerKey, index) => {
-      // console.log(answerKey);
-      var currentAnswer = props.answers[answerKey];
-      // console.log(currentAnswer)
-      var answerDate = new Date(currentAnswer.date).toDateString();
 
-      imageArray = currentAnswer.photos;
+  var currentAnswer = props.data;
 
-      var toggleHelpfulness = () => {
+  var answerDate = new Date(currentAnswer.date).toDateString();
+
+  var imageArray = currentAnswer.photos;
+
+  var toggleHelpfulness = () => {
         setIsHelpful(!isHelpful);
         axios.put('/helpfulAnswer', {answer_id: currentAnswer.id})
         .then(success => {
@@ -45,6 +27,7 @@ var Answer = (props) => {
       }
 
       var toggleReport = () => {
+        setIsReported(!isReported);
         axios.put('/reportAnswer', {answer_id: currentAnswer.id})
         .then(success => {
           console.log(success);
@@ -53,10 +36,15 @@ var Answer = (props) => {
           console.log('Error reporting answer', err);
         })
       }
+
+      const toggleImageExpand = () => {
+        setIsImageExpanded(!isImageExpanded);
+      }
+
       return (
-        <div widgetname="Questions/Answers" key={index}>
+        <div widgetname="Questions/Answers">
           <p widgetname="Questions/Answers">A:  {currentAnswer.body}</p>
-          <p widgetname="Questions/Answers"> by {currentAnswer.answerer_name}, {answerDate}  |  Helpful? <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes({currentAnswer.helpfulness})</a>  |  <a onClick={toggleReport} className="hyperlink" widgetname="Questions/Answers">Report Answer</a></p>
+          <p widgetname="Questions/Answers"> by {currentAnswer.answerer_name}, {answerDate}  |  Helpful? {isHelpful ? <a widgetname="Questions/Answers">Yes({currentAnswer.helpfulness + 1})</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes({currentAnswer.helpfulness})</a> } |  {isReported ? <a widgetname="Questions/Answers"> REPORTED </a> : <a onClick={toggleReport} className="hyperlink" widgetname="Questions/Answers">Report Answer</a>}</p>
           <div>
             {currentAnswer.photos.length ? currentAnswer.photos.map(photo => {
               return(
@@ -69,11 +57,6 @@ var Answer = (props) => {
           </div>
         </div>
       );
-    })}
-
-    {(answerObjList.length > 2) ? <b onClick={loadAnswers} widgetname="Questions/Answers">LOAD MORE ANSWERS</b> : null}
-  </div>
-  );
-};
+}
 
 export default Answer;
