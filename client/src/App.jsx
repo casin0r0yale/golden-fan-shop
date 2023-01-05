@@ -266,7 +266,7 @@ const App = () => {
       <Overview rating={rating} serverError={serverError} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} />
       <div className="margins-nonOverview">
         <Description slogan={productInfo.slogan} desc={productInfo.description} featuresPrimaryProductString={featuresPrimaryProduct} />
-        <div widgetname="Related/YourOutfit">RELATED PRODUCTS</div>
+        <div className="section" widgetname="Related/YourOutfit">RELATED PRODUCTS</div>
 
         <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef} widgetname="Related Products">
         <Suspense fallback={<img src={Spinner} alt="Loading..."/>}>
@@ -300,8 +300,8 @@ const App = () => {
         </div>
         {bottomHalfView && (
           <Suspense fallback={<img src={Spinner} alt="Loading..."/>}>
-            <Questions data={productQnAData} product={productInfo} />
-            <Reviews rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
+            <Questions className="section" data={productQnAData} product={productInfo} />
+            <Reviews className="section" rating={rating} reviewList={reviewList} meta={reviewMeta} product={productInfo} updateReviewList={updateReviewList} />
           </Suspense>
         )}
       </div>

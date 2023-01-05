@@ -1,6 +1,8 @@
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
+
+
 html {
   scroll-behavior: smooth;
 }
@@ -9,13 +11,8 @@ body {
   font-family: 'Helvetica', 'Arial', sans-serif;
   margin-left: 7em;
   margin-right: 7em;
-  font-size: clamp(.5rem, -0.875rem + 2.963vw, 1rem);
+  /* font-size: clamp(.5rem, -0.875rem + 2.963vw, 1rem); */
   /* float: left; */
-}
-
-@media screen and (max-width: 1000px) {
-  body{margin-left: 0em; margin-right: 0em;}
-
 }
 
 /* @media screen and (max-width: 1000px) {
@@ -69,10 +66,11 @@ h1 {
 .margins-nonOverview {
   margin-left: 15%;
   margin-right: 15%;
-  /* margin-left: 15rem;
-  margin-right: 15rem; */
 }
 
+.section {
+  margin-top: 2em;
+}
 
 /* OVERVIEW MODULE */
 
@@ -251,6 +249,72 @@ h1 {
   margin-bottom: -2.5em;
 }
 
+.heartClicked {
+  -webkit-animation: jello-vertical 1.6s both;
+  animation: jello-vertical 1.6s both;
+}
+
+@-webkit-keyframes jello-vertical {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(0.85, 1.15, 1);
+            transform: scale3d(0.85, 1.15, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-vertical {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(0.85, 1.15, 1);
+            transform: scale3d(0.85, 1.15, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -279,6 +343,8 @@ h1 {
 #main-img {
   position: relative;
   margin-left: 11em;
+  cursor: pointer;
+
 }
 
 #main-img-expanded {
@@ -348,6 +414,8 @@ h1 {
   height: 3em;
   width: 3em;;
   box-shadow: #000;
+  cursor: pointer;
+
   /* border: 1px solid rgb(5, 5, 5); */
 
 }
@@ -370,6 +438,8 @@ h1 {
   z-index: 1000;
   color: white;
 } */
+
+
 
 .maxDimensions {
   max-width: 60em;
@@ -1261,14 +1331,10 @@ form.review-form input[type="file"]::file-selector-button:hover {
 
 /* Adding Answer Button */
 
-.hyperlink:hover {
-  color:rgb(131, 38, 171)
-}
-
 /* Answer List */
 .answer-list {
   overflow-y: auto;
-  height: 10.6em;
+  /* height: 10.6em; */
 }
 
 /* Question Below Bar */
@@ -1300,6 +1366,50 @@ form.review-form input[type="file"]::file-selector-button:hover {
   margin-top: 1em;
 }
 
+@media screen and (max-width: 800px) {
+  body{margin-left: 1em; 
+    margin-right: 0em;
+    float: center;
+  }
+
+  .margins-nonOverview {
+    margin-left:3%;
+    margin-right:0%;
+  }
+
+  .overviewContainer {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+  }
+  .photoList {
+    visibility:hidden;
+  }
+
+  #primary-img {
+    min-width: 30em;
+    max-width: none;
+    object-fit: cover;
+    margin-top: 2em;
+  }
+  .styleContainer {
+    max-width: 20em;
+    
+  }
+  .imageGallery {
+    display:flex;
+    flex-direction: column;
+
+  }
+  #main-img {
+    position:static;
+    margin-left: 0em;
+  }
+
+
+}
 
 /* .size-radio-buttons {
   display: inline-flex;
