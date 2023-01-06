@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CartForm = (props) => {
 
   const handleDelete = (event) => {
     event.preventDefault();
-    alert(`Your cart has been emptied!`)
+    
+    toast(`Your cart has been emptied!`)
     props.onClickDeleteCart();
   }
 
@@ -16,7 +19,7 @@ const CartForm = (props) => {
       </div>
       <br/>
       <div className='buttonCartContain'>
-        <button className='button-add-to-outfit buttonCartPopUp' onClick={handleDelete}>
+        <button className='button-add-to-outfit' id="buttonCartPopUp" onClick={handleDelete}>
           Empty Shopping Cart
         </button>
       </div>

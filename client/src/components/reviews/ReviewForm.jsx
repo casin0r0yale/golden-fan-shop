@@ -12,8 +12,8 @@ const ReviewForm = (props) => {
   const [lengthText, setLengthText] = useState('');
   const [fitText, SetFitText] = useState('');
   const [images, setImages] = useState([]);
-  const [summaryDefault, setSummaryDefault] = useState('Example: Best Purchase Ever!');
-  const [bodyDefault, setBodyDefault] = useState('Why did you like the product or not?');
+  const [summaryDefault, setSummaryDefault] = useState('');
+  const [bodyDefault, setBodyDefault] = useState('');
 
   const summaryClick = (event) => {
     setSummaryDefault(null);
@@ -342,7 +342,7 @@ const ReviewForm = (props) => {
         <br></br>
         <label>
           <h3>Review Summary</h3>
-          <textarea onClick={summaryClick} className="review-summary" type="text" name="summary" maxLength="60">
+          <textarea onClick={summaryClick} placeholder="Example: Best Purchase Ever!" className="review-summary" type="text" name="summary" maxLength="60">
             {summaryDefault}
           </textarea>
         </label>
@@ -350,7 +350,7 @@ const ReviewForm = (props) => {
           <br></br>
         <label>
           <h3>Review Body</h3>
-          <textarea onClick={bodyClick} className="review-body" type="text" name="body" minLength="50" maxLength="1000" onChange={handleCharCount}>
+          <textarea onClick={bodyClick} className="review-body" type="text" name="body" minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" onChange={handleCharCount}>
             {bodyDefault}
           </textarea>
           {(charsLeft > 0) ? <p className="word-count"> Minimum required characters left: {charsLeft}</p> : null}

@@ -4,6 +4,8 @@ import ReviewList from './ReviewList.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import Popup from '../Popup.jsx';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Reviews = (props) => {
   var incomingList = props.reviewList;
@@ -58,9 +60,9 @@ const Reviews = (props) => {
     var revSubmission = object;
     axios.post('/submitReview', revSubmission)
     .then((success) => {
+      toast("Thank you for submitting your review!")
       setIsOpen(false);
       forceUpdate();
-      alert('Review has been submitted!');
     })
     .catch((err) => {
       console.error('Error submitting post: ', err);
@@ -222,11 +224,11 @@ const Reviews = (props) => {
   }
 
   return (
-    <div id="reviews" widgetname="Ratings/Reviews" className="review-module" data-testid="reviews-module">
+    <div id="reviews" widgetname="Ratings/Reviews" className="review-module section" data-testid="reviews-module">
       <div widgetname="Ratings/Reviews" className="rating-breakdown">
         <RatingBreakdown rating={props.rating} meta={meta} reviewList={props.reviewList} starSort={starSort} fiveStar={fiveStar} fourStar={fourStar} threeStar={threeStar} twoStar={twoStar} oneStar={oneStar} toggle={starFilterToggle} clear={clearFilters}/>
       </div>
-      <div widgetname="Ratings/Reviews">
+      <div className="reviewList" widgetname="Ratings/Reviews">
         <h3 widgetname="Ratings/Reviews" className="reviewList-title">
           {numReviews} reviews, sorted by &nbsp;
           <select widgetname="Ratings/Reviews-Sort" name="sort-options" className="reviewList-sort-button" onChange={sortBy}>
