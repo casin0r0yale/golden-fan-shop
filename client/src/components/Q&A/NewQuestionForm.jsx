@@ -25,7 +25,7 @@ var NewQuestionForm = (props) => {
         <label for="email" widgetname="Questions/Answers">Email:</label><br></br>
         <input type="email" name="email" id="email" placeholder="Why did you like this product or not?" maxLength="60" widgetname="Questions/Answers" required/><br></br><br></br>
         <b widgetname="Questions/Answers">For authentication reasons, you will not be emailed.</b><br></br>
-        <input type="submit"/>
+        <input type="submit" className="submit-button"/>
       </form>
     </div>
   );

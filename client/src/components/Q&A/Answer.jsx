@@ -44,9 +44,9 @@ var Answer = (props) => {
       }
 
       return (
-        <div widgetname="Questions/Answers">
-          <p widgetname="Questions/Answers">A:  {currentAnswer.body}</p>
-          <p widgetname="Questions/Answers"> by {currentAnswer.answerer_name.indexOf('Seller') > -1 ? <b>{currentAnswer.answerer_name}</b> : currentAnswer.answerer_name}, {answerDate}  |  Helpful? {isHelpful ? <a widgetname="Questions/Answers">Yes({currentAnswer.helpfulness + 1}</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes({currentAnswer.helpfulness})</a> } |  {isReported ? <a widgetname="Questions/Answers"> REPORTED </a> : <a onClick={toggleReport} className="hyperlink" widgetname="Questions/Answers">Report Answer</a>}</p>
+        <div style={{marginBottom:"1.2em"}} widgetname="Questions/Answers">
+          <h3 style={{display: "inline"}} widgetname="Questions/Answers">A:</h3> <div style={{display: "inline"}}>{currentAnswer.body}</div>
+          <p widgetname="Questions/Answers"> <span style={{fontSize:".8em", color: 'gray'}}>by {currentAnswer.answerer_name.indexOf('Seller') > -1 ? <b>{currentAnswer.answerer_name}</b> : currentAnswer.answerer_name}, {answerDate}  |  Helpful? </span>{isHelpful ? <a widgetname="Questions/Answers">Yes({currentAnswer.helpfulness + 1})</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes({currentAnswer.helpfulness})</a> } |  {isReported ? <a widgetname="Questions/Answers"> REPORTED </a> : <a onClick={toggleReport} className="hyperlink" widgetname="Questions/Answers">Report Answer</a>}</p>
           <div>
             {currentAnswer.photos.length ? currentAnswer.photos.map((photo, index) => {
               return(
