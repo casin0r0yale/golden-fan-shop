@@ -366,32 +366,27 @@ h1 {
   cursor: pointer;
 }
 
-/* 
-#main-img::before,
-#main-img::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.5));
-  pointer-events: none;
+/* #main-img::before {
+  background-image: -moz-linear-gradient( 90deg, rgb(252, 227, 138) 0%, rgb(243, 129, 129) 100%);
+  background-image: -webkit-linear-gradient( 90deg, rgb(252, 227, 138) 0%, rgb(243, 129, 129) 100%);
+  background-image: -ms-linear-gradient( 90deg, rgb(252, 227, 138) 0%, rgb(243, 129, 129) 100%);
 }
 
-.image-container::before {
-  left: 0;
-}
-
-.image-container::after {
-  right: 0;
+.arrowFlex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: center;
 }
 
 .arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+      order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
   font-size: 2rem;
-  color: white;
+  color: black;
   cursor: pointer;
   visibility: hidden;
   opacity: 0;
@@ -399,11 +394,9 @@ h1 {
 }
 
 .arrow.left {
-  left: 0;
 }
 
 .arrow.right {
-  right: 0;
 }
 
 #main-img:hover .arrow {
@@ -454,14 +447,6 @@ h1 {
   border: 1px solid rgb(5, 5, 5);
   float: center;
 }
-
-
-
-/* #primary-img:hover {
-  z-index: 1000;
-  background: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),
-
-} */
 
 .photoList {
   position: absolute;
