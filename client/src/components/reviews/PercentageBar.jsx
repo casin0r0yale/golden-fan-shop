@@ -6,8 +6,6 @@ const PercentageBar = (props) => {
   const containerStyles = {
     height: 5,
     width: '65%',
-    // height: 10,
-    // width: '75%',
     backgroundColor: "#e0e0de",
     borderRadius: 5
   }

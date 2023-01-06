@@ -56,11 +56,10 @@ const Reviews = (props) => {
   const forceUpdate = useForceUpdate();
 
   const handleFormSubmit = (object) => {
-    console.log('this is the form object:', object);
+    // console.log('this is the form object:', object);
     var revSubmission = object;
     axios.post('/submitReview', revSubmission)
     .then((success) => {
-      console.log('Success form post!')
       toast("Thank you for submitting your review!")
       setIsOpen(false);
       forceUpdate();
@@ -225,7 +224,7 @@ const Reviews = (props) => {
   }
 
   return (
-    <div id="reviews" widgetname="Ratings/Reviews" className="review-module" data-testid="reviews-module">
+    <div id="reviews" widgetname="Ratings/Reviews" className="review-module section" data-testid="reviews-module">
       <div widgetname="Ratings/Reviews" className="rating-breakdown">
         <RatingBreakdown rating={props.rating} meta={meta} reviewList={props.reviewList} starSort={starSort} fiveStar={fiveStar} fourStar={fourStar} threeStar={threeStar} twoStar={twoStar} oneStar={oneStar} toggle={starFilterToggle} clear={clearFilters}/>
       </div>

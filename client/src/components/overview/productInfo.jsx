@@ -13,7 +13,7 @@ const ProductInfo = (props) => {
   const [favorited, setFavorited] = useState(false);
   const [heartClicked, setHeartClicked] = useState(false);
 
-  console.log(props.info)
+  // console.log(props.info)
   const onClickYourOutfit = () => {
     console.log('clicked')
     props.onClickYourOutfit();

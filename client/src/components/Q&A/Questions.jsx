@@ -32,7 +32,7 @@ var Questions = (props) => {
   })
 
   const changeFilter = (e) => {
-    setFilter(e.target.value);
+    e.target.value.length >= 3 ? setFilter(e.target.value) : setFilter('');
     console.log(filteredQuestions);
   }
 
@@ -63,17 +63,17 @@ var Questions = (props) => {
   const mappedQuestions = filteredQuestions.slice(0, questionIndex);
 
   return (
-    <div data-testid="question-module">
+    <div className="section" data-testid="question-module">
       <p widgetname="Questions/Answers">QUESTIONS &amp; ANSWERS</p>
       <div>
-        <div className="wrap">
+        {/* <div className="wrap"> */}
           <div className="search">
             <input className="form-control" type="text" onChange={changeFilter} widgetname="Questions/Answers"/>
-            <button className="searchButton">
+            <button  className="searchButton">
               <i className="fa fa-search"></i>
             </button>
           </div>
-        </div>
+        {/* </div> */}
         <div className="question-block">
         {mappedQuestions.map((question, index) => {
           var questionHelpfulness = question.question_helpfulness;
@@ -119,7 +119,7 @@ var Questions = (props) => {
           );
           })}
           </div>
-          {(mappedQuestions.length >= props.data.length) ? null : <button className="answer-btn" onClick={loadMoreQuestions} widgetname="Questions/Answers">More Answered Questions</button>}
+          {((mappedQuestions.length >= props.data.length) || filteredQuestions.length <= 2) ? null : <button className="answer-btn" onClick={loadMoreQuestions} widgetname="Questions/Answers">More Answered Questions</button>}
           <button onClick={toggleQuestionPopup} widgetname="Questions/Answers" className="new-question-btn">Add A New Question</button>
       </div>
     </div>

@@ -105,21 +105,24 @@ const ComparisonTable = (props) => {
   }, [])
 
   return (
-  <div widgetname="Related/YourOutfit" className="row" data-testid='CompareTableTest'>
-    <div widgetname="Related/YourOutfit" className="compareLeft">COMPARING</div><br/><br/>
-
+  <div widgetname="Related/YourOutfit" data-testid='CompareTableTest'>
+    <div className='row'>
+      <div widgetname="Related/YourOutfit" style={{fontSize: ".7em"}} className="compareLeftName">COMPARING <br/></div>
+    </div>
+  <div>
+  <div style={{margin: ".8em 20%",  gridTemplateColumns: "1fr .25fr 1fr" }} className="row">
     <div widgetname="Related/YourOutfit" className="compareLeftName">{primaryName}</div>
-    <div widgetname="Related/YourOutfit" className="compareRightName">{props.related_name}</div><br/><br/><br/>
-
+    <div></div>
+    <div widgetname="Related/YourOutfit" className="compareRightName">{props.related_name}</div><br/>
+  </div>
     {fullListFeatures.map((item, index) => { return (
-      <div widgetname="Related/YourOutfit" key={index}>
+      <div widgetname="Related/YourOutfit" className="row" key={index}>
         <div widgetname="Related/YourOutfit" className="compareLeft" style={{opacity: item[0]}}>&#x2713;</div>
         <div widgetname="Related/YourOutfit" className="compareMiddleColumn"> <a widgetname="Related/YourOutfit" className="boldFont">{item[1]}</a> <a widgetname="Related/YourOutfit">{ ' ' + item[2]}</a> </div>
         <div widgetname="Related/YourOutfit" className="compareRight" style={{opacity: item[3]}}>&#x2713;</div>
       </div>
     )})}
-
-
+  </div>
   </div>
   )
 }
