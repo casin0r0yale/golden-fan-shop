@@ -55,7 +55,7 @@ const ImageGallery = (props) => {
           {primaryImageIndex === props.styles[props.styleIndex]?.photos.length - 1
             ? <div></div>
             :
-            <BsChevronDown
+            <BsChevronDown 
               size="1.5em" color="gray" className="down-Arrow" onClick={() => arrowClicked(1)} />
           }
         </div>   
