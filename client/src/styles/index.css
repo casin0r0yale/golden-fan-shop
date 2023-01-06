@@ -1486,9 +1486,30 @@ form.review-form input[type="file"]::file-selector-button:hover {
   }
 
   .photoList {
-    visibility: hidden;
+    position: absolute;
+    display: grid;
+    grid-template-columns: .5fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0 1.5em;
+    /* left: -4em; */
+    align-items: center;
+    left:2em;
+    margin-top: 1em;
+  }
+  .up-Arrow {
+    transform: rotate(-90deg);
+    fill: white;
+  }
+
+  .down-Arrow {
+    transform: rotate(-90deg);
+    fill: white;
 
   }
+
+  .onePhoto {
+    box-shadow: 3px 3px 1.5px 0px rgba(0,0,0,0.30);
+  }
+
 
 
   .addToCart {
