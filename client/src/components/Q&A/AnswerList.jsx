@@ -76,7 +76,7 @@ var AnswerList = (props) => {
         //     }) : null }
         //   </div>
         // </div>
-        <div>
+        <div widgetname="Questions/Answers" key={index}>
           <Answer data={currentAnswer}/>
         </div>
       );

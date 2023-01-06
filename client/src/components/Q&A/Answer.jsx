@@ -48,9 +48,9 @@ var Answer = (props) => {
           <p widgetname="Questions/Answers">A:  {currentAnswer.body}</p>
           <p widgetname="Questions/Answers"> by {currentAnswer.answerer_name.indexOf('Seller') > -1 ? <b>{currentAnswer.answerer_name}</b> : currentAnswer.answerer_name}, {answerDate}  |  Helpful? {isHelpful ? <a widgetname="Questions/Answers">Yes({currentAnswer.helpfulness + 1}</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes({currentAnswer.helpfulness})</a> } |  {isReported ? <a widgetname="Questions/Answers"> REPORTED </a> : <a onClick={toggleReport} className="hyperlink" widgetname="Questions/Answers">Report Answer</a>}</p>
           <div>
-            {currentAnswer.photos.length ? currentAnswer.photos.map(photo => {
+            {currentAnswer.photos.length ? currentAnswer.photos.map((photo, index) => {
               return(
-                <div>
+                <div key={index}>
                   <img className="answer-image"src={photo} alt="photo" widgetname="Questions/Answers" onClick={() => toggleImageExpand(photo)}/>
                   {isImageExpanded && <Popup handleClose={toggleImageExpand} content={<ExpandedImage url={imgLink}/>}/>}
                 </div>

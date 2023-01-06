@@ -106,7 +106,7 @@ var Questions = (props) => {
           }
 
           return (
-            <div>
+            <div widgetname="Questions/Answers" key={index}>
             {/* // <div widgetname="Questions/Answers" key={index}>
             //   <h4 key={index} widgetname="Questions/Answers">Q: {question.question_body}</h4>
             //   <div className="question-below-bar" widgetname="Questions/Answers">
