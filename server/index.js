@@ -8,10 +8,16 @@ const cors = require("cors");
 const initGetData = require("./controllers/initGetData.js");
 const postData = require('./controllers/postData.js');
 const putData = require('./controllers/putData.js');
+//for image uploads
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' });
 
+const deleteData = require('./controllers/deleteData.js');
+const compression = require('compression');
 
 app.use(express.json());
 app.use(cors()); // Not sure if needed
+app.use(compression())
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/ip/:id', express.static(__dirname + '/../client/dist'));
@@ -36,6 +42,10 @@ app.get('/getProductReviewMeta', initGetData.getProductReviewMeta);
 
 app.get('/getProductQnA', initGetData.getProductQnAControl);
 
+app.post('/uploadImg', upload.any(), postData.postImg);
+
+app.get('/getCart', initGetData.getCart);
+
 app.post('/submitReview', postData.postReviewForm);
 
 app.post('/submitQuestion', postData.postQuestionForm);
@@ -43,6 +53,10 @@ app.post('/submitQuestion', postData.postQuestionForm);
 app.post('/submitAnswer', postData.postAnswerForm);
 
 app.post('/clickTrackPost', postData.postClickTrack);
+
+app.post('/addToCart', postData.postAddToCart);
+
+app.delete('/deleteCart', deleteData.deleteCart);
 
 app.put('/helpClick', putData.putHelpClick);
 

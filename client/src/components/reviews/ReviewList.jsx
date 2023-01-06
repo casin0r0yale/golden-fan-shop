@@ -5,7 +5,6 @@ import { IoMdAdd } from 'react-icons/io';
 const ReviewList = (props) => {
   var numReviews = props.reviewList.length;
   var reviewList = props.reviewList;
-  // console.log('this is my reviewList: ', reviewList);
   const postPerClick = 2;
   const [next, setNext] = useState(postPerClick);
 

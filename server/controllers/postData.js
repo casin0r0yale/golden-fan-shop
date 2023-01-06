@@ -1,4 +1,6 @@
 const axios = require('axios');
+const cloudinary = require('../cloudinary');
+const uploader = require('../multer');
 
 exports.postReviewForm = (req, res) => {
 
@@ -85,6 +87,44 @@ exports.postClickTrack = (req, res) => {
   })
   .catch((error) => {
     console.log('failure in the api click track server: ', error);
+    res.status(500).send(error);
+  });
+}
+
+exports.postImg = (req, res) => {
+  var imgFile = req.files[0].path;
+
+  cloudinary.v2.uploader.upload(imgFile)
+  .then((results) => {
+    var imgURL = results.url;
+    console.log('success POST img url: ', imgURL);
+    res.status(201).send(JSON.parse(JSON.stringify(imgURL)));
+  })
+  .catch((error) => {
+    console.log('error getting img url', error);
+    res.status(500).send(error);
+  });
+}
+
+exports.postAddToCart = (req, res) => {
+
+  var cartData = req.body.params;
+
+  var options = {
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart',
+    method: 'POST',
+    headers: { Authorization: process.env.AUTH_SECRET },
+    "Content-Type": 'application/json',
+    data: cartData
+  };
+
+  axios(options)
+  .then((results) => {
+    var cartSuccess = JSON.parse(JSON.stringify(results.data));
+    res.status(201).send(cartSuccess);
+  })
+  .catch((error) => {
+    console.log('failure in the api add to cart: ', error);
     res.status(500).send(error);
   });
 }

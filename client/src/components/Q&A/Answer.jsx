@@ -6,6 +6,7 @@ import axios from 'axios';
 var Answer = (props) => {
   const [isHelpful, setIsHelpful] = useState(false);
   const [isReported, setIsReported] = useState(false);
+  const [imgLink, setImgLink] = useState('');
   const [isImageExpanded, setIsImageExpanded] = useState(false);
 
 
@@ -37,20 +38,21 @@ var Answer = (props) => {
         })
       }
 
-      const toggleImageExpand = () => {
+      const toggleImageExpand = (link) => {
         setIsImageExpanded(!isImageExpanded);
+        setImgLink(link)
       }
 
       return (
         <div widgetname="Questions/Answers">
           <p widgetname="Questions/Answers">A:  {currentAnswer.body}</p>
-          <p widgetname="Questions/Answers"> by {currentAnswer.answerer_name}, {answerDate}  |  Helpful? {isHelpful ? <a widgetname="Questions/Answers">Yes({currentAnswer.helpfulness + 1})</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes({currentAnswer.helpfulness})</a> } |  {isReported ? <a widgetname="Questions/Answers"> REPORTED </a> : <a onClick={toggleReport} className="hyperlink" widgetname="Questions/Answers">Report Answer</a>}</p>
+          <p widgetname="Questions/Answers"> by {currentAnswer.answerer_name.indexOf('Seller') > -1 ? <b>{currentAnswer.answerer_name}</b> : currentAnswer.answerer_name}, {answerDate}  |  Helpful? {isHelpful ? <a widgetname="Questions/Answers">Yes({currentAnswer.helpfulness + 1}</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes({currentAnswer.helpfulness})</a> } |  {isReported ? <a widgetname="Questions/Answers"> REPORTED </a> : <a onClick={toggleReport} className="hyperlink" widgetname="Questions/Answers">Report Answer</a>}</p>
           <div>
             {currentAnswer.photos.length ? currentAnswer.photos.map(photo => {
               return(
                 <div>
-                  <img className="answer-image"src={photo} alt="photo" widgetname="Questions/Answers" onClick={toggleImageExpand}/>
-                  {isImageExpanded && <Popup handleClose={toggleImageExpand} content={<ExpandedImage url={photo}/>}/>}
+                  <img className="answer-image"src={photo} alt="photo" widgetname="Questions/Answers" onClick={() => toggleImageExpand(photo)}/>
+                  {isImageExpanded && <Popup handleClose={toggleImageExpand} content={<ExpandedImage url={imgLink}/>}/>}
                 </div>
               );
             }) : null }

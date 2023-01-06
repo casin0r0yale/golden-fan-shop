@@ -9,11 +9,18 @@ var AnswerList = (props) => {
   var answerObjList = Object.keys(props.answers);
 
   const [answerIndex, setAnswerIndex] = useState(2);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   var renderedAnswers = answerObjList.slice(0, answerIndex);
 
   var loadAnswers = () => {
+    setIsCollapsed(!isCollapsed);
     setAnswerIndex(answerObjList.length + 1);
+  }
+
+  var collapseAnswers = () => {
+    setIsCollapsed(!isCollapsed);
+    setAnswerIndex(2);
   }
 
   // const [isHelpful, setIsHelpful] = useState(false);
@@ -75,7 +82,8 @@ var AnswerList = (props) => {
       );
     })}
 
-    {(answerObjList.length > 2) ? <b onClick={loadAnswers} widgetname="Questions/Answers">LOAD MORE ANSWERS</b> : null}
+    {(answerObjList.length > 2) && isCollapsed ? <b onClick={loadAnswers} widgetname="Questions/Answers">LOAD MORE ANSWERS</b> : null}
+    {(!isCollapsed ? <b onClick={collapseAnswers} widgetname="Questions/Answers">COLLAPSE ANSWERS</b> : null)}
   </div>
   );
 };

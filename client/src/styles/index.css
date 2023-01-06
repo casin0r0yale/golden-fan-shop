@@ -346,10 +346,9 @@ h1 {
 
 .onePhoto {
   height: 3em;
-  width: 3em;;
+  width: 3em;
   box-shadow: #000;
   /* border: 1px solid rgb(5, 5, 5); */
-
 }
 
 .selectedImage {
@@ -358,11 +357,20 @@ h1 {
 
 }
 
-/* .up-Arrow {
-  top: 0;
+.textCartPopUp {
+  text-align: center;
   z-index: 1000;
-  color: white;
-} */
+  color: rgb(5, 5, 5);
+}
+
+.buttonCartContain {
+  display: grid;
+}
+
+.buttonCartPopUp {
+  /* position: absolute; */
+  margin: auto;
+}
 
 /* .down-Arrow {
   position: absolute;
@@ -501,6 +509,10 @@ h1 {
   border: 1px solid #999;
   overflow: auto;
   z-index: 91;
+}
+
+.form-box .review-thumbnail-popup {
+  width: 100%;
 }
 
 .close-icon {
@@ -877,6 +889,16 @@ h1 {
   flex-direction: row;
 }
 
+.helpful-report a {
+  color: rgb(100, 100, 100);
+  text-decoration: underline;
+  font-size: .8em;
+}
+
+.helpful-report a:hover {
+  color:rgb(131, 38, 171)
+}
+
 .average-number {
   font-size: 3em;
   margin-right: .25em;
@@ -993,7 +1015,7 @@ h1 {
 
 .filter-label-group {
   display: flex;
-  font-size: .25em;
+  font-size: .50em;
   justify-content: flex-start;
 }
 
@@ -1156,7 +1178,7 @@ form.review-form textarea {
 
 .review-image-thumbnail {
   width: auto;
-  height: 3em;
+  height: 7em;
   margin-top: .5em;
   margin-bottom: 1em;
   margin-left: .25em;
@@ -1313,12 +1335,4 @@ form.review-form input[type="file"]::file-selector-button:hover {
   margin-top: 1em;
 }
 
-
-/* .size-radio-buttons {
-  display: inline-flex;
-  flex-direction: column-reverse;
-  align-items: center;
-
-
-*/
 
