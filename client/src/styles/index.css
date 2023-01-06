@@ -15,15 +15,6 @@ body {
   /* float: left; */
 }
 
-/* @media screen and (max-width: 1000px) {
-  body {
-      font-size: 60px;
-  }
-  .a{
-      font-size: 35px;
-  }
-} */
-
 h1 {
   color: rgb(31, 31, 31);
   float: left;
@@ -56,7 +47,7 @@ h1 {
   display: flex;
   position: absolute;
   justify-content: center;
-  top: 10em;
+  top: 4.7em;
   left: 50%;
 }
 

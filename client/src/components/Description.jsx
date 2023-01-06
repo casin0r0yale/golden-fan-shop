@@ -74,6 +74,7 @@ const Description = (props) => {
         console.error(err)
       } finally {
         setFullListFeaturesDesc(compareMasterFiltered);
+        // debugger here for positioning of init Spinner and Description Module
       }
     })(jsonString)
 
@@ -100,8 +101,6 @@ const Description = (props) => {
               </div>
             )
           })}
-
-
         </div>
       </div>
     </div>
