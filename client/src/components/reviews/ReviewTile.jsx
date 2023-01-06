@@ -55,15 +55,15 @@ const ReviewTile = (props) => {
         <ProductRating widgetname="Review Tile" rating={props.review.rating} />
         <p widgetname="Review Tile"><AiFillCheckCircle />&nbsp;{props.review.reviewer_name}, {date}</p>
       </div>
-      <h5 widgetname="Review Tile">{props.review.summary}</h5>
+      <h5 style={{margin: "-.5em"}} widgetname="Review Tile">{props.review.summary}</h5>
       <div widgetname="Review Tile" data-testid="review-images">
         {(photoArr.length !== 0) ? photoArr.map((url, idx) => {
           return <img widgetname="Review Tile" className="review-image" src={url} key={idx} onClick={() => handleImgPopUp(url)}/>
         }) : null}
       </div>
-      <p widgetname="Review Tile">{props.review.body}</p>
+      <p style={{marginBottom: "-.2em"}} widgetname="Review Tile">{props.review.body}</p>
       <div widgetname="Review Tile" className="helpful-report">
-        <p widgetname="Review Tile">Helpful? <a widgetname="Review Tile" onClick={() => helpClick(props.review.review_id)}>Yes({(helpful) ? props.review.helpfulness + 1 : props.review.helpfulness})</a>&nbsp;|&nbsp;</p>
+        <p widgetname="Review Tile"><span style={{fontSize:".8em"}}>Helpful? </span><a widgetname="Review Tile" onClick={() => helpClick(props.review.review_id)}>Yes({(helpful) ? props.review.helpfulness + 1 : props.review.helpfulness})</a>&nbsp;|&nbsp;</p>
         <p widgetname="Review Tile" onClick={() => reportClick(props.review.review_id)}><a>Report</a></p>
       </div>
       {isOpen && <Popup

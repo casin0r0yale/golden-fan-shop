@@ -54,9 +54,9 @@ var Answer = (props) => {
         })
       }
       return (
-        <div widgetname="Questions/Answers" key={index}>
-          <p widgetname="Questions/Answers">A:  {currentAnswer.body}</p>
-          <p widgetname="Questions/Answers"> by {currentAnswer.answerer_name}, {answerDate}  |  Helpful? <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes({currentAnswer.helpfulness})</a>  |  <a onClick={toggleReport} className="hyperlink" widgetname="Questions/Answers">Report Answer</a></p>
+        <div style={{marginBottom:"1.2em"}} widgetname="Questions/Answers" key={index}>
+          <h3 style={{display: "inline"}} widgetname="Questions/Answers">A:</h3> <div style={{display: "inline"}}>{currentAnswer.body}</div>
+          <p widgetname="Questions/Answers"> <span style={{fontSize:".8em", color: 'gray'}}>by {currentAnswer.answerer_name}, {answerDate}  |  Helpful? </span><a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes({currentAnswer.helpfulness})</a>  |  <a onClick={toggleReport} className="hyperlink" widgetname="Questions/Answers">Report Answer</a></p>
           <div>
             {currentAnswer.photos.length ? currentAnswer.photos.map(photo => {
               return(
@@ -71,7 +71,7 @@ var Answer = (props) => {
       );
     })}
 
-    {(answerObjList.length > 2) ? <b onClick={loadAnswers} widgetname="Questions/Answers">LOAD MORE ANSWERS</b> : null}
+    {(answerObjList.length > 2) ? <b style={{margin: "2.5em 0em 1em 0em"}} onClick={loadAnswers} widgetname="Questions/Answers">LOAD MORE ANSWERS</b> : null}
   </div>
   );
 };

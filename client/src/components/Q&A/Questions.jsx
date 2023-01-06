@@ -68,7 +68,7 @@ var Questions = (props) => {
       <div>
         {/* <div className="wrap"> */}
           <div className="search">
-            <input className="form-control" type="text" onChange={changeFilter} widgetname="Questions/Answers"/>
+            <input className="form-control" type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={changeFilter} widgetname="Questions/Answers"/>
             <button  className="searchButton">
               <i className="fa fa-search"></i>
             </button>
@@ -105,10 +105,11 @@ var Questions = (props) => {
           }
 
           return (
-            <div widgetname="Questions/Answers" key={index}>
-              <h4 key={index} widgetname="Questions/Answers">Q: {question.question_body}</h4>
-              <div className="question-below-bar" widgetname="Questions/Answers">
-                <p widgetname="Questions/Answers">Helpful? {isHelpful ? <a widgetname="Questions/Answers">Yes ({questionHelpfulness})</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes ({questionHelpfulness})</a>} | <a onClick={toggleAnswerPopup} className="hyperlink" widgetname="Questions/Answers">Add An Answer</a> | {(isReported) ? <a widgetname="Questions/Answers">Reported</a> : <a onClick={toggleReported} widgetname="Questions/Answers" className="hyperlink">Report Question</a>}</p>
+            <div style={{marginBottom: "1.5em"}}  widgetname="Questions/Answers" key={index}>
+              <div style={{margin: "2em 0em 1.2em 0em"}}><h3 style= {{display: "inline"}} key={index} widgetname="Questions/Answers">Q:</h3> <p style= {{display: "inline"}}>{question.question_body}</p>
+              <div style= {{display: "inline", float: "right"}} className="question-below-bar" widgetname="Questions/Answers">
+                <div widgetname="Questions/Answers"><span style={{fontSize:".8em"}}>Helpful?</span> {isHelpful ? <a widgetname="Questions/Answers">Yes ({questionHelpfulness})</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes ({questionHelpfulness})</a>} | <a onClick={toggleAnswerPopup} className="hyperlink" widgetname="Questions/Answers">Add An Answer</a> | {(isReported) ? <a widgetname="Questions/Answers">Reported</a> : <a onClick={toggleReported} widgetname="Questions/Answers" className="hyperlink">Report Question</a>}</div>
+                </div>
               </div>
               <Answer answers={question.answers}/>
               <div>
