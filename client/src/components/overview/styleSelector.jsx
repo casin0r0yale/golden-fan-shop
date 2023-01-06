@@ -19,14 +19,14 @@ const StyleSelector = (props) => {
             <div widgetname="Overview" key={index}>
               <div widgetname="Overview"  className="styleGroup">
                 <div widgetname="Overview"  className="selected">&#8202; &#x2713;</div>
-                <img  widgetname="Overview" className="stylePreview" src={product.photos[0].thumbnail_url} onClick={() => props.onClick(index)} />
+                <img  widgetname="Overview" className="stylePreview" src={product.photos[0].thumbnail_url} onClick={() => props.onClick(index)} alt="..."/>
               </div>
             </div>
             :
             <div widgetname="Overview" key={index}>
 
               <div widgetname="Overview"  className="styleGroup">
-                <img  widgetname="Overview" className="stylePreview" src={product.photos[0].thumbnail_url} onClick={() => props.onClick(index)} />
+                <img  widgetname="Overview" className="stylePreview" src={product.photos[0].thumbnail_url} onClick={() => props.onClick(index)} alt="..."/>
               </div>
             </div>
 

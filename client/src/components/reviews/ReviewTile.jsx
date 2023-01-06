@@ -58,7 +58,7 @@ const ReviewTile = (props) => {
       <p widgetname="Review Tile">{props.review.summary}</p>
       <div widgetname="Review Tile" data-testid="review-images">
         {(photoArr.length !== 0) ? photoArr.map((url, idx) => {
-          return <img widgetname="Review Tile" className="review-image" src={url} key={idx} onClick={() => handleImgPopUp(url)}/>
+          return <img widgetname="Review Tile" className="review-image" src={url} key={idx} onClick={() => handleImgPopUp(url)} alt="..."/>
         }) : null}
       </div>
       <p widgetname="Review Tile">{props.review.body}</p>
