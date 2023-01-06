@@ -311,7 +311,7 @@ const App = () => {
       <Overview rating={rating} serverError={serverError} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} onClickAddToCart={onClickAddToCart} />
       <div className="margins-nonOverview">
         <Description slogan={productInfo.slogan} desc={productInfo.description} featuresPrimaryProductString={featuresPrimaryProduct} />
-        <div widgetname="Related/YourOutfit">RELATED PRODUCTS</div>
+        <div className="section" widgetname="Related/YourOutfit">RELATED PRODUCTS</div>
 
         <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef} widgetname="Related Products">
         <Suspense fallback={<img src={Spinner} alt="Loading..."/>}>
