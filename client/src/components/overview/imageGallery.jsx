@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 // import { v4 as uuidv4 } from 'uuid';
 // import SpecificImage from './SpecificImage.jsx';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BsChevronDown } from 'react-icons/bs';
 import { BsChevronUp } from 'react-icons/bs';
 import { AiOutlineExpand } from 'react-icons/ai';
+const Spinner = require('../../img/spiffygif_46x46.gif');
 
 
 
@@ -31,8 +32,8 @@ const ImageGallery = (props) => {
   return (
     <div widgetname="Overview" data-testid='testImageGallery'>
       <div widgetname="Overview" id="main-img">
-        <img widgetname="Overview" id="primary-img" className="maxDimensions" src={props.styles[props.styleIndex]?.photos[primaryImageIndex].url}
-          onClick={() => { props.setExpandedView(true); props.setPrimaryImageIndex(primaryImageIndex); }} alt="..."/>
+          <img widgetname="Overview" id="primary-img" className="maxDimensions" src={props.styles[props.styleIndex]?.photos[primaryImageIndex].url}
+            onClick={() => { props.setExpandedView(true); props.setPrimaryImageIndex(primaryImageIndex); }}/>
         < AiOutlineExpand onClick={() => { props.setPrimaryImageIndex(primaryImageIndex); props.setExpandedView(true); }} size="1.5em" color="white" className="expanded" />
 
         <div className='photoList'>
@@ -43,7 +44,7 @@ const ImageGallery = (props) => {
           {props.styles[props.styleIndex]?.photos.map((photo, index) => {
             return (
               index >= arrowIndex && index - arrowIndex <= 4 ? (
-                <img key={index} onClick={() => setPrimaryImageIndex(index)} className={index === primaryImageIndex ? "onePhoto selectedImage" : "onePhoto"} src={photo.thumbnail_url} alt="..."/>
+                <img key={index} onClick={() => setPrimaryImageIndex(index)} className={index === primaryImageIndex ? "onePhoto selectedImage" : "onePhoto"} src={photo.thumbnail_url} alt={'Loading...'}/>
               ) : null
             )
           })}
