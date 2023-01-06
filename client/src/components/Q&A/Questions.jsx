@@ -69,9 +69,9 @@ var Questions = (props) => {
       <div>
         {/* <div className="wrap"> */}
           <div className="search">
-            <input className="form-control" type="text" onChange={changeFilter} widgetname="Questions/Answers" placeholder="Say something..."/>
-            <button className="searchButton" name="searchButton" widgetname="Questions/Answers">
-              <i className="fa fa-search" widgetname="Questions/Answers"></i>
+            <input aria-label="search bar" className="form-control" type="text" onChange={changeFilter} widgetname="Questions/Answers" placeholder="Say something..."/>
+            <button aria-label="search button" className="searchButton">
+              <i className="fa fa-search"></i>
             </button>
           </div>
         {/* </div> */}

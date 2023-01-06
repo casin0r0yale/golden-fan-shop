@@ -61,7 +61,7 @@ const RelatedCard = React.forwardRef((props, ref) => {
         </>}
         handleClose={togglePopup}
       />}
-      <button widgetname="Related/YourOutfit" id="star-button-compare" onClick={togglePopup} className="star">
+      <button widgetname="Related/YourOutfit" id="star-button-compare" aria-label="comparison button" onClick={togglePopup} className="star">
         &#9733;
       </button>
       <a widgetname="Related/YourOutfit" href={'/ip/' + props.related_id} style={{textDecoration: 'none'}} onClick={onClickNavigate} >

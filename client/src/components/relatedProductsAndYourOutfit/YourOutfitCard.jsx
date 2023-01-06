@@ -41,7 +41,7 @@ const YourOutfitCard = React.forwardRef((props, ref) => {
           </div>
         </div>
       </a>
-      <button onClick={onClickDeleteProduct} className="close-icon-yourOutfit"><div className='x-icon'></div></button>
+      <button onClick={onClickDeleteProduct} aria-label="remove outfit icon" className="close-icon-yourOutfit"><div className='x-icon'></div></button>
     </div>
   )
 });
