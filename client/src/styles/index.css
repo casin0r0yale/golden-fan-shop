@@ -360,8 +360,53 @@ h1 {
   position: relative;
   margin-left: 11em;
   cursor: pointer;
-
 }
+
+/* 
+#main-img::before,
+#main-img::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.5));
+  pointer-events: none;
+}
+
+.image-container::before {
+  left: 0;
+}
+
+.image-container::after {
+  right: 0;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+.arrow.left {
+  left: 0;
+}
+
+.arrow.right {
+  right: 0;
+}
+
+#main-img:hover .arrow {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+} */
 
 #main-img-expanded {
   position: relative;
@@ -979,6 +1024,7 @@ h1 {
 .review-list {
   width: 30em;
   overflow-y: auto;
+  max-height: 40em;
 }
 
 .helpful-report {
@@ -1500,10 +1546,6 @@ form.review-form input[type="file"]::file-selector-button:hover {
     position:static;
     margin-left: 0em;
   } 
-
-  .review-list {
-    width: 17em;
-  }
 
   .addToCart {
     margin-right: 0em;

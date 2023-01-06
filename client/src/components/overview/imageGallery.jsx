@@ -5,6 +5,8 @@ import React, { useState, useEffect } from 'react';
 import { BsChevronDown } from 'react-icons/bs';
 import { BsChevronUp } from 'react-icons/bs';
 import { AiOutlineExpand } from 'react-icons/ai';
+// import { faChevronLeft } from 'react-icons/fa';
+
 
 
 
@@ -54,6 +56,12 @@ const ImageGallery = (props) => {
               size="1.5em" color="gray" className="down-Arrow" onClick={() => arrowClicked(1)} />
           }
         </div>
+        {/* <div className="arrow left">
+        <i className="fas fa-chevron-left" />
+      </div>
+      <div className="arrow right">
+        <i className="fas fa-chevron-right" />
+      </div> */}
       </div>
     </div>
   )
