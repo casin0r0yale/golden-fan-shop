@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 // import { v4 as uuidv4 } from 'uuid';
 // import SpecificImage from './SpecificImage.jsx';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BsChevronDown } from 'react-icons/bs';
 import { BsChevronUp } from 'react-icons/bs';
 import { AiOutlineExpand } from 'react-icons/ai';
-// import { faChevronLeft } from 'react-icons/fa';
-
+const Spinner = require('../../img/spiffygif_46x46.gif');
 
 
 
@@ -31,13 +30,11 @@ const ImageGallery = (props) => {
 
   // if (props.photos && props.chosenStyle) {
   return (
-    <div widgetname="Overview" data-testid='testImageGallery'>
-      {/* <div className='arrowFlex'> */}
-        
+    <div widgetname="Overview" data-testid='testImageGallery' >
       <div widgetname="Overview" id="main-img">
-  
-        <img widgetname="Overview" id="primary-img" className="maxDimensions" src={props.styles[props.styleIndex]?.photos[primaryImageIndex].url}
-          onClick={() => { props.setExpandedView(true); props.setPrimaryImageIndex(primaryImageIndex); }} alt="..." />
+
+          <img widgetname="Overview" id="primary-img" className="maxDimensions" src={props.styles[props.styleIndex]?.photos[primaryImageIndex].url}
+            onClick={() => { props.setExpandedView(true); props.setPrimaryImageIndex(primaryImageIndex); }} />
         < AiOutlineExpand onClick={() => { props.setPrimaryImageIndex(primaryImageIndex); props.setExpandedView(true); }} size="1.5em" color="white" className="expanded" />
 
         <div className='photoList'>
@@ -58,7 +55,7 @@ const ImageGallery = (props) => {
             <BsChevronDown
               size="1.5em" color="gray" className="down-Arrow" onClick={() => arrowClicked(1)} />
           }
-        </div>   
+        </div>
         </div>
       {/* </div> */}
     </div>

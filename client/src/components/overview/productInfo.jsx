@@ -15,7 +15,7 @@ const ProductInfo = (props) => {
 
   // console.log(props.info)
   const onClickYourOutfit = () => {
-    console.log('clicked')
+    // console.log('clicked')
     props.onClickYourOutfit();
     setFavorited(true);
     setHeartClicked(true);

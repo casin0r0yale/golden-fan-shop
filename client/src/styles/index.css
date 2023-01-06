@@ -47,6 +47,19 @@ h1 {
   color: #fff;
 }
 
+.initSpinnerContainer{
+  display: flex;
+  position: relative
+
+}
+.initSpinner{
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  top: 10em;
+  left: 50%;
+}
+
 .header-left img {
   height: 3em;
 }
@@ -418,8 +431,8 @@ h1 {
 
 .expanded {
   position: absolute;
-  right: 2em;
-  top: 2em;
+  right: 3em;
+  top: 3em;
 }
 
 
@@ -441,7 +454,8 @@ h1 {
   width: 100%;
   display: flex;
   filter: drop-shadow(5px 5px 10px #000);
-
+  top: 1.5em;
+  margin-bottom: 3em;
   /* or inline-flex */
   /* min-width: 30em; */
   position: relative;
@@ -718,14 +732,14 @@ h1 {
 
 .compareLeftName {
   float: left;
-  text-align: left;
+  text-align: center;
   font-weight: bold;
 }
 
 .compareRightName {
   float: left;
   font-weight: bold;
-  text-align: right;
+  text-align: center;
 }
 
 .compareLeft {

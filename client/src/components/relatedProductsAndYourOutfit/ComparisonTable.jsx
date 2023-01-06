@@ -107,10 +107,10 @@ const ComparisonTable = (props) => {
   return (
   <div widgetname="Related/YourOutfit" data-testid='CompareTableTest'>
     <div className='row'>
-      <div widgetname="Related/YourOutfit" style={{fontSize: ".7em"}} className="compareLeftName">COMPARING <br/></div>
+      <div widgetname="Related/YourOutfit" style={{fontSize: ".7em"}} className="compareLeftName">COMPARING <br/><br/></div>
     </div>
   <div>
-  <div style={{margin: ".8em 20%",  gridTemplateColumns: "1fr .25fr 1fr" }} className="row">
+  <div style={{margin: ".8em 7%",  gridTemplateColumns: "1fr .25fr 1fr"}} className="row">
     <div widgetname="Related/YourOutfit" className="compareLeftName">{primaryName}</div>
     <div></div>
     <div widgetname="Related/YourOutfit" className="compareRightName">{props.related_name}</div><br/>

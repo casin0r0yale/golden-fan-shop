@@ -23,7 +23,7 @@ const AddToCart = (props) => {
     setSkuSelected(sku);
     setDropdownExpanded(false);
     setQuantitySelected(1);
-    console.log(Object.keys(sizeSelected).length > 0)
+    // console.log(Object.keys(sizeSelected).length > 0)
   };
 
   const onQuantitySelect = option => {
@@ -33,7 +33,7 @@ const AddToCart = (props) => {
 
 
   useEffect(() => {
-    console.log('logg', props)
+    // console.log('logg', props)
     // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
     //   console.log(props.styles[props.styleIndex]?.skus[size].quantity)
     //   props.styles[props.styleIndex]?.skus[size].quantity > 0

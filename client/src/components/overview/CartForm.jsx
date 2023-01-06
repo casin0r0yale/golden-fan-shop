@@ -14,7 +14,7 @@ const CartForm = (props) => {
   return (
     <div widgetname="Cart">
       <div className="textCartPopUp">
-        Your Cart has {props.cartnumber} items.
+        Your Cart has {props.cartnumber} {props.cartnumber === 1 ? "item" : "items"}.
         {/* <h2 widgetname="Cart">Your Cart has {props.cartnumber} items.</h2> */}
       </div>
       <br/>

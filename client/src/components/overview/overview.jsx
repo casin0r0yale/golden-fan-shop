@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import "../../styles/index.css";
-import AddToCart from './addToCart.jsx';
-import ImageGallery from './imageGallery.jsx';
-import ProductInfo from './productInfo.jsx';
-import StyleSelector from './styleSelector.jsx';
+const AddToCart = React.lazy(() => import('./addToCart.jsx'));
+const ImageGallery = React.lazy(() => import('./imageGallery.jsx'));
+const ProductInfo = React.lazy(() => import('./productInfo.jsx'));
+const StyleSelector = React.lazy(() => import('./styleSelector.jsx'));
 import ExpandedView from './expandedView.jsx'
+const Spinner = require('../../img/spiffygif_46x46.gif');
 
 const Overview = (props) => {
   // console.log('overview', props.info);
@@ -27,20 +28,34 @@ const Overview = (props) => {
   return (
     <div widgetname="Overview" data-testid='testOverview'>
       {!props.serverError ?
-         expandedView ?
-            <div widgetname="Overview" className="expandedView"><ExpandedView setExpandedView={setExpandedView} primaryImageIndex={primaryImageIndex} setPrimaryImageIndex={setPrimaryImageIndex} styleIndex={styleIndex} styles={props.styles} />
+        expandedView ?
+          <div widgetname="Overview" className="expandedView"><ExpandedView setExpandedView={setExpandedView} primaryImageIndex={primaryImageIndex} setPrimaryImageIndex={setPrimaryImageIndex} styleIndex={styleIndex} styles={props.styles} />
+          </div>
+          :
+          <div widgetname="Overview" className="overviewContainer">
+              <Suspense fallback={<img src={Spinner} className='initSpinner' alt={'Loading...'} />}>
+            <div widgetname="Overview" className="productInfo"><ProductInfo rating={props.rating} info={props.info} onClickYourOutfit={props.onClickYourOutfit} /></div>
+            <div widgetname="Overview" className="styleSelector"><StyleSelector onClick={setIndex} styleIndex={styleIndex} styles={props.styles} /></div>
+            <div widgetname="Overview" className="addToCart"><AddToCart onClickAddToCart={props.onClickAddToCart} styleIndex={styleIndex} styles={props.styles} /></div>
+            <div widgetname="Overview" className="imageGallery">
+                <ImageGallery setExpandedView={setExpandedView} primaryImageIndex={primaryImageIndex} setPrimaryImageIndex={setPrimaryImageIndex} styleIndex={styleIndex} styles={props.styles} />
             </div>
-            :
-        <div widgetname="Overview" className="overviewContainer">
-              <div widgetname="Overview" className="productInfo"><ProductInfo rating={props.rating} info={props.info} onClickYourOutfit={props.onClickYourOutfit} /></div>
-              <div widgetname="Overview" className="styleSelector"><StyleSelector onClick={setIndex} styleIndex={styleIndex} styles={props.styles} /></div>
-              <div widgetname="Overview" className="addToCart"><AddToCart onClickAddToCart={props.onClickAddToCart} styleIndex={styleIndex} styles={props.styles} /></div>
-              <div widgetname="Overview" className="imageGallery"><ImageGallery setExpandedView={setExpandedView} primaryImageIndex={primaryImageIndex} setPrimaryImageIndex={setPrimaryImageIndex} styleIndex={styleIndex} styles={props.styles} /></div>
-            </div>
-        : <h2 style={{marginTop: "4em"}}>We have encountered an error with our backend server! Please try refreshing in a moment!</h2>
+              </Suspense>
+          </div>
+          // <div widgetname="Overview" className="overviewContainer">
+          //   <div widgetname="Overview" className="productInfo"><Suspense fallback={<></>}><ProductInfo rating={props.rating} info={props.info} onClickYourOutfit={props.onClickYourOutfit} /></Suspense></div>
+          //   <div widgetname="Overview" className="styleSelector"><Suspense fallback={<></>}><StyleSelector onClick={setIndex} styleIndex={styleIndex} styles={props.styles} /></Suspense></div>
+          //   <div widgetname="Overview" className="addToCart"><Suspense fallback={<></>}><AddToCart onClickAddToCart={props.onClickAddToCart} styleIndex={styleIndex} styles={props.styles} /></Suspense></div>
+          //   <div widgetname="Overview" className="imageGallery">
+          //     <Suspense fallback={<img src={Spinner} className='initSpinner' alt={'Loading...'} />}>
+          //       <ImageGallery setExpandedView={setExpandedView} primaryImageIndex={primaryImageIndex} setPrimaryImageIndex={setPrimaryImageIndex} styleIndex={styleIndex} styles={props.styles} />
+          //     </Suspense>
+          //   </div>
+          // </div>
+        : <h2 style={{ marginTop: "4em" }}>We have encountered an error with our backend server! Please try refreshing in a moment!</h2>
       }
-      </div>
-      )
+    </div>
+  )
 }
 
-      export default Overview;
+export default Overview;
