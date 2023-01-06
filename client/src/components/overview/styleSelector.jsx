@@ -11,7 +11,7 @@ const StyleSelector = (props) => {
         :
         <p widgetname="Overview"><span widgetname="Overview" className="strikeThrough"> ${props.styles[props.styleIndex]?.original_price} </span> ${props.styles[props.styleIndex]?.sale_price}</p>
       }
-      <h3 widgetname="Overview" >STYLE &gt; <span widgetname="Overview" style={{ fontWeight: "normal" }}>{props.styles[props.styleIndex]?.name}</span></h3>
+      <h2 widgetname="Overview" >STYLE &gt; <span widgetname="Overview" style={{ fontWeight: "normal" }}>{props.styles[props.styleIndex]?.name}</span></h2>
       <div widgetname="Overview"  className="styleContainer">
         {props.styles?.map((product, index) => {
 

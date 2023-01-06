@@ -68,8 +68,8 @@ var Questions = (props) => {
       <div>
         {/* <div className="wrap"> */}
           <div className="search">
-            <input className="form-control" type="text" onChange={changeFilter} widgetname="Questions/Answers"/>
-            <button className="searchButton">
+            <input aria-label="search bar" className="form-control" type="text" onChange={changeFilter} widgetname="Questions/Answers"/>
+            <button aria-label="search button" className="searchButton">
               <i className="fa fa-search"></i>
             </button>
           </div>

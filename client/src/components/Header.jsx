@@ -37,7 +37,7 @@ const Header = (props) => {
       <div>
         {props.cartNumber === 0 ? null : props.cartNumber}
       </div>
-        <button onClick={togglePopup}>
+        <button aria-label="shopping cart button" onClick={togglePopup}>
           <FaShoppingCart size="25"/>
         </button>
       </div>

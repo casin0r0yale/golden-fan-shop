@@ -55,7 +55,7 @@ const ReviewTile = (props) => {
         <ProductRating widgetname="Review Tile" rating={props.review.rating} />
         <p widgetname="Review Tile"><AiFillCheckCircle />&nbsp;{props.review.reviewer_name}, {date}</p>
       </div>
-      <h5 widgetname="Review Tile">{props.review.summary}</h5>
+      <p widgetname="Review Tile">{props.review.summary}</p>
       <div widgetname="Review Tile" data-testid="review-images">
         {(photoArr.length !== 0) ? photoArr.map((url, idx) => {
           return <img widgetname="Review Tile" className="review-image" src={url} key={idx} onClick={() => handleImgPopUp(url)}/>
