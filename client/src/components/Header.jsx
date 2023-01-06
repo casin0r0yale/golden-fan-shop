@@ -32,14 +32,10 @@ const Header = (props) => {
       />}
       <div widgetname="Header" onClick = {refreshPage} className="header-left">
         <img widgetname="Header" src={require('../img/Logo.png')} alt="Golden Fan Logo" />
-      </div>
-      <div widgetname="Header" className="header-right">
-      <div>
-        {props.cartNumber === 0 ? null : props.cartNumber}
-      </div>
-        <button aria-label="shopping cart button" onClick={togglePopup}>
+      </div >
+      <div onClick={togglePopup} widgetname="Header" className="header-right">
+        {props.cartNumber === 0 ? null : <div className='cartNumber'> {props.cartNumber} </div>}
           <FaShoppingCart size="25"/>
-        </button>
       </div>
     </div>
   );

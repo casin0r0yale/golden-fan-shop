@@ -37,7 +37,7 @@ var NewAnswerForm = (props) => {
         <b widgetname="Questions/Answers">For authentication reasons, you will not emailed.</b><br></br><br></br>
         <label widgetname="Questions/Answers">Upload Photos Here:</label><br></br>
         <ImageUpload handleImages={imageUploadHandler}/>
-        <input type="submit" widgetname="Questions/Answers"/>
+        <input type="submit" widgetname="Questions/Answers" className="submit-button"/>
       </form>
     </div>
   );

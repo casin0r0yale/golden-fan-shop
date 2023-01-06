@@ -82,8 +82,8 @@ var AnswerList = (props) => {
       );
     })}
 
-    {(answerObjList.length > 2) && isCollapsed ? <b onClick={loadAnswers} widgetname="Questions/Answers">LOAD MORE ANSWERS</b> : null}
-    {(!isCollapsed ? <b onClick={collapseAnswers} widgetname="Questions/Answers">COLLAPSE ANSWERS</b> : null)}
+    {(answerObjList.length > 2) && isCollapsed ? <b style={{margin: "2.5em 0em 1em 0em"}} onClick={loadAnswers} widgetname="Questions/Answers">LOAD MORE ANSWERS</b> : null}
+    {(!isCollapsed ? <b style={{margin: "2.5em 0em 1em 0em"}} onClick={collapseAnswers} widgetname="Questions/Answers">COLLAPSE ANSWERS</b> : null)}
   </div>
   );
 };

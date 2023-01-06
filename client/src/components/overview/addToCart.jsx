@@ -3,7 +3,8 @@ import "../../styles/index.css";
 // need to be lowercase "rx" for compiling in deployment
 import { RxCaretDown } from 'react-icons/rx';
 import { AiOutlinePlus } from 'react-icons/ai';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -32,7 +33,7 @@ const AddToCart = (props) => {
 
 
   useEffect(() => {
-    // console.log('logg', props.styles[props.styleIndex])
+    console.log('logg', props)
     // && Object.keys(props.styles[props.styleIndex]?.skus)?.some(size => {
     //   console.log(props.styles[props.styleIndex]?.skus[size].quantity)
     //   props.styles[props.styleIndex]?.skus[size].quantity > 0
@@ -55,7 +56,7 @@ const AddToCart = (props) => {
   const addToCart = clicked => {
     props.onClickAddToCart(skuSelected);
     // setFavorited(!favorited);
-    alert(`${props.styles[props.styleIndex].name} has been added to your cart!`);
+    toast(`${props.styles[props.styleIndex].name} has been added to your cart!`);
   }
 
 
