@@ -1432,7 +1432,7 @@ form.review-form input[type="file"]::file-selector-button:hover {
 /* Answer List */
 .answer-list {
   overflow-y: auto;
-  /* height: 10.6em; */
+  height: 10.6em;
   font-size: 0.9em;
   margin-left: 2em;
 }
@@ -1464,6 +1464,8 @@ form.review-form input[type="file"]::file-selector-button:hover {
 
 .question-block {
   margin-top: 1em;
+  max-height: 25em;
+  overflow-y: auto;
 }
 @media screen and (max-width: 1500px) {
 }
