@@ -317,7 +317,7 @@ const App = () => {
         {relatedProductsData.length > 0 ? <div className="section" widgetname="Related/YourOutfit">RELATED PRODUCTS</div> : null}
 
         <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef} widgetname="Related Products">
-        <Suspense fallback={<img src={Spinner} alt="Loading..."/>}>
+        {/* <Suspense fallback={<img src={Spinner} alt="Loading..."/>}> */}
             {scrollRelatedProgress > 3.3 ? (<LeftScrollButtonCarousel moveLeft={moveLeft} />) : null}
             {relatedProductsData.map((itemObj, index) => {
               return <RelatedCard onClickNavigateToNewProductPage={onClickNavigateToNewProductPage} related_id={itemObj.related_id} related_name={itemObj.related_name}
@@ -327,7 +327,7 @@ const App = () => {
                 ref={index === activeSlide ? activeSlideRef : index - 1 === activeSlide ? nextSlideRef : index + 1 === activeSlide ? prevSlideRef : null} />
             })}
             {scrollToggleRelatedProgress && scrollRelatedProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight} />}
-          </Suspense>
+          {/* </Suspense> */}
         </div>
         <br />
         <br />
