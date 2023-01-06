@@ -61,12 +61,12 @@ const RelatedCard = React.forwardRef((props, ref) => {
         </>}
         handleClose={togglePopup}
       />}
-      <button widgetname="Related/YourOutfit" id="star-button-compare" onClick={togglePopup} className="star">
+      <button widgetname="Related/YourOutfit" id="star-button-compare" aria-label="comparison button" onClick={togglePopup} className="star">
         &#9733;
       </button>
       <a widgetname="Related/YourOutfit" href={'/ip/' + props.related_id} style={{textDecoration: 'none'}} onClick={onClickNavigate} >
         <div widgetname="Related/YourOutfit">
-          <img widgetname="Related/YourOutfit" className='productImageInCard' src={props.related_thumbnail ? props.related_thumbnail : 'https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/Reality_Stone_VFX.png/revision/latest?cb=20190427012609'} />
+          <img widgetname="Related/YourOutfit" className='productImageInCard' src={props.related_thumbnail ? props.related_thumbnail : 'https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/Reality_Stone_VFX.png/revision/latest?cb=20190427012609'} alt="..."/>
         </div>
 
         <div widgetname="Related/YourOutfit">

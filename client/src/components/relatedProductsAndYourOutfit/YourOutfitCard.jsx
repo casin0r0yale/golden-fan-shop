@@ -31,7 +31,7 @@ const YourOutfitCard = React.forwardRef((props, ref) => {
   return (
     <div widgetname="Related/YourOutfit" className='productCard' onClick={onClickNavigate} ref={ref} data-testid='testYourOutfitCard'>
       <a widgetname="Related/YourOutfit" href={props.current_id? '/ip/' + props.current_id : null} style={{textDecoration: 'none'}}>
-        <img widgetname="Related/YourOutfit" className='productImageInCard' src={props.current_thumbnail ? props.current_thumbnail : 'https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/Reality_Stone_VFX.png/revision/latest?cb=20190427012609'} />
+        <img widgetname="Related/YourOutfit" className='productImageInCard' src={props.current_thumbnail ? props.current_thumbnail : 'https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/Reality_Stone_VFX.png/revision/latest?cb=20190427012609'} alt="..."/>
         <div widgetname="Related/YourOutfit">
           <div widgetname="Related/YourOutfit" style={{ fontSize: 12 }} className='lineSpaceCard'>{props.current_category ? props.current_category.toUpperCase() : null}</div>
           <div widgetname="Related/YourOutfit" className='boldFont lineSpaceCard'>{props.current_name ? props.current_name : null}</div>
@@ -41,7 +41,7 @@ const YourOutfitCard = React.forwardRef((props, ref) => {
           </div>
         </div>
       </a>
-      <button onClick={onClickDeleteProduct} className="close-icon-yourOutfit"><div className='x-icon'></div></button>
+      <button onClick={onClickDeleteProduct} aria-label="remove outfit icon" className="close-icon-yourOutfit"><div className='x-icon'></div></button>
     </div>
   )
 });

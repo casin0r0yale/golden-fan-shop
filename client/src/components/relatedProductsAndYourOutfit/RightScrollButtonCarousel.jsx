@@ -8,7 +8,7 @@ const RightScrollButtonCarousel = (props) => {
 
   return (
     <div widgetname="Related/YourOutfit" className='rightScrollButtonPosition' data-testid='testRightScrollButton'>
-      <button widgetname="Related/YourOutfit" className='rightScrollButton' onClick={onClickScrollRight}>
+      <button widgetname="Related/YourOutfit"  aria-label="right scroll button" className='rightScrollButton' onClick={onClickScrollRight}>
         <div widgetname="Related/YourOutfit" className='right-icon'></div>
       </button>
     </div>
