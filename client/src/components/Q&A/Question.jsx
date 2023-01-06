@@ -51,11 +51,12 @@ var Question = (props) => {
   }
 
   return (
-    <div widgetname="Questions/Answers" >
-      <h4 widgetname="Questions/Answers">Q: {currentQuestion.question_body}</h4>
-      <div className="question-below-bar" widgetname="Questions/Answers">
-        <p widgetname="Questions/Answers">Helpful? {isHelpful ? <a widgetname="Questions/Answers">Yes ({questionHelpfulness + 1})</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes ({questionHelpfulness})</a>} | <a onClick={toggleAnswerPopup} className="hyperlink" widgetname="Questions/Answers">Add An Answer</a> | {(isReported) ? <a widgetname="Questions/Answers">Reported</a> : <a onClick={toggleReported} widgetname="Questions/Answers" className="hyperlink">Report Question</a>}</p>
+    <div style={{marginBottom: "1.5em"}}  widgetname="Questions/Answers">
+      <div style={{margin: "2em 0em 1.2em 0em"}}><h3 style= {{display: "inline"}} widgetname="Questions/Answers">Q:</h3> <p style= {{display: "inline"}}>{currentQuestion.question_body}</p>
+        <div style= {{display: "inline", float: "right"}} className="question-below-bar" widgetname="Questions/Answers">
+          <div widgetname="Questions/Answers"><span style={{fontSize:".8em"}}>Helpful?</span> {isHelpful ? <a widgetname="Questions/Answers">Yes ({questionHelpfulness + 1})</a> : <a onClick={toggleHelpfulness} className="hyperlink" widgetname="Questions/Answers">Yes ({questionHelpfulness})</a>} | <a onClick={toggleAnswerPopup} className="hyperlink" widgetname="Questions/Answers">Add An Answer</a> | {(isReported) ? <a widgetname="Questions/Answers">Reported</a> : <a onClick={toggleReported} widgetname="Questions/Answers" className="hyperlink">Report Question</a>}</div>
       </div>
+    </div>
       <AnswerList answers={currentQuestion.answers}/>
       <div>
         {isAnswerOpen && <Popup handleClose={toggleAnswerPopup} content={<NewAnswerForm currentQuestion={currentQuestion.question_body} productName={props.product.name} questionId={currentQuestion.question_id} handleFormSubmit={handleAnswerFormSubmit}/>}/>}

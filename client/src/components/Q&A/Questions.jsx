@@ -64,12 +64,12 @@ var Questions = (props) => {
   const mappedQuestions = filteredQuestions.slice(0, questionIndex);
 
   return (
-    <div data-testid="question-module">
+    <div className="section" data-testid="question-module">
       <p widgetname="Questions/Answers">QUESTIONS &amp; ANSWERS</p>
       <div>
         {/* <div className="wrap"> */}
           <div className="search">
-            <input aria-label="search bar" className="form-control" type="text" onChange={changeFilter} widgetname="Questions/Answers" placeholder="Say something..."/>
+            <input aria-label="search bar" className="form-control" type="text" onChange={changeFilter} widgetname="Questions/Answers" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
             <button aria-label="search button" className="searchButton">
               <i className="fa fa-search"></i>
             </button>

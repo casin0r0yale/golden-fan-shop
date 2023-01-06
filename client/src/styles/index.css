@@ -1339,4 +1339,9 @@ form.review-form input[type="file"]::file-selector-button:hover {
   margin-top: 1em;
 }
 
+.form-box .question-thumbnail-popup {
+  width: 100%;
+  height: 100%;
+}
+
 
