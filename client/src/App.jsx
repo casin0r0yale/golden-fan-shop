@@ -4,8 +4,8 @@ import useClickTracker from './hooks/useClickTracker.jsx';
 import axios from 'axios';
 
 import Header from "./components/Header.jsx";
-import Overview from './components/overview/overview.jsx';
-import Description from "./components/Description.jsx";
+const Overview = React.lazy(() => import('./components/overview/overview.jsx'));
+const Description = React.lazy(() => import("./components/Description.jsx"));
 const RelatedCard = React.lazy(() => import('./components/relatedProductsAndYourOutfit/RelatedCard.jsx'));
 const AddToOutfitCard = React.lazy(() => import('./components/relatedProductsAndYourOutfit/AddToOutfitCard.jsx'));
 const YourOutfitCard = React.lazy(() => import('./components/relatedProductsAndYourOutfit/YourOutfitCard.jsx'));
@@ -223,7 +223,6 @@ const App = () => {
         //setProductQnAData(response.data);
         var questionData = response.data.results;
         setProductQnAData(questionData);
-        console.log('Qna Data: ', questionData);
 
       })
       .catch(function (error) {
@@ -308,10 +307,12 @@ const App = () => {
     <div onClick={onClickTracker}>
       <Header cartNumber={cartNumber} onClickDeleteCart={onClickDeleteCart}/>
       <h2 data-testid='testYourOutfitCard'>Golden Fan Shop</h2>
-      <Overview rating={rating} serverError={serverError} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} onClickAddToCart={onClickAddToCart} />
-      <div className="margins-nonOverview">
+      <Suspense fallback={<img src={Spinner} alt="Loading..."/>}>
+        <Overview rating={rating} serverError={serverError} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} onClickAddToCart={onClickAddToCart} />
+      </Suspense>
+      <div className="margins-nonOverview" >
         <Description slogan={productInfo.slogan} desc={productInfo.description} featuresPrimaryProductString={featuresPrimaryProduct} />
-        <div widgetname="Related/YourOutfit">RELATED PRODUCTS</div>
+        {relatedProductsData.length > 0 ? <div widgetname="Related/YourOutfit">RELATED PRODUCTS</div> : null}
 
         <div className="sidescroller" onScroll={handleSideScroll} ref={relatedCarourselRef} widgetname="Related Products">
         <Suspense fallback={<img src={Spinner} alt="Loading..."/>}>
@@ -328,6 +329,7 @@ const App = () => {
         </div>
         <br />
         <br />
+        {/* {relatedProductsData.length > 0 ? <div ref={loadBottomBoundary} widgetname="Related/YourOutfit">YOUR OUTFIT</div> : null} */}
         <div ref={loadBottomBoundary} widgetname="Related/YourOutfit">YOUR OUTFIT</div>
         <div className="sidescroller" onScroll={handleSideScroll2} ref={yourOutfitCarourselRef} widgetname="Your Outfit">
           <Suspense fallback={<img src={Spinner} alt="Loading..."/>}>
@@ -339,6 +341,7 @@ const App = () => {
                 key={`slide-${itemObj.current_id}`}
                 ref={index === activeSlide2 ? activeSlideRef2 : index - 1 === activeSlide2 ? nextSlideRef2 : index + 1 === activeSlide2 ? prevSlideRef2 : null} />
             })}
+            {/* {yourOutfitList.length > 0 ? <AddToOutfitCard onClickYourOutfit={onClickYourOutfit} ref={activeSlide2 === yourOutfitList.length - 1 ? nextSlideRef2 : null} /> : null} */}
             <AddToOutfitCard onClickYourOutfit={onClickYourOutfit} ref={activeSlide2 === yourOutfitList.length - 1 ? nextSlideRef2 : null} />
             {scrollToggleYourOutfitProgress && scrollYourOutfitProgress < 100 && <RightScrollButtonCarousel moveRight={moveRight2} l />}
           </Suspense>

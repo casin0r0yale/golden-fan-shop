@@ -81,7 +81,8 @@ const Description = (props) => {
 
   return (
     <div widgetname="Overview" className="lineAnchor" widgetname="Overview">
-      <div widgetname="Overview" className='middle-columnDesc verticalLine'></div>
+      {fullListFeaturesDesc.length > 0 ? <div widgetname="Overview" className='middle-columnDesc verticalLine'></div> : null}
+      {/* // <div widgetname="Overview" className='middle-columnDesc verticalLine'></div> */}
       <div widgetname="Overview" className="rowDesc">
         <div widgetname="Overview" className="first-columnDesc">
           <h3 widgetname="Overview" style={{fontSize: 15}}>{props.slogan}</h3>

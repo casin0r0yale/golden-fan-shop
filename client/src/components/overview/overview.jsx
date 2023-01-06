@@ -1,9 +1,9 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import "../../styles/index.css";
-import AddToCart from './addToCart.jsx';
+const AddToCart = React.lazy (() => import('./addToCart.jsx'));
 const ImageGallery = React.lazy(() => import('./imageGallery.jsx'));
-import ProductInfo from './productInfo.jsx';
-import StyleSelector from './styleSelector.jsx';
+const ProductInfo = React.lazy(() => import('./productInfo.jsx'));
+const StyleSelector = React.lazy(() => import('./styleSelector.jsx'));
 import ExpandedView from './expandedView.jsx'
 const Spinner = require('../../img/spiffygif_46x46.gif');
 
@@ -33,11 +33,11 @@ const Overview = (props) => {
             </div>
             :
         <div widgetname="Overview" className="overviewContainer">
-              <div widgetname="Overview" className="productInfo"><ProductInfo rating={props.rating} info={props.info} onClickYourOutfit={props.onClickYourOutfit} /></div>
-              <div widgetname="Overview" className="styleSelector"><StyleSelector onClick={setIndex} styleIndex={styleIndex} styles={props.styles} /></div>
-              <div widgetname="Overview" className="addToCart"><AddToCart onClickAddToCart={props.onClickAddToCart} styleIndex={styleIndex} styles={props.styles} /></div>
+              <div widgetname="Overview" className="productInfo"><Suspense fallback={<></>}><ProductInfo rating={props.rating} info={props.info} onClickYourOutfit={props.onClickYourOutfit} /></Suspense></div>
+              <div widgetname="Overview" className="styleSelector"><Suspense fallback={<></>}><StyleSelector onClick={setIndex} styleIndex={styleIndex} styles={props.styles} /></Suspense></div>
+              <div widgetname="Overview" className="addToCart"><Suspense fallback={<></>}><AddToCart onClickAddToCart={props.onClickAddToCart} styleIndex={styleIndex} styles={props.styles} /></Suspense></div>
               <div widgetname="Overview" className="imageGallery">
-              <Suspense fallback={<img src={Spinner} alt={Spinner}/>}>
+              <Suspense fallback={<img src={Spinner} alt={'Loading...'}/>}>
                 <ImageGallery setExpandedView={setExpandedView} primaryImageIndex={primaryImageIndex} setPrimaryImageIndex={setPrimaryImageIndex} styleIndex={styleIndex} styles={props.styles} />
               </Suspense>
               </div>

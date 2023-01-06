@@ -30,7 +30,7 @@ const ImageGallery = (props) => {
 
   // if (props.photos && props.chosenStyle) {
   return (
-    <div widgetname="Overview" data-testid='testImageGallery'>
+    <div widgetname="Overview" data-testid='testImageGallery' >
       <div widgetname="Overview" id="main-img">
           <img widgetname="Overview" id="primary-img" className="maxDimensions" src={props.styles[props.styleIndex]?.photos[primaryImageIndex].url}
             onClick={() => { props.setExpandedView(true); props.setPrimaryImageIndex(primaryImageIndex); }}/>

@@ -29,6 +29,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./client/src/components/reviews/ProductRating.jsx":
+/*!*********************************************************!*\
+  !*** ./client/src/components/reviews/ProductRating.jsx ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_icons_io5__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-icons/io5 */ \"./node_modules/react-icons/io5/index.esm.js\");\n/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ \"./node_modules/react/jsx-runtime.js\");\n\n\n\nvar ProductRating = function ProductRating(props) {\n  var rating = props.rating;\n  var ratingRoundDown = Math.floor(rating);\n  var createStars = function createStars(number) {\n    var array = [];\n    for (var i = 0; i < number; i++) {\n      array.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_icons_io5__WEBPACK_IMPORTED_MODULE_2__.IoStarSharp, {}, Math.random()));\n    }\n    ;\n    if (rating % 1 !== 0) {\n      array.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_icons_io5__WEBPACK_IMPORTED_MODULE_2__.IoStarHalfSharp, {}, Math.random()));\n      var remainingStarCount = Math.floor(5 - rating);\n      for (var j = 0; j < remainingStarCount; j++) {\n        array.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_icons_io5__WEBPACK_IMPORTED_MODULE_2__.IoStarOutline, {}, Math.random()));\n      }\n    } else {\n      var _remainingStarCount = 5 - rating;\n      for (var k = 0; k < _remainingStarCount; k++) {\n        array.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_icons_io5__WEBPACK_IMPORTED_MODULE_2__.IoStarOutline, {}, Math.random()));\n      }\n    }\n    return array;\n  };\n  var stars = createStars(ratingRoundDown);\n  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(\"div\", {\n    widgetname: \"Star Rating\",\n    className: \"number-of-stars\",\n    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(\"span\", {\n      widgetname: \"Star Rating\",\n      children: stars\n    })\n  });\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductRating);\n\n//# sourceURL=webpack://golden-fan-shop/./client/src/components/reviews/ProductRating.jsx?");
+
+/***/ }),
+
 /***/ "./client/src/components/reviews/RatingBreakdown.jsx":
 /*!***********************************************************!*\
   !*** ./client/src/components/reviews/RatingBreakdown.jsx ***!
