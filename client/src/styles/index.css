@@ -56,8 +56,6 @@ h1 {
   display: flex;
   position: absolute;
   justify-content: center;
-  /* align-items: center; */
-  /* padding-left: 13em; */
   top: 10em;
   left: 50%;
 }
