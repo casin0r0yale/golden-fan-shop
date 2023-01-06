@@ -307,9 +307,11 @@ const App = () => {
     <div onClick={onClickTracker}>
       <Header cartNumber={cartNumber} onClickDeleteCart={onClickDeleteCart}/>
       <h2 data-testid='testYourOutfitCard'>Golden Fan Shop</h2>
-      <Suspense fallback={<img src={Spinner} alt="Loading..."/>}>
-        <Overview rating={rating} serverError={serverError} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} onClickAddToCart={onClickAddToCart} />
-      </Suspense>
+      <div className="initSpinnerContainer">
+        <Suspense fallback={<img src={Spinner} className='initSpinner' alt="Loading..."/>}>
+          <Overview rating={rating} serverError={serverError} info={productInfo} styles={productStyles} onClickYourOutfit={onClickYourOutfit} onClickAddToCart={onClickAddToCart} />
+        </Suspense>
+      </div>
       <div className="margins-nonOverview" >
         <Description slogan={productInfo.slogan} desc={productInfo.description} featuresPrimaryProductString={featuresPrimaryProduct} />
         {relatedProductsData.length > 0 ? <div className="section" widgetname="Related/YourOutfit">RELATED PRODUCTS</div> : null}
