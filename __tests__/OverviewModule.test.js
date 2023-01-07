@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import AddToCart from '../client/src/components/overview/addToCart.jsx';
 import ImageGallery from '../client/src/components/overview/imageGallery.jsx';
 import ProductInfo from '../client/src/components/overview/productInfo.jsx';
 import StyleSelector from '../client/src/components/overview/styleSelector.jsx';
 import Overview from '../client/src/components/overview/overview.jsx';
+import Header from '../client/src/components/Header.jsx';
+import CartForm from '../client/src/components/overview/CartForm.jsx';
 
 
 
@@ -50,6 +53,23 @@ test('should render StyleSelector', () => {
       expect(testStyleSelector).toBeInTheDocument()
 })
 
+test('should render Header', () => {
+  render(<Header />);
+  const cartForm = screen.getTestId('header');
+  expect(cartForm).toBeInTheDocument();
+})
+
+test('should render Cart Form', () => {
+  render(<CartForm />);
+  const cartForm = screen.getTestId('cart-form');
+  expect(cartForm).toBeInTheDocument();
+})
+
+test('should delete cart on click', () => {
+  render(<CartForm cartnumber={1} />)
+  userEvent.click(screen.getByText('Empty Shopping Cart'));
+  expect(screen.getByText('Your Cart has 0 items.')).toBeInTheDocument();
+})
 
 // test('should render Your Outfit Product Card with props', () => {
 

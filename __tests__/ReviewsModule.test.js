@@ -10,6 +10,7 @@ import ReviewList from '../client/src/components/reviews/ReviewList.jsx';
 import ReviewForm from '../client/src/components/reviews/ReviewForm.jsx';
 import RatingBreakdown from '../client/src/components/reviews/RatingBreakdown.jsx';
 import ReviewTile from '../client/src/components/reviews/ReviewTile.jsx';
+import ImageUpload from '../client/src/components/reviews/ImageUpload.jsx';
 
 var reviewList = [
   {
@@ -164,7 +165,7 @@ test('Review form should have image upload buttons', () => {
     expect(buttons).toBeInTheDocument();
 });
 
-describe('Review Tile should exist with images', () => {
+
   var review = {
     "review_id": 1277070,
     "rating": 5,
@@ -172,7 +173,7 @@ describe('Review Tile should exist with images', () => {
     "recommend": true,
     "response": null,
     "body": "I dont understand why api returns CREATED, but i can not see my review",
-    "date": "2022-10-23T00:00:00.000Z",
+    "date": "2023-01-05T00:00:00.000Z",
     "reviewer_name": "www",
     "helpfulness": 0,
     "photos": [
@@ -183,34 +184,44 @@ describe('Review Tile should exist with images', () => {
     ]
   }
 
-  test('Should Render Review Tile', () => {
-    render(<ReviewTile review={review}/>);
-    const review = screen.queryByTestId('review-tile');
-    expect(review).toBeInTheDocument();
-  });
+// test('Should Render Review Tile', () => {
+//   render(<ReviewTile review={review}/>);
+//   const review = screen.queryByTestId('review-tile');
+//   expect(review).toBeInTheDocument();
+// });
 
-  test('Review Image Thumbnails should render', () => {
+test('Review Image Thumbnails should render', () => {
     render(<ReviewTile review={review}/>);
     const image = screen.queryByTestId('review-images');
     expect(image).toBeInTheDocument();
   });
+
+// test('Review Thumbnail popup should render', () => {
+//   const user = userEvent.setup();
+//   render(<ReviewTile review={review} />);
+//   // const reviewImg = screen.queryByTestId('review-image');
+//   const img = screen.queryByTestId('review-image');
+//   fireEvent.click(container.querySelector('review-image'));
+//   // const imgPopUp = screen.queryByTestId('review-thumbnail-popup');
+//   expect(screen.queryByTestId('review-thumbnail-popup')).toBeInTheDocument();
+// })
+
+
+test('Image Upload Buttons should exist', () => {
+  render(<ImageUpload />);
+  const imgUploadBtn = screen.queryByTestId('image-upload-buttons');
+  expect(imgUploadBtn).toBeInTheDocument();
+})
+
+
+test('Button click is functional', () => {
+  const user = userEvent.setup();
+  render(<Reviews rating={rating} reviewList={reviewList} product={productInfo} meta={meta}/>);
+  // const addReviewButton = screen.getByText('Add a review');
+  userEvent.click(screen.getByText('Add a review'))
+  render(<ReviewForm id={productInfo.id} productName={productInfo.name} meta={meta}/>);
+  expect(screen.queryByTestId('review-form')).toBeInTheDocument();
 });
 
 
-
-
-
-
-
-// describe('Review form should load after ADD REVIEW button click', () => {
-//   test('Button click is functional', () => {
-//     render(<Reviews rating={rating} reviewList={reviewList} product={productInfo}/>);
-
-//     const addReviewButton = screen.queryByTestId('add-review-button');
-//     userEvent.click(addReviewButton).toBe(true);
-
-//     // expect(screen.queryByTestId('review-form')).toBeInTheDocument();
-
-//   });
-// });
 

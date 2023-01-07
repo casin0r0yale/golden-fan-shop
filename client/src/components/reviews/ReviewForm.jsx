@@ -3,7 +3,7 @@ import StarRating from './StarRating.jsx';
 import ImageUpload from './ImageUpload.jsx';
 
 const ReviewForm = (props) => {
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(null);
   const [charsLeft, setMinCharsLeft] = useState(50);
   const [sizeRating, setSizeRating] = useState('');
   const [widthText, setWidthText] = useState('');
