@@ -7,6 +7,7 @@ Welcome to Golden Fan Shop, the ultimate online destination for stylish clothing
 Here's are some features in the Golden Fan Shop experience:
 
 - Wide selection of stylish clothing items
+![alt text](https://res.cloudinary.com/djfpzruso/image/upload/v1673126450/Golden%20Fan%20Shop%20Images/Screen_Shot_2023-01-07_at_2.09.39_PM_xubrrf.png)
 - Comparison of features and styles
 - View, ask and answer questions about the product
 - Submit reviews about the product
