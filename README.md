@@ -13,9 +13,9 @@ Here are some features in the Golden Fan Shop experience:
 ![alt text](https://res.cloudinary.com/djfpzruso/image/upload/c_scale,w_712/v1673126453/Golden%20Fan%20Shop%20Images/Screen_Shot_2023-01-07_at_2.10.26_PM_dwgogm.png)
 ### Comparison of features and styles
 ![alt text](https://res.cloudinary.com/djfpzruso/image/upload/c_scale,w_712/v1673126619/Golden%20Fan%20Shop%20Images/Screen_Shot_2023-01-07_at_2.23.29_PM_ua8pj0.png)
-### View, ask and answer questions about the product
+### View Questions & Answers about the product
 ![alt text](https://res.cloudinary.com/djfpzruso/image/upload/c_scale,w_712/v1673126427/Golden%20Fan%20Shop%20Images/Screen_Shot_2023-01-07_at_2.13.30_PM_al62jl.png)
-### View Ratings & Reviews, and sort based on Star ratings, Relevance, Newest, and Helpfullness
+### View Ratings & Reviews, and filter based on rating, relevance, newest, and helpfullness
 ![alt text](https://res.cloudinary.com/djfpzruso/image/upload/c_scale,w_712/v1673126426/Golden%20Fan%20Shop%20Images/Screen_Shot_2023-01-07_at_2.15.36_PM_pcpdws.png)
 ### Submit reviews about the product
 ![alt text](https://res.cloudinary.com/djfpzruso/image/upload/c_scale,w_512/v1673127885/Golden%20Fan%20Shop%20Images/Screen_Shot_2023-01-07_at_2.44.15_PM_akrnqn.png)
