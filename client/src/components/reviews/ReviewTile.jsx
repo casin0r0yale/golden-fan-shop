@@ -8,6 +8,7 @@ const ReviewTile = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [imgLink, setImgLink] = useState('');
   const date = format(new Date(props.review.date), 'LLLL d, yyyy');
+  // console.log('testing props date: ', props.review.date);
   const photoArr = [];
   if (props.review.photos.length !== 0) {
     const photos = props.review.photos;
@@ -58,7 +59,7 @@ const ReviewTile = (props) => {
 
       <p widgetname="Review Tile"><strong>{props.review.summary}</strong></p>      <div widgetname="Review Tile" data-testid="review-images">
         {(photoArr.length !== 0) ? photoArr.map((url, idx) => {
-          return <img widgetname="Review Tile" className="review-image" src={url} key={idx} onClick={() => handleImgPopUp(url)} alt="..." />
+          return <img widgetname="Review Tile" className="review-image" data-testid="review-image" src={url} key={idx} onClick={() => handleImgPopUp(url)} alt="..." />
         }) : null}
       </div>
       <p style={{ marginBottom: "-.2em" }} widgetname="Review Tile">{props.review.body}</p>
@@ -68,7 +69,7 @@ const ReviewTile = (props) => {
       </div>
       {isOpen && <Popup
         content={<>
-          <img className="review-thumbnail-popup" src={imgLink} />
+          <img className="review-thumbnail-popup" data-testid="review-thumbnail-popup" src={imgLink} />
         </>}
         handleClose={togglePopup}
       />}

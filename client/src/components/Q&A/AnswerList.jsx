@@ -32,7 +32,7 @@ var AnswerList = (props) => {
     setIsImageExpanded(!isImageExpanded);
   }
   return (
-  <div className="answer-list" widgetname="Questions/Answers">
+  <div className="answer-list" widgetname="Questions/Answers" data-testid="answer-list">
     {renderedAnswers.map((answerKey, index) => {
       // console.log(answerKey);
       var currentAnswer = props.answers[answerKey];
