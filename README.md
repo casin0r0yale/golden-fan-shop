@@ -10,11 +10,11 @@ Here's are some features in the Golden Fan Shop experience:
 ![alt text](https://res.cloudinary.com/djfpzruso/image/upload/c_scale,w_712/v1673126865/Golden%20Fan%20Shop%20Images/Screen_Shot_2023-01-07_at_2.27.15_PM_hxckwf.png)
 ### Add items to your outfit and cart for purchase
 ![alt text](https://res.cloudinary.com/djfpzruso/image/upload/c_scale,w_715/v1673126932/Golden%20Fan%20Shop%20Images/Screen_Shot_2023-01-07_at_2.28.16_PM_b5j5tr.png)
-![alt text](https://res.cloudinary.com/djfpzruso/image/upload/c_scale,w_725/v1673126453/Golden%20Fan%20Shop%20Images/Screen_Shot_2023-01-07_at_2.10.26_PM_dwgogm.png)
+![alt text](https://res.cloudinary.com/djfpzruso/image/upload/c_scale,w_712/v1673126453/Golden%20Fan%20Shop%20Images/Screen_Shot_2023-01-07_at_2.10.26_PM_dwgogm.png)
 ### Comparison of features and styles
 ![alt text](https://res.cloudinary.com/djfpzruso/image/upload/c_scale,w_720/v1673126619/Golden%20Fan%20Shop%20Images/Screen_Shot_2023-01-07_at_2.23.29_PM_ua8pj0.png)
 ### View, ask and answer questions about the product
-![alt text](https://res.cloudinary.com/djfpzruso/image/upload/c_scale,w_698/v1673126427/Golden%20Fan%20Shop%20Images/Screen_Shot_2023-01-07_at_2.13.30_PM_al62jl.png)
+![alt text](https://res.cloudinary.com/djfpzruso/image/upload/c_scale,w_712/v1673126427/Golden%20Fan%20Shop%20Images/Screen_Shot_2023-01-07_at_2.13.30_PM_al62jl.png)
 ### View Ratings & Reviews, and sort based on Star ratings, Relevance, Newest, and Helpfullness
 ![alt text](https://res.cloudinary.com/djfpzruso/image/upload/c_scale,w_723/v1673126427/Golden%20Fan%20Shop%20Images/Screen_Shot_2023-01-07_at_2.15.13_PM_zoxrid.png)
 ### Submit reviews about the product
