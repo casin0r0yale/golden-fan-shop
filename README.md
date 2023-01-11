@@ -41,8 +41,7 @@ To build webpack, open a new terminal tab and run the following command:
 
 You should see the following message: "webpack <version> compiled successfully..."
 
-Configure your API tokens
-Create an `.env` file. In this file, you will need to add your personal access github token: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+Next, you need to configure your API tokens. Create an `.env` file. In this file, you will need to add your personal access github token: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 Add your token with the key name `AUTH_SECRET`
 
 Create a cloudinary account: https://cloudinary.com/. You will need this account to host your images in order to submit images in a review form. 
